@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BENDE VAR - Ultra Şık Yerel Arama</title>
+  
+  <!-- PWA & Mobil Uygulama Ayarları -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
   <style>
     :root {
       --bg-app: #fcfcfd;
@@ -493,6 +500,13 @@
         card.style.display = "none";
       }
     });
+  }
+
+  // Service Worker Kaydı (PWA Uygulama Desteği)
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+      .then(() => console.log('Service Worker başarıyla kaydedildi.'))
+      .catch((error) => console.log('Service Worker kaydı başarısız:', error));
   }
 </script>
 
