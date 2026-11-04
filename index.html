@@ -198,8 +198,7 @@
     .v-cat-text { font-size: 11px; font-weight: 800; text-align: center; }
 
     /* ======================================================== */
-    /* GÖNDERDİĞİN GÖRSELDEKİ BİREBİR MAĞAZA DETAY SAYfASI       */
-    /* (Yazı kalitesi yükseltildi, çizgiler düzeltildi, ebatlar oturtuldu)[cite: 9] */
+    /* İKİNCİ REFERANS GÖRSELİNE BİREBİR UYUMLU MAĞAZA DETAY    */
     /* ======================================================== */
     .store-modal-overlay {
       position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.75);
@@ -240,12 +239,13 @@
     .fav-heart-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; }
     .yorum-action-btn { background: #e2e8f0; border: none; padding: 6px 16px; border-radius: 20px; font-size: 11px; font-weight: 800; color: #334155; cursor: pointer; letter-spacing: 1px; }
 
-    /* ÜRÜN KARTLARI (YATAY KAYDIRMALI) */
-    .store-products-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; margin-bottom: 16px; }
+    /* İKİNCİ REFERANSTAKİ GİBİ TAM OTURAN ÜRÜN KARTLARI */
+    .store-products-scroll { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; margin-bottom: 16px; }
     .store-products-scroll::-webkit-scrollbar { display: none; }
     .store-mini-card {
-      background: #ffffff; border-radius: 16px; padding: 10px; width: 115px; flex-shrink: 0;
+      background: #ffffff; border-radius: 18px; padding: 10px; width: 112px; flex-shrink: 0;
       border: 1.5px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
     .store-mini-card img { width: 75px; height: 75px; object-fit: contain; margin-bottom: 6px; }
     .store-mini-title { font-size: 10px; font-weight: 800; color: #0f172a; height: 26px; overflow: hidden; line-height: 1.2; margin-bottom: 6px; }
@@ -470,7 +470,7 @@
   </div>
 
   <!-- ======================================================== -->
-  <!-- MAĞAZA DETAY SAYFASI (GÖRSELDEKİ BİREBİR PÜRÜZSÜZ YAPI)  -->
+  <!-- MAĞAZA DETAY SAYFASI (İKİNCİ REFERANS GÖRSELİNE BİREBİR) -->
   <!-- ======================================================== -->
   <div class="store-modal-overlay" id="storeModal">
     <div class="store-modal-card">
@@ -501,7 +501,7 @@
         <button class="yorum-action-btn" onclick="alert('Yorumlar açılıyor...')">YORUM</button>
       </div>
 
-      <!-- Ürün Kartları Kaydırma Alanı -->
+      <!-- Ürün Kartları Kaydırma Alanı (İkinci referans ile kusursuz uyumlu) -->
       <div class="store-products-scroll">
         <div class="store-mini-card">
           <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=200&q=80" alt="Burger">
