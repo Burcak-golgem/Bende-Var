@@ -602,7 +602,7 @@
     .cat-grid-card span.icon { font-size: 28px; }
     .cat-grid-card span.label { font-size: 12px; font-weight: 800; color: var(--primary-dark); text-align: center; }
 
-    /* MAĞAZA DETAY MODALI (SABİT MOBİL EBAT) */
+    /* MAĞAZA DETAY MODALI (SABİT MOBİL EBAT & SABİT KAPATMA BUTONU) */
     .store-modal-overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -615,6 +615,34 @@
     }
     .store-modal-overlay.active { display: flex; }
 
+    /* ÜST SABİT BAR (KAPATMA TUŞU İÇİN) */
+    .modal-fixed-top-bar {
+      position: sticky;
+      top: 0;
+      background: #110505;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: flex-end;
+      z-index: 50;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .modal-close-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none; 
+      color: #fff;
+      width: 36px; 
+      height: 36px; 
+      border-radius: 50%;
+      font-size: 16px; 
+      font-weight: 900; 
+      cursor: pointer;
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
     .store-modal-content {
       width: 100%;
       height: 100%;
@@ -622,24 +650,14 @@
       overflow-y: auto;
       position: relative;
       color: #ffffff;
-      padding: 16px;
+      padding: 0 16px 20px 16px;
       scrollbar-width: none;
       display: flex;
       flex-direction: column;
     }
     .store-modal-content::-webkit-scrollbar { display: none; }
 
-    .modal-close-btn {
-      position: absolute;
-      top: 14px; right: 14px;
-      background: rgba(255, 255, 255, 0.15);
-      border: none; color: #fff;
-      width: 32px; height: 32px; border-radius: 50%;
-      font-size: 15px; font-weight: 800; cursor: pointer; z-index: 10;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .modal-header-banner { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; margin-top: 20px; }
+    .modal-header-banner { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; margin-top: 10px; }
     .modal-brand-info h2 { font-size: 20px; font-weight: 900; color: #ef4444; line-height: 1.1; letter-spacing: -0.5px; }
     
     .rating-badge-row {
@@ -865,11 +883,13 @@
     </div>
   </div>
 
-  <!-- MAĞAZA DETAY MODALI (SABİT MOBİL EBAT) -->
+  <!-- MAĞAZA DETAY MODALI (SABİT ÜST KAPATMA TUŞU İLE) -->
   <div class="store-modal-overlay" id="storeModalOverlay">
-    <div class="store-modal-content" id="storeModalContent">
+    <div class="modal-fixed-top-bar">
       <button class="modal-close-btn" onclick="closeStoreModalDirect()">✕</button>
+    </div>
 
+    <div class="store-modal-content" id="storeModalContent">
       <div class="modal-header-banner">
         <div class="modal-brand-info">
           <h2 id="modalTitle">Mağaza Adı</h2>
