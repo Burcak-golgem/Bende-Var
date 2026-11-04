@@ -229,6 +229,7 @@
     .dot { width: 6px; height: 6px; background: #cbd5e1; border-radius: 50%; }
     .dot.active { width: 18px; background: #2563eb; border-radius: 4px; }
 
+    /* TEK SIRA YATAY KAYDIRMALI KATEGORİLER */
     .category-container {
       margin: 10px 16px 16px 16px;
       background: #ffffff;
@@ -294,7 +295,7 @@
     }
 
     .section-title { font-size: 15px; font-weight: 800; color: var(--primary-dark); }
-    .section-link { font-size: 12px; font-weight: 700; color: #2563eb; text-decoration: none; }
+    .section-link { font-size: 12px; font-weight: 700; color: #2563eb; text-decoration: none; cursor: pointer; }
 
     .horizontal-cards-scroll {
       display: flex;
@@ -367,7 +368,7 @@
     .product-price { font-size: 13px; font-weight: 900; color: var(--primary-dark); }
     .detail-action-btn { width: 26px; height: 26px; background: #2563eb; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; border: none; }
 
-    /* VİTRİN BÖLÜMÜ (ÇOĞALTILMIŞ ŞIK KARTLAR) */
+    /* VİTRİN BÖLÜMÜ */
     .vitrin-banner {
       margin: 20px 16px 10px 16px;
       background: var(--primary-dark);
@@ -415,6 +416,177 @@
     .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--text-muted); text-decoration: none; font-size: 10px; font-weight: 700; cursor: pointer; }
     .nav-item.active { color: #2563eb; }
     .nav-icon { font-size: 18px; }
+
+    /* ========================================================
+       1) AÇILIR KATEGORİ MENÜSÜ MODALI (☰ VEYA "TÜMÜ" İLE AÇILIR)
+       ======================================================== */
+    .category-modal-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .category-modal-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .category-modal-card {
+      background: #ffffff;
+      border-bottom-left-radius: 28px;
+      border-bottom-right-radius: 28px;
+      padding: 20px 16px 24px 16px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+      max-height: 80%;
+      overflow-y: auto;
+    }
+
+    .category-modal-overlay.active .category-modal-card {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .modal-title { font-size: 16px; font-weight: 900; color: var(--primary-dark); }
+    .modal-close-btn { background: #f1f5f9; border: none; width: 32px; height: 32px; border-radius: 50%; font-weight: 800; cursor: pointer; color: var(--primary-dark); }
+
+    .vertical-category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .v-cat-item {
+      background: #f8fafc;
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .v-cat-item:hover {
+      background: var(--primary-dark);
+      color: #ffffff;
+    }
+
+    .v-cat-icon { font-size: 22px; }
+    .v-cat-text { font-size: 11px; font-weight: 800; text-align: center; }
+
+    /* ========================================================
+       2) MAĞAZA DETAY SAYFASI MODALI ("İNCELE ➔" İLE AÇILIR)
+       ======================================================== */
+    .store-modal-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 300;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .store-modal-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .store-modal-card {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 90%;
+      background: #ffffff;
+      border-top-left-radius: 32px;
+      border-top-right-radius: 32px;
+      overflow-y: auto;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .store-modal-overlay.active .store-modal-card {
+      transform: translateY(0);
+    }
+
+    .store-cover-header {
+      height: 160px;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .store-close-floating {
+      position: absolute;
+      top: 14px; right: 16px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      font-weight: 800;
+      cursor: pointer;
+      color: var(--primary-dark);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .store-info-box {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .store-name-title { font-size: 18px; font-weight: 900; color: var(--primary-dark); }
+    .store-tag-sub { font-size: 11px; font-weight: 700; color: var(--brand-blue); margin-top: 2px; }
+    
+    .store-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .store-products-list {
+      padding: 16px 20px;
+      flex: 1;
+    }
+
+    .store-product-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f1f5f9;
+      align-items: center;
+    }
+
+    .store-product-item img {
+      width: 50px; height: 50px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .store-prod-info { flex: 1; }
+    .store-prod-name { font-size: 12px; font-weight: 800; color: var(--primary-dark); }
+    .store-prod-price { font-size: 12px; font-weight: 900; color: var(--brand-blue); margin-top: 2px; }
   </style>
 </head>
 <body>
@@ -445,7 +617,8 @@
 
     <!-- LOGO HEADER -->
     <div class="top-header">
-      <button class="icon-btn-ghost">☰</button>
+      <!-- 3 ÇİZGİ MENÜ BUTONU (KATEGORİLERİ AÇAR) -->
+      <button class="icon-btn-ghost" onclick="toggleCategoryModal(true)">☰</button>
       <div class="brand-logo-center">
         <div class="brand-title"><span class="lightning">⚡</span> BENDE <span class="badge">VAR</span></div>
         <span class="brand-sub">GÜVENLİ YEREL ESNAF AĞI</span>
@@ -485,77 +658,77 @@
     <div class="category-container">
       <div class="category-scroll-row">
         
-        <div class="cat-item-card active">
+        <div class="cat-item-card active" onclick="toggleCategoryModal(true)">
           <div class="cat-icon-circle">🍔</div>
           <span class="cat-label-text">Yemek</span>
         </div>
 
-        <div class="cat-item-card">
+        <div class="cat-item-card" onclick="toggleCategoryModal(true)">
           <div class="cat-icon-circle">☕</div>
           <span class="cat-label-text">Kafe</span>
         </div>
 
-        <div class="cat-item-card">
+        <div class="cat-item-card" onclick="toggleCategoryModal(true)">
           <div class="cat-icon-circle">🍎</div>
           <span class="cat-label-text">Manav</span>
         </div>
 
-        <div class="cat-item-card">
+        <div class="cat-item-card" onclick="toggleCategoryModal(true)">
           <div class="cat-icon-circle">🛒</div>
           <span class="cat-label-text">Market</span>
         </div>
 
-        <div class="cat-item-card">
+        <div class="cat-item-card" onclick="toggleCategoryModal(true)">
           <div class="cat-icon-circle">🥩</div>
           <span class="cat-label-text">Kasap</span>
         </div>
 
-        <div class="cat-item-card">
+        <div class="cat-item-card" onclick="toggleCategoryModal(true)">
           <div class="cat-icon-circle">👕</div>
           <span class="cat-label-text">Giyim</span>
         </div>
 
-        <div class="cat-item-card">
+        <div class="cat-item-card" onclick="toggleCategoryModal(true)">
           <div class="cat-icon-circle">👟</div>
           <span class="cat-label-text">Ayakkabı</span>
         </div>
 
-        <div class="cat-item-card">
+        <div class="cat-item-card" onclick="toggleCategoryModal(true)">
           <div class="cat-icon-circle">🛏️</div>
           <span class="cat-label-text">Ev Tekstili</span>
         </div>
 
-        <div class="cat-item-card">
+        <div class="cat-item-card" onclick="toggleCategoryModal(true)">
           <div class="cat-icon-circle">🕶️</div>
           <span class="cat-label-text">Aksesuar</span>
         </div>
 
-        <div class="cat-item-card">
+        <div class="cat-item-card" onclick="toggleCategoryModal(true)">
           <div class="cat-icon-circle">💄</div>
           <span class="cat-label-text">Kozmetik</span>
         </div>
 
-        <div class="cat-item-card">
+        <div class="cat-item-card" onclick="toggleCategoryModal(true)">
           <div class="cat-icon-circle">🪑</div>
           <span class="cat-label-text">Mobilya</span>
         </div>
 
-        <div class="cat-item-card">
+        <div class="cat-item-card" onclick="toggleCategoryModal(true)">
           <div class="cat-icon-circle">🛠️</div>
           <span class="cat-label-text">Tamir</span>
         </div>
 
-        <div class="cat-item-card">
+        <div class="cat-item-card" onclick="toggleCategoryModal(true)">
           <div class="cat-icon-circle">🧼</div>
           <span class="cat-label-text">Yıkama</span>
         </div>
 
-        <div class="cat-item-card">
+        <div class="cat-item-card" onclick="toggleCategoryModal(true)">
           <div class="cat-icon-circle">🧰</div>
           <span class="cat-label-text">Nalbur</span>
         </div>
 
-        <div class="cat-item-card">
+        <div class="cat-item-card" onclick="toggleCategoryModal(true)">
           <div class="cat-icon-circle">🏠</div>
           <span class="cat-label-text">Emlak</span>
         </div>
@@ -566,7 +739,8 @@
     <!-- ÖNE ÇIKANLAR -->
     <div class="section-header">
       <div class="section-title">Öne Çıkanlar</div>
-      <a href="#" class="section-link">Tümü ➔</a>
+      <!-- "TÜMÜ" BUTONU (KATEGORİ MODALINI AÇAR) -->
+      <a class="section-link" onclick="toggleCategoryModal(true)">Tümü ➔</a>
     </div>
 
     <div class="horizontal-cards-scroll">
@@ -597,7 +771,7 @@
       </div>
     </div>
 
-    <!-- VİTRİN BÖLÜMÜ (ÇOĞALTILMIŞ ESNAF VE FİRMA KARTLARI) -->
+    <!-- VİTRİN BÖLÜMÜ -->
     <div class="vitrin-banner">ÖNE ÇIKAN VİTRİNLER</div>
 
     <!-- Vitrin Kartı 1 -->
@@ -605,7 +779,7 @@
       <div class="showcase-body">
         <div class="showcase-title">Doğal Bakım,<br>Işıltılı Ciltler</div>
         <div class="showcase-subtitle">Mahallenin Kozmetik Dükkanı</div>
-        <button class="btn-showcase">İncele ➔</button>
+        <button class="btn-showcase" onclick="openStoreDetails('Mahallenin Kozmetik Dükkanı', 'Kozmetik & Güzellik', 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80')">İncele ➔</button>
       </div>
       <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80" class="showcase-img" alt="Cilt Bakımı">
     </div>
@@ -615,7 +789,7 @@
       <div class="showcase-body">
         <div class="showcase-title">Taze Kahve<br>& Sıcak Lezzetler</div>
         <div class="showcase-subtitle">Köşe Kahvecisi & Fırın</div>
-        <button class="btn-showcase">İncele ➔</button>
+        <button class="btn-showcase" onclick="openStoreDetails('Köşe Kahvecisi & Fırın', 'Kafe & Fırın', 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=600&q=80')">İncele ➔</button>
       </div>
       <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=400&q=80" class="showcase-img" alt="Kahve">
     </div>
@@ -625,7 +799,7 @@
       <div class="showcase-body">
         <div class="showcase-title">Günlük Taze<br>Sebze & Meyve</div>
         <div class="showcase-subtitle">Kardeşler Manavı</div>
-        <button class="btn-showcase">İncele ➔</button>
+        <button class="btn-showcase" onclick="openStoreDetails('Kardeşler Manavı', 'Manav & Yeşillik', 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=600&q=80')">İncele ➔</button>
       </div>
       <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=400&q=80" class="showcase-img" alt="Manav">
     </div>
@@ -635,22 +809,9 @@
       <div class="showcase-body">
         <div class="showcase-title">Usta Ellerden<br>Özel Tamirat</div>
         <div class="showcase-subtitle">Yıldız Teknik Servis & Hırdavat</div>
-        <button class="btn-showcase">İncele ➔</button>
+        <button class="btn-showcase" onclick="openStoreDetails('Yıldız Teknik Servis', 'Tamir & Hırdavat', 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80')">İncele ➔</button>
       </div>
       <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80" class="showcase-img" alt="Tamir">
-    </div>
-
-    <!-- ALT KAMPANYA BANNER -->
-    <div class="hero-banner-wrapper">
-      <div class="hero-dark-card">
-        <div class="hero-text-side">
-          <div class="hero-badge-text">ÖZEL TEKLİF</div>
-          <div class="hero-title">ÇALIŞMA ALANINI YENİLE</div>
-          <div class="hero-desc">Daha verimli bir yaşam için ergonomik çözümler.</div>
-          <button class="btn-shop-now">FIRSATLARI GÖR ➔</button>
-        </div>
-        <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=300&q=80" class="hero-img-side" alt="Masa Düzeni">
-      </div>
     </div>
 
   </div>
@@ -661,7 +822,7 @@
       <span class="nav-icon">🏠</span>
       <span>Ana Sayfa</span>
     </div>
-    <div class="nav-item">
+    <div class="nav-item" onclick="toggleCategoryModal(true)">
       <span class="nav-icon">🗂️</span>
       <span>Kategoriler</span>
     </div>
@@ -675,9 +836,79 @@
     </div>
   </div>
 
+  <!-- ========================================================
+       1) AÇILIR KATEGORİ MODALI (☰ VE "TÜMÜ" İLE AÇILIR)
+       ======================================================== -->
+  <div class="category-modal-overlay" id="categoryModal">
+    <div class="category-modal-card">
+      <div class="modal-header">
+        <div class="modal-title">Tüm Kategoriler</div>
+        <button class="modal-close-btn" onclick="toggleCategoryModal(false)">✕</button>
+      </div>
+      <div class="vertical-category-grid">
+        <div class="v-cat-item" onclick="toggleCategoryModal(false)"><span class="v-cat-icon">🍔</span><span class="v-cat-text">Yemek</span></div>
+        <div class="v-cat-item" onclick="toggleCategoryModal(false)"><span class="v-cat-icon">☕</span><span class="v-cat-text">Kafe</span></div>
+        <div class="v-cat-item" onclick="toggleCategoryModal(false)"><span class="v-cat-icon">🍎</span><span class="v-cat-text">Manav</span></div>
+        <div class="v-cat-item" onclick="toggleCategoryModal(false)"><span class="v-cat-icon">🛒</span><span class="v-cat-text">Market</span></div>
+        <div class="v-cat-item" onclick="toggleCategoryModal(false)"><span class="v-cat-icon">🥩</span><span class="v-cat-text">Kasap</span></div>
+        <div class="v-cat-item" onclick="toggleCategoryModal(false)"><span class="v-cat-icon">👕</span><span class="v-cat-text">Giyim</span></div>
+        <div class="v-cat-item" onclick="toggleCategoryModal(false)"><span class="v-cat-icon">👟</span><span class="v-cat-text">Ayakkabı</span></div>
+        <div class="v-cat-item" onclick="toggleCategoryModal(false)"><span class="v-cat-icon">🛏️</span><span class="v-cat-text">Ev Tekstili</span></div>
+        <div class="v-cat-item" onclick="toggleCategoryModal(false)"><span class="v-cat-icon">🕶️</span><span class="v-cat-text">Aksesuar</span></div>
+        <div class="v-cat-item" onclick="toggleCategoryModal(false)"><span class="v-cat-icon">💄</span><span class="v-cat-text">Kozmetik</span></div>
+        <div class="v-cat-item" onclick="toggleCategoryModal(false)"><span class="v-cat-icon">🪑</span><span class="v-cat-text">Mobilya</span></div>
+        <div class="v-cat-item" onclick="toggleCategoryModal(false)"><span class="v-cat-icon">🛠️</span><span class="v-cat-text">Tamir</span></div>
+        <div class="v-cat-item" onclick="toggleCategoryModal(false)"><span class="v-cat-icon">🧼</span><span class="v-cat-text">Yıkama</span></div>
+        <div class="v-cat-item" onclick="toggleCategoryModal(false)"><span class="v-cat-icon">🧰</span><span class="v-cat-text">Nalbur</span></div>
+        <div class="v-cat-item" onclick="toggleCategoryModal(false)"><span class="v-cat-icon">🏠</span><span class="v-cat-text">Emlak</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       2) MAĞAZA DETAY MODALI ("İNCELE ➔" İLE AÇILIR)
+       ======================================================== -->
+  <div class="store-modal-overlay" id="storeModal">
+    <div class="store-modal-card">
+      <div class="store-cover-header" id="storeCoverImg">
+        <button class="store-close-floating" onclick="toggleStoreModal(false)">✕</button>
+      </div>
+      <div class="store-info-box">
+        <div class="store-name-title" id="storeName">Mağaza Adı</div>
+        <div class="store-tag-sub" id="storeCategory">Kategori</div>
+        <div class="store-meta-row">
+          <span>★ 4.9 (150+ Değerlendirme)</span>
+          <span>• 📍 Zeytinburnu (300m)</span>
+        </div>
+      </div>
+      <div class="store-products-list">
+        <div style="font-size: 13px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px;">Öne Çıkan Ürün & Hizmetler</div>
+        
+        <div class="store-product-item">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=200&q=80" alt="Ürün">
+          <div class="store-prod-info">
+            <div class="store-prod-name">Özel Bakım Seti</div>
+            <div class="store-prod-price">₺249.00</div>
+          </div>
+          <button class="btn-showcase" style="padding: 4px 10px;">Ekle</button>
+        </div>
+
+        <div class="store-product-item">
+          <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=200&q=80" alt="Ürün">
+          <div class="store-prod-info">
+            <div class="store-prod-name">Organik Nemlendirici Krem</div>
+            <div class="store-prod-price">₺180.00</div>
+          </div>
+          <button class="btn-showcase" style="padding: 4px 10px;">Ekle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script>
+  // ARAMA SİSTEMİ
   function filterResults() {
     let query = document.getElementById("searchInput").value.toLowerCase();
     let cards = document.querySelectorAll(".product-grid-card");
@@ -690,6 +921,33 @@
         card.style.display = "none";
       }
     });
+  }
+
+  // KATEGORİ MODALINI AÇ/KAPAT (☰ VE "TÜMÜ" İÇİN)
+  function toggleCategoryModal(show) {
+    const modal = document.getElementById("categoryModal");
+    if (show) {
+      modal.classList.add("active");
+    } else {
+      modal.classList.remove("active");
+    }
+  }
+
+  // MAĞAZA DETAY MODALINI AÇ ("İNCELE ➔" İÇİN)
+  function openStoreDetails(name, category, bgImg) {
+    document.getElementById("storeName").innerText = name;
+    document.getElementById("storeCategory").innerText = category;
+    document.getElementById("storeCoverImg").style.backgroundImage = `url('${bgImg}')`;
+    toggleStoreModal(true);
+  }
+
+  function toggleStoreModal(show) {
+    const modal = document.getElementById("storeModal");
+    if (show) {
+      modal.classList.add("active");
+    } else {
+      modal.classList.remove("active");
+    }
   }
 </script>
 
