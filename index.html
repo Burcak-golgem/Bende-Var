@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>BENDE VAR - Güvenli Yerel Esnaf Ağı</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
@@ -21,32 +21,36 @@
       --shadow-md: 0 10px 25px rgba(15, 23, 42, 0.08);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; }
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; 
+    }
     
-    body { 
-      background-color: #0f172a; 
-      color: var(--text-main); 
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
-      min-height: 100vh; 
-      padding: 20px 0; 
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-app);
+      color: var(--text-main);
+      overflow: hidden;
       -webkit-font-smoothing: antialiased;
     }
     
-    /* MOBİL EKRAN DIŞ ÇERÇEVESİ */
+    /* GERÇEK TELEFON EKRANINA BİREBİR TAM OTURAN KONTEYNER */
     .app-container {
       width: 100%;
-      max-width: 410px;
-      height: 860px;
+      max-width: 480px; /* Masaüstünde çok genişlememesi için limit, mobilde %100 kapsar */
+      height: 100vh;
+      height: 100dvh; /* Mobil taranıcı çubukları dahil dinamik ekran yüksekliği */
+      margin: 0 auto;
       background: var(--bg-app);
-      border-radius: 44px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
       display: flex;
       flex-direction: column;
       position: relative;
       overflow: hidden;
-      border: 8px solid #ffffff;
+      border: none;
+      box-shadow: none;
     }
 
     /* PÜRÜZSÜZ DİKEY KAYDIRMA ALANI */
@@ -55,16 +59,17 @@
       overflow-y: auto;
       padding-bottom: 85px;
       scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
     }
     .scrollable-content::-webkit-scrollbar { display: none; }
 
-    /* STATUS BAR */
+    /* STATUS BAR (Sadece masaüstünde simülasyon, mobilde yer kaplamaz) */
     .status-bar {
-      padding: 12px 24px 6px 24px;
+      padding: 10px 20px 4px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 800;
       color: var(--primary-dark);
       background: #ffffff;
@@ -76,7 +81,7 @@
     /* KONUM VE ŞEHİR SEÇİCİ */
     .location-bar-top {
       background: #ffffff;
-      padding: 8px 20px;
+      padding: 8px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -105,7 +110,7 @@
     /* BRAND LOGO VE ÜST BİLDİRİM */
     .top-header {
       background: #ffffff;
-      padding: 10px 20px;
+      padding: 10px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -163,7 +168,7 @@
 
     /* ARAMA ÇUBUĞU */
     .search-filter-section {
-      padding: 10px 20px 14px 20px;
+      padding: 10px 16px 14px 16px;
       background: #ffffff;
       display: flex;
       gap: 10px;
@@ -208,7 +213,7 @@
     }
 
     /* BANNER BÖLÜMÜ */
-    .hero-banner-wrapper { padding: 14px 20px 10px 20px; }
+    .hero-banner-wrapper { padding: 14px 16px 10px 16px; }
     .hero-dark-card {
       background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
       border-radius: 24px;
@@ -225,15 +230,15 @@
     .hero-title { font-size: 15px; font-weight: 900; line-height: 1.25; }
     .hero-desc { font-size: 10px; opacity: 0.8; margin: 6px 0 12px 0; line-height: 1.35; }
     .btn-shop-now { background: #2563eb; color: #ffffff; border: none; padding: 8px 14px; border-radius: 12px; font-size: 11px; font-weight: 800; cursor: pointer; }
-    .hero-img-side { width: 105px; height: 95px; object-fit: contain; }
+    .hero-img-side { width: 100px; height: 90px; object-fit: contain; }
 
     .slider-dots { display: flex; justify-content: center; gap: 5px; margin-top: 8px; }
     .dot { width: 6px; height: 6px; background: #cbd5e1; border-radius: 50%; }
     .dot.active { width: 18px; background: #2563eb; border-radius: 4px; }
 
-    /* YENİ: TEK SIRA YATAY KAYDIRMALI KATEGORİ ALANI */
+    /* TEK SIRA YATAY KAYDIRMALI KATEGORİLER */
     .category-container {
-      margin: 10px 20px 16px 20px;
+      margin: 10px 16px 16px 16px;
       background: #ffffff;
       border-radius: 24px;
       padding: 14px;
@@ -250,9 +255,7 @@
       padding: 2px 4px;
     }
     
-    .category-scroll-row::-webkit-scrollbar {
-      display: none;
-    }
+    .category-scroll-row::-webkit-scrollbar { display: none; }
 
     .cat-item-card {
       display: flex;
@@ -294,7 +297,7 @@
 
     /* SECTION HEADER */
     .section-header {
-      padding: 10px 20px 8px 20px;
+      padding: 10px 16px 8px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -308,7 +311,7 @@
       display: flex;
       gap: 12px;
       overflow-x: auto;
-      padding: 0 20px;
+      padding: 0 16px;
       scrollbar-width: none;
     }
     .horizontal-cards-scroll::-webkit-scrollbar { display: none; }
@@ -377,7 +380,7 @@
 
     /* VİTRİN VE KAMPANYA ALANI */
     .vitrin-banner {
-      margin: 16px 20px 10px 20px;
+      margin: 16px;
       background: var(--primary-dark);
       color: #ffffff;
       text-align: center;
@@ -389,7 +392,7 @@
     }
 
     .showcase-card {
-      margin: 0 20px 14px 20px;
+      margin: 0 16px 14px 16px;
       background: #ffffff;
       border-radius: 20px;
       overflow: hidden;
@@ -405,11 +408,11 @@
     .btn-showcase { background: var(--primary-dark); color: #ffffff; border: none; padding: 6px 12px; border-radius: 10px; font-size: 10px; font-weight: 800; cursor: pointer; }
     .showcase-img { width: 110px; height: 110px; object-fit: cover; }
 
-    /* ALT NAVİGASYON BARI */
+    /* SABİT ALT NAVİGASYON BARI */
     .bottom-nav {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      height: 68px;
+      height: 65px;
       background: #ffffff;
       border-top: 1px solid var(--border-subtle);
       display: flex;
@@ -417,6 +420,7 @@
       align-items: center;
       z-index: 30;
       padding: 0 10px;
+      padding-bottom: env(safe-area-inset-bottom);
     }
 
     .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--text-muted); text-decoration: none; font-size: 10px; font-weight: 700; cursor: pointer; }
