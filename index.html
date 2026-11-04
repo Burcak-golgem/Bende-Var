@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BENDE VAR - Modern E-Ticaret Keşif</title>
+  <title>BENDE VAR - TechHub UI</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
@@ -15,10 +15,9 @@
       --brand-accent: #facc15;
       --text-main: #0f172a;
       --text-muted: #64748b;
-      --border-subtle: #f1f5f9;
+      --border-subtle: #e2e8f0;
       --star-color: #f59e0b;
-      --shadow-sm: 0 4px 20px rgba(15, 23, 42, 0.04);
-      --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --shadow-sm: 0 4px 16px rgba(15, 23, 42, 0.04);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; }
@@ -52,24 +51,23 @@
     /* ÜST HEADER (HAMBURGER, LOGO, BİLDİRİM) */
     .top-header {
       background: #ffffff;
-      padding: 16px 20px 14px 20px;
+      padding: 16px 20px 12px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .menu-icon-btn, .notification-btn {
+    .icon-btn-ghost {
       font-size: 20px;
       cursor: pointer;
       color: var(--primary-dark);
-      background: #f8fafc;
+      background: transparent;
       width: 38px;
       height: 38px;
-      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--border-subtle);
+      border: none;
     }
 
     .brand-logo-center {
@@ -78,34 +76,35 @@
       align-items: center;
     }
 
-    .brand-name {
-      font-size: 18px;
+    .brand-title {
+      font-size: 20px;
       font-weight: 900;
       color: var(--primary-dark);
       letter-spacing: -0.5px;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
     }
 
-    .brand-name span {
+    .brand-title span {
       background: var(--brand-accent);
       color: var(--primary-dark);
       padding: 1px 8px;
       border-radius: 8px;
+      font-weight: 900;
     }
 
-    .brand-tagline {
+    .brand-sub {
       font-size: 9px;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--text-muted);
-      letter-spacing: 0.8px;
+      letter-spacing: 1px;
       text-transform: uppercase;
     }
 
-    /* ARAMA BAR VE FİLTRE BUTONU */
+    /* ARAMA BAR VE FİLTRE BUTONU (GÖRSELDEKİ BİREBİR) */
     .search-filter-section {
-      padding: 10px 20px 14px 20px;
+      padding: 6px 20px 14px 20px;
       background: #ffffff;
       border-bottom: 1px solid var(--border-subtle);
       display: flex;
@@ -114,15 +113,13 @@
     }
 
     .search-bar-box {
-      background: #f8fafc;
-      border: 1px solid var(--border-subtle);
-      border-radius: 20px;
-      padding: 8px 14px;
+      background: #f1f5f9;
+      border-radius: 24px;
+      padding: 10px 16px;
       display: flex;
       align-items: center;
       gap: 10px;
       flex: 1;
-      box-shadow: var(--shadow-sm);
     }
 
     .search-bar-box input {
@@ -135,22 +132,22 @@
       color: var(--primary-dark);
     }
 
-    .filter-icon-btn {
+    .filter-btn-circle {
       width: 42px;
       height: 42px;
-      background: #f8fafc;
-      border: 1px solid var(--border-subtle);
-      border-radius: 20px;
+      background: #f1f5f9;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       font-size: 16px;
+      border: none;
     }
 
-    /* KOYU MAVİ/LACİVERT BANNER (NEW ARRIVALS) */
+    /* BİREBİR KOYU LACİVERT/MAVİ BANNER (NEW ARRIVALS) */
     .hero-banner-wrapper {
-      padding: 12px 20px 8px 20px;
+      padding: 14px 20px 8px 20px;
       background: #ffffff;
     }
 
@@ -162,8 +159,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2);
     }
 
     .hero-text-side {
@@ -174,21 +170,21 @@
       font-size: 9.5px;
       font-weight: 800;
       color: #60a5fa;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .hero-title {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 900;
       line-height: 1.2;
-      letter-spacing: -0.2px;
+      letter-spacing: -0.3px;
     }
 
     .hero-desc {
-      font-size: 10px;
-      opacity: 0.8;
+      font-size: 10.5px;
+      opacity: 0.75;
       margin: 6px 0 14px 0;
       line-height: 1.35;
     }
@@ -197,26 +193,26 @@
       background: #2563eb;
       color: #ffffff;
       border: none;
-      padding: 8px 16px;
-      border-radius: 14px;
-      font-size: 11px;
+      padding: 9px 18px;
+      border-radius: 16px;
+      font-size: 11.5px;
       font-weight: 800;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
     }
 
     .hero-img-side {
-      width: 110px;
-      height: 105px;
+      width: 115px;
+      height: 110px;
       object-fit: contain;
     }
 
     .slider-dots {
       display: flex;
       justify-content: center;
-      gap: 5px;
+      gap: 6px;
       margin-top: 10px;
       background: #ffffff;
       padding-bottom: 6px;
@@ -229,17 +225,17 @@
       border-radius: 50%;
     }
     .dot.active {
-      width: 18px;
+      width: 20px;
       background: #2563eb;
       border-radius: 4px;
     }
 
-    /* KATEGORİ DAİRELERİ (CIRCULAR ICONS) */
+    /* KATEGORİ DAİRELERİ (CIRCULAR ICONS - GÖRSELDEKİ BİREBİR İKONLAR) */
     .categories-circle-scroll {
       display: flex;
       gap: 14px;
       overflow-x: auto;
-      padding: 10px 20px 16px 20px;
+      padding: 10px 20px 18px 20px;
       scrollbar-width: none;
       background: #ffffff;
       border-bottom-left-radius: 28px;
@@ -259,20 +255,18 @@
     .circle-icon-box {
       width: 58px;
       height: 58px;
-      background: #f8fafc;
-      border: 1px solid var(--border-subtle);
+      background: #f1f5f9;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 22px;
-      box-shadow: var(--shadow-sm);
       transition: all 0.2s;
     }
 
     .cat-circle-item.active .circle-icon-box {
       background: var(--primary-dark);
-      border-color: var(--primary-dark);
+      color: #ffffff;
     }
 
     .circle-label {
@@ -287,7 +281,7 @@
 
     /* SECTION HEADER */
     .section-header {
-      padding: 16px 20px 10px 20px;
+      padding: 18px 20px 12px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -307,7 +301,7 @@
       text-decoration: none;
     }
 
-    /* TRENDING ELECTRONICS / ESNAF KARTLARI (3'LÜ YATAY VEYA DİKEY LİSTE) */
+    /* RECENT/POPULAR SERVICES LİSTESİ */
     .results-container {
       padding: 0 20px 20px 20px;
       display: flex;
@@ -317,10 +311,10 @@
 
     .card {
       background: #ffffff;
-      border-radius: 24px;
+      border-radius: 22px;
       padding: 12px;
       display: flex;
-      gap: 14px;
+      gap: 12px;
       align-items: center;
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-sm);
@@ -330,8 +324,8 @@
 
     .card-img-wrapper {
       position: relative;
-      width: 105px;
-      height: 105px;
+      width: 100px;
+      height: 100px;
       border-radius: 18px;
       overflow: hidden;
       flex-shrink: 0;
@@ -373,7 +367,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 98px;
+      height: 94px;
     }
 
     .card-header-row {
@@ -383,7 +377,7 @@
     }
 
     .store-title {
-      font-size: 14.5px;
+      font-size: 14px;
       font-weight: 800;
       color: var(--primary-dark);
       line-height: 1.25;
@@ -396,7 +390,7 @@
     }
 
     .rating-row {
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       color: var(--primary-dark);
       display: flex;
@@ -434,7 +428,7 @@
     .time-status.open { color: #10b981; }
     .time-status.closed { color: #ef4444; }
 
-    /* ALT NAVİGASYON BAR (SEPET YOK, REFERANSTAKİ İKONLAR) */
+    /* ALT NAVİGASYON BAR (SEPET YOKTUR) */
     .bottom-nav {
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -522,69 +516,70 @@
   
   <!-- ÜST HEADER: HAMBURGER, MARKA LOGOSU, BİLDİRİM -->
   <div class="top-header">
-    <div class="menu-icon-btn">☰</div>
+    <button class="icon-btn-ghost">☰</button>
     <div class="brand-logo-center">
-      <div class="brand-name">BENDE <span>VAR</span></div>
-      <span class="brand-tagline">Yerel Esnaf Ağı</span>
+      <div class="brand-title">BENDE <span>VAR</span></div>
+      <span class="brand-sub">Yerel Esnaf Ağı</span>
     </div>
-    <div class="notification-btn">🔔</div>
+    <button class="icon-btn-ghost">🔔</button>
   </div>
 
   <!-- ARAMA BAR VE FİLTRE BUTONU -->
   <div class="search-filter-section">
     <div class="search-bar-box">
       <span>🔍</span>
-      <input type="text" id="searchInput" placeholder="Ne arıyorsunuz? (Örn: şemsiye, kıyafet, börek)" onkeyup="filterResults()">
+      <input type="text" id="searchInput" placeholder="Aksesuarlar, elbiseler, gıda ürünleri..." onkeyup="filterResults()">
     </div>
-    <div class="filter-icon-btn">⚙️</div>
+    <button class="filter-btn-circle">⚙️</button>
   </div>
 
-  <!-- KOYU MAVİ/LACİVERT BANNER -->
+  <!-- KOYU MAVİ BANNER -->
   <div class="hero-banner-wrapper">
     <div class="hero-dark-card">
       <div class="hero-text-side">
-        <div class="hero-badge-text">Yeni Sezon Fırsatı</div>
-        <div class="hero-title">Akıllı Alışveriş, Komşunda Başlar.</div>
-        <div class="hero-desc">İhtiyacın olan ürünler dakika içinde kapında.</div>
-        <button class="btn-shop-now">Keşfet →</button>
+        <div class="hero-badge-text">YENİ ÜRÜNLER</div>
+        <div class="hero-title">AKILLI TEKNOLOJİ.<br>HER GÜN DAHA İYİ.</div>
+        <div class="hero-desc">İhtiyacın olan tüm ürünler komşunda seni bekliyor.</div>
+        <button class="btn-shop-now">ŞİMDİ İNCELE →</button>
       </div>
-      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=400&q=80" class="hero-img-side" alt="Banner">
+      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=400&q=80" class="hero-img-side" alt="Tech">
     </div>
     <div class="slider-dots">
       <div class="dot active"></div>
       <div class="dot"></div>
       <div class="dot"></div>
+      <div class="dot"></div>
     </div>
   </div>
 
-  <!-- KATEGORİ DAİRELERİ (CIRCULAR ICONS) -->
+  <!-- DAİRESEL KATEGORİ SİMGELERİ -->
   <div class="categories-circle-scroll">
     <div class="cat-circle-item active" onclick="filterCategory('Tümü', event)">
-      <div class="circle-icon-box">🎒</div>
-      <span class="circle-label">Tümü</span>
+      <div class="circle-icon-box">📱</div>
+      <span class="circle-label">Telefon</span>
     </div>
     <div class="cat-circle-item" onclick="filterCategory('Aksesuar', event)">
-      <div class="circle-icon-box">🕶️</div>
-      <span class="circle-label">Aksesuar</span>
+      <div class="circle-icon-box">🎧</div>
+      <span class="circle-label">Kulaklık</span>
     </div>
     <div class="cat-circle-item" onclick="filterCategory('Kıyafet', event)">
-      <div class="circle-icon-box">👕</div>
-      <span class="circle-label">Giyim</span>
+      <div class="circle-icon-box">🏠</div>
+      <span class="circle-label">Ev & Yaşam</span>
     </div>
     <div class="cat-circle-item" onclick="filterCategory('Yiyecek', event)">
-      <div class="circle-icon-box">🍕</div>
-      <span class="circle-label">Yiyecek</span>
+      <div class="circle-icon-box">🎮</div>
+      <span class="circle-label">Oyun</span>
     </div>
     <div class="cat-circle-item" onclick="filterCategory('Tamirci', event)">
-      <div class="circle-icon-box">🛠️</div>
-      <span class="circle-label">Tamirci</span>
+      <div class="circle-icon-box">💻</div>
+      <span class="circle-label">Bilgisayar</span>
     </div>
   </div>
 
-  <!-- TRENDING ELECTRONICS / ÖNERİLEN ESNAFLAR -->
+  <!-- TREND ESNAFLAR BAŞLIĞI -->
   <div class="section-header">
     <div class="section-title">Trend Esnaflar</div>
-    <a href="#" class="section-link">Tümünü Gör ›</a>
+    <a href="#" class="section-link">Tümü ›</a>
   </div>
 
   <div class="results-container" id="resultsContainer">
@@ -602,7 +597,7 @@
         </div>
         <div class="rating-row">
           <span class="rating-stars">★ 4.8</span>
-          <span class="review-count">(1.2K+ review)</span>
+          <span class="review-count">(1.2K+)</span>
         </div>
         <div class="card-bottom-row">
           <div class="distance-badge">📍 140 m</div>
@@ -624,7 +619,7 @@
         </div>
         <div class="rating-row">
           <span class="rating-stars">★ 4.9</span>
-          <span class="review-count">(968+ review)</span>
+          <span class="review-count">(968+)</span>
         </div>
         <div class="card-bottom-row">
           <div class="distance-badge">📍 40 m</div>
@@ -633,47 +628,25 @@
       </div>
     </div>
 
-    <!-- ESNAF 3 -->
-    <div class="card" data-category="Kıyafet" data-tags="kıyafet giyim elbise tişört pantolon çocuk" onclick="openDetail('Zeytin Çocuk & Bebek Giyim', '58. Bulvar Cad. No:42', 'Pamuklu Çocuk Tişört & Elbise Çeşitleri', '0212 555 01 23', '80 m', '4.9', '124', 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80', 'zeytincocuk', '905550001122', true, '20:00')">
-      <div class="card-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Kıyafet">
-        <div class="satisfaction-tag">✓ BENDE VAR</div>
-      </div>
-      <div class="card-body">
-        <div class="card-header-row">
-          <div class="store-title">Zeytin Çocuk Giyim</div>
-          <div class="price-tag">₺300</div>
-        </div>
-        <div class="rating-row">
-          <span class="rating-stars">★ 4.9</span>
-          <span class="review-count">(743+ review)</span>
-        </div>
-        <div class="card-bottom-row">
-          <div class="distance-badge">📍 80 m</div>
-          <div class="time-status open">🟢 Açık</div>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <!-- ALT NAVİGASYON BAR (SEPET YOK) -->
+  <!-- ALT NAVİGASYON BAR (SEPET YOKTUR) -->
   <div class="bottom-nav">
     <div class="nav-item active">
       <span class="nav-icon">🏠</span>
-      <span>Home</span>
+      <span>Ana Sayfa</span>
     </div>
     <div class="nav-item">
       <span class="nav-icon">🗂️</span>
-      <span>Categories</span>
+      <span>Kategoriler</span>
     </div>
     <div class="nav-item">
       <span class="nav-icon">🏷️</span>
-      <span>Deals</span>
+      <span>Fırsatlar</span>
     </div>
     <div class="nav-item">
       <span class="nav-icon">👤</span>
-      <span>Account</span>
+      <span>Hesabım</span>
     </div>
   </div>
 
@@ -733,7 +706,7 @@
             <span class="review-date">Bugün</span>
           </div>
           <div class="rating-stars-gold" style="font-size:10px;">★★★★★</div>
-          <div class="review-body">Bende Var uygulamasından bulup hemen aradım. Kaliteli ve güler yüzlü esnaf, teşekkürler!</div>
+          <div class="review-body">Bende Var uygulamasından bulup hemen aradım. Kaliteli esnaf, teşekkürler!</div>
         </div>
       </div>
 
