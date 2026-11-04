@@ -408,7 +408,7 @@
       border-radius: 14px;
     }
 
-    /* 7 Lİ MAĞAZA LİSTESİ */
+    /* MAĞAZA LİSTESİ */
     .stores-vertical-list {
       padding: 0 20px;
       display: flex;
@@ -468,7 +468,7 @@
     .nav-item.active { color: #2563eb; }
     .nav-icon { font-size: 20px; }
 
-    /* --- HAMBURGER YAN MENÜ (DRAWER) --- */
+    /* --- HAMBURGER YAN MENÜ --- */
     .drawer-overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -601,7 +601,7 @@
     .cat-grid-card span.icon { font-size: 28px; }
     .cat-grid-card span.label { font-size: 12px; font-weight: 800; color: var(--primary-dark); text-align: center; }
 
-    /* --- MAĞAZA DETAY MODALI (ÇERÇEVE İÇİNDE TAM UYUMLU) --- */
+    /* --- MAĞAZA DETAY MODALI --- */
     .store-modal-overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -615,9 +615,9 @@
 
     .store-modal-content {
       width: 100%;
-      height: 100%; /* Çerçevenin içinde tam boyutta açılır */
+      height: 100%;
       background: #110505;
-      border-radius: 38px; /* Çerçeve hatlarıyla tam uyumlu */
+      border-radius: 38px;
       overflow-y: auto;
       position: relative;
       color: #ffffff;
@@ -640,7 +640,18 @@
 
     .modal-header-banner { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; margin-top: 20px; }
     .modal-brand-info h2 { font-size: 20px; font-weight: 900; color: #ef4444; line-height: 1.1; letter-spacing: -0.5px; }
-    .modal-brand-info span { font-size: 8.5px; letter-spacing: 1.2px; text-transform: uppercase; color: #d1d5db; font-weight: 700; }
+    
+    .rating-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #fbbf24;
+    }
+    .rating-badge-row span.count { color: #9ca3af; font-size: 10px; }
+
     .modal-status-pill { background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.15); padding: 4px 8px; border-radius: 16px; display: flex; flex-direction: column; align-items: flex-end; }
     .modal-status-time { font-size: 8px; color: #9ca3af; font-weight: 700; }
     .modal-status-badge { font-size: 10px; font-weight: 900; color: #22c55e; display: flex; align-items: center; gap: 4px; }
@@ -662,9 +673,33 @@
     .modal-slogan-box p { font-size: 11px; color: #d1d5db; font-weight: 600; }
 
     .modal-call-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: #ffffff; width: 100%; padding: 12px; border-radius: 14px; font-size: 13.5px; font-weight: 900; text-decoration: none; margin-bottom: 10px; }
+    
     .modal-action-row { display: flex; gap: 8px; margin-bottom: 12px; }
-    .modal-action-btn { flex: 1; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); padding: 10px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; color: #ffffff; font-size: 11px; font-weight: 700; text-decoration: none; }
+    .modal-action-btn { flex: 1; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); padding: 10px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; color: #ffffff; font-size: 11px; font-weight: 700; text-decoration: none; cursor: pointer; }
+
     .modal-address-footer { text-align: center; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 10px; color: #9ca3af; font-weight: 600; line-height: 1.4; margin-top: auto; }
+
+    /* YORUMLAR MODALI İÇİN STİL */
+    .reviews-modal {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.95);
+      z-index: 3000;
+      display: none;
+      flex-direction: column;
+      padding: 20px;
+      border-radius: 38px;
+    }
+    .reviews-modal.active { display: flex; }
+    .review-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .review-user { font-size: 12px; font-weight: 800; color: #facc15; margin-bottom: 2px; }
+    .review-comment { font-size: 11px; color: #d1d5db; line-height: 1.3; }
   </style>
 </head>
 <body>
@@ -732,34 +767,34 @@
         </div>
       </div>
 
-      <!-- TEK SIRA YATAY KAYDIRMALI KATEGORİLER -->
+      <!-- TEK SIRA YATAY KAYDIRMALI KATEGORİLER (Tıklayınca o kategoriye ait 2 mağazayı listeler) -->
       <div class="category-container">
         <div class="category-scroll-row">
-          <div class="cat-item-card active">
+          <div class="cat-item-card active" onclick="filterStoresByCategory('yemek', this)">
             <div class="cat-icon-circle">🍔</div>
             <span class="cat-label-text">Yemek</span>
           </div>
-          <div class="cat-item-card">
+          <div class="cat-item-card" onclick="filterStoresByCategory('kafe', this)">
             <div class="cat-icon-circle">☕</div>
             <span class="cat-label-text">Kafe</span>
           </div>
-          <div class="cat-item-card">
+          <div class="cat-item-card" onclick="filterStoresByCategory('manav', this)">
             <div class="cat-icon-circle">🍎</div>
             <span class="cat-label-text">Manav</span>
           </div>
-          <div class="cat-item-card">
+          <div class="cat-item-card" onclick="filterStoresByCategory('market', this)">
             <div class="cat-icon-circle">🛒</div>
             <span class="cat-label-text">Market</span>
           </div>
-          <div class="cat-item-card">
+          <div class="cat-item-card" onclick="filterStoresByCategory('kasap', this)">
             <div class="cat-icon-circle">🥩</div>
             <span class="cat-label-text">Kasap</span>
           </div>
-          <div class="cat-item-card">
+          <div class="cat-item-card" onclick="filterStoresByCategory('nalbur', this)">
             <div class="cat-icon-circle">🧰</div>
             <span class="cat-label-text">Nalbur</span>
           </div>
-          <div class="cat-item-card">
+          <div class="cat-item-card" onclick="filterStoresByCategory('tamirci', this)">
             <div class="cat-icon-circle">🛠️</div>
             <span class="cat-label-text">Tamir</span>
           </div>
@@ -803,98 +838,16 @@
       <!-- VİTRİN BÖLÜMÜ -->
       <div class="vitrin-banner">VİTRİN</div>
 
-      <!-- 7 MAĞAZA LİSTESİ -->
-      <div class="stores-vertical-list">
-        <div class="store-row-card" onclick="openStoreModal('manav')">
-          <div class="store-left-info">
-            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=200&q=80" class="store-avatar" alt="Manav">
-            <div class="store-meta">
-              <h4>Taze Köy Manavı</h4>
-              <p>Meyve, Sebze & Organik</p>
-              <span class="status-badge">AÇIK</span>
-            </div>
-          </div>
-          <button class="btn-store-inspect">İncele</button>
-        </div>
-
-        <div class="store-row-card" onclick="openStoreModal('pideci')">
-          <div class="store-left-info">
-            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=200&q=80" class="store-avatar" alt="Pideci">
-            <div class="store-meta">
-              <h4>Meşhur Taş Fırın Pideci</h4>
-              <p>Karadeniz Pidesi & Lahmacun</p>
-              <span class="status-badge">AÇIK</span>
-            </div>
-          </div>
-          <button class="btn-store-inspect">İncele</button>
-        </div>
-
-        <div class="store-row-card" onclick="openStoreModal('nalbur')">
-          <div class="store-left-info">
-            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=200&q=80" class="store-avatar" alt="Nalbur">
-            <div class="store-meta">
-              <h4>Mahalle Hırdavat & Nalbur</h4>
-              <p>El Aletleri & Boya Çeşitleri</p>
-              <span class="status-badge">AÇIK</span>
-            </div>
-          </div>
-          <button class="btn-store-inspect">İncele</button>
-        </div>
-
-        <div class="store-row-card" onclick="openStoreModal('market')">
-          <div class="store-left-info">
-            <img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=200&q=80" class="store-avatar" alt="Market">
-            <div class="store-meta">
-              <h4>Ömür Ticaret Market</h4>
-              <p>Şarküteri & Temel Gıda</p>
-              <span class="status-badge">AÇIK</span>
-            </div>
-          </div>
-          <button class="btn-store-inspect">İncele</button>
-        </div>
-
-        <div class="store-row-card" onclick="openStoreModal('kasap')">
-          <div class="store-left-info">
-            <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=200&q=80" class="store-avatar" alt="Kasap">
-            <div class="store-meta">
-              <h4>Bereket Et & Kasap</h4>
-              <p>Dana Antrikot & Kuzu Bonfile</p>
-              <span class="status-badge">AÇIK</span>
-            </div>
-          </div>
-          <button class="btn-store-inspect">İncele</button>
-        </div>
-
-        <div class="store-row-card" onclick="openStoreModal('kafe')">
-          <div class="store-left-info">
-            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=200&q=80" class="store-avatar" alt="Kafe">
-            <div class="store-meta">
-              <h4>Atölye Kahve & Tatlı</h4>
-              <p>Nitelikli Kahveler & Kruvasan</p>
-              <span class="status-badge">AÇIK</span>
-            </div>
-          </div>
-          <button class="btn-store-inspect">İncele</button>
-        </div>
-
-        <div class="store-row-card" onclick="openStoreModal('tamirci')">
-          <div class="store-left-info">
-            <img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=200&q=80" class="store-avatar" alt="Tamirci">
-            <div class="store-meta">
-              <h4>Pratik Teknik Servis</h4>
-              <p>Beyaz Eşya & Kombi Tamiri</p>
-              <span class="status-badge">AÇIK</span>
-            </div>
-          </div>
-          <button class="btn-store-inspect">İncele</button>
-        </div>
+      <!-- DİNAMİK MAĞAZA LİSTESİ (Kategorilere göre 2'şer adet yüklenir) -->
+      <div class="stores-vertical-list" id="storesListContainer">
+        <!-- Javascript ile doldurulacak -->
       </div>
 
     </div>
 
     <!-- ALT NAVİGASYON -->
     <div class="bottom-nav">
-      <div class="nav-item active">
+      <div class="nav-item active" onclick="loadDefaultStores()">
         <span class="nav-icon">🏠</span>
         <span>Ana Sayfa</span>
       </div>
@@ -927,15 +880,15 @@
       <button class="drawer-action-btn" onclick="alert('Esnaf Kayıt başvuru formu açılıyor.')">🏪 Esnaf Kayıt Başvurusu</button>
     </div>
 
-    <div class="drawer-section-label">Kategoriler</div>
+    <div class="drawer-section-label">Mağaza Kategorileri</div>
     <div class="drawer-categories-list">
-      <div class="drawer-cat-item" onclick="openStoreModal('manav'); toggleDrawer();"><span>🍎</span> Manav</div>
-      <div class="drawer-cat-item" onclick="openStoreModal('market'); toggleDrawer();"><span>🛒</span> Market</div>
-      <div class="drawer-cat-item" onclick="openStoreModal('kafe'); toggleDrawer();"><span>☕</span> Kafe</div>
-      <div class="drawer-cat-item" onclick="openStoreModal('pideci'); toggleDrawer();"><span>🍔</span> Yemek / Pideci</div>
-      <div class="drawer-cat-item" onclick="openStoreModal('kasap'); toggleDrawer();"><span>🥩</span> Kasap</div>
-      <div class="drawer-cat-item" onclick="openStoreModal('nalbur'); toggleDrawer();"><span>🧰</span> Nalbur</div>
-      <div class="drawer-cat-item" onclick="openStoreModal('tamirci'); toggleDrawer();"><span>🛠️</span> Tamirci</div>
+      <div class="drawer-cat-item" onclick="filterStoresByCategory('manav'); toggleDrawer();"><span>🍎</span> Manav</div>
+      <div class="drawer-cat-item" onclick="filterStoresByCategory('market'); toggleDrawer();"><span>🛒</span> Market</div>
+      <div class="drawer-cat-item" onclick="filterStoresByCategory('kafe'); toggleDrawer();"><span>☕</span> Kafe</div>
+      <div class="drawer-cat-item" onclick="filterStoresByCategory('yemek'); toggleDrawer();"><span>🍔</span> Yemek / Pideci</div>
+      <div class="drawer-cat-item" onclick="filterStoresByCategory('kasap'); toggleDrawer();"><span>🥩</span> Kasap</div>
+      <div class="drawer-cat-item" onclick="filterStoresByCategory('nalbur'); toggleDrawer();"><span>🧰</span> Nalbur</div>
+      <div class="drawer-cat-item" onclick="filterStoresByCategory('tamirci'); toggleDrawer();"><span>🛠️</span> Tamirci</div>
     </div>
   </div>
 
@@ -947,31 +900,31 @@
         <button onclick="closeAllCategoriesModalDirect()" style="background: #f1f5f9; border: none; width: 30px; height: 30px; border-radius: 50%; font-weight: 800; cursor: pointer;">✕</button>
       </div>
       <div class="categories-grid">
-        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); openStoreModal('pideci');">
+        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); filterStoresByCategory('yemek');">
           <span class="icon">🍔</span>
           <span class="label">Yemek</span>
         </div>
-        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); openStoreModal('kafe');">
+        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); filterStoresByCategory('kafe');">
           <span class="icon">☕</span>
           <span class="label">Kafe</span>
         </div>
-        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); openStoreModal('manav');">
+        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); filterStoresByCategory('manav');">
           <span class="icon">🍎</span>
           <span class="label">Manav</span>
         </div>
-        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); openStoreModal('market');">
+        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); filterStoresByCategory('market');">
           <span class="icon">🛒</span>
           <span class="label">Market</span>
         </div>
-        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); openStoreModal('kasap');">
+        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); filterStoresByCategory('kasap');">
           <span class="icon">🥩</span>
           <span class="label">Kasap</span>
         </div>
-        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); openStoreModal('nalbur');">
+        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); filterStoresByCategory('nalbur');">
           <span class="icon">🧰</span>
           <span class="label">Nalbur</span>
         </div>
-        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); openStoreModal('tamirci');">
+        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); filterStoresByCategory('tamirci');">
           <span class="icon">🛠️</span>
           <span class="label">Tamirci</span>
         </div>
@@ -979,7 +932,7 @@
     </div>
   </div>
 
-  <!-- MAĞAZA DETAY MODALI (ÇERÇEVE İÇİNDE TAM UYUMLU) -->
+  <!-- MAĞAZA DETAY MODALI -->
   <div class="store-modal-overlay" id="storeModalOverlay" onclick="closeStoreModal(event)">
     <div class="store-modal-content" id="storeModalContent">
       <button class="modal-close-btn" onclick="closeStoreModalDirect()">✕</button>
@@ -987,7 +940,11 @@
       <div class="modal-header-banner">
         <div class="modal-brand-info">
           <h2 id="modalTitle">Taze Köy Manavı</h2>
-          <span id="modalCategorySub">ORGANİK MAHALLE MANAVI</span>
+          <div class="rating-badge-row">
+            <span id="modalStars">★★★★★</span>
+            <span id="modalRatingVal">4.8</span>
+            <span class="count" id="modalReviewCount">(120+ değerlendirme)</span>
+          </div>
         </div>
         <div class="modal-status-pill">
           <span class="modal-status-time" id="modalClosing">KAPANIŞ 22:00</span>
@@ -1015,12 +972,24 @@
       </a>
 
       <div class="modal-action-row">
-        <a href="#" class="modal-action-btn">📍 Konum aç ➔</a>
-        <a href="#" class="modal-action-btn">📸 Instagram</a>
+        <a id="modalMapBtn" href="#" target="_blank" class="modal-action-btn">📍 Konum aç ➔</a>
+        <a id="modalInstaBtn" href="#" target="_blank" class="modal-action-btn">📸 Instagram</a>
+        <button onclick="openReviewsModal()" class="modal-action-btn" style="background:#2563eb; border:none;">💬 Yorumlar</button>
       </div>
 
       <div class="modal-address-footer" id="modalAddressFooter">
         Adres: Telsiz mah. 103 sokak. No:11<br>ZEYTİNBURNU - İSTANBUL
+      </div>
+
+      <!-- YORUMLAR ALT PENCERESİ -->
+      <div class="reviews-modal" id="reviewsModal">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+          <h3 style="font-size:15px; font-weight:900; color:#facc15;">Müşteri Yorumları</h3>
+          <button onclick="closeReviewsModal()" style="background:rgba(255,255,255,0.2); border:none; color:#fff; width:26px; height:26px; border-radius:50%; font-weight:800; cursor:pointer;">✕</button>
+        </div>
+        <div id="reviewsListContainer" style="overflow-y:auto; flex:1;">
+          <!-- Yorumlar dinamik dolacak -->
+        </div>
       </div>
 
     </div>
@@ -1029,6 +998,497 @@
 </div>
 
 <script>
+  // HER KATEGORİ İÇİN 2'ŞER FARKLI MAĞAZA VERİTABANI
+  const categoriesData = {
+    yemek: [
+      {
+        id: 'yemek_1',
+        name: 'Meşhur Taş Fırın Pideci',
+        sub: 'Karadeniz Pidesi & Lahmacun',
+        avatar: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=200&q=80',
+        closing: 'KAPANIŞ 00:00',
+        rating: '4.9',
+        reviewsCount: '(340+ değerlendirme)',
+        heroTitle: 'SICAK PİDE,<br>ODUN ATEŞİNDE.',
+        heroDesc: 'Kıymalı, kaşarlı ve kuşbaşılı eşsiz lezzetler.',
+        heroImg: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80',
+        sloganIcon: '🔥',
+        sloganText: 'Odun ateşinde pişen çıtır lezzetler kapınızda.',
+        phone: '0542 441 22 33',
+        address: 'Kazlıçeşme cad. No:45<br>ZEYTİNBURNU - İSTANBUL',
+        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul',
+        instaUrl: 'https://instagram.com',
+        products: [
+          { name: 'Kavurmalı Pide', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=300&q=80' },
+          { name: 'Çıtır Lahmacun', img: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=300&q=80' }
+        ],
+        reviews: [
+          { user: 'Ahmet Y.', comment: 'Pidenin hamuru inanılmaz ince ve çıtır, mahallede tek.' },
+          { user: 'Selin K.', comment: 'Sıcak ve hızlı geldi, esnaf çok güler yüzlü.' }
+        ]
+      },
+      {
+        id: 'yemek_2',
+        name: 'Anadolu Ev Yemekleri',
+        sub: 'Günlük Tencere Yemekleri',
+        avatar: 'https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=200&q=80',
+        closing: 'KAPANIŞ 21:30',
+        rating: '4.8',
+        reviewsCount: '(210+ değerlendirme)',
+        heroTitle: 'ANNE ELİNDEN<br>EV YEMEKLERİ.',
+        heroDesc: 'Günlük taze fasulye, pilav ve karnıyarık çeşitleri.',
+        heroImg: 'https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=400&q=80',
+        sloganIcon: '🍲',
+        sloganText: 'Katkısız, ev yapımı geleneksel lezzetler.',
+        phone: '0532 111 22 44',
+        address: 'Telsiz mah. 85. sok. No:4<br>ZEYTİNBURNU - İSTANBUL',
+        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul',
+        instaUrl: 'https://instagram.com',
+        products: [
+          { name: 'Karnıyarık & Pilav', img: 'https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=300&q=80' },
+          { name: 'Mercimek Çorbası', img: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=300&q=80' }
+        ],
+        reviews: [
+          { user: 'Mehmet A.', comment: 'Tıpkı annemin yaptığı yemekler gibi, ellerinize sağlık.' }
+        ]
+      }
+    ],
+    kafe: [
+      {
+        id: 'kafe_1',
+        name: 'Atölye Kahve & Tatlı',
+        sub: 'Nitelikli Kahveler & Kruvasan',
+        avatar: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=200&q=80',
+        closing: 'KAPANIŞ 23:00',
+        rating: '4.9',
+        reviewsCount: '(410+ değerlendirme)',
+        heroTitle: 'TAZE KAHVE,<br>TATLI KAÇAMAKLAR.',
+        heroDesc: 'Güne enerjik başlamanız için en iyi kahve çeşitleri.',
+        heroImg: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=400&q=80',
+        sloganIcon: '☕',
+        sloganText: 'Enfes aromalı kahveler ve taze tatlılar.',
+        phone: '0541 333 22 11',
+        address: 'Merkezefendi mah. Belgradkapı cad. No:7<br>ZEYTİNBURNU - İSTANBUL',
+        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul',
+        instaUrl: 'https://instagram.com',
+        products: [
+          { name: 'Caramel Macchiato', img: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=300&q=80' },
+          { name: 'Tereyağlı Kruvasan', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=300&q=80' }
+        ],
+        reviews: [
+          { user: 'Deniz T.', comment: 'Kahve kokusu tüm sokağı sarıyor, favori mekanım.' }
+        ]
+      },
+      {
+        id: 'kafe_2',
+        name: 'Mahalle Çay Evi & Kıraathane',
+        sub: 'Taze Demli Çay & Simit',
+        avatar: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=200&q=80',
+        closing: 'KAPANIŞ 01:00',
+        rating: '4.7',
+        reviewsCount: '(180+ değerlendirme)',
+        heroTitle: ' TAVŞANKANI ÇAY,<br>SAMİMİ SOHBET.',
+        heroDesc: 'Geleneksel ince belli bardakta taze çay keyfi.',
+        heroImg: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=400&q=80',
+        sloganIcon: '🫖',
+        sloganText: 'Mahallenin buluşma noktası.',
+        phone: '0535 999 88 77',
+        address: 'Seyitnizam mah. 12. sok. No:9<br>ZEYTİNBURNU - İSTANBUL',
+        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul',
+        instaUrl: 'https://instagram.com',
+        products: [
+          { name: 'Demlik Çay', img: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=300&q=80' },
+          { name: 'Sıcak Simit', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=300&q=80' }
+        ],
+        reviews: [
+          { user: 'Cemil K.', comment: 'Çay hep taze ve sıcacık.' }
+        ]
+      }
+    ],
+    manav: [
+      {
+        id: 'manav_1',
+        name: 'Taze Köy Manavı',
+        sub: 'Meyve, Sebze & Organik',
+        avatar: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=200&q=80',
+        closing: 'KAPANIŞ 22:00',
+        rating: '4.9',
+        reviewsCount: '(290+ değerlendirme)',
+        heroTitle: 'DOĞAL MAHSÜL,<br>TAZE SEBZELER.',
+        heroDesc: 'Günlük tarla ürünleri ile sofranıza sağlık katın.',
+        heroImg: 'https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=400&q=80',
+        sloganIcon: '🌱',
+        sloganText: 'Yerel üreticiden taze, katkısız ve güvenilir alışveriş.',
+        phone: '0535 713 52 58',
+        address: 'Telsiz mah. 103 sokak. No:11<br>ZEYTİNBURNU - İSTANBUL',
+        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul',
+        instaUrl: 'https://instagram.com',
+        products: [
+          { name: 'Çanakkale Domatesi', img: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=300&q=80' },
+          { name: 'Amasya Elması', img: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=300&q=80' }
+        ],
+        reviews: [
+          { user: 'Zeynep B.', comment: 'Sebzeler pırıl pırıl ve çok taze.' }
+        ]
+      },
+      {
+        id: 'manav_2',
+        name: 'Yeşil vadi Organik Manav',
+        sub: 'Ekolojik Tarım Ürünleri',
+        avatar: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=200&q=80',
+        closing: 'KAPANIŞ 21:00',
+        rating: '4.8',
+        reviewsCount: '(150+ değerlendirme)',
+        heroTitle: 'ORGANİK SEBZE,<br>SAĞLIKLI YAŞAM.',
+        heroDesc: 'İlaçsız tarım ürünleri ve köy mahsulleri.',
+        heroImg: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=400&q=80',
+        sloganIcon: '🍎',
+        sloganText: 'Doğrudan tarladan sofranıza.',
+        phone: '0532 555 33 22',
+        address: 'Gökalp mah. Abdi İpekçi cad. No:19<br>ZEYTİNBURNU - İSTANBUL',
+        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul',
+        instaUrl: 'https://instagram.com',
+        products: [
+          { name: 'Organik Çilek', img: 'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=300&q=80' },
+          { name: 'Köy Biberi', img: 'https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?auto=format&fit=crop&w=300&q=80' }
+        ],
+        reviews: [
+          { user: 'Hakan S.', comment: 'Çilekler mis gibi kokuyor, tavsiye ederim.' }
+        ]
+      }
+    ],
+    market: [
+      {
+        id: 'market_1',
+        name: 'Ömür Ticaret Market',
+        sub: 'Şarküteri & Temel Gıda',
+        avatar: 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=200&q=80',
+        closing: 'KAPANIŞ 23:30',
+        rating: '4.8',
+        reviewsCount: '(310+ değerlendirme)',
+        heroTitle: 'HESAPLI GIDA,<br>TAZE ÜRÜNLER.',
+        heroDesc: 'Temel ihtiyaçlarınızda güvenilir mahalle marketiniz.',
+        heroImg: 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=400&q=80',
+        sloganIcon: '🛒',
+        sloganText: 'Evinizin tüm ihtiyaçları hızlıca kapınızda.',
+        phone: '0555 123 45 67',
+        address: 'Veliefendi mah. Prof. Dr. Turan Güneş cad. No:19<br>ZEYTİNBURNU - İSTANBUL',
+        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul',
+        instaUrl: 'https://instagram.com',
+        products: [
+          { name: 'Günlük Süt 1L', img: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=300&q=80' },
+          { name: 'Ezine Peyniri', img: 'https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=300&q=80' }
+        ],
+        reviews: [
+          { user: 'Canan M.', comment: 'Fiyatlar çok uygun ve evimize çok yakın.' }
+        ]
+      },
+      {
+        id: 'market_2',
+        name: 'Kardeşler Büfe & Gıda',
+        sub: 'Atıştırmalık & İçecek',
+        avatar: 'https://images.unsplash.com/photo-1588964895597-cfccd6e2dbf9?auto=format&fit=crop&w=200&q=80',
+        closing: 'KAPANIŞ 02:00',
+        rating: '4.7',
+        reviewsCount: '(190+ değerlendirme)',
+        heroTitle: 'GECE GÜNDÜZ<br>HİZMETİNİZDE.',
+        heroDesc: 'Atıştırmalık, içecek ve temizlik malzemeleri.',
+        heroImg: 'https://images.unsplash.com/photo-1588964895597-cfccd6e2dbf9?auto=format&fit=crop&w=400&q=80',
+        sloganIcon: '🌙',
+        sloganText: 'Geç saatlerde bile açık bakkal.',
+        phone: '0536 777 88 99',
+        address: 'Çırpıcı mah. 3. sok. No:12<br>ZEYTİNBURNU - İSTANBUL',
+        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul',
+        instaUrl: 'https://instagram.com',
+        products: [
+          { name: 'Cips & Sos', img: 'https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=300&q=80' },
+          { name: 'Soğuk İçecekler', img: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=300&q=80' }
+        ],
+        reviews: [
+          { user: 'Burak T.', comment: 'Gece yarısı acil ihtiyaçlar için harika.' }
+        ]
+      }
+    ],
+    kasap: [
+      {
+        id: 'kasap_1',
+        name: 'Bereket Et & Kasap',
+        sub: 'Helal Kesim & Dinlendirilmiş Etler',
+        avatar: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=200&q=80',
+        closing: 'KAPANIŞ 21:00',
+        rating: '4.9',
+        reviewsCount: '(380+ değerlendirme)',
+        heroTitle: 'EN İYİ ET,<br>EN Usta ELLERDE.',
+        heroDesc: 'Günlük taze dana ve kuzu eti çeşitlerimizle hizmetinizdeyiz.',
+        heroImg: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=400&q=80',
+        sloganIcon: '🥩',
+        sloganText: 'Yüksek kalite standartlarında güvenilir et alışverişi.',
+        phone: '0533 888 77 66',
+        address: 'Çırpıcı mah. Şişecam sok. No:14<br>ZEYTİNBURNU - İSTANBUL',
+        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul',
+        instaUrl: 'https://instagram.com',
+        products: [
+          { name: 'Dana Antrikot', img: 'https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=300&q=80' },
+          { name: 'Kasap Köfte', img: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=300&q=80' }
+        ],
+        reviews: [
+          { user: 'Serdar K.', comment: 'Köfteleri efsane, çocuklar bayılıyor.' }
+        ]
+      },
+      {
+        id: 'kasap_2',
+        name: 'Şifa Kırmızı Et Dünyası',
+        sub: 'Özel Bonfile & Antrikot',
+        avatar: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=200&q=80',
+        closing: 'KAPANIŞ 20:30',
+        rating: '4.8',
+        reviewsCount: '(220+ değerlendirme)',
+        heroTitle: '100% YERLİ<br>DANA ETİ.',
+        heroDesc: 'Balıkesir yöresi sertifikalı kesim etler.',
+        heroImg: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80',
+        sloganIcon: '🍖',
+        sloganText: 'Sağlıklı ve güvenilir et tüketimi.',
+        phone: '0545 222 11 00',
+        address: 'Kazlıçeşme mah. Abay cad. No:8<br>ZEYTİNBURNU - İSTANBUL',
+        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul',
+        instaUrl: 'https://instagram.com',
+        products: [
+          { name: 'Kuzu Pirzola', img: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=300&q=80' },
+          { name: 'Dana Kıyma', img: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=300&q=80' }
+        ],
+        reviews: [
+          { user: 'Ebru D.', comment: 'Çok temiz bir dükkan, etler hiç kokmuyor.' }
+        ]
+      }
+    ],
+    nalbur: [
+      {
+        id: 'nalbur_1',
+        name: 'Mahalle Hırdavat & Nalbur',
+        sub: 'El Aletleri & Boya Çeşitleri',
+        avatar: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=200&q=80',
+        closing: 'KAPANIŞ 20:00',
+        rating: '4.8',
+        reviewsCount: '(130+ değerlendirme)',
+        heroTitle: 'HER İŞE UYGUN<br>PROFESYONEL ÇÖZÜM.',
+        heroDesc: 'Tadilat, boya, vida ve el aletleri stoğumuzla hizmetinizdeyiz.',
+        heroImg: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80',
+        sloganIcon: '🧰',
+        sloganText: 'Ev tadilatı ve tamiratta aradığınız her şey burada.',
+        phone: '0532 998 11 22',
+        address: 'Seyitnizam mah. 4. sok. No:8<br>ZEYTİNBURNU - İSTANBUL',
+        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul',
+        instaUrl: 'https://instagram.com',
+        products: [
+          { name: 'Matkap Ucu Seti', img: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=300&q=80' },
+          { name: 'Silikon Tabancası', img: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=300&q=80' }
+        ],
+        reviews: [
+          { user: 'Kadir Y.', comment: 'Aradığım her vida ve malzemeyi tek seferde buldum.' }
+        ]
+      },
+      {
+        id: 'nalbur_2',
+        name: 'Pratik Yapı Market',
+        sub: 'Boya & Su Tesisat Malzemeleri',
+        avatar: 'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=200&q=80',
+        closing: 'KAPANIŞ 19:30',
+        rating: '4.7',
+        reviewsCount: '(95+ değerlendirme)',
+        heroTitle: 'BOYA, BADANA<br>VE TESİSAT.',
+        heroDesc: 'Ev yenileme malzemelerinde usta tavsiyeleri.',
+        heroImg: 'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=400&q=80',
+        sloganIcon: '🔨',
+        sloganText: 'Usta ellerin güvenilir adresi.',
+        phone: '0533 444 55 66',
+        address: 'Gökalp mah. 32. sok. No:5<br>ZEYTİNBURNU - İSTANBUL',
+        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul',
+        instaUrl: 'https://instagram.com',
+        products: [
+          { name: 'Duvar Boyası 10Kg', img: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=300&q=80' },
+          { name: 'Takım Çantası', img: 'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=300&q=80' }
+        ],
+        reviews: [
+          { user: 'Oğuzhan M.', comment: 'Fiyatları piyasaya göre çok uygun.' }
+        ]
+      }
+    ],
+    tamirci: [
+      {
+        id: 'tamirci_1',
+        name: 'Pratik Teknik Servis',
+        sub: 'Beyaz Eşya & Kombi Bakım Merkezi',
+        avatar: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=200&q=80',
+        closing: 'KAPANIŞ 19:30',
+        rating: '4.9',
+        reviewsCount: '(240+ değerlendirme)',
+        heroTitle: 'HIZLI ARIZA TESPİTİ,<br>GARANTİLİ ONARIM.',
+        heroDesc: 'Ev aletlerinizde profesyonel teknik destek ve bakım.',
+        heroImg: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80',
+        sloganIcon: '🛠️',
+        sloganText: '7/24 mobil servis ekibiyle yerinde tamirat.',
+        phone: '0539 555 44 33',
+        address: 'Gökalp mah. 52. sok. No:3<br>ZEYTİNBURNU - İSTANBUL',
+        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul',
+        instaUrl: 'https://instagram.com',
+        products: [
+          { name: 'Kombi Bakımı', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=300&q=80' },
+          { name: 'Klima Gaz Dolumu', img: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=300&q=80' }
+        ],
+        reviews: [
+          { user: 'Merve Ç.', comment: 'Kombimiz arızalanmıştı, hemen gelip 1 saatte çözdüler.' }
+        ]
+      },
+      {
+        id: 'tamirci_2',
+        name: 'Usta Eller Elektrik & Tamirat',
+        sub: 'Elektrik Tesisat & Avize Montaj',
+        avatar: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=200&q=80',
+        closing: 'KAPANIŞ 20:00',
+        rating: '4.8',
+        reviewsCount: '(160+ değerlendirme)',
+        heroTitle: 'ELEKTRİK ARIZALARINA<br>ANINDA ÇÖZÜM.',
+        heroDesc: 'Sigorta değişimi, avize montajı ve kablolama.',
+        heroImg: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=400&q=80',
+        sloganIcon: '⚡',
+        sloganText: 'Güvenli ve sertifikalı elektrik hizmeti.',
+        phone: '0534 111 00 22',
+        address: 'Merkezefendi mah. 14. sok. No:2<br>ZEYTİNBURNU - İSTANBUL',
+        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul',
+        instaUrl: 'https://instagram.com',
+        products: [
+          { name: 'Sigorta Panosu', img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=300&q=80' },
+          { name: 'Avize Montaj', img: 'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=300&q=80' }
+        ],
+        reviews: [
+          { user: 'Kemal Ö.', comment: 'Çok titiz çalıştılar, teşekkürler.' }
+        ]
+      }
+    ]
+  };
+
+  // Aktif seçili mağazanın yorumlarını tutmak için global değişken
+  let currentActiveStore = null;
+
+  // Sayfa ilk açıldığında varsayılan olarak Manav mağazalarını göster
+  window.onload = function() {
+    loadDefaultStores();
+  };
+
+  function loadDefaultStores() {
+    renderStores('manav');
+    // Aktif kategori stilini ayarla
+    document.querySelectorAll('.cat-item-card').forEach(el => el.classList.remove('active'));
+    // Manavı bul ve aktif yap
+    const manavCard = Array.from(document.querySelectorAll('.cat-item-card')).find(el => el.innerText.includes('Manav'));
+    if(manavCard) manavCard.classList.add('active');
+  }
+
+  function filterStoresByCategory(catKey, element) {
+    renderStores(catKey);
+    if(element) {
+      document.querySelectorAll('.cat-item-card').forEach(el => el.classList.remove('active'));
+      element.classList.add('active');
+    }
+  }
+
+  function renderStores(catKey) {
+    const container = document.getElementById('storesListContainer');
+    container.innerHTML = '';
+    const list = categoriesData[catKey] || categoriesData['manav'];
+
+    list.forEach(store => {
+      container.innerHTML += `
+        <div class="store-row-card" onclick="openStoreModal('${catKey}', '${store.id}')">
+          <div class="store-left-info">
+            <img src="${store.avatar}" class="store-avatar" alt="${store.name}">
+            <div class="store-meta">
+              <h4>${store.name}</h4>
+              <p>${store.sub}</p>
+              <span class="status-badge">AÇIK • ★ ${store.rating}</span>
+            </div>
+          </div>
+          <button class="btn-store-inspect">İncele</button>
+        </div>
+      `;
+    });
+  }
+
+  function openStoreModal(catKey, storeId) {
+    const list = categoriesData[catKey];
+    const store = list.find(s => s.id === storeId);
+    if(!store) return;
+
+    currentActiveStore = store; // Yorumlar için sakla
+
+    document.getElementById("modalTitle").innerText = store.name;
+    document.getElementById("modalRatingVal").innerText = store.rating;
+    document.getElementById("modalReviewCount").innerText = store.reviewsCount;
+    document.getElementById("modalClosing").innerText = store.closing;
+    document.getElementById("modalHeroTitle").innerHTML = store.heroTitle;
+    document.getElementById("modalHeroDesc").innerText = store.heroDesc;
+    document.getElementById("modalHeroImg").src = store.heroImg;
+    document.getElementById("modalSloganIcon").innerText = store.sloganIcon;
+    document.getElementById("modalSloganText").innerText = store.sloganText;
+    
+    // Telefon, Konum ve İnstagram butonları aktif bağlandı
+    const phoneBtn = document.getElementById("modalPhoneBtn");
+    phoneBtn.innerHTML = `📞 Tel: ${store.phone}`;
+    phoneBtn.href = `tel:${store.phone.replace(/\s+/g, '')}`;
+
+    document.getElementById("modalMapBtn").href = store.mapUrl;
+    document.getElementById("modalInstaBtn").href = store.instaUrl;
+
+    document.getElementById("modalAddressFooter").innerHTML = `Adres: ${store.address}`;
+
+    const productsRow = document.getElementById("modalProductsRow");
+    productsRow.innerHTML = "";
+    store.products.forEach(prod => {
+      productsRow.innerHTML += `
+        <div class="modal-product-card">
+          <img src="${prod.img}" alt="${prod.name}">
+          <span>${prod.name}</span>
+        </div>
+      `;
+    });
+
+    document.getElementById("storeModalOverlay").classList.add("active");
+  }
+
+  function closeStoreModalDirect() {
+    document.getElementById("storeModalOverlay").classList.remove("active");
+    closeReviewsModal();
+  }
+
+  function closeStoreModal(event) {
+    if (event.target.id === "storeModalOverlay") {
+      closeStoreModalDirect();
+    }
+  }
+
+  // YORUMLAR PANELİ AÇ / KAPA
+  function openReviewsModal() {
+    const container = document.getElementById("reviewsListContainer");
+    container.innerHTML = "";
+    if(currentActiveStore && currentActiveStore.reviews) {
+      currentActiveStore.reviews.forEach(rev => {
+        container.innerHTML += `
+          <div class="review-card">
+            <div class="review-user">👤 ${rev.user} <span style="color:#fbbf24;">★★★★★</span></div>
+            <div class="review-comment">"${rev.comment}"</div>
+          </div>
+        `;
+      });
+    } else {
+      container.innerHTML = `<p style="font-size:11px; color:#9ca3af; text-align:center; margin-top:20px;">Henüz yorum yapılmamış.</p>`;
+    }
+    document.getElementById("reviewsModal").classList.add("active");
+  }
+
+  function closeReviewsModal() {
+    document.getElementById("reviewsModal").classList.remove("active");
+  }
+
   function toggleDrawer() {
     document.getElementById("drawerOverlay").classList.toggle("active");
     document.getElementById("drawerPanel").classList.toggle("active");
@@ -1043,168 +1503,6 @@
   function closeAllCategoriesModal(event) {
     if (event.target.id === "catModalOverlay") {
       closeAllCategoriesModalDirect();
-    }
-  }
-
-  const storeData = {
-    manav: {
-      title: "Taze Köy Manavı",
-      subtitle: "ORGANİK MAHALLE MANAVI",
-      closing: "KAPANIŞ 22:00",
-      heroTitle: "DOĞAL MAHSÜL,<br>TAZE SEBZELER.",
-      heroDesc: "Günlük tarla ürünleri ile sofranıza sağlık katın.",
-      heroImg: "https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=400&q=80",
-      sloganIcon: "🌱",
-      sloganText: "Yerel üreticiden taze, katkısız ve güvenilir alışveriş.",
-      phone: "0535 713 52 58",
-      address: "Telsiz mah. 103 sokak. No:11<br>ZEYTİNBURNU - İSTANBUL",
-      products: [
-        { name: "Çanakkale Domatesi", img: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=300&q=80" },
-        { name: "Amasya Elması", img: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=300&q=80" },
-        { name: "Köy Yumurtası (30'lu)", img: "https://images.unsplash.com/photo-1516448705347-370c8cae5df9?auto=format&fit=crop&w=300&q=80" }
-      ]
-    },
-    pideci: {
-      title: "Meşhur Taş Fırın Pideci",
-      subtitle: "GELENEKSEL FIRIN LEZZETLERİ",
-      closing: "KAPANIŞ 00:00",
-      heroTitle: "SICAK PİDE,<br>ODUN ATEŞİNDE.",
-      heroDesc: "Kıymalı, kaşarlı ve kuşbaşılı eşsiz lezzetler.",
-      heroImg: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80",
-      sloganIcon: "🔥",
-      sloganText: "Odun ateşinde pişen çıtır lezzetler kapınızda.",
-      phone: "0542 441 22 33",
-      address: "Kazlıçeşme cad. No:45<br>ZEYTİNBURNU - İSTANBUL",
-      products: [
-        { name: "Kavurmalı Kaşarlı Pide", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=300&q=80" },
-        { name: "Kıymalı Yumurtalı", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=300&q=80" },
-        { name: "Çıtır Lahmacun", img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=300&q=80" }
-      ]
-    },
-    nalbur: {
-      title: "Mahalle Hırdavat & Nalbur",
-      subtitle: "GÜVENLİR TAMİR VE YAPI MARKET",
-      closing: "KAPANIŞ 20:00",
-      heroTitle: "HER İŞE UYGUN<br>PROFESYONEL ÇÖZÜM.",
-      heroDesc: "Tadilat, boya, vida ve el aletleri stoğumuzla hizmetinizdeyiz.",
-      heroImg: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80",
-      sloganIcon: "🧰",
-      sloganText: "Ev tadilatı ve tamiratta aradığınız her şey burada.",
-      phone: "0532 998 11 22",
-      address: "Seyitnizam mah. 4. sok. No:8<br>ZEYTİNBURNU - İSTANBUL",
-      products: [
-        { name: "Akülü Matkap Seti", img: "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=300&q=80" },
-        { name: "Silikon & Tabanca", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=300&q=80" },
-        { name: "Çok Amaçlı Takım Çantası", img: "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=300&q=80" }
-      ]
-    },
-    market: {
-      title: "Ömür Ticaret Market",
-      subtitle: "MAHALLE BAKKALİYESİ & ŞARKÜTERİ",
-      closing: "KAPANIŞ 23:30",
-      heroTitle: "HESAPLI GIDA,<br>TAZE ÜRÜNLER.",
-      heroDesc: "Temel ihtiyaçlarınızda güvenilir mahalle marketiniz.",
-      heroImg: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=400&q=80",
-      sloganIcon: "🛒",
-      sloganText: "Evinizin tüm ihtiyaçları hızlıca kapınızda.",
-      phone: "0555 123 45 67",
-      address: "Veliefendi mah. Prof. Dr. Turan Güneş cad. No:19<br>ZEYTİNBURNU - İSTANBUL",
-      products: [
-        { name: "Günlük Süt 1L", img: "https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=300&q=80" },
-        { name: "Ezine İnek Peyniri", img: "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=300&q=80" },
-        { name: "Özel Harman Türk Kahvesi", img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=300&q=80" }
-      ]
-    },
-    kasap: {
-      title: "Bereket Et & Kasap",
-      subtitle: "HELAL KESİM & DİNLENDİRİLMİŞ ETLER",
-      closing: "KAPANIŞ 21:00",
-      heroTitle: "EN İYİ ET,<br>EN Usta ELLERDE.",
-      heroDesc: "Günlük taze dana ve kuzu eti çeşitlerimizle hizmetinizdeyiz.",
-      heroImg: "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=400&q=80",
-      sloganIcon: "🥩",
-      sloganText: "Yüksek kalite standartlarında güvenilir et alışverişi.",
-      phone: "0533 888 77 66",
-      address: "Çırpıcı mah. Şişecam sok. No:14<br>ZEYTİNBURNU - İSTANBUL",
-      products: [
-        { name: "Dana Antrikot", img: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=300&q=80" },
-        { name: "Kuzu Pirzola", img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=300&q=80" },
-        { name: "Ev Yapımı Kasap Köfte", img: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=300&q=80" }
-      ]
-    },
-    kafe: {
-      title: "Atölye Kahve & Tatlı",
-      subtitle: "NİTELİKLİ KAHVE & ARTİSAN FIRIN",
-      closing: "KAPANIŞ 23:00",
-      heroTitle: "TAZE KAHVE,<br>TATLI KAÇAMAKLAR.",
-      heroDesc: "Güne enerjik başlamanız için en iyi kahve çeşitleri.",
-      heroImg: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=400&q=80",
-      sloganIcon: "☕",
-      sloganText: "Enfes aromalı kahveler ve taze tatlılar.",
-      phone: "0541 333 22 11",
-      address: "Merkezefendi mah. Belgradkapı cad. No:7<br>ZEYTİNBURNU - İSTANBUL",
-      products: [
-        { name: "Caramel Macchiato", img: "https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=300&q=80" },
-        { name: "Tereyağlı Kruvasan", img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=300&q=80" },
-        { name: "Çikolatalı San Sebastian", img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=300&q=80" }
-      ]
-    },
-    tamirci: {
-      title: "Pratik Teknik Servis",
-      subtitle: "BEYAZ EŞYA & KOMBİ BAKIM MERKEZİ",
-      closing: "KAPANIŞ 19:30",
-      heroTitle: "HIZLI ARIZA TESPİTİ,<br>GARANTİLİ ONARIM.",
-      heroDesc: "Ev aletlerinizde profesyonel teknik destek ve bakım.",
-      heroImg: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80",
-      sloganIcon: "🛠️",
-      sloganText: "7/24 mobil servis ekibiyle yerinde tamirat.",
-      phone: "0539 555 44 33",
-      address: "Gökalp mah. 52. sok. No:3<br>ZEYTİNBURNU - İSTANBUL",
-      products: [
-        { name: "Kombi Bakım & Petek Temizliği", img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=300&q=80" },
-        { name: "Çamaşır Makinesi Kart Tamiri", img: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=300&q=80" },
-        { name: "Klima Gaz Dolumu", img: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=300&q=80" }
-      ]
-    }
-  };
-
-  function openStoreModal(storeKey) {
-    const data = storeData[storeKey];
-    if (!data) return;
-
-    document.getElementById("modalTitle").innerText = data.title;
-    document.getElementById("modalCategorySub").innerText = data.subtitle;
-    document.getElementById("modalClosing").innerText = data.closing;
-    document.getElementById("modalHeroTitle").innerHTML = data.heroTitle;
-    document.getElementById("modalHeroDesc").innerText = data.heroDesc;
-    document.getElementById("modalHeroImg").src = data.heroImg;
-    document.getElementById("modalSloganIcon").innerText = data.sloganIcon;
-    document.getElementById("modalSloganText").innerText = data.sloganText;
-    document.getElementById("modalPhoneBtn").innerHTML = `📞 Tel: ${data.phone}`;
-    document.getElementById("modalPhoneBtn").href = `tel:${data.phone.replace(/\s+/g, '')}`;
-    document.getElementById("modalAddressFooter").innerHTML = `Adres: ${data.address}`;
-
-    const productsRow = document.getElementById("modalProductsRow");
-    productsRow.innerHTML = "";
-    data.products.forEach(prod => {
-      productsRow.innerHTML += `
-        <div class="modal-product-card">
-          <img src="${prod.img}" alt="${prod.name}">
-          <span>${prod.name}</span>
-        </div>
-      `;
-    });
-
-    document.getElementById("storeModalOverlay").classList.add("active");
-  }
-
-  function closeStoreModalDirect() {
-    document.getElementById("storeModalOverlay").classList.remove("active");
-  }
-
-  function closeStoreModal(event) {
-    if (event.target.id === "storeModalOverlay") {
-      closeStoreModalDirect();
     }
   }
 
