@@ -3,22 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BENDE VAR - Modern UI</title>
+  <title>BENDE VAR - Modern Yeşil Tema</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
     :root {
-      --bg-app: #f6f7f9;
+      --brand-green: #0d5c56;
+      --brand-green-dark: #08433e;
+      --brand-green-light: #e6f2f1;
+      --bg-app: #f7f9f8;
       --card-bg: #ffffff;
-      --primary-dark: #121212;
       --brand-yellow: #facc15;
-      --brand-mint: #10b981;
-      --brand-red: #ef4444;
       --text-main: #0f172a;
       --text-muted: #64748b;
-      --border-subtle: #eaeef3;
-      --soft-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-      --card-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+      --border-subtle: #ebf0ee;
       --star-color: #f59e0b;
     }
 
@@ -50,148 +48,184 @@
       padding-bottom: 75px;
     }
 
-    /* EN TEPE HEADER (LOGO & ŞEHİR) */
-    .top-header {
-      background: #ffffff;
-      padding: 18px 20px 14px 20px;
+    /* YEŞİL ÜST HEADER ALANI */
+    .green-hero-section {
+      background: var(--brand-green);
+      padding: 24px 20px 24px 20px;
+      border-bottom-left-radius: 32px;
+      border-bottom-right-radius: 32px;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .top-bar-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--border-subtle);
     }
 
-    .brand-logo {
-      font-size: 22px;
-      font-weight: 900;
-      color: var(--primary-dark);
-      letter-spacing: -0.5px;
+    .location-container {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
-    .brand-logo span {
-      background: var(--brand-yellow);
-      color: var(--primary-dark);
-      padding: 2px 10px;
-      border-radius: 10px;
-      font-weight: 900;
-    }
-
-    .location-pill {
-      background: #f1f5f9;
-      padding: 6px 12px;
-      border-radius: 20px;
+    .location-icon-circle {
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
       display: flex;
       align-items: center;
-      gap: 4px;
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--text-main);
-      border: 1px solid var(--border-subtle);
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .location-text-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .loc-label {
+      font-size: 10px;
+      opacity: 0.75;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .location-select {
       background: transparent;
       border: none;
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--text-main);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 13.5px;
       outline: none;
       cursor: pointer;
     }
 
-    /* HERO BANNER SECTION (GÖRSELDEKİ VURUCU ALAN) */
-    .hero-banner {
-      position: relative;
-      width: 100%;
-      height: 190px;
-      background-size: cover;
-      background-position: center;
-      padding: 24px 20px;
+    .location-select option {
+      color: var(--text-main);
+      background: #ffffff;
+    }
+
+    .top-actions {
       display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      transition: background-image 0.3s ease;
+      align-items: center;
+      gap: 10px;
     }
 
-    .hero-banner::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 100%);
+    .icon-btn-circle {
+      width: 38px;
+      height: 38px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      cursor: pointer;
     }
 
-    .hero-text-content {
-      position: relative;
-      z-index: 2;
-      color: #ffffff;
+    .user-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.5);
     }
 
-    .hero-title {
-      font-size: 26px;
-      font-weight: 900;
-      line-height: 1.15;
-      letter-spacing: -0.5px;
-    }
-
-    .hero-subtitle {
-      font-size: 13px;
-      font-weight: 600;
-      opacity: 0.9;
-      margin-top: 4px;
-    }
-
-    /* BANNER ÜZERİNE BİNEN YÜZEN ARAMA KUTUSU */
-    .search-section {
-      position: relative;
-      z-index: 5;
-      margin: -26px 20px 20px 20px;
-    }
-
-    .search-card {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(12px);
-      border-radius: 20px;
+    /* ARAMA BAR (HERO İÇİNDE) */
+    .search-box-green {
+      background: #ffffff;
+      border-radius: 18px;
       padding: 6px 6px 6px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-      border: 1px solid #ffffff;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
     }
 
-    .search-input-wrapper {
+    .search-input-field {
       display: flex;
       align-items: center;
       gap: 10px;
       flex: 1;
     }
 
-    .search-input-wrapper input {
+    .search-input-field input {
       border: none;
       outline: none;
       width: 100%;
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 600;
       color: var(--text-main);
-      background: transparent;
     }
 
-    .search-btn {
-      background: var(--primary-dark);
+    .search-btn-mini {
+      background: var(--brand-green);
       color: #ffffff;
       border: none;
-      padding: 11px 20px;
-      border-radius: 16px;
+      padding: 10px 18px;
+      border-radius: 14px;
       font-weight: 800;
-      font-size: 13px;
+      font-size: 12.5px;
       cursor: pointer;
     }
 
-    /* SECTION TITLE */
-    .section-header {
-      padding: 0 20px 12px 20px;
+    /* HERO PROMO CARD (İZO METRİK İLLÜSTRASYONLU BÖLÜM) */
+    .promo-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 20px;
+      padding: 16px;
+      margin-top: 2px;
+    }
+
+    .promo-left {
+      max-width: 60%;
+    }
+
+    .promo-title {
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.3px;
+    }
+
+    .promo-subtitle {
+      font-size: 10.5px;
+      opacity: 0.8;
+      margin: 4px 0 10px 0;
+      line-height: 1.3;
+    }
+
+    .btn-explore {
+      background: #ffffff;
+      color: var(--brand-green-dark);
+      border: none;
+      padding: 7px 16px;
+      border-radius: 12px;
+      font-size: 11.5px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .promo-img {
+      width: 95px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    /* KATEGORİ BAŞLIĞI & GRİD */
+    .section-header-row {
+      padding: 20px 20px 12px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -200,105 +234,73 @@
     .section-title {
       font-size: 15px;
       font-weight: 800;
-      color: var(--primary-dark);
+      color: var(--text-main);
       letter-spacing: -0.3px;
     }
 
-    .section-link {
+    .view-all-link {
       font-size: 12px;
       font-weight: 700;
-      color: var(--brand-yellow);
+      color: var(--brand-green);
       text-decoration: none;
     }
 
-    /* KATEGORİ KUTULARI (REFERANSTAKİ FEATURED SERVICES GİBİ 3D BEYAZ KARTLAR) */
-    .categories-grid {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding: 0 20px 20px 20px;
-      scrollbar-width: none;
+    /* 2 SÜTUNLU KATEGORİ İZGARASI (GÖRSELDEKİ ŞABLON) */
+    .categories-2col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 0 20px 10px 20px;
     }
-    .categories-grid::-webkit-scrollbar { display: none; }
 
-    .cat-box {
+    .cat-card-item {
       background: #ffffff;
-      min-width: 88px;
-      padding: 14px 10px;
-      border-radius: 20px;
+      border-radius: 18px;
+      padding: 12px 14px;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      box-shadow: var(--soft-shadow);
+      justify-content: space-between;
       border: 1px solid var(--border-subtle);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
       cursor: pointer;
       transition: all 0.2s ease;
     }
 
-    .cat-box.active {
-      background: var(--primary-dark);
-      border-color: var(--primary-dark);
+    .cat-card-item.active {
+      border-color: var(--brand-green);
+      background: var(--brand-green-light);
     }
 
-    .cat-box.active .cat-name {
-      color: #ffffff;
+    .cat-card-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .cat-icon-wrapper {
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      background: #fefce8;
+    .cat-icon-box {
+      width: 36px;
+      height: 36px;
+      background: #f8fafc;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 16px;
     }
 
-    .cat-box.active .cat-icon-wrapper {
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .cat-name {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--text-main);
-      text-align: center;
-      line-height: 1.2;
-    }
-
-    /* QUICK ACTION CAPSULES */
-    .quick-actions {
-      display: flex;
-      gap: 8px;
-      padding: 0 20px 20px 20px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .quick-actions::-webkit-scrollbar { display: none; }
-
-    .action-capsule {
-      background: #ffffff;
-      padding: 10px 16px;
-      border-radius: 16px;
+    .cat-card-title {
       font-size: 12px;
       font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .cat-arrow {
+      font-size: 12px;
       color: var(--text-muted);
-      border: 1px solid var(--border-subtle);
-      white-space: nowrap;
-      cursor: pointer;
-      box-shadow: var(--card-shadow);
+      font-weight: 700;
     }
 
-    .action-capsule.active {
-      background: var(--brand-yellow);
-      color: var(--primary-dark);
-      border-color: var(--brand-yellow);
-    }
-
-    /* RECENT PROJECTS / ESNAF KART LİSTESİ */
+    /* RECENT/POPULAR SERVICES LİSTESİ */
     .results-container {
       padding: 0 20px 20px 20px;
       display: flex;
@@ -314,7 +316,7 @@
       gap: 12px;
       align-items: center;
       border: 1px solid var(--border-subtle);
-      box-shadow: var(--card-shadow);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
       cursor: pointer;
       position: relative;
     }
@@ -339,7 +341,7 @@
       bottom: 4px;
       left: 4px;
       right: 4px;
-      background: rgba(16, 185, 129, 0.9);
+      background: rgba(13, 92, 86, 0.92);
       backdrop-filter: blur(4px);
       color: #ffffff;
       font-size: 8.5px;
@@ -347,6 +349,16 @@
       padding: 3px;
       border-radius: 6px;
       text-align: center;
+    }
+
+    .satisfaction-tag.blink-animation {
+      animation: pulseBlink 0.6s ease-in-out 3;
+    }
+
+    @keyframes pulseBlink {
+      0% { background: var(--brand-green); transform: scale(1); }
+      50% { background: var(--brand-yellow); color: #0f172a; transform: scale(1.06); }
+      100% { background: var(--brand-green); transform: scale(1); }
     }
 
     .card-body {
@@ -366,14 +378,14 @@
     .store-title {
       font-size: 14px;
       font-weight: 800;
-      color: var(--primary-dark);
-      line-height: 1.2;
+      color: var(--text-main);
+      line-height: 1.25;
     }
 
     .distance-pill {
-      background: #ecfdf5;
-      color: #047857;
-      border: 1px solid #a7f3d0;
+      background: var(--brand-green-light);
+      color: var(--brand-green-dark);
+      border: 1px solid #b2dfdb;
       font-size: 10.5px;
       font-weight: 800;
       padding: 2px 7px;
@@ -384,7 +396,7 @@
     .rating-row {
       font-size: 11.5px;
       font-weight: 700;
-      color: var(--primary-dark);
+      color: var(--text-main);
       display: flex;
       align-items: center;
       gap: 4px;
@@ -413,8 +425,8 @@
       font-size: 11px;
       font-weight: 700;
     }
-    .time-status.open { color: var(--brand-mint); }
-    .time-status.closed { color: var(--brand-red); }
+    .time-status.open { color: #059669; }
+    .time-status.closed { color: #dc2626; }
 
     .arrow-btn {
       background: #f8fafc;
@@ -430,7 +442,7 @@
       border: 1px solid var(--border-subtle);
     }
 
-    /* REFERANSTAKİ ALT NAVİGASYON BAR */
+    /* REFERANSTAKİ ALT NAVİGASYON (HAP / PILL ŞEKLİNDEKİ SEÇİLİ MENÜ) */
     .bottom-nav {
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -441,27 +453,34 @@
       justify-content: space-around;
       align-items: center;
       z-index: 10;
+      padding: 0 10px;
     }
 
     .nav-item {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 3px;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 20px;
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 10.5px;
+      font-size: 12px;
       font-weight: 700;
       cursor: pointer;
+      transition: all 0.2s ease;
     }
 
-    .nav-item.active { color: var(--brand-yellow); }
-    .nav-icon { font-size: 18px; }
+    .nav-item.active {
+      background: var(--brand-green);
+      color: #ffffff;
+    }
+
+    .nav-icon { font-size: 16px; }
 
     /* MODAL PENCERE */
     .modal-overlay {
       position: absolute; inset: 0;
-      background: rgba(18, 18, 18, 0.6); backdrop-filter: blur(8px);
+      background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px);
       display: none; justify-content: flex-end; flex-direction: column; z-index: 100;
     }
 
@@ -475,7 +494,7 @@
 
     .modal-drag-indicator { width: 36px; height: 4px; background: #e2e8f0; border-radius: 10px; margin: 0 auto 14px auto; }
     .modal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
-    .modal-store-name { font-size: 18px; font-weight: 800; color: var(--primary-dark); }
+    .modal-store-name { font-size: 18px; font-weight: 800; color: var(--text-main); }
     .modal-product-title { font-size: 13px; color: var(--text-muted); font-weight: 500; }
     .close-btn { background: #f1f5f9; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 13px; font-weight: 700; cursor: pointer; color: var(--text-muted); }
 
@@ -486,12 +505,12 @@
 
     .modal-tabs { display: flex; background: #f1f5f9; padding: 4px; border-radius: 14px; margin-bottom: 14px; }
     .tab-btn { flex: 1; padding: 9px 0; border: none; background: transparent; font-size: 12px; font-weight: 700; color: var(--text-muted); border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
-    .tab-btn.active { background: #ffffff; color: var(--primary-dark); box-shadow: var(--card-shadow); }
+    .tab-btn.active { background: #ffffff; color: var(--text-main); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
 
     .tab-content { display: none; }
     .tab-content.active { display: flex; flex-direction: column; gap: 8px; }
 
-    .btn-call-card { background: var(--primary-dark); color: #ffffff; text-decoration: none; padding: 14px 18px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; font-weight: 800; }
+    .btn-call-card { background: var(--brand-green); color: #ffffff; text-decoration: none; padding: 14px 18px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; font-weight: 800; }
     .btn-action { text-decoration: none; padding: 12px; border-radius: 14px; text-align: center; font-weight: 700; font-size: 13px; display: flex; justify-content: center; align-items: center; gap: 8px; }
     .btn-instagram { background: linear-gradient(135deg, #e1306c 0%, #c13584 100%); color: #ffffff; }
     .btn-whatsapp { background: #10b981; color: #ffffff; }
@@ -502,80 +521,93 @@
 
 <div class="app-container">
   
-  <!-- EN TEPE HEADER -->
-  <div class="top-header">
-    <div class="brand-logo">
-      BENDE <span>VAR</span>
-    </div>
-    <div class="location-pill">
-      📍 
-      <select class="location-select" id="citySelect" onchange="changeCity()">
-        <option value="zeytinburnu">Zeytinburnu, TR</option>
-        <option value="izmir">Konak, İzmir</option>
-        <option value="ankara">Çankaya, Ankara</option>
-      </select>
-    </div>
-  </div>
+  <!-- ZÜMRÜT YEŞİLİ MİMALİSTAN HEADER -->
+  <div class="green-hero-section">
+    
+    <div class="top-bar-row">
+      <div class="location-container">
+        <div class="location-icon-circle">📍</div>
+        <div class="location-text-group">
+          <span class="loc-label">Konumunuz</span>
+          <select class="location-select" id="citySelect" onchange="changeCity()">
+            <option value="zeytinburnu">Zeytinburnu, TR</option>
+            <option value="izmir">Konak, İzmir</option>
+            <option value="ankara">Çankaya, Ankara</option>
+          </select>
+        </div>
+      </div>
 
-  <!-- HERO BANNER -->
-  <div class="hero-banner" id="heroHeader" style="background-image: url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80');">
-    <div class="hero-text-content">
-      <div class="hero-title">Yakınındaki<br>Esnafı Keşfet.</div>
-      <div class="hero-subtitle">İhtiyacın olan ürünler 5 dakikalık mesafede.</div>
+      <div class="top-actions">
+        <div class="icon-btn-circle">🔔</div>
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" class="user-avatar" alt="Profil">
+      </div>
     </div>
-  </div>
 
-  <!-- BANNER ÜZERİNE BİNEN YÜZEN ARAMA BAR -->
-  <div class="search-section">
-    <div class="search-card">
-      <div class="search-input-wrapper">
+    <!-- ARAMA BAR -->
+    <div class="search-box-green">
+      <div class="search-input-field">
         🔍
         <input type="text" id="searchInput" placeholder="Ne arıyorsunuz? (Örn: jemsiye, börek)" onkeyup="filterResults()">
       </div>
-      <button class="search-btn" onclick="filterResults()">Bul</button>
+      <button class="search-btn-mini" onclick="filterResults()">Bul</button>
+    </div>
+
+    <!-- İZOMETRİK KAMPANYA KARTI -->
+    <div class="promo-card">
+      <div class="promo-left">
+        <div class="promo-title">ARADIĞIN HER ŞEY,<br>BİR TIK UZAĞINDA!</div>
+        <div class="promo-subtitle">Mahallendeki güvenilir esnaflar BENDE VAR'da.</div>
+        <button class="btn-explore">Keşfet</button>
+      </div>
+      <img src="https://cdn-icons-png.flaticon.com/512/3076/3076820.png" class="promo-img" alt="İllüstrasyon">
+    </div>
+
+  </div>
+
+  <!-- KATEGORİ SEÇİM ALANI (2 SÜTUNLU KARTLAR) -->
+  <div class="section-header-row">
+    <div class="section-title">Hizmet Kategorileri</div>
+    <a href="#" class="view-all-link">Tümü ›</a>
+  </div>
+
+  <div class="categories-2col-grid">
+    <div class="cat-card-item active" onclick="filterCategory('Tümü', event)">
+      <div class="cat-card-left">
+        <div class="cat-icon-box">🎒</div>
+        <div class="cat-card-title">Tümü</div>
+      </div>
+      <span class="cat-arrow">›</span>
+    </div>
+
+    <div class="cat-card-item" onclick="filterCategory('Aksesuar', event)">
+      <div class="cat-card-left">
+        <div class="cat-icon-box">🕶️</div>
+        <div class="cat-card-title">Aksesuar & Şemsiye</div>
+      </div>
+      <span class="cat-arrow">›</span>
+    </div>
+
+    <div class="cat-card-item" onclick="filterCategory('Kıyafet', event)">
+      <div class="cat-card-left">
+        <div class="cat-icon-box">👕</div>
+        <div class="cat-card-title">Kıyafet & Giyim</div>
+      </div>
+      <span class="cat-arrow">›</span>
+    </div>
+
+    <div class="cat-card-item" onclick="filterCategory('Yiyecek', event)">
+      <div class="cat-card-left">
+        <div class="cat-icon-box">🍕</div>
+        <div class="cat-card-title">Yiyecek & Gıda</div>
+      </div>
+      <span class="cat-arrow">›</span>
     </div>
   </div>
 
-  <!-- FEATURED SERVICES (REFERANSTAKİ KUTU KATEGORİLER) -->
-  <div class="section-header">
-    <div class="section-title">Kategoriler</div>
-    <a href="#" class="section-link">Tümü ›</a>
-  </div>
-
-  <div class="categories-grid">
-    <div class="cat-box active" onclick="filterCategory('Tümü', event)">
-      <div class="cat-icon-wrapper">🎒</div>
-      <div class="cat-name">Tümü</div>
-    </div>
-    <div class="cat-box" onclick="filterCategory('Aksesuar', event)">
-      <div class="cat-icon-wrapper">🕶️</div>
-      <div class="cat-name">Aksesuar & Şemsiye</div>
-    </div>
-    <div class="cat-box" onclick="filterCategory('Kıyafet', event)">
-      <div class="cat-icon-wrapper">👕</div>
-      <div class="cat-name">Kıyafet & Giyim</div>
-    </div>
-    <div class="cat-box" onclick="filterCategory('Yiyecek', event)">
-      <div class="cat-icon-wrapper">🍕</div>
-      <div class="cat-name">Yiyecek & Gıda</div>
-    </div>
-    <div class="cat-box" onclick="filterCategory('Tamirci', event)">
-      <div class="cat-icon-wrapper">🛠️</div>
-      <div class="cat-name">Tamirci & Servis</div>
-    </div>
-  </div>
-
-  <!-- QUICK ACTION CAPSULES -->
-  <div class="quick-actions">
-    <div class="action-capsule active">⚡ En Yakındakiler</div>
-    <div class="action-capsule">🔥 Yüksek Puanlılar</div>
-    <div class="action-capsule">🟢 Şuan Açık</div>
-  </div>
-
-  <!-- RECENT PROJECTS / ESNAF KART LİSTESİ -->
-  <div class="section-header">
-    <div class="section-title">Yakındaki Esnaflar</div>
-    <a href="#" class="section-link">Hepsini Gör ›</a>
+  <!-- POPÜLER ESNAFLAR -->
+  <div class="section-header-row">
+    <div class="section-title">Öne Çıkan Esnaflar</div>
+    <a href="#" class="view-all-link">Hepsini Gör ›</a>
   </div>
 
   <div class="results-container" id="resultsContainer">
@@ -627,4 +659,213 @@
     </div>
 
     <!-- ESNAF 3 -->
-    <div class="card" data-category="Kıyafet" data-tags="kıyafet giyim elbise tişört pantolon çocuk" onclick="openDetail('Zeytin Çocuk & Bebek Giyim', '58. Bulvar Cad. No:42', 'Pamuklu Çocuk Tişört & Elbise Çeşitleri', '0212 555 01 23', '80 m', '4.9', '124', '
+    <div class="card" data-category="Kıyafet" data-tags="kıyafet giyim elbise tişört pantolon çocuk" onclick="openDetail('Zeytin Çocuk & Bebek Giyim', '58. Bulvar Cad. No:42', 'Pamuklu Çocuk Tişört & Elbise Çeşitleri', '0212 555 01 23', '80 m', '4.9', '124', 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80', 'zeytincocuk', '90550001122', true, '20:00')">
+      <div class="card-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Kıyafet">
+        <div class="satisfaction-tag">✓ BENDE VAR</div>
+      </div>
+      <div class="card-body">
+        <div class="card-header-row">
+          <div class="store-title">Zeytin Çocuk Giyim</div>
+          <div class="distance-pill">📍 80 m</div>
+        </div>
+        <div class="rating-row">
+          <span class="rating-stars">★ 4.9</span>
+          <span class="review-count">(124 Yorum)</span>
+        </div>
+        <div class="card-address">58. Bulvar Cad. No:42</div>
+        <div class="card-bottom-row">
+          <div class="time-status open">🟢 Açık • 20:00</div>
+          <div class="arrow-btn">›</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- REFERANSTAKİ HAP ŞEKLİNDEKİ ALT NAVİGASYON -->
+  <div class="bottom-nav">
+    <div class="nav-item active">
+      <span class="nav-icon">🏠</span>
+      <span>Ana Sayfa</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-icon">📅</span>
+      <span>Randevu</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-icon">💬</span>
+      <span>Mesajlar</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-icon">👤</span>
+      <span>Profil</span>
+    </div>
+  </div>
+
+  <!-- MODAL DETAY PENCERESİ -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal-content">
+      <div class="modal-drag-indicator"></div>
+      <div class="modal-header">
+        <div>
+          <div class="modal-store-name" id="modalStoreName">İşletme Adı</div>
+          <div class="modal-product-title" id="modalProductTitle">Ürün Adı</div>
+        </div>
+        <button class="close-btn" onclick="closeDetail()">✕</button>
+      </div>
+
+      <div class="modal-store-img-wrapper">
+        <img id="modalStoreImg" src="" class="modal-store-img" alt="Görsel">
+      </div>
+
+      <div class="info-group">
+        <div id="modalOpenStatus"></div>
+        <div>📍 <span id="modalStoreAddress">Adres</span></div>
+        <div>🏃 <span id="modalStoreDistance">Mesafe</span></div>
+      </div>
+
+      <div class="modal-tabs">
+        <button class="tab-btn active" id="tabContactBtn" onclick="switchTab('contact')">⚡ İletişim & Konum</button>
+        <button class="tab-btn" id="tabReviewsBtn" onclick="switchTab('reviews')">💬 Yorumlar (★ 4.8)</button>
+      </div>
+
+      <div class="tab-content active" id="contactTab">
+        <a href="#" id="callLink" class="btn-call-card">
+          <div>📞 <span id="modalPhoneText">0212...</span></div>
+          <span style="background:#ffffff; color:var(--brand-green-dark); padding:6px 14px; border-radius:12px; font-weight:800; font-size:12px;">Ara</span>
+        </a>
+
+        <a href="#" id="instaLink" target="_blank" class="btn-action btn-instagram">📸 Instagram</a>
+        <a href="#" id="waLink" target="_blank" class="btn-action btn-whatsapp">💬 WhatsApp</a>
+        <a href="#" id="mapsLink" target="_blank" class="btn-action btn-maps">🗺️ Harita / Yol Tarifi</a>
+      </div>
+
+      <div class="tab-content" id="reviewsTab">
+        <div style="background:#f8fafc; border:1px solid var(--border-subtle); border-radius:14px; padding:12px;">
+          <div style="font-weight:700; font-size:12.5px;">Mehmet T.</div>
+          <div style="color:var(--star-color); font-size:10px; margin:2px 0;">★★★★★</div>
+          <div style="font-size:12px; color:#475569;">Bende Var uygulamasından bulup hemen aradım. Çok memnun kaldım!</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function changeCity() {
+    // Şehir değişimi gerekirse eylemler
+  }
+
+  function openDetail(store, address, product, phone, distance, rating, reviewCount, imgSrc, instaUser, waNumber, isOpen, timeText) {
+    document.getElementById("modalStoreName").innerText = store;
+    document.getElementById("modalProductTitle").innerText = product;
+    document.getElementById("modalStoreAddress").innerText = address;
+    document.getElementById("modalStoreDistance").innerText = distance + " uzakta";
+    document.getElementById("modalPhoneText").innerText = phone;
+    document.getElementById("modalStoreImg").src = imgSrc;
+
+    let statusContainer = document.getElementById("modalOpenStatus");
+    if (isOpen) {
+      statusContainer.innerHTML = `<span style="color:#10b981;">🟢 Bugün AÇIK • ${timeText} kapanıyor</span>`;
+    } else {
+      statusContainer.innerHTML = `<span style="color:#ef4444;">🔴 Bugün KAPALI • ${timeText} açılıyor</span>`;
+    }
+    
+    document.getElementById("callLink").href = "tel:" + phone.replace(/\s+/g, '');
+    document.getElementById("instaLink").href = "https://instagram.com/" + instaUser;
+    document.getElementById("waLink").href = "https://wa.me/" + waNumber;
+    document.getElementById("mapsLink").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(store + " " + address);
+    
+    switchTab('contact');
+    document.getElementById("detailModal").style.display = "flex";
+  }
+
+  function closeDetail() {
+    document.getElementById("detailModal").style.display = "none";
+  }
+
+  function switchTab(tabName) {
+    let contactTab = document.getElementById("contactTab");
+    let reviewsTab = document.getElementById("reviewsTab");
+    let contactBtn = document.getElementById("tabContactBtn");
+    let reviewsBtn = document.getElementById("tabReviewsBtn");
+
+    if (tabName === 'contact') {
+      contactTab.classList.add("active");
+      reviewsTab.classList.remove("active");
+      contactBtn.classList.add("active");
+      reviewsBtn.classList.remove("active");
+    } else {
+      reviewsTab.classList.add("active");
+      contactTab.classList.remove("active");
+      reviewsBtn.classList.add("active");
+      contactBtn.classList.remove("active");
+    }
+  }
+
+  function normalizeText(text) {
+    return text.toLowerCase()
+      .replace(/jemsiye/g, "semsiye")
+      .replace(/ş/g, "s")
+      .replace(/ı/g, "i")
+      .replace(/ğ/g, "g")
+      .replace(/ü/g, "u")
+      .replace(/ö/g, "o")
+      .replace(/ç/g, "c");
+  }
+
+  function triggerBlinkAnimation() {
+    let badges = document.querySelectorAll(".satisfaction-tag");
+    badges.forEach(badge => {
+      badge.classList.remove("blink-animation");
+      void badge.offsetWidth;
+      badge.classList.add("blink-animation");
+    });
+  }
+
+  function filterResults() {
+    let rawQuery = document.getElementById("searchInput").value.trim();
+    let query = normalizeText(rawQuery);
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+      let tags = normalizeText(card.getAttribute("data-tags"));
+      let store = normalizeText(card.querySelector(".store-title").innerText);
+
+      if (tags.includes(query) || store.includes(query) || query === "") {
+        card.style.display = "flex";
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    triggerBlinkAnimation();
+  }
+
+  function filterCategory(category, event) {
+    let cards = document.querySelectorAll(".card");
+    let items = document.querySelectorAll(".cat-card-item");
+
+    items.forEach(item => item.classList.remove("active"));
+    event.currentTarget.classList.add("active");
+
+    let normCategory = normalizeText(category);
+
+    cards.forEach(card => {
+      let cardCat = normalizeText(card.getAttribute("data-category"));
+      if (category === 'Tümü' || cardCat.includes(normCategory)) {
+        card.style.display = "flex";
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    triggerBlinkAnimation();
+  }
+</script>
+
+</body>
+</html>
