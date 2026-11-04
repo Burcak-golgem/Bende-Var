@@ -100,7 +100,7 @@
     .scrollable-content {
       flex: 1;
       overflow-y: auto;
-      padding-top: 42px; /* Dynamic Island payı */
+      padding-top: 42px;
       padding-bottom: 90px;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
@@ -333,7 +333,7 @@
     .section-title { font-size: 16px; font-weight: 800; color: var(--primary-dark); }
     .section-link { font-size: 12px; font-weight: 700; color: #2563eb; text-decoration: none; }
 
-    /* ÜRÜN KARTLARI (Yatay Kaydırma) */
+    /* ÜRÜN KARTLARI */
     .horizontal-cards-scroll {
       display: flex;
       gap: 14px;
@@ -418,7 +418,7 @@
       border-radius: 14px;
     }
 
-    /* 7 Lİ MAĞAZA LİSTESİ (ALT ALTA SIRALI) */
+    /* 7 Lİ MAĞAZA LİSTESİ - ŞIK VE İDEAL YÜKSEKLİK */
     .stores-vertical-list {
       padding: 0 20px;
       display: flex;
@@ -430,7 +430,7 @@
     .store-row-card {
       background: #ffffff;
       border-radius: 20px;
-      padding: 14px;
+      padding: 16px 18px; /* Daha dolgun ve şık görünüm için padding artırıldı */
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -447,51 +447,52 @@
     .store-left-info {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
     .store-avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 16px;
+      width: 58px; /* Daha modern ve büyük ikon boyutu */
+      height: 58px;
+      border-radius: 18px;
       object-fit: cover;
       background: #f1f5f9;
       border: 1px solid var(--border-subtle);
     }
 
     .store-meta h4 {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 800;
       color: var(--primary-dark);
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
 
     .store-meta p {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--text-muted);
       font-weight: 600;
     }
 
     .store-meta .status-badge {
       display: inline-block;
-      font-size: 9px;
+      font-size: 9.5px;
       font-weight: 800;
       color: #16a34a;
       background: #dcfce7;
-      padding: 2px 6px;
+      padding: 2px 7px;
       border-radius: 6px;
-      margin-top: 4px;
+      margin-top: 5px;
     }
 
     .btn-store-inspect {
       background: #0f172a;
       color: #ffffff;
       border: none;
-      padding: 8px 14px;
-      border-radius: 12px;
-      font-size: 11px;
+      padding: 9px 16px;
+      border-radius: 14px;
+      font-size: 12px;
       font-weight: 800;
       cursor: pointer;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
     }
 
     /* ALT NAVİGASYON BARI */
@@ -515,11 +516,11 @@
     .nav-item.active { color: #2563eb; }
     .nav-icon { font-size: 20px; }
 
-    /* MAĞAZA DETAY MODALI (REFERANS GÖRSEL TASARIMI) */
+    /* MAĞAZA DETAY MODALI (SADECE TELEFON ÇERÇEVESİNİN İÇİNDE AÇILIR) */
     .store-modal-overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.65);
       z-index: 2000;
       display: none;
       justify-content: center;
@@ -533,27 +534,27 @@
 
     .store-modal-content {
       width: 100%;
-      height: 92%;
+      height: 88%;
       background: #110505;
       border-top-left-radius: 32px;
       border-top-right-radius: 32px;
       overflow-y: auto;
       position: relative;
       color: #ffffff;
-      padding: 20px;
+      padding: 18px;
       scrollbar-width: none;
     }
     .store-modal-content::-webkit-scrollbar { display: none; }
 
     .modal-close-btn {
       position: absolute;
-      top: 16px; right: 16px;
+      top: 14px; right: 14px;
       background: rgba(255, 255, 255, 0.15);
       border: none;
       color: #fff;
-      width: 34px; height: 34px;
+      width: 32px; height: 32px;
       border-radius: 50%;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
       cursor: pointer;
       z-index: 10;
@@ -566,11 +567,11 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .modal-brand-info h2 {
-      font-size: 26px;
+      font-size: 22px;
       font-weight: 900;
       color: #ef4444;
       line-height: 1.1;
@@ -578,8 +579,8 @@
     }
 
     .modal-brand-info span {
-      font-size: 9.5px;
-      letter-spacing: 1.5px;
+      font-size: 9px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
       color: #d1d5db;
       font-weight: 700;
@@ -588,40 +589,40 @@
     .modal-status-pill {
       background: rgba(0, 0, 0, 0.6);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 6px 12px;
-      border-radius: 20px;
+      padding: 5px 10px;
+      border-radius: 18px;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
     }
 
-    .modal-status-time { font-size: 9px; color: #9ca3af; font-weight: 700; }
-    .modal-status-badge { font-size: 11px; font-weight: 900; color: #22c55e; display: flex; align-items: center; gap: 4px; }
-    .modal-status-badge::before { content: '●'; font-size: 12px; }
+    .modal-status-time { font-size: 8.5px; color: #9ca3af; font-weight: 700; }
+    .modal-status-badge { font-size: 10.5px; font-weight: 900; color: #22c55e; display: flex; align-items: center; gap: 4px; }
+    .modal-status-badge::before { content: '●'; font-size: 11px; }
 
-    /* REFERANS GÖRSELDEKİ BÜYÜK HERO KARTI */
+    /* HERO KARTI */
     .modal-hero-card {
       background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%);
-      border-radius: 24px;
-      padding: 20px;
+      border-radius: 20px;
+      padding: 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       border: 1px solid rgba(239, 68, 68, 0.3);
-      box-shadow: 0 10px 30px rgba(127, 29, 29, 0.4);
+      box-shadow: 0 8px 24px rgba(127, 29, 29, 0.4);
     }
 
     .modal-hero-text { max-width: 55%; }
-    .modal-hero-text h3 { font-size: 18px; font-weight: 900; line-height: 1.2; color: #fef08a; margin-bottom: 6px; }
-    .modal-hero-text p { font-size: 11.5px; color: #f3f4f6; opacity: 0.9; }
-    .modal-hero-img { width: 130px; height: 110px; object-fit: contain; filter: drop-shadow(0 8px 12px rgba(0,0,0,0.5)); }
+    .modal-hero-text h3 { font-size: 16px; font-weight: 900; line-height: 1.2; color: #fef08a; margin-bottom: 4px; }
+    .modal-hero-text p { font-size: 11px; color: #f3f4f6; opacity: 0.9; }
+    .modal-hero-img { width: 110px; height: 95px; object-fit: contain; filter: drop-shadow(0 6px 10px rgba(0,0,0,0.5)); }
 
     /* 3'LÜ ÜRÜN VİTRİNİ */
     .modal-products-row {
       display: flex;
       gap: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       overflow-x: auto;
       scrollbar-width: none;
       padding-bottom: 4px;
@@ -630,26 +631,26 @@
 
     .modal-product-card {
       background: #1e1010;
-      border-radius: 18px;
-      padding: 10px;
-      width: 110px;
+      border-radius: 16px;
+      padding: 8px;
+      width: 105px;
       flex-shrink: 0;
       text-align: center;
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .modal-product-card img {
-      width: 80px;
-      height: 80px;
+      width: 75px;
+      height: 75px;
       object-fit: contain;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       background: #2a1212;
-      border-radius: 12px;
-      padding: 6px;
+      border-radius: 10px;
+      padding: 5px;
     }
 
     .modal-product-card span {
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
       color: #f3f4f6;
       display: block;
@@ -660,54 +661,54 @@
     .modal-slogan-box {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 12px 16px;
+      border-radius: 14px;
+      padding: 10px 14px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
+      gap: 10px;
+      margin-bottom: 14px;
     }
-    .modal-slogan-box img { width: 30px; height: 30px; object-fit: contain; }
-    .modal-slogan-box p { font-size: 12px; color: #d1d5db; font-weight: 600; }
+    .modal-slogan-box img { width: 26px; height: 26px; object-fit: contain; }
+    .modal-slogan-box p { font-size: 11.5px; color: #d1d5db; font-weight: 600; }
 
     /* TELEFON ARAMA BUTONU */
     .modal-call-btn {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
       background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
       color: #ffffff;
       width: 100%;
-      padding: 14px;
-      border-radius: 18px;
-      font-size: 15px;
+      padding: 12px;
+      border-radius: 16px;
+      font-size: 14px;
       font-weight: 900;
       text-decoration: none;
-      margin-bottom: 14px;
-      box-shadow: 0 8px 20px rgba(220, 38, 38, 0.4);
+      margin-bottom: 12px;
+      box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4);
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     /* KONUM VE İNSTAGRAM BUTONLARI */
     .modal-action-row {
       display: flex;
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 10px;
+      margin-bottom: 16px;
     }
 
     .modal-action-btn {
       flex: 1;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 12px;
-      border-radius: 16px;
+      padding: 10px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
       color: #ffffff;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       text-decoration: none;
       cursor: pointer;
@@ -716,13 +717,13 @@
     /* ADRES ALANI */
     .modal-address-footer {
       text-align: center;
-      padding-top: 10px;
+      padding-top: 8px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 11px;
+      font-size: 10.5px;
       color: #9ca3af;
       font-weight: 600;
       line-height: 1.4;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     @keyframes fadeIn {
@@ -867,7 +868,7 @@
       <!-- VİTRİN BÖLÜMÜ -->
       <div class="vitrin-banner">VİTRİN</div>
 
-      <!-- 7 MAĞAZA LİSTESİ (ALT ALTA SIRALI) -->
+      <!-- 7 MAĞAZA LİSTESİ (ALT ALTA SIRALI - ŞIK VE İDEAL BOYUT) -->
       <div class="stores-vertical-list">
 
         <!-- 1. MANAV -->
@@ -986,59 +987,59 @@
     </div>
 
   </div>
-</div>
 
-<!-- MAĞAZA DETAY MODAL (ARBY'S REFERANS STİLİNDE DİNAMİK) -->
-<div class="store-modal-overlay" id="storeModalOverlay" onclick="closeStoreModal(event)">
-  <div class="store-modal-content" id="storeModalContent">
-    <button class="modal-close-btn" onclick="closeStoreModalDirect()">✕</button>
+  <!-- MAĞAZA DETAY MODAL (ÇERÇEVE İÇİNE SABİTLENDİ) -->
+  <div class="store-modal-overlay" id="storeModalOverlay" onclick="closeStoreModal(event)">
+    <div class="store-modal-content" id="storeModalContent">
+      <button class="modal-close-btn" onclick="closeStoreModalDirect()">✕</button>
 
-    <div class="modal-header-banner">
-      <div class="modal-brand-info">
-        <h2 id="modalTitle">Taze Köy Manavı</h2>
-        <span id="modalCategorySub">ORGANİK MAHALLE MANAVI</span>
+      <div class="modal-header-banner">
+        <div class="modal-brand-info">
+          <h2 id="modalTitle">Taze Köy Manavı</h2>
+          <span id="modalCategorySub">ORGANİK MAHALLE MANAVI</span>
+        </div>
+        <div class="modal-status-pill">
+          <span class="modal-status-time" id="modalClosing">KAPANIŞ 22:00</span>
+          <span class="modal-status-badge">AÇIK</span>
+        </div>
       </div>
-      <div class="modal-status-pill">
-        <span class="modal-status-time" id="modalClosing">KAPANIŞ 22:00</span>
-        <span class="modal-status-badge">AÇIK</span>
+
+      <div class="modal-hero-card">
+        <div class="modal-hero-text">
+          <h3 id="modalHeroTitle">DOĞAL MAHSÜL,<br>TAZE SEBZELER.</h3>
+          <p id="modalHeroDesc">Günlük tarla ürünleri ile sofranıza sağlık katın.</p>
+        </div>
+        <img id="modalHeroImg" src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=400&q=80" class="modal-hero-img" alt="Hero">
       </div>
-    </div>
 
-    <div class="modal-hero-card">
-      <div class="modal-hero-text">
-        <h3 id="modalHeroTitle">DOĞAL MAHSÜL,<br>TAZE SEBZELER.</h3>
-        <p id="modalHeroDesc">Günlük tarla ürünleri ile sofranıza sağlık katın.</p>
+      <div class="modal-products-row" id="modalProductsRow">
+        <!-- Dinamik ürünler JS ile doldurulacak -->
       </div>
-      <img id="modalHeroImg" src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=400&q=80" class="modal-hero-img" alt="Hero">
+
+      <div class="modal-slogan-box">
+        <span id="modalSloganIcon" style="font-size: 22px;">🌱</span>
+        <p id="modalSloganText">Yerel üreticiden taze, katkısız ve güvenilir alışveriş.</p>
+      </div>
+
+      <a id="modalPhoneBtn" href="tel:05357135258" class="modal-call-btn">
+        📞 Tel: 0535 713 52 58
+      </a>
+
+      <div class="modal-action-row">
+        <a href="#" class="modal-action-btn">📍 Konum aç ➔</a>
+        <a href="#" class="modal-action-btn">📸 Instagram</a>
+      </div>
+
+      <div class="modal-address-footer" id="modalAddressFooter">
+        Adres: Telsiz mah. 103 sokak. No:11<br>ZEYTİNBURNU - İSTANBUL
+      </div>
+
     </div>
-
-    <div class="modal-products-row" id="modalProductsRow">
-      <!-- Dinamik ürünler JS ile doldurulacak -->
-    </div>
-
-    <div class="modal-slogan-box">
-      <span id="modalSloganIcon" style="font-size: 24px;">🌱</span>
-      <p id="modalSloganText">Yerel üreticiden taze, katkısız ve güvenilir alışveriş.</p>
-    </div>
-
-    <a id="modalPhoneBtn" href="tel:05357135258" class="modal-call-btn">
-      📞 Tel: 0535 713 52 58
-    </a>
-
-    <div class="modal-action-row">
-      <a href="#" class="modal-action-btn">📍 Konum aç ➔</a>
-      <a href="#" class="modal-action-btn">📸 Instagram</a>
-    </div>
-
-    <div class="modal-address-footer" id="modalAddressFooter">
-      Adres: Telsiz mah. 103 sokak. No:11<br>ZEYTİNBURNU - İSTANBUL
-    </div>
-
   </div>
+
 </div>
 
 <script>
-  // 7 MAĞAZANIN VERİTABANI
   const storeData = {
     manav: {
       title: "Taze Köy Manavı",
