@@ -44,10 +44,10 @@
       position: relative;
       overflow: hidden;
       border: 1px solid var(--border-subtle);
-      padding-bottom: 75px; /* Bottom bar için alan */
+      padding-bottom: 75px;
     }
 
-    /* BANNER & HEADER (DİNAMİK ŞEHİR ARKAPLANI) */
+    /* BANNER & HEADER */
     .hero-header {
       position: relative;
       width: 100%;
@@ -61,7 +61,6 @@
       padding: 24px 20px 15px 20px;
     }
 
-    /* Görsel üzerine koyu gradyan karartma */
     .hero-header::before {
       content: '';
       position: absolute;
@@ -93,7 +92,7 @@
       font-weight: 900;
     }
 
-    /* KONUM SEÇİCİ DROPDOWN */
+    /* KONUM SEÇİCİ */
     .location-selector-wrapper {
       margin-top: 8px;
       display: inline-flex;
@@ -124,7 +123,7 @@
       background: #ffffff;
     }
 
-    /* ARAMA KUTUSU (GÖRSELDEKİ OVAL KUTU) */
+    /* ARAMA KUTUSU */
     .search-section {
       position: relative;
       z-index: 3;
@@ -201,7 +200,7 @@
       border-color: var(--brand-accent);
     }
 
-    /* ESNAR KARTLARI (REFERANS GÖRSELE ÖZEL YENİ LİSTE YAPISI) */
+    /* ESNAF KARTLARI */
     .results-container {
       padding: 0 20px 20px 20px;
       display: flex;
@@ -225,7 +224,6 @@
 
     .card:active { transform: scale(0.98); }
 
-    /* Kartın Sol Tarafındaki Resim + Memnuniyet */
     .card-img-wrapper {
       position: relative;
       width: 105px;
@@ -257,7 +255,6 @@
       white-space: nowrap;
     }
 
-    /* Kartın Sağ Tarafındaki Detaylar */
     .card-body {
       flex: 1;
       display: flex;
@@ -345,7 +342,7 @@
       color: var(--text-main);
     }
 
-    /* BOTTOM NAV BAR (REFERANS GÖRSELİNDEKİ ALT MENÜ) */
+    /* BOTTOM NAV BAR */
     .bottom-nav {
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -434,7 +431,7 @@
     <div class="search-card">
       <div class="search-input-box">
         🔍
-        <input type="text" id="searchInput" placeholder="Ne arıyorsunuz? (Örn: Börek, Ayakkabı)" onkeyup="filterResults()">
+        <input type="text" id="searchInput" placeholder="Ne arıyorsunuz? (Örn: Şemsiye, Börek)" onkeyup="filterResults()">
       </div>
       <button class="search-submit-btn" onclick="filterResults()">Bul</button>
     </div>
@@ -443,16 +440,85 @@
   <!-- KATEGORİ SEÇİCİLERİ -->
   <div class="categories-scroll">
     <div class="cat-chip active" onclick="filterCategory('Tümü', event)">🎒 Tümü</div>
+    <div class="cat-chip" onclick="filterCategory('Şemsiye', event)">☂️ Şemsiye</div>
     <div class="cat-chip" onclick="filterCategory('Yiyecek', event)">🍴 Yiyecek</div>
     <div class="cat-chip" onclick="filterCategory('Tamirci', event)">🛠️ Tamirci</div>
     <div class="cat-chip" onclick="filterCategory('Tesisat', event)">💧 Tesisat</div>
-    <div class="cat-chip" onclick="filterCategory('Ayakkabı', event)">👟 Ayakkabı</div>
   </div>
 
-  <!-- ESNAF LİSTESİ (REFERANS KART YAPISI) -->
+  <!-- ESNAF LİSTESİ -->
   <div class="results-container" id="resultsContainer">
     
-    <!-- Kart 1 -->
+    <!-- YENİ ŞEMSİYE FİRMASI 1 -->
+    <div class="card" data-category="Şemsiye Tamirci" data-tags="şemsiye semsiye tamir protokol otomatik protokol şemsiyesiyağmurluk" onclick="openDetail('Kardeşler Şemsiye & Tamir Atölyesi', '58. Bulvar Cad. No:88 Zeytinburnu', 'Otomatik Yağmur & Protokol Şemsiyesi ve Tel Tamiri', '0212 555 99 88', '50 m', '4.9', '86', 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80', 'kardeslersemsiye', '905555559988', true, '19:00')">
+      <div class="card-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Şemsiye">
+        <div class="satisfaction-tag">👍 %98 Memnuniyet</div>
+      </div>
+      <div class="card-body">
+        <div class="card-header-row">
+          <div class="store-title">Kardeşler Şemsiye Atölyesi</div>
+          <div class="distance-pill">📍 50 m</div>
+        </div>
+        <div class="rating-row">
+          <span class="rating-stars">★ 4.9</span>
+          <span class="review-count">(86 Yorum)</span>
+        </div>
+        <div class="card-address">📍 58. Bulvar Cad. No:88</div>
+        <div class="card-bottom-row">
+          <div class="time-status open">🕒 Açık • 19:00</div>
+          <div class="arrow-btn">›</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- YENİ ŞEMSİYE FİRMASI 2 -->
+    <div class="card" data-category="Şemsiye" data-tags="şemsiye semsiye bahçe şemsiyesi cafe tente şemsiye imalat" onclick="openDetail('Boğaziçi Tente & Bahçe Şemsiyesi', 'Kazlıçeşme Mah. Çevre Yolu Cad. No:14', 'Büyük Boy Bahçe, Kafe & Teras Şemsiyeleri', '0212 416 33 22', '140 m', '4.8', '52', 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80', 'bogazicisemsiye', '902124163322', true, '18:30')">
+      <div class="card-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Bahçe Şemsiyesi">
+        <div class="satisfaction-tag">👍 %96 Memnuniyet</div>
+      </div>
+      <div class="card-body">
+        <div class="card-header-row">
+          <div class="store-title">Boğaziçi Tente & Şemsiye</div>
+          <div class="distance-pill">📍 140 m</div>
+        </div>
+        <div class="rating-row">
+          <span class="rating-stars">★ 4.8</span>
+          <span class="review-count">(52 Yorum)</span>
+        </div>
+        <div class="card-address">📍 Çevre Yolu Cad. No:14</div>
+        <div class="card-bottom-row">
+          <div class="time-status open">🕒 Açık • 18:30</div>
+          <div class="arrow-btn">›</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- YENİ ŞEMSİYE FİRMASI 3 -->
+    <div class="card" data-category="Şemsiye" data-tags="şemsiye semsiye baston şemsiye rüzgara dayanıklı kadın şemsiyesi" onclick="openDetail('Moda Şemsiye & Aksesuar', 'Prof. Dr. Turan Cad. No:22', 'Rüzgara Dayanıklı Kırılmaz Baston Şemsiyeler', '0212 665 11 00', '280 m', '4.7', '41', 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80', 'modasemsiye', '902126651100', true, '20:30')">
+      <div class="card-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Baston Şemsiye">
+        <div class="satisfaction-tag">👍 %92 Memnuniyet</div>
+      </div>
+      <div class="card-body">
+        <div class="card-header-row">
+          <div class="store-title">Moda Şemsiye & Aksesuar</div>
+          <div class="distance-pill">📍 280 m</div>
+        </div>
+        <div class="rating-row">
+          <span class="rating-stars">★ 4.7</span>
+          <span class="review-count">(41 Yorum)</span>
+        </div>
+        <div class="card-address">📍 Prof. Dr. Turan Cad. No:22</div>
+        <div class="card-bottom-row">
+          <div class="time-status open">🕒 Açık • 20:30</div>
+          <div class="arrow-btn">›</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEVCUT KART 1 -->
     <div class="card" data-category="Yiyecek" data-tags="börek yiyecek çocuk zeytin" onclick="openDetail('Zeytin Çocuk Börekçisi', '58. Bulvar Cad. No:42 Zeytinburnu', 'Taze Kıymalı & Peynirli Tepsi Böreği', '0212 555 01 23', '80 m', '4.9', '124', 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80', 'zeytinborek', '905550001122', true, '20:00')">
       <div class="card-img-wrapper">
         <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Börek">
@@ -475,7 +541,7 @@
       </div>
     </div>
 
-    <!-- Kart 2 -->
+    <!-- MEVCUT KART 2 -->
     <div class="card" data-category="Tamirci Ayakkabı" data-tags="ayakkabı tamir usta keçe kemer" onclick="openDetail('Usta Ayakkabı & Tamir', 'Kazlıçeşme Sk. No:12 Zeytinburnu', 'Deri Ayakkabı Tamiri & Dikiş Bakımı', '0212 226 52 10', '120 m', '4.8', '98', 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80', 'ustaayakkabi', '902122265210', true, '19:30')">
       <div class="card-img-wrapper">
         <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Ayakkabı Tamiri">
@@ -498,7 +564,7 @@
       </div>
     </div>
 
-    <!-- Kart 3 -->
+    <!-- MEVCUT KART 3 -->
     <div class="card" data-category="Tesisat" data-tags="tesisat musluk boru vadi yeşil" onclick="openDetail('Yeşil Vadi Tesisat', 'Prof. Dr. Turan Cad. No:8 Zeytinburnu', 'Mutfak Bataryası & Su Tesisatı Tamiri', '0212 415 88 90', '210 m', '4.7', '76', 'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=600&q=80', 'yesilvaditesisat', '902124158890', false, '08:30')">
       <div class="card-img-wrapper">
         <img src="https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Tesisat">
@@ -523,7 +589,7 @@
 
   </div>
 
-  <!-- ALT NAVİGASYON BAR (REFERANS GÖRSELİNDEKİ) -->
+  <!-- ALT NAVİGASYON BAR -->
   <div class="bottom-nav">
     <div class="nav-item active">
       <span class="nav-icon">🏠</span>
@@ -579,19 +645,15 @@
 </div>
 
 <script>
-  // Şehir seçimine göre kapak resmini değiştirme
   function changeCity() {
     let city = document.getElementById("citySelect").value;
     let header = document.getElementById("heroHeader");
 
     if (city === "izmir") {
-      // İzmir Saat Kulesi Görseli (Referanstaki Görsel)
       header.style.backgroundImage = "url('https://images.unsplash.com/photo-1589561084283-930aa7b1ce50?auto=format&fit=crop&w=800&q=80')";
     } else if (city === "ankara") {
-      // Ankara Silüeti
       header.style.backgroundImage = "url('https://images.unsplash.com/photo-1584282479262-5a21e4223d6a?auto=format&fit=crop&w=800&q=80')";
     } else {
-      // İstanbul Boğaz Köprüsü
       header.style.backgroundImage = "url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80')";
     }
   }
@@ -623,13 +685,25 @@
     document.getElementById("detailModal").style.display = "none";
   }
 
+  /* GELİŞMİŞ TÜRKÇE KARAKTER UYUMLU ARAMA (semsiye / şemsiye ikisini de bulur) */
+  function normalizeText(text) {
+    return text.toLowerCase()
+      .replace(/ş/g, "s")
+      .replace(/ı/g, "i")
+      .replace(/ğ/g, "g")
+      .replace(/ü/g, "u")
+      .replace(/ö/g, "o")
+      .replace(/ç/g, "c");
+  }
+
   function filterResults() {
-    let query = document.getElementById("searchInput").value.toLowerCase().trim();
+    let rawQuery = document.getElementById("searchInput").value.trim();
+    let query = normalizeText(rawQuery);
     let cards = document.querySelectorAll(".card");
 
     cards.forEach(card => {
-      let tags = card.getAttribute("data-tags").toLowerCase();
-      let store = card.querySelector(".store-title").innerText.toLowerCase();
+      let tags = normalizeText(card.getAttribute("data-tags"));
+      let store = normalizeText(card.querySelector(".store-title").innerText);
 
       if (tags.includes(query) || store.includes(query) || query === "") {
         card.style.display = "flex";
@@ -646,9 +720,11 @@
     chips.forEach(chip => chip.classList.remove("active"));
     event.target.classList.add("active");
 
+    let normCategory = normalizeText(category);
+
     cards.forEach(card => {
-      let cardCat = card.getAttribute("data-category");
-      if (category === 'Tümü' || cardCat.includes(category)) {
+      let cardCat = normalizeText(card.getAttribute("data-category"));
+      if (category === 'Tümü' || cardCat.includes(normCategory)) {
         card.style.display = "flex";
       } else {
         card.style.display = "none";
