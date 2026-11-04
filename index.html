@@ -47,7 +47,7 @@
       padding-bottom: 75px;
     }
 
-    /* EN TEPE BÜYÜK LOGO VE BAŞLIK ALANI */
+    /* EN TEPE BÜYÜK DİKKAT ÇEKEN BENDE VAR BAŞLIĞI */
     .top-brand-bar {
       background: #0f172a;
       padding: 20px 20px 16px 20px;
@@ -425,9 +425,86 @@
     .modal-store-img { width: 100%; height: 100%; object-fit: cover; }
 
     .info-group { background: #f8fafc; border-radius: 16px; padding: 12px; margin-bottom: 14px; display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; font-weight: 600; }
-    
+
+    /* YENİ EKLENEN SEKMELER (TABS) */
+    .modal-tabs {
+      display: flex;
+      background: #f1f5f9;
+      padding: 4px;
+      border-radius: 14px;
+      margin-bottom: 14px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 9px 0;
+      border: none;
+      background: transparent;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-radius: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .tab-btn.active {
+      background: #ffffff;
+      color: var(--primary-dark);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .tab-badge {
+      background: #fffbeb;
+      color: var(--star-color);
+      font-size: 10.5px;
+      padding: 1px 6px;
+      border-radius: 8px;
+      border: 1px solid #fde68a;
+      font-weight: 800;
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: flex; flex-direction: column; gap: 8px; }
+
+    /* YORUMLAR SEKMESİ İÇERİĞİ */
+    .rating-summary-card {
+      background: #fafafb;
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .rating-score-box { display: flex; align-items: baseline; gap: 4px; }
+    .rating-score-big { font-size: 22px; font-weight: 900; color: var(--primary-dark); }
+    .rating-score-max { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+    .rating-stars-gold { color: var(--star-color); font-size: 13px; }
+    .rating-total-count { font-size: 11.5px; color: var(--text-muted); font-weight: 600; }
+
+    .review-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .review-card-top { display: flex; justify-content: space-between; align-items: center; }
+    .review-author { font-size: 12px; font-weight: 700; color: var(--text-main); }
+    .review-date { font-size: 10.5px; color: var(--text-muted); }
+    .review-body { font-size: 12px; color: #475569; line-height: 1.4; font-weight: 400; }
+
     .btn-call-card { background: var(--primary-dark); color: #ffffff; text-decoration: none; padding: 14px 18px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; }
-    .btn-action { text-decoration: none; padding: 12px; border-radius: 14px; text-align: center; font-weight: 700; font-size: 13px; display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 8px; }
+    .btn-action { text-decoration: none; padding: 12px; border-radius: 14px; text-align: center; font-weight: 700; font-size: 13px; display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 2px; }
     .btn-instagram { background: linear-gradient(135deg, #e1306c 0%, #c13584 100%); color: #ffffff; }
     .btn-whatsapp { background: #10b981; color: #ffffff; }
     .btn-maps { background: #ffffff; color: #0f172a; border: 1.5px solid var(--border-subtle); }
@@ -485,6 +562,28 @@
   <div class="results-container" id="resultsContainer">
     
     <!-- AKSESUAR & ŞEMSİYE SEKTÖRÜ -->
+    <div class="card" data-category="Aksesuar Şemsiye" data-tags="aksesuar jemsiye şemsiye semsiye yağmurluk protokol baston" onclick="openDetail('Boğaziçi Tente & Bahçe Şemsiyesi', 'Kazlıçeşme Mah. Çevre Yolu Cad. No:14', 'Büyük Boy Bahçe, Kafe & Teras Şemsiyeleri', '0212 416 33 22', '140 m', '4.8', '89', 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80', 'bogazicisemsiye', '902124163322', true, '18:30')">
+      <div class="card-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Şemsiye ve Aksesuar">
+        <div class="satisfaction-tag">✓ BENDE VAR</div>
+      </div>
+      <div class="card-body">
+        <div class="card-header-row">
+          <div class="store-title">Boğaziçi Tente & Bahçe Şemsiyesi</div>
+          <div class="distance-pill">📍 140 m</div>
+        </div>
+        <div class="rating-row">
+          <span class="rating-stars">★ 4.8</span>
+          <span class="review-count">(89 Yorum)</span>
+        </div>
+        <div class="card-address">📍 Kazlıçeşme Mah. Çevre Yolu Cad. No:14</div>
+        <div class="card-bottom-row">
+          <div class="time-status open">🕒 Açık • 18:30</div>
+          <div class="arrow-btn">›</div>
+        </div>
+      </div>
+    </div>
+
     <div class="card" data-category="Aksesuar Şemsiye" data-tags="aksesuar jemsiye şemsiye semsiye yağmurluk protokol baston" onclick="openDetail('Stil Aksesuar & Şemsiye Dünyası', '58. Bulvar Cad. No:45 Zeytinburnu', 'Katlanabilir Rüzgara Dayanıklı Şemsiye & Aksesuarlar', '0212 555 10 10', '40 m', '4.9', '142', 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80', 'stilaksesuar', '905555551010', true, '20:00')">
       <div class="card-img-wrapper">
         <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Şemsiye ve Aksesuar">
@@ -502,28 +601,6 @@
         <div class="card-address">📍 58. Bulvar Cad. No:45</div>
         <div class="card-bottom-row">
           <div class="time-status open">🕒 Açık • 20:00</div>
-          <div class="arrow-btn">›</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" data-category="Aksesuar Şemsiye" data-tags="aksesuar jemsiye şemsiye çanta takı gözlük" onclick="openDetail('Trend Aksesuar & Butik', 'Kazlıçeşme Sk. No:28', 'Güneş Gözlüğü, Çanta & Protokol Şemsiyeleri', '0212 555 20 20', '90 m', '4.8', '89', 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80', 'trendaksesuar', '905555552020', true, '19:30')">
-      <div class="card-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Aksesuar">
-        <div class="satisfaction-tag">✓ BENDE VAR</div>
-      </div>
-      <div class="card-body">
-        <div class="card-header-row">
-          <div class="store-title">Trend Aksesuar & Butik</div>
-          <div class="distance-pill">📍 90 m</div>
-        </div>
-        <div class="rating-row">
-          <span class="rating-stars">★ 4.8</span>
-          <span class="review-count">(89 Yorum)</span>
-        </div>
-        <div class="card-address">📍 Kazlıçeşme Sk. No:28</div>
-        <div class="card-bottom-row">
-          <div class="time-status open">🕒 Açık • 19:30</div>
           <div class="arrow-btn">›</div>
         </div>
       </div>
@@ -552,52 +629,6 @@
       </div>
     </div>
 
-    <!-- YİYECEK SEKTÖRÜ -->
-    <div class="card" data-category="Yiyecek" data-tags="yiyecek gıda börek pide tatlı kahvaltı" onclick="openDetail('Çıtır Tepsi Börek & Pide', '58. Bulvar Cad. No:18', 'Taze Kıymalı Börek, Su Böreği & Poğaça', '0212 555 60 60', '60 m', '4.9', '180', 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80', 'citirborek', '905555556060', true, '18:00')">
-      <div class="card-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Börek">
-        <div class="satisfaction-tag">✓ BENDE VAR</div>
-      </div>
-      <div class="card-body">
-        <div class="card-header-row">
-          <div class="store-title">Çıtır Tepsi Börekçisi</div>
-          <div class="distance-pill">📍 60 m</div>
-        </div>
-        <div class="rating-row">
-          <span class="rating-stars">★ 4.9</span>
-          <span class="review-count">(180 Yorum)</span>
-        </div>
-        <div class="card-address">📍 58. Bulvar Cad. No:18</div>
-        <div class="card-bottom-row">
-          <div class="time-status open">🕒 Açık • 18:00</div>
-          <div class="arrow-btn">›</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- NALBUR SEKTÖRÜ -->
-    <div class="card" data-category="Nalbur" data-tags="nalbur hırdavat musluk batarya conta civata matkap" onclick="openDetail('Usta Yapı Nalbur & Tesisat', 'Kazlıçeşme Sk. No:12', 'Batarya, Musluk, Conta & Matkap Çeşitleri', '0212 226 52 10', '120 m', '4.8', '98', 'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=600&q=80', 'ustayapinalbur', '902122265210', true, '19:30')">
-      <div class="card-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Nalbur">
-        <div class="satisfaction-tag">✓ BENDE VAR</div>
-      </div>
-      <div class="card-body">
-        <div class="card-header-row">
-          <div class="store-title">Usta Yapı Nalbur & Tesisat</div>
-          <div class="distance-pill">📍 120 m</div>
-        </div>
-        <div class="rating-row">
-          <span class="rating-stars">★ 4.8</span>
-          <span class="review-count">(98 Yorum)</span>
-        </div>
-        <div class="card-address">📍 Kazlıçeşme Sk. No:12</div>
-        <div class="card-bottom-row">
-          <div class="time-status open">🕒 Açık • 19:30</div>
-          <div class="arrow-btn">›</div>
-        </div>
-      </div>
-    </div>
-
   </div>
 
   <!-- ALT NAVİGASYON BAR -->
@@ -620,7 +651,7 @@
     </div>
   </div>
 
-  <!-- MODAL DETAY PENCERESİ -->
+  <!-- MODAL DETAY PENCERESİ (YILDIZ & YORUMLAR GERİ EKLENDİ) -->
   <div class="modal-overlay" id="detailModal">
     <div class="modal-content">
       <div class="modal-drag-indicator"></div>
@@ -642,14 +673,60 @@
         <div>🏃 <span id="modalStoreDistance">Mesafe</span></div>
       </div>
 
-      <a href="#" id="callLink" class="btn-call-card">
-        <div>📞 <span id="modalPhoneText" style="font-size:17px; font-weight:800;">0212...</span></div>
-        <span style="background:#ffffff; color:#0f172a; padding:6px 14px; border-radius:10px; font-weight:800;">Ara</span>
-      </a>
+      <!-- SEKMELER (İLETİŞİM / YORUMLAR) -->
+      <div class="modal-tabs">
+        <button class="tab-btn active" id="tabContactBtn" onclick="switchTab('contact')">
+          ⚡ İletişim & Konum
+        </button>
+        <button class="tab-btn" id="tabReviewsBtn" onclick="switchTab('reviews')">
+          💬 Yorumlar <span class="tab-badge" id="modalRatingBadge">★ 4.8</span>
+        </button>
+      </div>
 
-      <a href="#" id="instaLink" target="_blank" class="btn-action btn-instagram">📸 Instagram</a>
-      <a href="#" id="waLink" target="_blank" class="btn-action btn-whatsapp">💬 WhatsApp</a>
-      <a href="#" id="mapsLink" target="_blank" class="btn-action btn-maps">🗺️ Harita / Yol Tarifi</a>
+      <!-- İLETİŞİM SEKMESİ -->
+      <div class="tab-content active" id="contactTab">
+        <a href="#" id="callLink" class="btn-call-card">
+          <div>📞 <span id="modalPhoneText" style="font-size:17px; font-weight:800;">0212...</span></div>
+          <span style="background:#ffffff; color:#0f172a; padding:6px 14px; border-radius:10px; font-weight:800;">Ara</span>
+        </a>
+
+        <a href="#" id="instaLink" target="_blank" class="btn-action btn-instagram">📸 Instagram</a>
+        <a href="#" id="waLink" target="_blank" class="btn-action btn-whatsapp">💬 WhatsApp</a>
+        <a href="#" id="mapsLink" target="_blank" class="btn-action btn-maps">🗺️ Harita / Yol Tarifi</a>
+      </div>
+
+      <!-- YORUMLAR SEKMESİ -->
+      <div class="tab-content" id="reviewsTab">
+        <div class="rating-summary-card">
+          <div>
+            <div class="rating-score-box">
+              <span class="rating-score-big" id="modalScoreBig">4.8</span>
+              <span class="rating-score-max">/ 5.0</span>
+            </div>
+            <div class="rating-stars-gold">★★★★★</div>
+          </div>
+          <div class="rating-total-count" id="modalTotalReviews">89 değerlendirme</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-card-top">
+            <span class="review-author">Mehmet T.</span>
+            <span class="review-date">Bugün</span>
+          </div>
+          <div class="rating-stars-gold" style="font-size:10px;">★★★★★</div>
+          <div class="review-body">Bende Var uygulamasından bulup hemen aradım. Kaliteli ve güler yüzlü esnaf, teşekkürler!</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-card-top">
+            <span class="review-author">Ayşe K.</span>
+            <span class="review-date">3 gün önce</span>
+          </div>
+          <div class="rating-stars-gold" style="font-size:10px;">★★★★☆</div>
+          <div class="review-body">Aradığım ürünü hemen buldum, konumu da çok yakındaydı. Tavsiye ederim.</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -676,6 +753,11 @@
     document.getElementById("modalStoreDistance").innerText = distance + " uzakta";
     document.getElementById("modalPhoneText").innerText = phone;
     document.getElementById("modalStoreImg").src = imgSrc;
+    
+    // Yıldız Puanı ve Yorum Sayısı Dinamik Güncelleme
+    document.getElementById("modalRatingBadge").innerText = "★ " + rating;
+    document.getElementById("modalScoreBig").innerText = rating;
+    document.getElementById("modalTotalReviews").innerText = reviewCount + " değerlendirme";
 
     let statusContainer = document.getElementById("modalOpenStatus");
     if (isOpen) {
@@ -689,11 +771,31 @@
     document.getElementById("waLink").href = "https://wa.me/" + waNumber;
     document.getElementById("mapsLink").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(store + " " + address);
     
+    switchTab('contact'); // Varsayılan İletişim sekmesi ile aç
     document.getElementById("detailModal").style.display = "flex";
   }
 
   function closeDetail() {
     document.getElementById("detailModal").style.display = "none";
+  }
+
+  function switchTab(tabName) {
+    let contactTab = document.getElementById("contactTab");
+    let reviewsTab = document.getElementById("reviewsTab");
+    let contactBtn = document.getElementById("tabContactBtn");
+    let reviewsBtn = document.getElementById("tabReviewsBtn");
+
+    if (tabName === 'contact') {
+      contactTab.classList.add("active");
+      reviewsTab.classList.remove("active");
+      contactBtn.classList.add("active");
+      reviewsBtn.classList.remove("active");
+    } else {
+      reviewsTab.classList.add("active");
+      contactTab.classList.remove("active");
+      reviewsBtn.classList.add("active");
+      contactBtn.classList.remove("active");
+    }
   }
 
   /* GELİŞMİŞ ARAMA & KARAKTER METİN NORMALLERİ */
