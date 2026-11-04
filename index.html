@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BENDE VAR - Şehir Temalı Arama</title>
+  <title>BENDE VAR - Ultra Şık Yerel Arama</title>
   <style>
     :root {
       --bg-app: #f4f6fb;
@@ -47,64 +47,81 @@
       padding-bottom: 75px;
     }
 
-    /* BANNER & HEADER */
+    /* EN TEPE BÜYÜK LOGO VE BAŞLIK ALANI */
+    .top-brand-bar {
+      background: #0f172a;
+      padding: 20px 20px 16px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      z-index: 5;
+    }
+
+    .brand-logo-huge {
+      font-size: 32px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .brand-logo-huge span {
+      background: var(--brand-accent);
+      color: #0f172a;
+      padding: 4px 16px;
+      border-radius: 14px;
+      font-weight: 950;
+      box-shadow: 0 4px 15px rgba(250, 204, 21, 0.4);
+    }
+
+    /* BANNER & SEHIR FOTOĞRAFI KAPAK ALANI */
     .hero-header {
       position: relative;
       width: 100%;
-      height: 190px;
+      height: 150px;
       background-size: cover;
       background-position: center;
       transition: background-image 0.4s ease-in-out;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 24px 20px 15px 20px;
+      align-items: flex-end;
+      padding: 0 20px 20px 20px;
     }
 
     .hero-header::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(180deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.4) 60%, rgba(244,246,251,1) 100%);
+      background: linear-gradient(180deg, rgba(15,23,42,0.4) 0%, rgba(15,23,42,0.2) 50%, rgba(244,246,251,1) 100%);
       z-index: 1;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-    }
-
-    .brand-logo {
-      font-size: 26px;
-      font-weight: 900;
-      color: #ffffff;
-      letter-spacing: -0.5px;
+      width: 100%;
       display: flex;
-      align-items: center;
-      gap: 6px;
+      justify-content: flex-start;
     }
 
-    .brand-logo span {
-      background: var(--brand-accent);
-      color: #0f172a;
-      padding: 2px 10px;
-      border-radius: 20px;
-      font-weight: 900;
-    }
-
-    /* KONUM SEÇİCİ */
+    /* KONUM SEÇİCİ DROPDOWN */
     .location-selector-wrapper {
-      margin-top: 8px;
       display: inline-flex;
       align-items: center;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(15, 23, 42, 0.75);
       backdrop-filter: blur(10px);
-      padding: 6px 12px;
+      padding: 7px 14px;
       border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       color: #ffffff;
       font-size: 13px;
       font-weight: 700;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
     .location-select {
@@ -127,7 +144,7 @@
     .search-section {
       position: relative;
       z-index: 3;
-      margin: -25px 20px 14px 20px;
+      margin: -22px 20px 14px 20px;
     }
 
     .search-card {
@@ -239,20 +256,31 @@
       object-fit: cover;
     }
 
+    /* YANIP SÖNEN BENDE VAR ROZETİ */
     .satisfaction-tag {
       position: absolute;
       bottom: 6px;
       left: 6px;
       right: 6px;
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(4px);
+      background: #059669;
       color: #ffffff;
       font-size: 9.5px;
       font-weight: 800;
-      padding: 3px 6px;
+      padding: 4px 6px;
       border-radius: 8px;
       text-align: center;
       white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .satisfaction-tag.blink-animation {
+      animation: pulseBlink 0.6s ease-in-out 3;
+    }
+
+    @keyframes pulseBlink {
+      0% { background: #059669; transform: scale(1); }
+      50% { background: #facc15; color: #0f172a; transform: scale(1.08); }
+      100% { background: #059669; transform: scale(1); }
     }
 
     .card-body {
@@ -409,12 +437,16 @@
 
 <div class="app-container">
   
-  <!-- BANNER & SEHIR FOTOĞRAFI -->
+  <!-- EN TEPE BÜYÜK DİKKAT ÇEKEN BENDE VAR BAŞLIĞI -->
+  <div class="top-brand-bar">
+    <div class="brand-logo-huge">
+      BENDE <span>VAR</span>
+    </div>
+  </div>
+
+  <!-- BANNER & SEHIR FOTOĞRAFI KAPAK ALANI -->
   <div class="hero-header" id="heroHeader" style="background-image: url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80');">
     <div class="hero-content">
-      <div class="brand-logo">
-        BENDE <span>VAR</span>
-      </div>
       <div class="location-selector-wrapper">
         📍 
         <select class="location-select" id="citySelect" onchange="changeCity()">
@@ -431,102 +463,81 @@
     <div class="search-card">
       <div class="search-input-box">
         🔍
-        <input type="text" id="searchInput" placeholder="Ne arıyorsunuz? (Örn: Şemsiye, Börek)" onkeyup="filterResults()">
+        <input type="text" id="searchInput" placeholder="Ne arıyorsunuz? (Örn: jemsiye, kıyafet)" onkeyup="filterResults()">
       </div>
       <button class="search-submit-btn" onclick="filterResults()">Bul</button>
     </div>
   </div>
 
-  <!-- KATEGORİ SEÇİCİLERİ -->
+  <!-- KATEGORİ CHIP'LERİ -->
   <div class="categories-scroll">
     <div class="cat-chip active" onclick="filterCategory('Tümü', event)">🎒 Tümü</div>
-    <div class="cat-chip" onclick="filterCategory('Şemsiye', event)">☂️ Şemsiye</div>
-    <div class="cat-chip" onclick="filterCategory('Yiyecek', event)">🍴 Yiyecek</div>
-    <div class="cat-chip" onclick="filterCategory('Tamirci', event)">🛠️ Tamirci</div>
-    <div class="cat-chip" onclick="filterCategory('Tesisat', event)">💧 Tesisat</div>
+    <div class="cat-chip" onclick="filterCategory('Aksesuar', event)">🕶️ Aksesuar & Şemsiye</div>
+    <div class="cat-chip" onclick="filterCategory('Kıyafet', event)">👕 Kıyafet & Giyim</div>
+    <div class="cat-chip" onclick="filterCategory('Yiyecek', event)">🍕 Yiyecek & Gıda</div>
+    <div class="cat-chip" onclick="filterCategory('Tamirci', event)">🛠️ Tamirci & Servis</div>
+    <div class="cat-chip" onclick="filterCategory('Nalbur', event)">🧰 Nalbur & Hırdavat</div>
+    <div class="cat-chip" onclick="filterCategory('Kozmetik', event)">💄 Kozmetik & Bakım</div>
+    <div class="cat-chip" onclick="filterCategory('Mobilya', event)">🪑 Mobilya & Dekor</div>
   </div>
 
   <!-- ESNAF LİSTESİ -->
   <div class="results-container" id="resultsContainer">
     
-    <!-- YENİ ŞEMSİYE FİRMASI 1 -->
-    <div class="card" data-category="Şemsiye Tamirci" data-tags="şemsiye semsiye tamir protokol otomatik protokol şemsiyesiyağmurluk" onclick="openDetail('Kardeşler Şemsiye & Tamir Atölyesi', '58. Bulvar Cad. No:88 Zeytinburnu', 'Otomatik Yağmur & Protokol Şemsiyesi ve Tel Tamiri', '0212 555 99 88', '50 m', '4.9', '86', 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80', 'kardeslersemsiye', '905555559988', true, '19:00')">
+    <!-- AKSESUAR & ŞEMSİYE SEKTÖRÜ -->
+    <div class="card" data-category="Aksesuar Şemsiye" data-tags="aksesuar jemsiye şemsiye semsiye yağmurluk protokol baston" onclick="openDetail('Stil Aksesuar & Şemsiye Dünyası', '58. Bulvar Cad. No:45 Zeytinburnu', 'Katlanabilir Rüzgara Dayanıklı Şemsiye & Aksesuarlar', '0212 555 10 10', '40 m', '4.9', '142', 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80', 'stilaksesuar', '905555551010', true, '20:00')">
       <div class="card-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Şemsiye">
-        <div class="satisfaction-tag">👍 %98 Memnuniyet</div>
+        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Şemsiye ve Aksesuar">
+        <div class="satisfaction-tag">✓ BENDE VAR</div>
       </div>
       <div class="card-body">
         <div class="card-header-row">
-          <div class="store-title">Kardeşler Şemsiye Atölyesi</div>
-          <div class="distance-pill">📍 50 m</div>
+          <div class="store-title">Stil Aksesuar & Şemsiye</div>
+          <div class="distance-pill">📍 40 m</div>
         </div>
         <div class="rating-row">
           <span class="rating-stars">★ 4.9</span>
-          <span class="review-count">(86 Yorum)</span>
+          <span class="review-count">(142 Yorum)</span>
         </div>
-        <div class="card-address">📍 58. Bulvar Cad. No:88</div>
+        <div class="card-address">📍 58. Bulvar Cad. No:45</div>
         <div class="card-bottom-row">
-          <div class="time-status open">🕒 Açık • 19:00</div>
+          <div class="time-status open">🕒 Açık • 20:00</div>
           <div class="arrow-btn">›</div>
         </div>
       </div>
     </div>
 
-    <!-- YENİ ŞEMSİYE FİRMASI 2 -->
-    <div class="card" data-category="Şemsiye" data-tags="şemsiye semsiye bahçe şemsiyesi cafe tente şemsiye imalat" onclick="openDetail('Boğaziçi Tente & Bahçe Şemsiyesi', 'Kazlıçeşme Mah. Çevre Yolu Cad. No:14', 'Büyük Boy Bahçe, Kafe & Teras Şemsiyeleri', '0212 416 33 22', '140 m', '4.8', '52', 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80', 'bogazicisemsiye', '902124163322', true, '18:30')">
+    <div class="card" data-category="Aksesuar Şemsiye" data-tags="aksesuar jemsiye şemsiye çanta takı gözlük" onclick="openDetail('Trend Aksesuar & Butik', 'Kazlıçeşme Sk. No:28', 'Güneş Gözlüğü, Çanta & Protokol Şemsiyeleri', '0212 555 20 20', '90 m', '4.8', '89', 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80', 'trendaksesuar', '905555552020', true, '19:30')">
       <div class="card-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Bahçe Şemsiyesi">
-        <div class="satisfaction-tag">👍 %96 Memnuniyet</div>
+        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Aksesuar">
+        <div class="satisfaction-tag">✓ BENDE VAR</div>
       </div>
       <div class="card-body">
         <div class="card-header-row">
-          <div class="store-title">Boğaziçi Tente & Şemsiye</div>
-          <div class="distance-pill">📍 140 m</div>
+          <div class="store-title">Trend Aksesuar & Butik</div>
+          <div class="distance-pill">📍 90 m</div>
         </div>
         <div class="rating-row">
           <span class="rating-stars">★ 4.8</span>
-          <span class="review-count">(52 Yorum)</span>
+          <span class="review-count">(89 Yorum)</span>
         </div>
-        <div class="card-address">📍 Çevre Yolu Cad. No:14</div>
+        <div class="card-address">📍 Kazlıçeşme Sk. No:28</div>
         <div class="card-bottom-row">
-          <div class="time-status open">🕒 Açık • 18:30</div>
+          <div class="time-status open">🕒 Açık • 19:30</div>
           <div class="arrow-btn">›</div>
         </div>
       </div>
     </div>
 
-    <!-- YENİ ŞEMSİYE FİRMASI 3 -->
-    <div class="card" data-category="Şemsiye" data-tags="şemsiye semsiye baston şemsiye rüzgara dayanıklı kadın şemsiyesi" onclick="openDetail('Moda Şemsiye & Aksesuar', 'Prof. Dr. Turan Cad. No:22', 'Rüzgara Dayanıklı Kırılmaz Baston Şemsiyeler', '0212 665 11 00', '280 m', '4.7', '41', 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80', 'modasemsiye', '902126651100', true, '20:30')">
+    <!-- KIYAFET & GİYİM SEKTÖRÜ -->
+    <div class="card" data-category="Kıyafet" data-tags="kıyafet giyim elbise tişört pantolon çocuk" onclick="openDetail('Zeytin Çocuk & Bebek Giyim', '58. Bulvar Cad. No:42', 'Pamuklu Çocuk Tişört & Elbise Çeşitleri', '0212 555 01 23', '80 m', '4.9', '124', 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80', 'zeytincocuk', '905550001122', true, '20:00')">
       <div class="card-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Baston Şemsiye">
-        <div class="satisfaction-tag">👍 %92 Memnuniyet</div>
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Kıyafet">
+        <div class="satisfaction-tag">✓ BENDE VAR</div>
       </div>
       <div class="card-body">
         <div class="card-header-row">
-          <div class="store-title">Moda Şemsiye & Aksesuar</div>
-          <div class="distance-pill">📍 280 m</div>
-        </div>
-        <div class="rating-row">
-          <span class="rating-stars">★ 4.7</span>
-          <span class="review-count">(41 Yorum)</span>
-        </div>
-        <div class="card-address">📍 Prof. Dr. Turan Cad. No:22</div>
-        <div class="card-bottom-row">
-          <div class="time-status open">🕒 Açık • 20:30</div>
-          <div class="arrow-btn">›</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MEVCUT KART 1 -->
-    <div class="card" data-category="Yiyecek" data-tags="börek yiyecek çocuk zeytin" onclick="openDetail('Zeytin Çocuk Börekçisi', '58. Bulvar Cad. No:42 Zeytinburnu', 'Taze Kıymalı & Peynirli Tepsi Böreği', '0212 555 01 23', '80 m', '4.9', '124', 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80', 'zeytinborek', '905550001122', true, '20:00')">
-      <div class="card-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Börek">
-        <div class="satisfaction-tag">👍 %95 Memnuniyet</div>
-      </div>
-      <div class="card-body">
-        <div class="card-header-row">
-          <div class="store-title">Zeytin Çocuk Börekçisi</div>
+          <div class="store-title">Zeytin Çocuk Giyim</div>
           <div class="distance-pill">📍 80 m</div>
         </div>
         <div class="rating-row">
@@ -541,15 +552,38 @@
       </div>
     </div>
 
-    <!-- MEVCUT KART 2 -->
-    <div class="card" data-category="Tamirci Ayakkabı" data-tags="ayakkabı tamir usta keçe kemer" onclick="openDetail('Usta Ayakkabı & Tamir', 'Kazlıçeşme Sk. No:12 Zeytinburnu', 'Deri Ayakkabı Tamiri & Dikiş Bakımı', '0212 226 52 10', '120 m', '4.8', '98', 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80', 'ustaayakkabi', '902122265210', true, '19:30')">
+    <!-- YİYECEK SEKTÖRÜ -->
+    <div class="card" data-category="Yiyecek" data-tags="yiyecek gıda börek pide tatlı kahvaltı" onclick="openDetail('Çıtır Tepsi Börek & Pide', '58. Bulvar Cad. No:18', 'Taze Kıymalı Börek, Su Böreği & Poğaça', '0212 555 60 60', '60 m', '4.9', '180', 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80', 'citirborek', '905555556060', true, '18:00')">
       <div class="card-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Ayakkabı Tamiri">
-        <div class="satisfaction-tag">👍 %93 Memnuniyet</div>
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Börek">
+        <div class="satisfaction-tag">✓ BENDE VAR</div>
       </div>
       <div class="card-body">
         <div class="card-header-row">
-          <div class="store-title">Usta Ayakkabı & Tamir</div>
+          <div class="store-title">Çıtır Tepsi Börekçisi</div>
+          <div class="distance-pill">📍 60 m</div>
+        </div>
+        <div class="rating-row">
+          <span class="rating-stars">★ 4.9</span>
+          <span class="review-count">(180 Yorum)</span>
+        </div>
+        <div class="card-address">📍 58. Bulvar Cad. No:18</div>
+        <div class="card-bottom-row">
+          <div class="time-status open">🕒 Açık • 18:00</div>
+          <div class="arrow-btn">›</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NALBUR SEKTÖRÜ -->
+    <div class="card" data-category="Nalbur" data-tags="nalbur hırdavat musluk batarya conta civata matkap" onclick="openDetail('Usta Yapı Nalbur & Tesisat', 'Kazlıçeşme Sk. No:12', 'Batarya, Musluk, Conta & Matkap Çeşitleri', '0212 226 52 10', '120 m', '4.8', '98', 'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=600&q=80', 'ustayapinalbur', '902122265210', true, '19:30')">
+      <div class="card-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Nalbur">
+        <div class="satisfaction-tag">✓ BENDE VAR</div>
+      </div>
+      <div class="card-body">
+        <div class="card-header-row">
+          <div class="store-title">Usta Yapı Nalbur & Tesisat</div>
           <div class="distance-pill">📍 120 m</div>
         </div>
         <div class="rating-row">
@@ -559,29 +593,6 @@
         <div class="card-address">📍 Kazlıçeşme Sk. No:12</div>
         <div class="card-bottom-row">
           <div class="time-status open">🕒 Açık • 19:30</div>
-          <div class="arrow-btn">›</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MEVCUT KART 3 -->
-    <div class="card" data-category="Tesisat" data-tags="tesisat musluk boru vadi yeşil" onclick="openDetail('Yeşil Vadi Tesisat', 'Prof. Dr. Turan Cad. No:8 Zeytinburnu', 'Mutfak Bataryası & Su Tesisatı Tamiri', '0212 415 88 90', '210 m', '4.7', '76', 'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=600&q=80', 'yesilvaditesisat', '902124158890', false, '08:30')">
-      <div class="card-img-wrapper">
-        <img src="https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Tesisat">
-        <div class="satisfaction-tag">👍 %94 Memnuniyet</div>
-      </div>
-      <div class="card-body">
-        <div class="card-header-row">
-          <div class="store-title">Yeşil Vadi Tesisat</div>
-          <div class="distance-pill">📍 210 m</div>
-        </div>
-        <div class="rating-row">
-          <span class="rating-stars">★ 4.7</span>
-          <span class="review-count">(76 Yorum)</span>
-        </div>
-        <div class="card-address">📍 Prof. Dr. Turan Cad. No:8</div>
-        <div class="card-bottom-row">
-          <div class="time-status closed">🕒 Kapalı • 08:30</div>
           <div class="arrow-btn">›</div>
         </div>
       </div>
@@ -685,15 +696,25 @@
     document.getElementById("detailModal").style.display = "none";
   }
 
-  /* GELİŞMİŞ TÜRKÇE KARAKTER UYUMLU ARAMA (semsiye / şemsiye ikisini de bulur) */
+  /* GELİŞMİŞ ARAMA & KARAKTER METİN NORMALLERİ */
   function normalizeText(text) {
     return text.toLowerCase()
+      .replace(/jemsiye/g, "semsiye")
       .replace(/ş/g, "s")
       .replace(/ı/g, "i")
       .replace(/ğ/g, "g")
       .replace(/ü/g, "u")
       .replace(/ö/g, "o")
       .replace(/ç/g, "c");
+  }
+
+  function triggerBlinkAnimation() {
+    let badges = document.querySelectorAll(".satisfaction-tag");
+    badges.forEach(badge => {
+      badge.classList.remove("blink-animation");
+      void badge.offsetWidth;
+      badge.classList.add("blink-animation");
+    });
   }
 
   function filterResults() {
@@ -711,6 +732,8 @@
         card.style.display = "none";
       }
     });
+
+    triggerBlinkAnimation();
   }
 
   function filterCategory(category, event) {
@@ -730,6 +753,8 @@
         card.style.display = "none";
       }
     });
+
+    triggerBlinkAnimation();
   }
 </script>
 
