@@ -601,15 +601,16 @@
     .cat-grid-card span.icon { font-size: 28px; }
     .cat-grid-card span.label { font-size: 12px; font-weight: 800; color: var(--primary-dark); text-align: center; }
 
-    /* --- MAĞAZA DETAY MODALI --- */
+    /* --- KESİN ÇÖZÜM: MAĞAZA DETAY PENCERESİ (ANA SAYFA İLE BİREBİR AYNI EBATTA) --- */
     .store-modal-overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.65);
-      z-index: 2000;
+      background: #110505;
+      z-index: 2500;
       display: none;
-      justify-content: center;
-      align-items: flex-end;
+      flex-direction: column;
+      border-radius: 38px; /* Ana sayfa konteyner sınırlarıyla kusursuz uyum */
+      overflow: hidden;
     }
     .store-modal-overlay.active { display: flex; }
 
@@ -617,7 +618,6 @@
       width: 100%;
       height: 100%;
       background: #110505;
-      border-radius: 38px;
       overflow-y: auto;
       position: relative;
       color: #ffffff;
@@ -679,15 +679,15 @@
 
     .modal-address-footer { text-align: center; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 10px; color: #9ca3af; font-weight: 600; line-height: 1.4; margin-top: auto; }
 
-    /* YORUMLAR MODALI İÇİN STİL */
+    /* YORUMLAR MODALI */
     .reviews-modal {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 23, 42, 0.95);
+      background: rgba(15, 23, 42, 0.98);
       z-index: 3000;
       display: none;
       flex-direction: column;
-      padding: 20px;
+      padding: 16px;
       border-radius: 38px;
     }
     .reviews-modal.active { display: flex; }
@@ -767,7 +767,7 @@
         </div>
       </div>
 
-      <!-- TEK SIRA YATAY KAYDIRMALI KATEGORİLER (Tıklayınca o kategoriye ait 2 mağazayı listeler) -->
+      <!-- KATEGORİLER -->
       <div class="category-container">
         <div class="category-scroll-row">
           <div class="cat-item-card active" onclick="filterStoresByCategory('yemek', this)">
@@ -838,10 +838,8 @@
       <!-- VİTRİN BÖLÜMÜ -->
       <div class="vitrin-banner">VİTRİN</div>
 
-      <!-- DİNAMİK MAĞAZA LİSTESİ (Kategorilere göre 2'şer adet yüklenir) -->
-      <div class="stores-vertical-list" id="storesListContainer">
-        <!-- Javascript ile doldurulacak -->
-      </div>
+      <!-- DİNAMİK MAĞAZA LİSTESİ -->
+      <div class="stores-vertical-list" id="storesListContainer"></div>
 
     </div>
 
@@ -867,7 +865,7 @@
 
   </div>
 
-  <!-- SOL HAMBURGER MENÜ (DRAWER) -->
+  <!-- SOL HAMBURGER MENÜ -->
   <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
   <div class="drawer-panel" id="drawerPanel">
     <div class="drawer-header">
@@ -932,8 +930,8 @@
     </div>
   </div>
 
-  <!-- MAĞAZA DETAY MODALI -->
-  <div class="store-modal-overlay" id="storeModalOverlay" onclick="closeStoreModal(event)">
+  <!-- MAĞAZA DETAY MODALI (ANA SAYFA İLE BİREBİR AYNI EBATTA SABİTLENDİ) -->
+  <div class="store-modal-overlay" id="storeModalOverlay">
     <div class="store-modal-content" id="storeModalContent">
       <button class="modal-close-btn" onclick="closeStoreModalDirect()">✕</button>
 
@@ -987,9 +985,7 @@
           <h3 style="font-size:15px; font-weight:900; color:#facc15;">Müşteri Yorumları</h3>
           <button onclick="closeReviewsModal()" style="background:rgba(255,255,255,0.2); border:none; color:#fff; width:26px; height:26px; border-radius:50%; font-weight:800; cursor:pointer;">✕</button>
         </div>
-        <div id="reviewsListContainer" style="overflow-y:auto; flex:1;">
-          <!-- Yorumlar dinamik dolacak -->
-        </div>
+        <div id="reviewsListContainer" style="overflow-y:auto; flex:1;"></div>
       </div>
 
     </div>
@@ -998,7 +994,6 @@
 </div>
 
 <script>
-  // HER KATEGORİ İÇİN 2'ŞER FARKLI MAĞAZA VERİTABANI
   const categoriesData = {
     yemek: [
       {
@@ -1087,7 +1082,7 @@
         closing: 'KAPANIŞ 01:00',
         rating: '4.7',
         reviewsCount: '(180+ değerlendirme)',
-        heroTitle: ' TAVŞANKANI ÇAY,<br>SAMİMİ SOHBET.',
+        heroTitle: 'TAVŞANKANI ÇAY,<br>SAMİMİ SOHBET.',
         heroDesc: 'Geleneksel ince belli bardakta taze çay keyfi.',
         heroImg: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=400&q=80',
         sloganIcon: '🫖',
@@ -1133,7 +1128,7 @@
       },
       {
         id: 'manav_2',
-        name: 'Yeşil vadi Organik Manav',
+        name: 'Yeşil Vadi Organik Manav',
         sub: 'Ekolojik Tarım Ürünleri',
         avatar: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=200&q=80',
         closing: 'KAPANIŞ 21:00',
@@ -1367,19 +1362,15 @@
     ]
   };
 
-  // Aktif seçili mağazanın yorumlarını tutmak için global değişken
   let currentActiveStore = null;
 
-  // Sayfa ilk açıldığında varsayılan olarak Manav mağazalarını göster
   window.onload = function() {
     loadDefaultStores();
   };
 
   function loadDefaultStores() {
     renderStores('manav');
-    // Aktif kategori stilini ayarla
     document.querySelectorAll('.cat-item-card').forEach(el => el.classList.remove('active'));
-    // Manavı bul ve aktif yap
     const manavCard = Array.from(document.querySelectorAll('.cat-item-card')).find(el => el.innerText.includes('Manav'));
     if(manavCard) manavCard.classList.add('active');
   }
@@ -1419,7 +1410,7 @@
     const store = list.find(s => s.id === storeId);
     if(!store) return;
 
-    currentActiveStore = store; // Yorumlar için sakla
+    currentActiveStore = store;
 
     document.getElementById("modalTitle").innerText = store.name;
     document.getElementById("modalRatingVal").innerText = store.rating;
@@ -1431,7 +1422,6 @@
     document.getElementById("modalSloganIcon").innerText = store.sloganIcon;
     document.getElementById("modalSloganText").innerText = store.sloganText;
     
-    // Telefon, Konum ve İnstagram butonları aktif bağlandı
     const phoneBtn = document.getElementById("modalPhoneBtn");
     phoneBtn.innerHTML = `📞 Tel: ${store.phone}`;
     phoneBtn.href = `tel:${store.phone.replace(/\s+/g, '')}`;
@@ -1460,13 +1450,6 @@
     closeReviewsModal();
   }
 
-  function closeStoreModal(event) {
-    if (event.target.id === "storeModalOverlay") {
-      closeStoreModalDirect();
-    }
-  }
-
-  // YORUMLAR PANELİ AÇ / KAPA
   function openReviewsModal() {
     const container = document.getElementById("reviewsListContainer");
     container.innerHTML = "";
