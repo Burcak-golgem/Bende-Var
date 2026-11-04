@@ -21,203 +21,74 @@
       --shadow-md: 0 10px 25px rgba(15, 23, 42, 0.08);
     }
 
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
-      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; 
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; }
     
     html, body {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       background-color: #0f172a;
       color: var(--text-main);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: flex; justify-content: center; align-items: center;
       overflow: hidden;
       -webkit-font-smoothing: antialiased;
     }
     
     .app-container {
-      width: 100%;
-      max-width: 410px;
-      height: 100vh;
-      max-height: 860px;
-      background: var(--bg-app);
-      border-radius: 40px;
+      width: 100%; max-width: 410px; height: 100vh; max-height: 860px;
+      background: var(--bg-app); border-radius: 40px;
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
+      display: flex; flex-direction: column; position: relative; overflow: hidden;
       border: 8px solid #ffffff;
     }
 
     .scrollable-content {
-      flex: 1;
-      overflow-y: auto;
-      padding-bottom: 85px;
-      scrollbar-width: none;
+      flex: 1; overflow-y: auto; padding-bottom: 85px; scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
     }
     .scrollable-content::-webkit-scrollbar { display: none; }
 
     .status-bar {
-      padding: 10px 20px 4px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--primary-dark);
-      background: #ffffff;
-      position: sticky;
-      top: 0;
-      z-index: 30;
+      padding: 10px 20px 4px 20px; display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px; font-weight: 800; color: var(--primary-dark); background: #ffffff;
+      position: sticky; top: 0; z-index: 30;
     }
 
     .location-bar-top {
-      background: #ffffff;
-      padding: 8px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background: #ffffff; padding: 8px 16px; display: flex; justify-content: space-between; align-items: center;
       border-bottom: 1px solid #f1f5f9;
     }
-
-    .location-pill {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--primary-dark);
-    }
-
-    .location-select {
-      background: transparent;
-      border: none;
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--primary-dark);
-      outline: none;
-      cursor: pointer;
-    }
+    .location-pill { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: var(--primary-dark); }
+    .location-select { background: transparent; border: none; font-size: 12px; font-weight: 800; color: var(--primary-dark); outline: none; cursor: pointer; }
 
     .top-header {
-      background: #ffffff;
-      padding: 10px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background: #ffffff; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center;
     }
-
     .icon-btn-ghost {
-      font-size: 18px;
-      cursor: pointer;
-      color: var(--primary-dark);
-      background: #f8fafc;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-size: 18px; cursor: pointer; color: var(--primary-dark); background: #f8fafc;
+      width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
       border: 1px solid var(--border-subtle);
     }
-
-    .brand-logo-center {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .brand-title {
-      font-size: 20px;
-      font-weight: 900;
-      color: var(--primary-dark);
-      letter-spacing: -0.5px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
+    .brand-logo-center { display: flex; flex-direction: column; align-items: center; }
+    .brand-title { font-size: 20px; font-weight: 900; color: var(--primary-dark); letter-spacing: -0.5px; display: flex; align-items: center; gap: 4px; }
     .brand-title span.lightning { color: #2563eb; }
-    .brand-title span.badge {
-      background: var(--brand-accent);
-      color: var(--primary-dark);
-      padding: 1px 8px;
-      border-radius: 8px;
-      font-weight: 900;
-      font-size: 14px;
-    }
-
-    .brand-sub {
-      font-size: 8.5px;
-      font-weight: 800;
-      color: var(--brand-blue);
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      margin-top: 1px;
-    }
+    .brand-title span.badge { background: var(--brand-accent); color: var(--primary-dark); padding: 1px 8px; border-radius: 8px; font-weight: 900; font-size: 14px; }
+    .brand-sub { font-size: 8.5px; font-weight: 800; color: var(--brand-blue); letter-spacing: 1.2px; text-transform: uppercase; margin-top: 1px; }
 
     .search-filter-section {
-      padding: 10px 16px 14px 16px;
-      background: #ffffff;
-      display: flex;
-      gap: 10px;
-      align-items: center;
+      padding: 10px 16px 14px 16px; background: #ffffff; display: flex; gap: 10px; align-items: center;
       border-bottom: 1px solid var(--border-subtle);
     }
-
-    .search-bar-box {
-      background: #f1f5f9;
-      border-radius: 24px;
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex: 1;
-    }
-
-    .search-bar-box input {
-      border: none;
-      outline: none;
-      width: 100%;
-      font-size: 12.5px;
-      font-weight: 600;
-      background: transparent;
-      color: var(--primary-dark);
-    }
-
+    .search-bar-box { background: #f1f5f9; border-radius: 24px; padding: 10px 16px; display: flex; align-items: center; gap: 10px; flex: 1; }
+    .search-bar-box input { border: none; outline: none; width: 100%; font-size: 12.5px; font-weight: 600; background: transparent; color: var(--primary-dark); }
     .filter-btn-circle {
-      width: 40px;
-      height: 40px;
-      background: #f1f5f9;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 15px;
-      border: 1px solid var(--border-subtle);
-      color: var(--primary-dark);
+      width: 40px; height: 40px; background: #f1f5f9; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 15px; border: 1px solid var(--border-subtle); color: var(--primary-dark);
     }
 
     .hero-banner-wrapper { padding: 14px 16px 10px 16px; }
     .hero-dark-card {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      border-radius: 24px;
-      padding: 18px;
-      color: #ffffff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: var(--shadow-md);
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 24px; padding: 18px; color: #ffffff;
+      display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-md);
     }
-
     .hero-text-side { max-width: 60%; }
     .hero-badge-text { font-size: 9px; font-weight: 800; color: #60a5fa; letter-spacing: 0.8px; margin-bottom: 4px; }
     .hero-title { font-size: 15px; font-weight: 900; line-height: 1.25; }
@@ -231,167 +102,65 @@
 
     /* TEK SIRA YATAY KAYDIRMALI KATEGORİLER */
     .category-container {
-      margin: 10px 16px 16px 16px;
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 14px;
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-sm);
+      margin: 10px 16px 16px 16px; background: #ffffff; border-radius: 24px; padding: 14px;
+      border: 1px solid var(--border-subtle); box-shadow: var(--shadow-sm);
     }
-
     .category-scroll-row {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      padding: 2px 4px;
+      display: flex; gap: 16px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 2px 4px;
     }
     .category-scroll-row::-webkit-scrollbar { display: none; }
-
-    .cat-item-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      flex-shrink: 0;
-      width: 58px;
-    }
-
+    .cat-item-card { display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; flex-shrink: 0; width: 58px; }
     .cat-icon-circle {
-      width: 48px;
-      height: 48px;
-      background: #f8fafc;
-      border: 1px solid var(--border-subtle);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      transition: all 0.2s ease;
+      width: 48px; height: 48px; background: #f8fafc; border: 1px solid var(--border-subtle); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 20px; transition: all 0.2s ease;
     }
-
-    .cat-item-card:hover .cat-icon-circle,
-    .cat-item-card.active .cat-icon-circle {
-      background: var(--primary-dark);
-      color: #ffffff;
-      border-color: var(--primary-dark);
+    .cat-item-card:hover .cat-icon-circle, .cat-item-card.active .cat-icon-circle {
+      background: var(--primary-dark); color: #ffffff; border-color: var(--primary-dark);
     }
+    .cat-label-text { font-size: 9.5px; font-weight: 800; color: var(--primary-dark); text-align: center; white-space: nowrap; }
 
-    .cat-label-text {
-      font-size: 9.5px;
-      font-weight: 800;
-      color: var(--primary-dark);
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    .section-header {
-      padding: 10px 16px 8px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
+    .section-header { padding: 10px 16px 8px 16px; display: flex; justify-content: space-between; align-items: center; }
     .section-title { font-size: 15px; font-weight: 800; color: var(--primary-dark); }
     .section-link { font-size: 12px; font-weight: 700; color: #2563eb; text-decoration: none; cursor: pointer; }
 
-    .horizontal-cards-scroll {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding: 0 16px;
-      scrollbar-width: none;
-    }
+    .horizontal-cards-scroll { display: flex; gap: 12px; overflow-x: auto; padding: 0 16px; scrollbar-width: none; }
     .horizontal-cards-scroll::-webkit-scrollbar { display: none; }
 
     .product-grid-card {
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 10px;
-      width: 155px;
-      flex-shrink: 0;
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-sm);
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      background: #ffffff; border-radius: 20px; padding: 10px; width: 155px; flex-shrink: 0;
+      border: 1px solid var(--border-subtle); box-shadow: var(--shadow-sm); cursor: pointer;
+      display: flex; flex-direction: column; justify-content: space-between;
     }
-
     .product-img-box {
-      width: 100%;
-      height: 100px;
-      border-radius: 14px;
-      background: #f8fafc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      margin-bottom: 8px;
+      width: 100%; height: 100px; border-radius: 14px; background: #f8fafc;
+      display: flex; align-items: center; justify-content: center; position: relative; margin-bottom: 8px;
     }
-
     .product-img-box img { width: 80%; height: 80%; object-fit: contain; }
-
     .pill-badge {
-      position: absolute;
-      top: 0; left: 0;
-      font-size: 7.5px;
-      font-weight: 800;
-      color: #ffffff;
-      padding: 3px 6px;
-      border-bottom-right-radius: 8px;
-      border-top-left-radius: 12px;
-      text-transform: uppercase;
+      position: absolute; top: 0; left: 0; font-size: 7.5px; font-weight: 800; color: #ffffff;
+      padding: 3px 6px; border-bottom-right-radius: 8px; border-top-left-radius: 12px; text-transform: uppercase;
     }
     .pill-badge.bestseller { background: #2563eb; }
     .pill-badge.popular { background: #7c3aed; }
-
     .product-card-title {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--primary-dark);
-      line-height: 1.3;
-      margin-bottom: 4px;
-      height: 28px;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+      font-size: 11px; font-weight: 700; color: var(--primary-dark); line-height: 1.3;
+      margin-bottom: 4px; height: 28px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
     }
-
     .rating-line { font-size: 10px; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; }
     .rating-stars { color: var(--star-color); }
-
     .product-bottom-line { display: flex; justify-content: space-between; align-items: center; }
     .product-price { font-size: 13px; font-weight: 900; color: var(--primary-dark); }
     .detail-action-btn { width: 26px; height: 26px; background: #2563eb; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; border: none; }
 
     /* VİTRİN BÖLÜMÜ */
     .vitrin-banner {
-      margin: 20px 16px 10px 16px;
-      background: var(--primary-dark);
-      color: #ffffff;
-      text-align: center;
-      padding: 10px;
-      font-weight: 900;
-      font-size: 13px;
-      letter-spacing: 2px;
-      border-radius: 14px;
+      margin: 20px 16px 10px 16px; background: var(--primary-dark); color: #ffffff; text-align: center;
+      padding: 10px; font-weight: 900; font-size: 13px; letter-spacing: 2px; border-radius: 14px;
     }
-
     .showcase-card {
-      margin: 0 16px 14px 16px;
-      background: #ffffff;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      align-items: center;
+      margin: 0 16px 14px 16px; background: #ffffff; border-radius: 20px; overflow: hidden;
+      border: 1px solid var(--border-subtle); box-shadow: var(--shadow-sm); display: flex; align-items: center;
     }
-
     .showcase-body { padding: 16px; flex: 1; }
     .showcase-title { font-size: 15px; font-weight: 900; color: var(--primary-dark); line-height: 1.25; }
     .showcase-subtitle { font-size: 10px; color: var(--text-muted); margin: 6px 0 10px 0; }
@@ -400,45 +169,23 @@
 
     /* ALT NAVİGASYON BARI */
     .bottom-nav {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 65px;
-      background: #ffffff;
-      border-top: 1px solid var(--border-subtle);
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      z-index: 30;
-      padding: 0 10px;
-      padding-bottom: env(safe-area-inset-bottom);
+      position: absolute; bottom: 0; left: 0; right: 0; height: 65px; background: #ffffff;
+      border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-around; align-items: center;
+      z-index: 30; padding: 0 10px; padding-bottom: env(safe-area-inset-bottom);
     }
-
     .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--text-muted); text-decoration: none; font-size: 10px; font-weight: 700; cursor: pointer; }
     .nav-item.active { color: #2563eb; }
     .nav-icon { font-size: 18px; }
 
-    /* AÇILIR KATEGORİ MENÜSÜ MODALI */
+    /* KATEGORİ MODALI */
     .category-modal-overlay {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(4px);
-      z-index: 200;
-      display: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px);
+      z-index: 200; display: none; opacity: 0; transition: opacity 0.3s ease;
     }
     .category-modal-overlay.active { display: block; opacity: 1; }
     .category-modal-card {
-      background: #ffffff;
-      border-bottom-left-radius: 28px;
-      border-bottom-right-radius: 28px;
-      padding: 20px 16px 24px 16px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-      transform: translateY(-100%);
-      transition: transform 0.3s ease;
-      max-height: 80%;
-      overflow-y: auto;
+      background: #ffffff; border-bottom-left-radius: 28px; border-bottom-right-radius: 28px; padding: 20px 16px 24px 16px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2); transform: translateY(-100%); transition: transform 0.3s ease; max-height: 80%; overflow-y: auto;
     }
     .category-modal-overlay.active .category-modal-card { transform: translateY(0); }
     .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border-subtle); }
@@ -450,142 +197,86 @@
     .v-cat-icon { font-size: 22px; }
     .v-cat-text { font-size: 11px; font-weight: 800; text-align: center; }
 
-    /* MAĞAZA DETAY SAYFASI MODALI (İLETİŞİM, WHATSAPP, INSTAGRAM, MESAFE, KONUM) */
+    /* ========================================================
+       GÖNDERDİĞİN GÖRSELDEKİ BİREBİR MAĞAZA DETAY SAYFASI TASARIMI
+       ======================================================== */
     .store-modal-overlay {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(4px);
-      z-index: 300;
-      display: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.75);
+      z-index: 300; display: none; opacity: 0; transition: opacity 0.3s ease;
     }
     .store-modal-overlay.active { display: block; opacity: 1; }
     .store-modal-card {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 92%;
-      background: #ffffff;
-      border-top-left-radius: 32px;
-      border-top-right-radius: 32px;
-      overflow-y: auto;
-      transform: translateY(100%);
-      transition: transform 0.3s ease;
-      display: flex;
-      flex-direction: column;
+      position: absolute; bottom: 0; left: 0; right: 0; height: 95%; background: #FAF7F0;
+      border-top-left-radius: 36px; border-top-right-radius: 36px; overflow-y: auto;
+      transform: translateY(100%); transition: transform 0.3s ease; display: flex; flex-direction: column; padding: 20px;
     }
     .store-modal-overlay.active .store-modal-card { transform: translateY(0); }
 
-    .store-cover-header {
-      height: 150px;
-      position: relative;
-      background-size: cover;
-      background-position: center;
-    }
-    .store-close-floating {
-      position: absolute;
-      top: 14px; right: 16px;
-      background: rgba(255,255,255,0.9);
-      border: none;
-      width: 34px; height: 34px;
-      border-radius: 50%;
-      font-weight: 800;
-      cursor: pointer;
-      color: var(--primary-dark);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
-    .store-info-box {
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .store-name-title { font-size: 18px; font-weight: 900; color: var(--primary-dark); }
-    .store-tag-sub { font-size: 11px; font-weight: 700; color: var(--brand-blue); margin-top: 2px; }
-    
-    .store-meta-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 8px;
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--text-muted);
-    }
-    .store-rating-box { color: var(--star-color); font-weight: 800; }
-    .store-distance-badge { background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 8px; font-size: 10.5px; font-weight: 800; }
+    /* ÜST LOGO VE AÇIK/KAPANIŞ BİLGİSİ */
+    .store-top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .store-brand-logo { font-size: 22px; font-weight: 900; color: #b91c1c; font-style: italic; letter-spacing: -1px; }
+    .store-status-box { text-align: right; }
+    .store-closing-time { font-size: 9.5px; font-weight: 800; color: #475569; }
+    .store-status-badge { font-size: 15px; font-weight: 900; color: #15803d; letter-spacing: 1px; }
 
-    /* İLETİŞİMLER & SOSYAL BUTONLAR (Tel, WhatsApp, Instagram, Yorum, Konum) */
-    .store-actions-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      padding: 14px 20px;
-      background: #f8fafc;
-      border-bottom: 1px solid var(--border-subtle);
+    /* BÜYÜK KAMPANYA BANNER'I */
+    .store-banner-box {
+      background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+      border-radius: 20px; padding: 16px; color: #ffffff; display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 14px; box-shadow: 0 8px 20px rgba(153, 27, 27, 0.25);
     }
-    .action-icon-btn {
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      border-radius: 14px;
-      padding: 10px 4px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      text-decoration: none;
-      color: var(--primary-dark);
-      font-size: 9.5px;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-    }
-    .action-icon-btn span { font-size: 18px; }
-    .action-icon-btn.whatsapp { color: #16a34a; border-color: #bbf7d0; background: #f0fdf4; }
-    .action-icon-btn.instagram { color: #c084fc; border-color: #f3e8ff; background: #faf5ff; }
+    .store-banner-text h3 { font-size: 14px; font-weight: 900; line-height: 1.25; margin-bottom: 4px; text-transform: uppercase; }
+    .store-banner-text p { font-size: 9.5px; opacity: 0.85; margin-bottom: 10px; }
+    .store-order-btn { background: #ffffff; color: #991b1b; border: none; padding: 6px 12px; border-radius: 10px; font-size: 10.5px; font-weight: 800; cursor: pointer; }
+    .store-banner-img { width: 100px; height: 80px; object-fit: contain; }
 
-    /* KONUM BUTONU */
-    .store-location-bar {
-      margin: 12px 20px 0 20px;
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      border-radius: 14px;
-      padding: 10px 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    /* PUAN, FAVORİ VE YORUM ŞERİDİ */
+    .store-rating-row {
+      display: flex; justify-content: space-between; align-items: center; background: #ffffff;
+      padding: 10px 16px; border-radius: 16px; margin-bottom: 16px; border: 1px solid #e2e8f0;
     }
-    .store-address-text { font-size: 11px; font-weight: 700; color: #1e40af; line-height: 1.3; }
-    .btn-open-map {
-      background: #2563eb;
-      color: #ffffff;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 10px;
-      font-size: 10.5px;
-      font-weight: 800;
-      cursor: pointer;
-      white-space: nowrap;
-    }
+    .rating-val { font-size: 13px; font-weight: 900; color: #0f172a; display: flex; align-items: center; gap: 4px; }
+    .fav-heart-btn { background: transparent; border: none; font-size: 18px; cursor: pointer; }
+    .yorum-action-btn { background: #e2e8f0; border: none; padding: 6px 16px; border-radius: 20px; font-size: 11px; font-weight: 800; color: #334155; cursor: pointer; letter-spacing: 1px; }
 
-    .store-products-list {
-      padding: 14px 20px;
-      flex: 1;
+    /* ÜRÜN KARTLARI (YATAY KAYDIRMALI) */
+    .store-products-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; margin-bottom: 16px; }
+    .store-products-scroll::-webkit-scrollbar { display: none; }
+    .store-mini-card {
+      background: #ffffff; border-radius: 16px; padding: 10px; width: 115px; flex-shrink: 0;
+      border: 1px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; text-align: center;
     }
-    .store-product-item {
-      display: flex;
-      gap: 12px;
-      padding: 8px 0;
-      border-bottom: 1px solid #f1f5f9;
-      align-items: center;
+    .store-mini-card img { width: 75px; height: 75px; object-fit: contain; margin-bottom: 6px; }
+    .store-mini-title { font-size: 10px; font-weight: 800; color: #0f172a; height: 26px; overflow: hidden; line-height: 1.2; margin-bottom: 6px; }
+    .store-mini-bottom { width: 100%; display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+    .store-mini-price { font-size: 11.5px; font-weight: 900; color: #0f172a; }
+    .store-add-btn { width: 22px; height: 22px; background: #dc2626; color: #ffffff; border-radius: 50%; border: none; font-size: 12px; font-weight: 900; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+
+    /* MESAFE BİLGİSİ */
+    .store-distance-title { text-align: center; font-size: 13px; font-weight: 900; color: #0f172a; margin-bottom: 10px; }
+
+    /* BÜYÜK KIRMIZI TEL ARAMA BUTONU */
+    .store-phone-call-btn {
+      background: #881337; color: #ffffff; border-radius: 16px; padding: 12px; display: flex; justify-content: center; align-items: center;
+      gap: 10px; text-decoration: none; font-size: 14px; font-weight: 900; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(136, 19, 55, 0.3);
     }
-    .store-product-item img {
-      width: 45px; height: 45px;
-      border-radius: 10px;
-      object-fit: cover;
+    .store-phone-call-btn span.phone-num { font-size: 16px; letter-spacing: 0.5px; color: #fde047; }
+
+    /* ADRES BİLGİSİ */
+    .store-address-box { text-align: center; font-size: 11px; font-weight: 800; color: #334155; line-height: 1.35; margin-bottom: 16px; }
+
+    /* EN ALT BUTONLAR ("X" KAPAT VE KONUM AÇ) */
+    .store-footer-actions { display: flex; gap: 10px; align-items: center; margin-top: auto; }
+    .btn-close-big-x {
+      background: #dc2626; color: #ffffff; border: none; width: 48px; height: 48px; border-radius: 16px;
+      font-size: 20px; font-weight: 900; display: flex; align-items: center; justify-content: center; cursor: pointer;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3); flex-shrink: 0;
     }
-    .store-prod-info { flex: 1; }
-    .store-prod-name { font-size: 11.5px; font-weight: 800; color: var(--primary-dark); }
-    .store-prod-price { font-size: 11.5px; font-weight: 900; color: var(--brand-blue); margin-top: 2px; }
+    .btn-open-location-bar {
+      flex: 1; background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 16px; height: 48px;
+      display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 900; color: #0f172a;
+      cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
   </style>
 </head>
 <body>
@@ -655,7 +346,6 @@
     <!-- TEK SIRA YATAY KAYDIRMALI KATEGORİLER -->
     <div class="category-container">
       <div class="category-scroll-row">
-        
         <div class="cat-item-card active" onclick="toggleCategoryModal(true)"><div class="cat-icon-circle">🍔</div><span class="cat-label-text">Yemek</span></div>
         <div class="cat-item-card" onclick="toggleCategoryModal(true)"><div class="cat-icon-circle">☕</div><span class="cat-label-text">Kafe</span></div>
         <div class="cat-item-card" onclick="toggleCategoryModal(true)"><div class="cat-icon-circle">🍎</div><span class="cat-label-text">Manav</span></div>
@@ -671,7 +361,6 @@
         <div class="cat-item-card" onclick="toggleCategoryModal(true)"><div class="cat-icon-circle">🧼</div><span class="cat-label-text">Yıkama</span></div>
         <div class="cat-item-card" onclick="toggleCategoryModal(true)"><div class="cat-icon-circle">🧰</div><span class="cat-label-text">Nalbur</span></div>
         <div class="cat-item-card" onclick="toggleCategoryModal(true)"><div class="cat-icon-circle">🏠</div><span class="cat-label-text">Emlak</span></div>
-
       </div>
     </div>
 
@@ -717,7 +406,7 @@
       <div class="showcase-body">
         <div class="showcase-title">Doğal Bakım,<br>Işıltılı Ciltler</div>
         <div class="showcase-subtitle">Mahallenin Kozmetik Dükkanı</div>
-        <button class="btn-showcase" onclick="openStoreDetails('Mahallenin Kozmetik Dükkanı', 'Kozmetik & Güzellik', 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80', '0212 555 4433', '450m')">İncele ➔</button>
+        <button class="btn-showcase" onclick="openStoreDetails('Mahallenin Kozmetik Dükkanı', '05357135258', 'Telsiz mah. 103 sokak. No:11 ZEYTİNBURNU- İSTANBUL', '100 Metre')">İncele ➔</button>
       </div>
       <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80" class="showcase-img" alt="Cilt Bakımı">
     </div>
@@ -727,7 +416,7 @@
       <div class="showcase-body">
         <div class="showcase-title">Taze Kahve<br>& Sıcak Lezzetler</div>
         <div class="showcase-subtitle">Köşe Kahvecisi & Fırın</div>
-        <button class="btn-showcase" onclick="openStoreDetails('Köşe Kahvecisi & Fırın', 'Kafe & Fırın', 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=600&q=80', '0212 444 1122', '280m')">İncele ➔</button>
+        <button class="btn-showcase" onclick="openStoreDetails('Köşe Kahvecisi & Fırın', '05324445566', 'Telsiz mah. 105 sokak. No:4 ZEYTİNBURNU- İSTANBUL', '250 Metre')">İncele ➔</button>
       </div>
       <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=400&q=80" class="showcase-img" alt="Kahve">
     </div>
@@ -737,41 +426,19 @@
       <div class="showcase-body">
         <div class="showcase-title">Günlük Taze<br>Sebze & Meyve</div>
         <div class="showcase-subtitle">Kardeşler Manavı</div>
-        <button class="btn-showcase" onclick="openStoreDetails('Kardeşler Manavı', 'Manav & Yeşillik', 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=600&q=80', '0212 333 9988', '150m')">İncele ➔</button>
+        <button class="btn-showcase" onclick="openStoreDetails('Kardeşler Manavı', '05331112233', 'Kazlıçeşme mah. Abdi İpekçi cad. No:20 ZEYTİNBURNU- İSTANBUL', '400 Metre')">İncele ➔</button>
       </div>
       <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=400&q=80" class="showcase-img" alt="Manav">
-    </div>
-
-    <!-- Vitrin Kartı 4 -->
-    <div class="showcase-card">
-      <div class="showcase-body">
-        <div class="showcase-title">Usta Ellerden<br>Özel Tamirat</div>
-        <div class="showcase-subtitle">Yıldız Teknik Servis & Hırdavat</div>
-        <button class="btn-showcase" onclick="openStoreDetails('Yıldız Teknik Servis', 'Tamir & Hırdavat', 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80', '0212 222 7766', '600m')">İncele ➔</button>
-      </div>
-      <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80" class="showcase-img" alt="Tamir">
     </div>
 
   </div>
 
   <!-- ALT NAVİGASYON -->
   <div class="bottom-nav">
-    <div class="nav-item active">
-      <span class="nav-icon">🏠</span>
-      <span>Ana Sayfa</span>
-    </div>
-    <div class="nav-item" onclick="toggleCategoryModal(true)">
-      <span class="nav-icon">🗂️</span>
-      <span>Kategoriler</span>
-    </div>
-    <div class="nav-item">
-      <span class="nav-icon">🏷️</span>
-      <span>Fırsatlar</span>
-    </div>
-    <div class="nav-item">
-      <span class="nav-icon">👤</span>
-      <span>Hesabım</span>
-    </div>
+    <div class="nav-item active"><span class="nav-icon">🏠</span><span>Ana Sayfa</span></div>
+    <div class="nav-item" onclick="toggleCategoryModal(true)"><span class="nav-icon">🗂️</span><span>Kategoriler</span></div>
+    <div class="nav-item"><span class="nav-icon">🏷️</span><span>Fırsatlar</span></div>
+    <div class="nav-item"><span class="nav-icon">👤</span><span>Hesabım</span></div>
   </div>
 
   <!-- KATEGORİ MODALI -->
@@ -801,76 +468,87 @@
     </div>
   </div>
 
-  <!-- ========================================================
-       MAĞAZA DETAY SAYFASI MODALI (İSTEDİĞİN ÖZELLİKLERLE)
-       ======================================================== -->
+  <!-- ======================================================== -->
+  <!-- GÖRSELDEKİ BİREBİR MAĞAZA DETAY SAYFASI MODALI           -->
+  <!-- ======================================================== -->
   <div class="store-modal-overlay" id="storeModal">
     <div class="store-modal-card">
       
-      <!-- Mağaza Kapak Görseli -->
-      <div class="store-cover-header" id="storeCoverImg">
-        <button class="store-close-floating" onclick="toggleStoreModal(false)">✕</button>
-      </div>
-
-      <!-- Mağaza Bilgi & Yıldız Puan -->
-      <div class="store-info-box">
-        <div class="store-name-title" id="storeName">Mağaza Adı</div>
-        <div class="store-tag-sub" id="storeCategory">Kategori</div>
-        <div class="store-meta-row">
-          <div class="store-rating-box">★ 4.9 <span style="color: var(--text-muted); font-weight: 700;">(150+ Yorum)</span></div>
-          <div class="store-distance-badge" id="storeDistance">📍 300m uzaklıkta</div>
+      <!-- Üst Bar: Logo ve Açık/Kapanış -->
+      <div class="store-top-bar">
+        <div class="store-brand-logo">Arby's</div>
+        <div class="store-status-box">
+          <div class="store-closing-time">KAPANIŞ:00:24</div>
+          <div class="store-status-badge">AÇIK</div>
         </div>
       </div>
 
-      <!-- İletişim Butonları (Telefon, WhatsApp, Instagram, Yorum Yap) -->
-      <div class="store-actions-grid">
-        <a id="storePhoneBtn" href="tel:02125554433" class="action-icon-btn">
-          <span>📞</span>
-          <span>Ara</span>
-        </a>
-        <a id="storeWhatsAppBtn" href="https://wa.me/905554443322" target="_blank" class="action-icon-btn whatsapp">
-          <span>💬</span>
-          <span>WhatsApp</span>
-        </a>
-        <a id="storeInstagramBtn" href="https://instagram.com" target="_blank" class="action-icon-btn instagram">
-          <span>📸</span>
-          <span>Instagram</span>
-        </a>
-        <button onclick="alert('Yorum yazma ekranı açılıyor...')" class="action-icon-btn">
-          <span>⭐</span>
-          <span>Yorum Yap</span>
+      <!-- Büyük Kampanya Banner -->
+      <div class="store-banner-box">
+        <div class="store-banner-text">
+          <h3>MEAT CRAFTED.<br>SANDWICH PERFECTED.</h3>
+          <p>Big flavor. Bold choices.</p>
+          <button class="store-order-btn">Order Now ➔</button>
+        </div>
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80" class="store-banner-img" alt="Burger">
+      </div>
+
+      <!-- Puan, Favori, Yorum Şeridi -->
+      <div class="store-rating-row">
+        <div class="rating-val">⭐ 4.6 <span style="color: #64748b; font-size: 11px;">(6.3K+)</span></div>
+        <button class="fav-heart-btn">🤍</button>
+        <button class="yorum-action-btn" onclick="alert('Yorumlar açılıyor...')">YORUM</button>
+      </div>
+
+      <!-- Ürün Kartları Kaydırma Alanı -->
+      <div class="store-products-scroll">
+        <div class="store-mini-card">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=200&q=80" alt="Burger">
+          <div class="store-mini-title">Smokehouse Brisket</div>
+          <div class="store-mini-bottom">
+            <span class="store-mini-price">$6.99</span>
+            <button class="store-add-btn">+</button>
+          </div>
+        </div>
+
+        <div class="store-mini-card">
+          <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=200&q=80" alt="Patates">
+          <div class="store-mini-title">Curly Fries</div>
+          <div class="store-mini-bottom">
+            <span class="store-mini-price">$2.99</span>
+            <button class="store-add-btn">+</button>
+          </div>
+        </div>
+
+        <div class="store-mini-card">
+          <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=200&q=80" alt="Shake">
+          <div class="store-mini-title">Jamocha Shake</div>
+          <div class="store-mini-bottom">
+            <span class="store-mini-price">$3.49</span>
+            <button class="store-add-btn">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mesafe Bilgisi -->
+      <div class="store-distance-title" id="storeDistanceText">Size 100 Metre Uzakta</div>
+
+      <!-- Kırmızı Tel Arama Butonu -->
+      <a id="storePhoneLink" href="tel:05357135258" class="store-phone-call-btn">
+        <span>Tel:</span> <span class="phone-num">05357135258</span> <span>ARA</span>
+      </a>
+
+      <!-- Adres Bilgisi -->
+      <div class="store-address-box" id="storeAddressText">
+        Adres: Telsiz mah. 103 sokak. No:11<br><b>ZEYTİNBURNU- İSTANBUL</b>
+      </div>
+
+      <!-- En Alt Butonlar ("X" Kapat ve Konum Aç) -->
+      <div class="store-footer-actions">
+        <button class="btn-close-big-x" onclick="toggleStoreModal(false)">X</button>
+        <button class="btn-open-location-bar" onclick="openLocationMap()">
+          📍 Konum aç
         </button>
-      </div>
-
-      <!-- Konum / Harita Butonu -->
-      <div class="store-location-bar">
-        <div class="store-address-text">
-          <b>Merkez Mah. Esnaf Sok. No:14</b><br>Zeytinburnu, İstanbul
-        </div>
-        <button class="btn-open-map" onclick="openLocationMap()">Konumu Aç ➔</button>
-      </div>
-
-      <!-- Ürün ve Hizmetler Listesi -->
-      <div class="store-products-list">
-        <div style="font-size: 13px; font-weight: 800; color: var(--primary-dark); margin-bottom: 10px;">Öne Çıkan Ürün & Hizmetler</div>
-        
-        <div class="store-product-item">
-          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=200&q=80" alt="Ürün">
-          <div class="store-prod-info">
-            <div class="store-prod-name">Özel Bakım Seti</div>
-            <div class="store-prod-price">₺249.00</div>
-          </div>
-          <button class="btn-showcase" style="padding: 4px 10px;">Ekle</button>
-        </div>
-
-        <div class="store-product-item">
-          <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=200&q=80" alt="Ürün">
-          <div class="store-prod-info">
-            <div class="store-prod-name">Organik Nemlendirici Krem</div>
-            <div class="store-prod-price">₺180.00</div>
-          </div>
-          <button class="btn-showcase" style="padding: 4px 10px;">Ekle</button>
-        </div>
       </div>
 
     </div>
@@ -879,7 +557,6 @@
 </div>
 
 <script>
-  // Arama filtresi
   function filterResults() {
     let query = document.getElementById("searchInput").value.toLowerCase();
     let cards = document.querySelectorAll(".product-grid-card");
@@ -889,20 +566,17 @@
     });
   }
 
-  // Kategori Modalı Aç/Kapat
   function toggleCategoryModal(show) {
     const modal = document.getElementById("categoryModal");
     if (show) modal.classList.add("active");
     else modal.classList.remove("active");
   }
 
-  // Mağaza Detay Modali Aç (Verileri dinamik yükler)
-  function openStoreDetails(name, category, bgImg, phone, distance) {
-    document.getElementById("storeName").innerText = name;
-    document.getElementById("storeCategory").innerText = category;
-    document.getElementById("storeCoverImg").style.backgroundImage = `url('${bgImg}')`;
-    document.getElementById("storePhoneBtn").href = `tel:${phone}`;
-    document.getElementById("storeDistance").innerText = `📍 ${distance} uzaklıkta`;
+  function openStoreDetails(storeName, phone, address, distance) {
+    document.getElementById("storePhoneLink").href = `tel:${phone}`;
+    document.getElementById("storePhoneLink").innerHTML = `<span>Tel:</span> <span class="phone-num">${phone}</span> <span>ARA</span>`;
+    document.getElementById("storeAddressText").innerHTML = `Adres: ${address}`;
+    document.getElementById("storeDistanceText").innerText = `Size ${distance} Uzakta`;
     toggleStoreModal(true);
   }
 
@@ -912,9 +586,7 @@
     else modal.classList.remove("active");
   }
 
-  // Konum butonuna basınca Haritayı Aç
   function openLocationMap() {
-    // Google Maps üzerinde Zeytinburnu / Esnaf konumu açılır
     window.open("https://maps.google.com/?q=Zeytinburnu,+Istanbul", "_blank");
   }
 </script>
