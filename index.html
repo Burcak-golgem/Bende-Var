@@ -65,24 +65,14 @@
       height: 30px;
       background: #000000;
       border-radius: 20px;
-      z-index: 1000;
+      z-index: 3000;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 8px;
     }
-    .island-cam {
-      width: 11px;
-      height: 11px;
-      background: #111;
-      border-radius: 50%;
-    }
-    .island-sensor {
-      width: 8px;
-      height: 8px;
-      background: #0d1b2a;
-      border-radius: 50%;
-    }
+    .island-cam { width: 11px; height: 11px; background: #111; border-radius: 50%; }
+    .island-sensor { width: 8px; height: 8px; background: #0d1b2a; border-radius: 50%; }
     
     /* UYGULAMA İÇİ ANA KONTEYNER */
     .app-container {
@@ -331,7 +321,7 @@
     }
 
     .section-title { font-size: 16px; font-weight: 800; color: var(--primary-dark); }
-    .section-link { font-size: 12px; font-weight: 700; color: #2563eb; text-decoration: none; }
+    .section-link { font-size: 12px; font-weight: 700; color: #2563eb; text-decoration: none; cursor: pointer; }
 
     /* ÜRÜN KARTLARI */
     .horizontal-cards-scroll {
@@ -418,7 +408,7 @@
       border-radius: 14px;
     }
 
-    /* 7 Lİ MAĞAZA LİSTESİ - ŞIK VE İDEAL YÜKSEKLİK */
+    /* 7 Lİ MAĞAZA LİSTESİ */
     .stores-vertical-list {
       padding: 0 20px;
       display: flex;
@@ -430,58 +420,22 @@
     .store-row-card {
       background: #ffffff;
       border-radius: 20px;
-      padding: 16px 18px; /* Daha dolgun ve şık görünüm için padding artırıldı */
+      padding: 16px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-sm);
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s ease;
     }
+    .store-row-card:active { transform: scale(0.98); }
 
-    .store-row-card:active {
-      transform: scale(0.98);
-    }
-
-    .store-left-info {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .store-avatar {
-      width: 58px; /* Daha modern ve büyük ikon boyutu */
-      height: 58px;
-      border-radius: 18px;
-      object-fit: cover;
-      background: #f1f5f9;
-      border: 1px solid var(--border-subtle);
-    }
-
-    .store-meta h4 {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--primary-dark);
-      margin-bottom: 3px;
-    }
-
-    .store-meta p {
-      font-size: 12px;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .store-meta .status-badge {
-      display: inline-block;
-      font-size: 9.5px;
-      font-weight: 800;
-      color: #16a34a;
-      background: #dcfce7;
-      padding: 2px 7px;
-      border-radius: 6px;
-      margin-top: 5px;
-    }
+    .store-left-info { display: flex; align-items: center; gap: 14px; }
+    .store-avatar { width: 58px; height: 58px; border-radius: 18px; object-fit: cover; background: #f1f5f9; border: 1px solid var(--border-subtle); }
+    .store-meta h4 { font-size: 15px; font-weight: 800; color: var(--primary-dark); margin-bottom: 3px; }
+    .store-meta p { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+    .store-meta .status-badge { display: inline-block; font-size: 9.5px; font-weight: 800; color: #16a34a; background: #dcfce7; padding: 2px 7px; border-radius: 6px; margin-top: 5px; }
 
     .btn-store-inspect {
       background: #0f172a;
@@ -498,9 +452,7 @@
     /* ALT NAVİGASYON BARI */
     .bottom-nav {
       position: absolute;
-      bottom: 0; 
-      left: 0; 
-      right: 0;
+      bottom: 0; left: 0; right: 0;
       height: 66px;
       background: #ffffff;
       border-top: 1px solid var(--border-subtle);
@@ -516,7 +468,142 @@
     .nav-item.active { color: #2563eb; }
     .nav-icon { font-size: 20px; }
 
-    /* MAĞAZA DETAY MODALI (SADECE TELEFON ÇERÇEVESİNİN İÇİNDE AÇILIR) */
+    /* --- HAMBURGER YAN MENÜ (DRAWER) --- */
+    .drawer-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 2500;
+      display: none;
+      transition: opacity 0.3s ease;
+    }
+    .drawer-overlay.active { display: block; }
+
+    .drawer-panel {
+      position: absolute;
+      top: 0; left: -280px; bottom: 0;
+      width: 280px;
+      background: #ffffff;
+      z-index: 2600;
+      box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+      transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 24px 20px;
+      overflow-y: auto;
+    }
+    .drawer-panel.active { left: 0; }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 14px;
+    }
+    .drawer-title { font-size: 16px; font-weight: 900; color: var(--primary-dark); }
+    .drawer-close { background: #f1f5f9; border: none; width: 32px; height: 32px; border-radius: 50%; font-weight: 800; cursor: pointer; }
+
+    .drawer-buttons-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .drawer-action-btn {
+      background: #f8fafc;
+      border: 1px solid var(--border-subtle);
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.2s;
+    }
+    .drawer-action-btn.primary {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+    }
+
+    .drawer-section-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .drawer-categories-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .drawer-cat-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      background: #f8fafc;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+    .drawer-cat-item span { font-size: 18px; }
+
+    /* --- TÜM KATEGORİLER MODALI --- */
+    .categories-modal-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 2000;
+      display: none;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    .categories-modal-overlay.active { display: flex; }
+
+    .categories-modal-content {
+      width: 100%;
+      height: 80%;
+      background: #ffffff;
+      border-top-left-radius: 32px;
+      border-top-right-radius: 32px;
+      padding: 24px 20px;
+      overflow-y: auto;
+    }
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .cat-grid-card {
+      background: #f8fafc;
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 16px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .cat-grid-card span.icon { font-size: 28px; }
+    .cat-grid-card span.label { font-size: 12px; font-weight: 800; color: var(--primary-dark); text-align: center; }
+
+    /* MAĞAZA DETAY MODALI */
     .store-modal-overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -525,12 +612,8 @@
       display: none;
       justify-content: center;
       align-items: flex-end;
-      animation: fadeIn 0.3s ease;
     }
-
-    .store-modal-overlay.active {
-      display: flex;
-    }
+    .store-modal-overlay.active { display: flex; }
 
     .store-modal-content {
       width: 100%;
@@ -550,186 +633,39 @@
       position: absolute;
       top: 14px; right: 14px;
       background: rgba(255, 255, 255, 0.15);
-      border: none;
-      color: #fff;
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      font-size: 15px;
-      font-weight: 800;
-      cursor: pointer;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border: none; color: #fff;
+      width: 32px; height: 32px; border-radius: 50%;
+      font-size: 15px; font-weight: 800; cursor: pointer; z-index: 10;
+      display: flex; align-items: center; justify-content: center;
     }
 
-    .modal-header-banner {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 14px;
-    }
-
-    .modal-brand-info h2 {
-      font-size: 22px;
-      font-weight: 900;
-      color: #ef4444;
-      line-height: 1.1;
-      letter-spacing: -0.5px;
-    }
-
-    .modal-brand-info span {
-      font-size: 9px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: #d1d5db;
-      font-weight: 700;
-    }
-
-    .modal-status-pill {
-      background: rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 5px 10px;
-      border-radius: 18px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-
+    .modal-header-banner { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+    .modal-brand-info h2 { font-size: 22px; font-weight: 900; color: #ef4444; line-height: 1.1; letter-spacing: -0.5px; }
+    .modal-brand-info span { font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; color: #d1d5db; font-weight: 700; }
+    .modal-status-pill { background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.15); padding: 5px 10px; border-radius: 18px; display: flex; flex-direction: column; align-items: flex-end; }
     .modal-status-time { font-size: 8.5px; color: #9ca3af; font-weight: 700; }
     .modal-status-badge { font-size: 10.5px; font-weight: 900; color: #22c55e; display: flex; align-items: center; gap: 4px; }
     .modal-status-badge::before { content: '●'; font-size: 11px; }
 
-    /* HERO KARTI */
-    .modal-hero-card {
-      background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%);
-      border-radius: 20px;
-      padding: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      box-shadow: 0 8px 24px rgba(127, 29, 29, 0.4);
-    }
-
+    .modal-hero-card { background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%); border-radius: 20px; padding: 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border: 1px solid rgba(239, 68, 68, 0.3); }
     .modal-hero-text { max-width: 55%; }
     .modal-hero-text h3 { font-size: 16px; font-weight: 900; line-height: 1.2; color: #fef08a; margin-bottom: 4px; }
     .modal-hero-text p { font-size: 11px; color: #f3f4f6; opacity: 0.9; }
-    .modal-hero-img { width: 110px; height: 95px; object-fit: contain; filter: drop-shadow(0 6px 10px rgba(0,0,0,0.5)); }
+    .modal-hero-img { width: 110px; height: 95px; object-fit: contain; }
 
-    /* 3'LÜ ÜRÜN VİTRİNİ */
-    .modal-products-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 16px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      padding-bottom: 4px;
-    }
+    .modal-products-row { display: flex; gap: 10px; margin-bottom: 16px; overflow-x: auto; scrollbar-width: none; }
     .modal-products-row::-webkit-scrollbar { display: none; }
+    .modal-product-card { background: #1e1010; border-radius: 16px; padding: 8px; width: 105px; flex-shrink: 0; text-align: center; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .modal-product-card img { width: 75px; height: 75px; object-fit: contain; margin-bottom: 6px; background: #2a1212; border-radius: 10px; padding: 5px; }
+    .modal-product-card span { font-size: 10.5px; font-weight: 700; color: #f3f4f6; display: block; line-height: 1.2; }
 
-    .modal-product-card {
-      background: #1e1010;
-      border-radius: 16px;
-      padding: 8px;
-      width: 105px;
-      flex-shrink: 0;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .modal-product-card img {
-      width: 75px;
-      height: 75px;
-      object-fit: contain;
-      margin-bottom: 6px;
-      background: #2a1212;
-      border-radius: 10px;
-      padding: 5px;
-    }
-
-    .modal-product-card span {
-      font-size: 10.5px;
-      font-weight: 700;
-      color: #f3f4f6;
-      display: block;
-      line-height: 1.2;
-    }
-
-    /* SLOGAN KUTUSU */
-    .modal-slogan-box {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 14px;
-      padding: 10px 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-    .modal-slogan-box img { width: 26px; height: 26px; object-fit: contain; }
+    .modal-slogan-box { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 10px 14px; display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
     .modal-slogan-box p { font-size: 11.5px; color: #d1d5db; font-weight: 600; }
 
-    /* TELEFON ARAMA BUTONU */
-    .modal-call-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-      color: #ffffff;
-      width: 100%;
-      padding: 12px;
-      border-radius: 16px;
-      font-size: 14px;
-      font-weight: 900;
-      text-decoration: none;
-      margin-bottom: 12px;
-      box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    /* KONUM VE İNSTAGRAM BUTONLARI */
-    .modal-action-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .modal-action-btn {
-      flex: 1;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 10px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      color: #ffffff;
-      font-size: 11.5px;
-      font-weight: 700;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    /* ADRES ALANI */
-    .modal-address-footer {
-      text-align: center;
-      padding-top: 8px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 10.5px;
-      color: #9ca3af;
-      font-weight: 600;
-      line-height: 1.4;
-      margin-bottom: 16px;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .modal-call-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: #ffffff; width: 100%; padding: 12px; border-radius: 16px; font-size: 14px; font-weight: 900; text-decoration: none; margin-bottom: 12px; }
+    .modal-action-row { display: flex; gap: 10px; margin-bottom: 16px; }
+    .modal-action-btn { flex: 1; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); padding: 10px; border-radius: 14px; display: flex; align-items: center; justify-content: center; gap: 6px; color: #ffffff; font-size: 11.5px; font-weight: 700; text-decoration: none; }
+    .modal-address-footer { text-align: center; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 10.5px; color: #9ca3af; font-weight: 600; line-height: 1.4; margin-bottom: 16px; }
   </style>
 </head>
 <body>
@@ -759,9 +695,9 @@
         <span style="font-size: 11.5px; color: var(--text-muted); font-weight: 700;">Konum Değiştir</span>
       </div>
 
-      <!-- LOGO HEADER -->
+      <!-- LOGO HEADER (3 ÇİZGİ BUTONU BAĞLANDI) -->
       <div class="top-header">
-        <button class="icon-btn-ghost">☰</button>
+        <button class="icon-btn-ghost" onclick="toggleDrawer()">☰</button>
         <div class="brand-logo-center">
           <div class="brand-title"><span class="lightning">⚡</span> BENDE <span class="badge">VAR</span></div>
           <span class="brand-sub">GÜVENLİ YEREL ESNAF AĞI</span>
@@ -831,10 +767,10 @@
         </div>
       </div>
 
-      <!-- ÖNE ÇIKANLAR -->
+      <!-- ÖNE ÇIKANLAR (TÜMÜ BUTONU BAĞLANDI) -->
       <div class="section-header">
         <div class="section-title">Öne Çıkanlar</div>
-        <a href="#" class="section-link">Tümü ➔</a>
+        <span class="section-link" onclick="openAllCategoriesModal()">Tümü ➔</span>
       </div>
 
       <div class="horizontal-cards-scroll">
@@ -868,10 +804,8 @@
       <!-- VİTRİN BÖLÜMÜ -->
       <div class="vitrin-banner">VİTRİN</div>
 
-      <!-- 7 MAĞAZA LİSTESİ (ALT ALTA SIRALI - ŞIK VE İDEAL BOYUT) -->
+      <!-- 7 MAĞAZA LİSTESİ -->
       <div class="stores-vertical-list">
-
-        <!-- 1. MANAV -->
         <div class="store-row-card" onclick="openStoreModal('manav')">
           <div class="store-left-info">
             <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=200&q=80" class="store-avatar" alt="Manav">
@@ -884,7 +818,6 @@
           <button class="btn-store-inspect">İncele</button>
         </div>
 
-        <!-- 2. PİDECİ -->
         <div class="store-row-card" onclick="openStoreModal('pideci')">
           <div class="store-left-info">
             <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=200&q=80" class="store-avatar" alt="Pideci">
@@ -897,7 +830,6 @@
           <button class="btn-store-inspect">İncele</button>
         </div>
 
-        <!-- 3. NALBUR -->
         <div class="store-row-card" onclick="openStoreModal('nalbur')">
           <div class="store-left-info">
             <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=200&q=80" class="store-avatar" alt="Nalbur">
@@ -910,7 +842,6 @@
           <button class="btn-store-inspect">İncele</button>
         </div>
 
-        <!-- 4. MARKET -->
         <div class="store-row-card" onclick="openStoreModal('market')">
           <div class="store-left-info">
             <img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=200&q=80" class="store-avatar" alt="Market">
@@ -923,7 +854,6 @@
           <button class="btn-store-inspect">İncele</button>
         </div>
 
-        <!-- 5. KASAP -->
         <div class="store-row-card" onclick="openStoreModal('kasap')">
           <div class="store-left-info">
             <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=200&q=80" class="store-avatar" alt="Kasap">
@@ -936,7 +866,6 @@
           <button class="btn-store-inspect">İncele</button>
         </div>
 
-        <!-- 6. KAFE -->
         <div class="store-row-card" onclick="openStoreModal('kafe')">
           <div class="store-left-info">
             <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=200&q=80" class="store-avatar" alt="Kafe">
@@ -949,7 +878,6 @@
           <button class="btn-store-inspect">İncele</button>
         </div>
 
-        <!-- 7. TAMİRCİ -->
         <div class="store-row-card" onclick="openStoreModal('tamirci')">
           <div class="store-left-info">
             <img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=200&q=80" class="store-avatar" alt="Tamirci">
@@ -961,7 +889,6 @@
           </div>
           <button class="btn-store-inspect">İncele</button>
         </div>
-
       </div>
 
     </div>
@@ -988,7 +915,72 @@
 
   </div>
 
-  <!-- MAĞAZA DETAY MODAL (ÇERÇEVE İÇİNE SABİTLENDİ) -->
+  <!-- SOL HAMBURGER MENÜ (DRAWER) -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
+  <div class="drawer-panel" id="drawerPanel">
+    <div class="drawer-header">
+      <div class="drawer-title">Bende Var Menü</div>
+      <button class="drawer-close" onclick="toggleDrawer()">✕</button>
+    </div>
+
+    <div class="drawer-buttons-row">
+      <button class="drawer-action-btn primary" onclick="alert('Üye Ol sayfasına yönlendiriliyorsunuz.')">👤 Üye Ol / Giriş Yap</button>
+      <button class="drawer-action-btn" onclick="alert('Esnaf Kayıt başvuru formu açılıyor.')">🏪 Esnaf Kayıt Başvurusu</button>
+    </div>
+
+    <div class="drawer-section-label">Kategoriler</div>
+    <div class="drawer-categories-list">
+      <div class="drawer-cat-item" onclick="openStoreModal('manav'); toggleDrawer();"><span>🍎</span> Manav</div>
+      <div class="drawer-cat-item" onclick="openStoreModal('market'); toggleDrawer();"><span>🛒</span> Market</div>
+      <div class="drawer-cat-item" onclick="openStoreModal('kafe'); toggleDrawer();"><span>☕</span> Kafe</div>
+      <div class="drawer-cat-item" onclick="openStoreModal('pideci'); toggleDrawer();"><span>🍔</span> Yemek / Pideci</div>
+      <div class="drawer-cat-item" onclick="openStoreModal('kasap'); toggleDrawer();"><span>🥩</span> Kasap</div>
+      <div class="drawer-cat-item" onclick="openStoreModal('nalbur'); toggleDrawer();"><span>🧰</span> Nalbur</div>
+      <div class="drawer-cat-item" onclick="openStoreModal('tamirci'); toggleDrawer();"><span>🛠️</span> Tamirci</div>
+    </div>
+  </div>
+
+  <!-- TÜM KATEGORİLER MODALI -->
+  <div class="categories-modal-overlay" id="catModalOverlay" onclick="closeAllCategoriesModal(event)">
+    <div class="categories-modal-content" id="catModalContent">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px;">
+        <h3 style="font-size: 16px; font-weight: 900; color: var(--primary-dark);">Tüm Kategoriler</h3>
+        <button onclick="closeAllCategoriesModalDirect()" style="background: #f1f5f9; border: none; width: 30px; height: 30px; border-radius: 50%; font-weight: 800; cursor: pointer;">✕</button>
+      </div>
+      <div class="categories-grid">
+        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); openStoreModal('pideci');">
+          <span class="icon">🍔</span>
+          <span class="label">Yemek</span>
+        </div>
+        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); openStoreModal('kafe');">
+          <span class="icon">☕</span>
+          <span class="label">Kafe</span>
+        </div>
+        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); openStoreModal('manav');">
+          <span class="icon">🍎</span>
+          <span class="label">Manav</span>
+        </div>
+        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); openStoreModal('market');">
+          <span class="icon">🛒</span>
+          <span class="label">Market</span>
+        </div>
+        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); openStoreModal('kasap');">
+          <span class="icon">🥩</span>
+          <span class="label">Kasap</span>
+        </div>
+        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); openStoreModal('nalbur');">
+          <span class="icon">🧰</span>
+          <span class="label">Nalbur</span>
+        </div>
+        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); openStoreModal('tamirci');">
+          <span class="icon">🛠️</span>
+          <span class="label">Tamirci</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAĞAZA DETAY MODALI -->
   <div class="store-modal-overlay" id="storeModalOverlay" onclick="closeStoreModal(event)">
     <div class="store-modal-content" id="storeModalContent">
       <button class="modal-close-btn" onclick="closeStoreModalDirect()">✕</button>
@@ -1012,9 +1004,7 @@
         <img id="modalHeroImg" src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=400&q=80" class="modal-hero-img" alt="Hero">
       </div>
 
-      <div class="modal-products-row" id="modalProductsRow">
-        <!-- Dinamik ürünler JS ile doldurulacak -->
-      </div>
+      <div class="modal-products-row" id="modalProductsRow"></div>
 
       <div class="modal-slogan-box">
         <span id="modalSloganIcon" style="font-size: 22px;">🌱</span>
@@ -1040,6 +1030,26 @@
 </div>
 
 <script>
+  // HAMBURGER MENÜ AÇ/KAPA
+  function toggleDrawer() {
+    document.getElementById("drawerOverlay").classList.toggle("active");
+    document.getElementById("drawerPanel").classList.toggle("active");
+  }
+
+  // TÜM KATEGORİLER MODALI AÇ/KAPA
+  function openAllCategoriesModal() {
+    document.getElementById("catModalOverlay").classList.add("active");
+  }
+  function closeAllCategoriesModalDirect() {
+    document.getElementById("catModalOverlay").classList.remove("active");
+  }
+  function closeAllCategoriesModal(event) {
+    if (event.target.id === "catModalOverlay") {
+      closeAllCategoriesModalDirect();
+    }
+  }
+
+  // 7 MAĞAZA VERİTABANI
   const storeData = {
     manav: {
       title: "Taze Köy Manavı",
