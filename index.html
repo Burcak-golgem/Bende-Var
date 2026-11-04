@@ -31,7 +31,7 @@
     html, body {
       width: 100%;
       height: 100%;
-      background-color: #0f172a; /* Bilgisayarda arka plan şık koyu ton */
+      background-color: #0f172a;
       color: var(--text-main);
       display: flex;
       justify-content: center;
@@ -40,7 +40,6 @@
       -webkit-font-smoothing: antialiased;
     }
     
-    /* TELEFON MAKETİ DIŞ ÇERÇEVESİ (MOBİL GÖRÜNÜM) */
     .app-container {
       width: 100%;
       max-width: 410px;
@@ -56,7 +55,6 @@
       border: 8px solid #ffffff;
     }
 
-    /* PÜRÜZSÜZ DİKEY KAYDIRMA ALANI */
     .scrollable-content {
       flex: 1;
       overflow-y: auto;
@@ -66,7 +64,6 @@
     }
     .scrollable-content::-webkit-scrollbar { display: none; }
 
-    /* STATUS BAR */
     .status-bar {
       padding: 10px 20px 4px 20px;
       display: flex;
@@ -81,7 +78,6 @@
       z-index: 30;
     }
 
-    /* KONUM BARI */
     .location-bar-top {
       background: #ffffff;
       padding: 8px 16px;
@@ -110,7 +106,6 @@
       cursor: pointer;
     }
 
-    /* HEADER */
     .top-header {
       background: #ffffff;
       padding: 10px 16px;
@@ -168,7 +163,6 @@
       margin-top: 1px;
     }
 
-    /* ARAMA ÇUBUĞU */
     .search-filter-section {
       padding: 10px 16px 14px 16px;
       background: #ffffff;
@@ -212,7 +206,6 @@
       color: var(--primary-dark);
     }
 
-    /* BANNER BÖLÜMÜ */
     .hero-banner-wrapper { padding: 14px 16px 10px 16px; }
     .hero-dark-card {
       background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
@@ -236,7 +229,6 @@
     .dot { width: 6px; height: 6px; background: #cbd5e1; border-radius: 50%; }
     .dot.active { width: 18px; background: #2563eb; border-radius: 4px; }
 
-    /* TEK SIRA YATAY KAYDIRMALI KATEGORİLER */
     .category-container {
       margin: 10px 16px 16px 16px;
       background: #ffffff;
@@ -294,7 +286,6 @@
       white-space: nowrap;
     }
 
-    /* SECTION HEADER */
     .section-header {
       padding: 10px 16px 8px 16px;
       display: flex;
@@ -305,7 +296,6 @@
     .section-title { font-size: 15px; font-weight: 800; color: var(--primary-dark); }
     .section-link { font-size: 12px; font-weight: 700; color: #2563eb; text-decoration: none; }
 
-    /* ÜRÜN KARTLARI */
     .horizontal-cards-scroll {
       display: flex;
       gap: 12px;
@@ -377,9 +367,9 @@
     .product-price { font-size: 13px; font-weight: 900; color: var(--primary-dark); }
     .detail-action-btn { width: 26px; height: 26px; background: #2563eb; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; border: none; }
 
-    /* VİTRİN BÖLÜMÜ */
+    /* VİTRİN BÖLÜMÜ (ÇOĞALTILMIŞ ŞIK KARTLAR) */
     .vitrin-banner {
-      margin: 16px;
+      margin: 20px 16px 10px 16px;
       background: var(--primary-dark);
       color: #ffffff;
       text-align: center;
@@ -607,16 +597,47 @@
       </div>
     </div>
 
-    <!-- VİTRİN BÖLÜMÜ -->
-    <div class="vitrin-banner">VİTRİN</div>
+    <!-- VİTRİN BÖLÜMÜ (ÇOĞALTILMIŞ ESNAF VE FİRMA KARTLARI) -->
+    <div class="vitrin-banner">ÖNE ÇIKAN VİTRİNLER</div>
 
+    <!-- Vitrin Kartı 1 -->
     <div class="showcase-card">
       <div class="showcase-body">
         <div class="showcase-title">Doğal Bakım,<br>Işıltılı Ciltler</div>
-        <div class="showcase-subtitle">Doğal içerikli ürünlerle cildinize sağlık katın.</div>
+        <div class="showcase-subtitle">Mahallenin Kozmetik Dükkanı</div>
         <button class="btn-showcase">İncele ➔</button>
       </div>
       <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80" class="showcase-img" alt="Cilt Bakımı">
+    </div>
+
+    <!-- Vitrin Kartı 2 -->
+    <div class="showcase-card">
+      <div class="showcase-body">
+        <div class="showcase-title">Taze Kahve<br>& Sıcak Lezzetler</div>
+        <div class="showcase-subtitle">Köşe Kahvecisi & Fırın</div>
+        <button class="btn-showcase">İncele ➔</button>
+      </div>
+      <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=400&q=80" class="showcase-img" alt="Kahve">
+    </div>
+
+    <!-- Vitrin Kartı 3 -->
+    <div class="showcase-card">
+      <div class="showcase-body">
+        <div class="showcase-title">Günlük Taze<br>Sebze & Meyve</div>
+        <div class="showcase-subtitle">Kardeşler Manavı</div>
+        <button class="btn-showcase">İncele ➔</button>
+      </div>
+      <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=400&q=80" class="showcase-img" alt="Manav">
+    </div>
+
+    <!-- Vitrin Kartı 4 -->
+    <div class="showcase-card">
+      <div class="showcase-body">
+        <div class="showcase-title">Usta Ellerden<br>Özel Tamirat</div>
+        <div class="showcase-subtitle">Yıldız Teknik Servis & Hırdavat</div>
+        <button class="btn-showcase">İncele ➔</button>
+      </div>
+      <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80" class="showcase-img" alt="Tamir">
     </div>
 
     <!-- ALT KAMPANYA BANNER -->
