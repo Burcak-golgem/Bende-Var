@@ -40,7 +40,7 @@
       align-items: center;
     }
 
-    /* MOBİL ÇERÇEVE (IPHONE MOCKUP) */
+    /* MOBİL ÇERÇEVE */
     .phone-mockup-wrapper {
       width: 100%;
       max-width: 420px;
@@ -65,7 +65,7 @@
       height: 30px;
       background: #000000;
       border-radius: 20px;
-      z-index: 3000;
+      z-index: 5000;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -74,7 +74,6 @@
     .island-cam { width: 11px; height: 11px; background: #111; border-radius: 50%; }
     .island-sensor { width: 8px; height: 8px; background: #0d1b2a; border-radius: 50%; }
     
-    /* UYGULAMA İÇİ ANA KONTEYNER */
     .app-container {
       width: 100%;
       height: 100%;
@@ -86,7 +85,6 @@
       border-radius: 38px;
     }
 
-    /* İÇERİK ALANI */
     .scrollable-content {
       flex: 1;
       overflow-y: auto;
@@ -476,7 +474,7 @@
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0, 0, 0, 0.6);
-      z-index: 3500;
+      z-index: 4000;
       display: none;
     }
     .drawer-overlay.active { display: block; }
@@ -486,7 +484,7 @@
       top: 0; left: -280px; bottom: 0;
       width: 280px;
       background: #ffffff;
-      z-index: 3600;
+      z-index: 4100;
       box-shadow: 10px 0 30px rgba(0,0,0,0.3);
       transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
@@ -568,7 +566,7 @@
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0, 0, 0, 0.65);
-      z-index: 2500;
+      z-index: 3000;
       display: none;
       justify-content: center;
       align-items: flex-end;
@@ -604,12 +602,12 @@
     .cat-grid-card span.icon { font-size: 28px; }
     .cat-grid-card span.label { font-size: 12px; font-weight: 800; color: var(--primary-dark); text-align: center; }
 
-    /* MAĞAZA DETAY MODALI (SABİT MOBİL EBAT - ÇERÇEVE İÇİNDE KUSURSUZ) */
+    /* MAĞAZA DETAY MODALI (SABİT MOBİL EBAT) */
     .store-modal-overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: #110505;
-      z-index: 2500;
+      z-index: 3500;
       display: none;
       flex-direction: column;
       border-radius: 38px;
@@ -687,7 +685,7 @@
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(15, 23, 42, 0.98);
-      z-index: 3000;
+      z-index: 4000;
       display: none;
       flex-direction: column;
       padding: 16px;
@@ -931,7 +929,7 @@
 </div>
 
 <script>
-  // 15 KATEGORİ VE İKİŞER ÖZGÜN MAĞAZA VERİLERİ
+  // 15 KATEGORİ VE MAĞAZA VERİLERİ
   const categoriesData = {
     "Yemek": [
       {
@@ -1325,7 +1323,7 @@
     ]
   };
 
-  // Kategori ikonları
+  // Kategori İkonları
   const categoryIcons = {
     "Yemek": "🍔", "Manav": "🍎", "Market": "🛒", "Kasap": "🥩", "Kafe": "☕",
     "Kıyafet": "👕", "Ayakkabı": "👟", "Aksesuar": "👜", "Kozmetik": "💄",
@@ -1340,11 +1338,12 @@
     loadDefaultStores();
   };
 
-  // Dinamik menülerin oluşturulması
   function buildCategoryMenus() {
     const horizontalRow = document.getElementById("horizontalCatRow");
     const drawerList = document.getElementById("drawerCatListContainer");
     const modalGrid = document.getElementById("modalCategoriesGrid");
+
+    if(!horizontalRow || !drawerList || !modalGrid) return;
 
     horizontalRow.innerHTML = "";
     drawerList.innerHTML = "";
@@ -1355,7 +1354,7 @@
     for (let catName in categoriesData) {
       let icon = categoryIcons[catName] || "📦";
 
-      // 1. Yatay Kaydırmalı Kategori Çubuğu
+      // Yatay Çubuk
       horizontalRow.innerHTML += `
         <div class="cat-item-card ${isFirst ? 'active' : ''}" onclick="filterStoresByCategory('${catName}', this)">
           <div class="cat-icon-circle">${icon}</div>
@@ -1363,14 +1362,14 @@
         </div>
       `;
 
-      // 2. Hamburger Yan Menü Listesi
+      // Hamburger Menü
       drawerList.innerHTML += `
         <div class="drawer-cat-item" onclick="filterStoresByCategory('${catName}'); toggleDrawer();">
           <span>${icon}</span> ${catName}
         </div>
       `;
 
-      // 3. Tüm Kategoriler Modalı Grid
+      // Tüm Kategoriler Modalı
       modalGrid.innerHTML += `
         <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); filterStoresByCategory('${catName}');">
           <span class="icon">${icon}</span>
@@ -1393,7 +1392,8 @@
       element.classList.add('active');
     } else {
       document.querySelectorAll('.cat-item-card').forEach(el => {
-        if(el.innerText.trim() === catName) {
+        let labelText = el.querySelector('.cat-label-text');
+        if(labelText && labelText.innerText.trim() === catName) {
           el.classList.add('active');
         } else {
           el.classList.remove('active');
@@ -1404,6 +1404,7 @@
 
   function renderStores(catName) {
     const container = document.getElementById('storesListContainer');
+    if(!container) return;
     container.innerHTML = '';
     const list = categoriesData[catName] || categoriesData['Yemek'];
 
@@ -1426,6 +1427,7 @@
 
   function openStoreModal(catName, storeId) {
     const list = categoriesData[catName];
+    if(!list) return;
     const store = list.find(s => s.id === storeId);
     if(!store) return;
 
@@ -1447,7 +1449,6 @@
 
     document.getElementById("modalMapBtn").href = store.mapUrl;
     document.getElementById("modalInstaBtn").href = store.instaUrl;
-
     document.getElementById("modalAddressFooter").innerHTML = `Adres: ${store.address}`;
 
     const productsRow = document.getElementById("modalProductsRow");
@@ -1469,18 +1470,24 @@
     closeReviewsModal();
   }
 
-  // Hamburger Menü Aç/Kapat Fonksiyonu
+  // Hamburger Menü Aç/Kapat
   function toggleDrawer() {
-    document.getElementById("drawerOverlay").classList.toggle("active");
-    document.getElementById("drawerPanel").classList.toggle("active");
+    const overlay = document.getElementById("drawerOverlay");
+    const panel = document.getElementById("drawerPanel");
+    if(overlay && panel) {
+      overlay.classList.toggle("active");
+      panel.classList.toggle("active");
+    }
   }
 
   function openAllCategoriesModal() {
-    document.getElementById("catModalOverlay").classList.add("active");
+    const modal = document.getElementById("catModalOverlay");
+    if(modal) modal.classList.add("active");
   }
 
   function closeAllCategoriesModalDirect() {
-    document.getElementById("catModalOverlay").classList.remove("active");
+    const modal = document.getElementById("catModalOverlay");
+    if(modal) modal.classList.remove("active");
   }
 
   function closeAllCategoriesModal(event) {
@@ -1508,7 +1515,8 @@
   }
 
   function closeReviewsModal() {
-    document.getElementById("reviewsModal").classList.remove("active");
+    const modal = document.getElementById("reviewsModal");
+    if(modal) modal.classList.remove("active");
   }
 
   function filterResults() {
