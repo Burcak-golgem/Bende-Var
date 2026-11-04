@@ -138,7 +138,7 @@
     .store-modal-card::-webkit-scrollbar { display: none; }
     .store-modal-overlay.active .store-modal-card { transform: translateY(0); }
 
-    /* SAĞ ÜST ÇARPI BUTONU */
+    /* SAĞ ÜST KAPATMA ÇARPI BUTONU */
     .modal-close-icon {
       position: absolute; top: 14px; right: 18px; z-index: 50;
       background: rgba(0,0,0,0.08); border: none; width: 32px; height: 32px;
@@ -274,7 +274,6 @@
         </div>
         <div class="cat-item-card">
           <div class="cat-icon-circle">🛒</div>
-          <div class="cat-icon-circle" style="display:none"></div>
           <div class="cat-label-text">Market</div>
         </div>
         <div class="cat-item-card">
@@ -381,4 +380,121 @@
         <!-- 1. ÜST BAR -->
         <div class="p-top-bar">
           <div class="p-brand-logo-area">
-            <img src="
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Arby%27s_logo.svg" class="p-arby-logo" alt="Arby's Logo">
+            <div class="p-brand-sub">WE HAVE THE MEATS®</div>
+          </div>
+          <div class="p-status-box">
+            <div class="p-close-time">KAPANIŞ 00:24</div>
+            <div class="p-open-pill">
+              <span class="green-dot"></span> AÇIK
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. BANNER -->
+        <div class="p-banner-card">
+          <div class="p-banner-left">
+            <div class="p-banner-h1">MEAT CRAFTED.<br>SANDWICH <span class="gold">PERFECTED.</span></div>
+            <div class="p-banner-script">Big flavor. Bold choices.</div>
+          </div>
+          <img id="modalHeroImg" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80" class="p-banner-burger" alt="Burger">
+        </div>
+
+        <!-- 3. NEUMORPHIC ÜRÜN KARTLARI -->
+        <div class="p-products-row" id="modalProductsRow"></div>
+
+        <!-- 4. SLOGAN -->
+        <div class="p-slogan-strip">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Arby%27s_logo.svg" class="p-slogan-logo" alt="Logo">
+          <div class="p-slogan-pipe"></div>
+          <div class="p-slogan-txt">Efsane lezzetler, unutulmaz bir deneyim...</div>
+        </div>
+
+        <!-- 5. TELEFON BUTONU -->
+        <a id="modalPhoneLink" href="tel:05357135258" class="p-glossy-phone-btn">
+          <span>📞</span>
+          <span>Tel: <span id="modalPhoneNum" class="num">05357135258</span></span>
+        </a>
+
+        <!-- 6. ÇİFTLİ BUTONLAR -->
+        <div class="p-dual-row">
+          <div class="p-pill-btn" onclick="window.open('https://maps.google.com', '_blank')">
+            <span style="color: #dc2626;">📍</span> <span>Konum aç ➔</span>
+          </div>
+          <a class="p-pill-btn" href="https://instagram.com" target="_blank">
+            <span style="font-size: 14px;">📸</span> <span>Instagram</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 7. DALGALI ADRES FOOTER -->
+      <div class="p-bottom-wave-footer">
+        <div class="p-address-text">
+          <span>📍</span> <span id="modalAddressText">Adres: Telsiz mah. 103 sokak. No:11 ZEYTİNBURNU - İSTANBUL</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const storeDataMock = {
+    'Yemek': [
+      { name: 'Smokehouse Brisket', img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=200&q=80' },
+      { name: 'Curly Fries', img: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=200&q=80' },
+      { name: 'Jamocha Shake', img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=200&q=80' }
+    ],
+    'Kafe': [
+      { name: 'Filtre Kahve', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=200&q=80' },
+      { name: 'Taze Kruvasan', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=200&q=80' },
+      { name: 'Soğuk Latte', img: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=200&q=80' }
+    ],
+    'Manav': [
+      { name: 'Amasya Elması', img: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=200&q=80' },
+      { name: 'Salkım Domates', img: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=200&q=80' },
+      { name: 'Taze Çilek', img: 'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=200&q=80' }
+    ],
+    'Kasap': [
+      { name: 'Dana Kıyma 1KG', img: 'https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=200&q=80' },
+      { name: 'Kuzu Pirzola', img: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=200&q=80' },
+      { name: 'Kasap Köfte', img: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=200&q=80' }
+    ],
+    'Market': [
+      { name: 'Organik Süt 1L', img: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=200&q=80' },
+      { name: 'Çiftlik Yumurtası', img: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=200&q=80' },
+      { name: 'Sızma Zeytinyağı', img: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=200&q=80' }
+    ]
+  };
+
+  function openStoreDetails(name, sub, phone, address, bgImg, categoryKey) {
+    document.getElementById("modalPhoneNum").innerText = phone;
+    document.getElementById("modalPhoneLink").href = `tel:${phone}`;
+    document.getElementById("modalAddressText").innerText = `Adres: ${address}`;
+    document.getElementById("modalHeroImg").src = bgImg;
+
+    const row = document.getElementById("modalProductsRow");
+    row.innerHTML = "";
+    const items = storeDataMock[categoryKey] || storeDataMock['Yemek'];
+    items.forEach(item => {
+      row.innerHTML += `
+        <div class="p-card-item">
+          <img src="${item.img}" class="p-card-img" alt="${item.name}">
+          <div class="p-card-title">${item.name}</div>
+        </div>
+      `;
+    });
+
+    toggleStoreModal(true);
+  }
+
+  function toggleStoreModal(show) {
+    const modal = document.getElementById("storeModal");
+    if (show) modal.classList.add("active");
+    else modal.classList.remove("active");
+  }
+</script>
+
+</body>
+</html>
