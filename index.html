@@ -3,34 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BENDE VAR - Ultra Şık Yerel Arama</title>
-  
-  <!-- PWA & Mobil Uygulama Ayarları -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0f172a">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
+  <title>BENDE VAR - Şehir Temalı Arama</title>
   <style>
     :root {
-      --bg-app: #fcfcfd;
+      --bg-app: #f4f6fb;
       --card-bg: #ffffff;
       --primary-dark: #0f172a;
-      --text-main: #1e293b;
-      --text-muted: #64748b;
-      --border-subtle: #eaedf2;
-      --brand-accent: #f43f5e;
-      --brand-mint: #059669;
+      --brand-accent: #facc15;
+      --brand-mint: #10b981;
       --brand-mint-light: #ecfdf5;
-      --brand-red: #dc2626;
-      --brand-red-light: #fef2f2;
-      --star-color: #d97706;
+      --brand-red: #ef4444;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-subtle: #e2e8f0;
+      --star-color: #f59e0b;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif; }
     
     body { 
-      background-color: #ffffff; 
+      background-color: #e2e8f0; 
       color: var(--text-main); 
       display: flex; 
       justify-content: center; 
@@ -44,131 +36,355 @@
       width: 100%;
       max-width: 410px;
       background: var(--bg-app);
-      min-height: 880px;
-      border-radius: 42px;
-      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+      min-height: 860px;
+      border-radius: 36px;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15);
       display: flex;
       flex-direction: column;
       position: relative;
       overflow: hidden;
       border: 1px solid var(--border-subtle);
+      padding-bottom: 75px; /* Bottom bar için alan */
     }
 
-    /* Header */
-    .header {
-      background: #ffffff;
-      padding: 26px 20px 18px 20px;
-      border-bottom-left-radius: 30px;
-      border-bottom-right-radius: 30px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.015);
-    }
-
-    .top-bar { display: flex; justify-content: space-between; align-items: center; }
-    .brand-title {
-      font-size: 21px; font-weight: 800; letter-spacing: -0.4px;
-      color: var(--primary-dark); display: flex; align-items: center; gap: 6px;
-    }
-    .brand-title span { color: var(--brand-accent); background: #fff1f2; padding: 2px 8px; border-radius: 8px; font-weight: 900; }
-    .location-display { font-size: 11px; background: #f8fafc; padding: 6px 14px; border-radius: 20px; color: var(--text-muted); font-weight: 600; border: 1px solid var(--border-subtle); }
-
-    /* Arama Kutusu */
-    .search-box { padding: 18px 20px 10px 20px; }
-    .search-input-wrapper { position: relative; display: flex; align-items: center; }
-    .search-input {
-      width: 100%; padding: 14px 16px 14px 42px;
-      border: 1.5px solid var(--border-subtle); border-radius: 16px;
-      font-size: 13.5px; outline: none; font-weight: 500;
-      background: #ffffff; color: var(--text-main);
-    }
-    .search-icon { position: absolute; left: 15px; font-size: 15px; opacity: 0.4; }
-    .search-btn {
-      position: absolute; right: 5px; background: var(--primary-dark);
-      color: #ffffff; border: none; padding: 9px 16px;
-      border-radius: 12px; font-weight: 700; font-size: 12.5px; cursor: pointer;
-    }
-
-    /* Kategori Rozetleri */
-    .categories-section { padding: 0 20px 14px 20px; }
-    .categories-scroll { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
-    .categories-scroll::-webkit-scrollbar { display: none; }
-    .cat-chip {
-      background: #ffffff; color: var(--text-muted); padding: 8px 15px;
-      border-radius: 14px; font-size: 12px; font-weight: 600; white-space: nowrap;
-      cursor: pointer; border: 1px solid var(--border-subtle); transition: all 0.2s;
-    }
-    .cat-chip.active, .cat-chip:hover { background: var(--primary-dark); color: #ffffff; border-color: var(--primary-dark); }
-
-    /* Ana Sayfa Kart Listesi */
-    .results-container { padding: 0 20px 24px 20px; display: flex; flex-direction: column; gap: 12px; }
-    .card {
-      border: 1px solid var(--border-subtle); border-radius: 20px;
-      padding: 16px 18px; background: #ffffff; position: relative;
-      overflow: hidden; cursor: pointer; transition: all 0.2s ease;
-    }
-    .card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.04); }
-    .card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3.5px; background: var(--brand-mint); }
-    .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
-    .store-info h3 { font-size: 15px; font-weight: 700; color: var(--text-main); margin-bottom: 2px; }
-    .store-location { font-size: 12px; color: var(--text-muted); }
-
-    .card-top-right {
+    /* BANNER & HEADER (DİNAMİK ŞEHİR ARKAPLANI) */
+    .hero-header {
+      position: relative;
+      width: 100%;
+      height: 190px;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 0.4s ease-in-out;
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      gap: 5px;
+      justify-content: space-between;
+      padding: 24px 20px 15px 20px;
     }
 
-    .distance-badge { 
-      font-size: 12px; 
-      background: #e6f4ea; 
-      color: #047857; 
-      border: 1.5px solid #a7f3d0; 
-      padding: 4px 10px; 
-      border-radius: 20px; 
-      font-weight: 800; 
+    /* Görsel üzerine koyu gradyan karartma */
+    .hero-header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(180deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.4) 60%, rgba(244,246,251,1) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .brand-logo {
+      font-size: 26px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-logo span {
+      background: var(--brand-accent);
+      color: #0f172a;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-weight: 900;
+    }
+
+    /* KONUM SEÇİCİ DROPDOWN */
+    .location-selector-wrapper {
+      margin-top: 8px;
       display: inline-flex;
       align-items: center;
-      gap: 3px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
     }
 
-    .store-status-card {
-      font-size: 11px;
+    .location-select {
+      background: transparent;
+      border: none;
+      color: #ffffff;
       font-weight: 700;
-      padding: 3px 8px;
+      font-size: 13px;
+      outline: none;
+      cursor: pointer;
+      margin-left: 4px;
+    }
+
+    .location-select option {
+      color: #0f172a;
+      background: #ffffff;
+    }
+
+    /* ARAMA KUTUSU (GÖRSELDEKİ OVAL KUTU) */
+    .search-section {
+      position: relative;
+      z-index: 3;
+      margin: -25px 20px 14px 20px;
+    }
+
+    .search-card {
+      background: #ffffff;
+      border-radius: 30px;
+      padding: 6px 6px 6px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .search-input-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .search-input-box input {
+      border: none;
+      outline: none;
+      width: 100%;
+      font-size: 13.5px;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .search-submit-btn {
+      background: var(--primary-dark);
+      color: #ffffff;
+      border: none;
+      padding: 11px 22px;
+      border-radius: 22px;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    /* KATEGORİ CHIP'LERİ */
+    .categories-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 0 20px 14px 20px;
+      scrollbar-width: none;
+    }
+    .categories-scroll::-webkit-scrollbar { display: none; }
+
+    .cat-chip {
+      background: #ffffff;
+      color: var(--text-main);
+      padding: 9px 16px;
+      border-radius: 16px;
+      font-size: 12.5px;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cat-chip.active {
+      background: var(--brand-accent);
+      color: #0f172a;
+      border-color: var(--brand-accent);
+    }
+
+    /* ESNAR KARTLARI (REFERANS GÖRSELE ÖZEL YENİ LİSTE YAPISI) */
+    .results-container {
+      padding: 0 20px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 12px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.2s;
+    }
+
+    .card:active { transform: scale(0.98); }
+
+    /* Kartın Sol Tarafındaki Resim + Memnuniyet */
+    .card-img-wrapper {
+      position: relative;
+      width: 105px;
+      height: 105px;
+      border-radius: 16px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .satisfaction-tag {
+      position: absolute;
+      bottom: 6px;
+      left: 6px;
+      right: 6px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(4px);
+      color: #ffffff;
+      font-size: 9.5px;
+      font-weight: 800;
+      padding: 3px 6px;
       border-radius: 8px;
-      display: inline-flex;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* Kartın Sağ Tarafındaki Detaylar */
+    .card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100px;
+    }
+
+    .card-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .store-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.25;
+    }
+
+    .distance-pill {
+      background: #e6f4ea;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      white-space: nowrap;
+    }
+
+    .rating-row {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 2px;
+    }
+
+    .rating-stars { color: var(--star-color); }
+    .review-count { color: var(--text-muted); font-weight: 500; font-size: 11.5px; }
+
+    .card-address {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      display: flex;
       align-items: center;
       gap: 4px;
     }
-    .store-status-card.open {
-      background: var(--brand-mint-light);
-      color: var(--brand-mint);
-      border: 1px solid #a7f3d0;
-    }
-    .store-status-card.closed {
-      background: var(--brand-red-light);
-      color: var(--brand-red);
-      border: 1px solid #fecaca;
+
+    .card-bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
     }
 
-    .product-desc { font-size: 13.5px; color: #334155; margin: 8px 0 12px 0; font-weight: 500; }
-    .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f8fafc; padding-top: 10px; }
-    .status-left-area { display: flex; align-items: center; gap: 6px; }
-    .status-tag { background-color: var(--brand-mint-light); color: var(--brand-mint); border: 1px solid #d1fae5; font-size: 10.5px; font-weight: 800; padding: 3px 8px; border-radius: 6px; }
-    .card-rating-badge { font-size: 10.5px; background: #fffbeb; color: var(--star-color); border: 1px solid #fde68a; padding: 3px 7px; border-radius: 6px; font-weight: 800; }
-    .action-link { font-size: 12px; color: var(--primary-dark); font-weight: 700; }
+    .time-status {
+      font-size: 11.5px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .time-status.open { color: var(--brand-mint); }
+    .time-status.closed { color: var(--brand-red); }
+
+    .arrow-btn {
+      background: #f1f5f9;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--text-main);
+    }
+
+    /* BOTTOM NAV BAR (REFERANS GÖRSELİNDEKİ ALT MENÜ) */
+    .bottom-nav {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 65px;
+      background: #ffffff;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 10;
+      border-bottom-left-radius: 36px;
+      border-bottom-right-radius: 36px;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .nav-item.active { color: var(--brand-accent); }
+    .nav-icon { font-size: 18px; }
 
     /* MODAL PENCERE */
     .modal-overlay {
       position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(10px);
+      background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px);
       display: none; justify-content: flex-end; flex-direction: column; z-index: 100;
     }
 
     .modal-content {
-      background: #ffffff; border-top-left-radius: 36px; border-top-right-radius: 36px;
-      padding: 20px 20px 28px 20px; max-height: 92vh; overflow-y: auto;
-      box-shadow: 0 -20px 50px rgba(15, 23, 42, 0.15);
+      background: #ffffff; border-top-left-radius: 32px; border-top-right-radius: 32px;
+      padding: 20px; max-height: 90vh; overflow-y: auto;
       animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -176,173 +392,163 @@
 
     .modal-drag-indicator { width: 32px; height: 4px; background: #e2e8f0; border-radius: 10px; margin: 0 auto 14px auto; }
     .modal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
-    .modal-title-area { flex: 1; padding-right: 10px; }
-    .modal-store-name { font-size: 18.5px; font-weight: 800; color: var(--text-main); letter-spacing: -0.3px; margin-bottom: 2px; }
-    .modal-product-title { font-size: 13px; font-weight: 500; color: var(--text-muted); }
-    .close-btn { background: #f1f5f9; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 13px; font-weight: 700; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; }
+    .modal-store-name { font-size: 18px; font-weight: 800; color: var(--text-main); }
+    .modal-product-title { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+    .close-btn { background: #f1f5f9; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 13px; font-weight: 700; cursor: pointer; }
 
-    .modal-store-img-wrapper { position: relative; width: 100%; height: 160px; border-radius: 18px; overflow: hidden; margin-bottom: 14px; border: 1px solid var(--border-subtle); }
+    .modal-store-img-wrapper { width: 100%; height: 160px; border-radius: 18px; overflow: hidden; margin-bottom: 14px; }
     .modal-store-img { width: 100%; height: 100%; object-fit: cover; }
-    .img-badge-overlay { position: absolute; top: 10px; left: 10px; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); color: #ffffff; font-size: 10.5px; font-weight: 600; padding: 4px 10px; border-radius: 20px; }
 
-    .info-group { background: #f8fafc; border-radius: 16px; padding: 12px 14px; margin-bottom: 14px; display: flex; flex-direction: column; gap: 8px; border: 1px solid #f1f5f9; }
-    .detail-info-row { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #1e293b; font-weight: 600; }
-    .detail-icon { font-size: 15px; background: #ffffff; padding: 5px; border-radius: 8px; border: 1px solid var(--border-subtle); }
-
-    .open-status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12.5px;
-      font-weight: 800;
-      padding: 5px 12px;
-      border-radius: 10px;
-    }
-    .open-status-badge.open { background: var(--brand-mint-light); color: var(--brand-mint); border: 1px solid #a7f3d0; }
-    .open-status-badge.closed { background: var(--brand-red-light); color: var(--brand-red); border: 1px solid #fecaca; }
-
-    /* SEGMENTED TAB */
-    .modal-tabs { display: flex; background: #f1f5f9; padding: 3px; border-radius: 14px; margin-bottom: 14px; }
-    .tab-btn { flex: 1; padding: 9px 0; border: none; background: transparent; font-size: 12.5px; font-weight: 700; color: var(--text-muted); border-radius: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
-    .tab-btn.active { background: #ffffff; color: var(--primary-dark); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-    .tab-badge { background: #fffbe2; color: var(--star-color); font-size: 10.5px; padding: 1px 6px; border-radius: 8px; border: 1px solid #fde68a; }
-
-    .tab-content { display: none; }
-    .tab-content.active { display: flex; flex-direction: column; gap: 9px; }
-
-    .btn-call-card { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; text-decoration: none; padding: 14px 18px; border-radius: 18px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15); }
-    .call-left { display: flex; align-items: center; gap: 12px; }
-    .call-phone-icon { background: rgba(255, 255, 255, 0.1); width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
-    .call-number-text { font-size: 18.5px; font-weight: 900; letter-spacing: 0.8px; color: #ffffff; }
-    .call-action-badge { background: #ffffff; color: #0f172a; padding: 8px 18px; border-radius: 10px; font-weight: 900; font-size: 13px; }
-
-    .btn-action { text-decoration: none; padding: 13px; border-radius: 14px; text-align: center; font-weight: 700; font-size: 13.5px; display: flex; justify-content: center; align-items: center; gap: 8px; }
-    .btn-instagram { background: linear-gradient(135deg, #e1306c 0%, #c13584 100%); color: #ffffff; box-shadow: 0 4px 12px rgba(225, 48, 108, 0.15); }
-    .btn-whatsapp { background: #10b981; color: #ffffff; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15); }
+    .info-group { background: #f8fafc; border-radius: 16px; padding: 12px; margin-bottom: 14px; display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; font-weight: 600; }
+    
+    .btn-call-card { background: var(--primary-dark); color: #ffffff; text-decoration: none; padding: 14px 18px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; }
+    .btn-action { text-decoration: none; padding: 12px; border-radius: 14px; text-align: center; font-weight: 700; font-size: 13px; display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 8px; }
+    .btn-instagram { background: linear-gradient(135deg, #e1306c 0%, #c13584 100%); color: #ffffff; }
+    .btn-whatsapp { background: #10b981; color: #ffffff; }
     .btn-maps { background: #ffffff; color: #0f172a; border: 1.5px solid var(--border-subtle); }
-
-    /* YORUMLAR SEKMESİ */
-    .rating-summary-card { background: #fafafb; border: 1px solid var(--border-subtle); border-radius: 16px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
-    .rating-score-box { display: flex; align-items: baseline; gap: 4px; }
-    .rating-score-big { font-size: 22px; font-weight: 900; color: var(--primary-dark); }
-    .rating-score-max { font-size: 12px; color: var(--text-muted); font-weight: 600; }
-    .rating-stars-gold { color: var(--star-color); font-size: 13px; }
-    .rating-total-count { font-size: 11.5px; color: var(--text-muted); font-weight: 600; }
-
-    .review-card { background: #ffffff; border: 1px solid var(--border-subtle); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; }
-    .review-card-top { display: flex; justify-content: space-between; align-items: center; }
-    .review-author { font-size: 12px; font-weight: 700; color: var(--text-main); }
-    .review-date { font-size: 10.5px; color: var(--text-muted); }
-    .review-body { font-size: 12px; color: #475569; line-height: 1.4; font-weight: 400; }
   </style>
 </head>
 <body>
 
 <div class="app-container">
   
-  <div class="header">
-    <div class="top-bar">
-      <div class="brand-title">BENDE <span>VAR</span></div>
-      <div class="location-display">📍 Zeytinburnu, TR</div>
+  <!-- BANNER & SEHIR FOTOĞRAFI -->
+  <div class="hero-header" id="heroHeader" style="background-image: url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80');">
+    <div class="hero-content">
+      <div class="brand-logo">
+        BENDE <span>VAR</span>
+      </div>
+      <div class="location-selector-wrapper">
+        📍 
+        <select class="location-select" id="citySelect" onchange="changeCity()">
+          <option value="zeytinburnu">Zeytinburnu, TR (İstanbul)</option>
+          <option value="izmir">Konak, TR (İzmir)</option>
+          <option value="ankara">Çankaya, TR (Ankara)</option>
+        </select>
+      </div>
     </div>
   </div>
 
-  <div class="search-box">
-    <div class="search-input-wrapper">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" class="search-input" placeholder="Ne arıyoruz? (Örn: Musluk, Tişört)" onkeyup="filterResults()">
-      <button class="search-btn" onclick="filterResults()">Bul</button>
+  <!-- ARAMA KUTUSU -->
+  <div class="search-section">
+    <div class="search-card">
+      <div class="search-input-box">
+        🔍
+        <input type="text" id="searchInput" placeholder="Ne arıyorsunuz? (Örn: Börek, Ayakkabı)" onkeyup="filterResults()">
+      </div>
+      <button class="search-submit-btn" onclick="filterResults()">Bul</button>
     </div>
   </div>
 
-  <div class="categories-section">
-    <div class="categories-scroll">
-      <div class="cat-chip active" onclick="filterCategory('Tümü', event)">Tümü</div>
-      <div class="cat-chip" onclick="filterCategory('Giyim', event)">👕 Giyim</div>
-      <div class="cat-chip" onclick="filterCategory('Nalbur', event)">🛠️ Tesisat & Nalbur</div>
-      <div class="cat-chip" onclick="filterCategory('Manav', event)">🍏 Manav & Gıda</div>
-    </div>
+  <!-- KATEGORİ SEÇİCİLERİ -->
+  <div class="categories-scroll">
+    <div class="cat-chip active" onclick="filterCategory('Tümü', event)">🎒 Tümü</div>
+    <div class="cat-chip" onclick="filterCategory('Yiyecek', event)">🍴 Yiyecek</div>
+    <div class="cat-chip" onclick="filterCategory('Tamirci', event)">🛠️ Tamirci</div>
+    <div class="cat-chip" onclick="filterCategory('Tesisat', event)">💧 Tesisat</div>
+    <div class="cat-chip" onclick="filterCategory('Ayakkabı', event)">👟 Ayakkabı</div>
   </div>
 
-  <!-- ANA SAYFA ESNAF LİSTESİ -->
+  <!-- ESNAF LİSTESİ (REFERANS KART YAPISI) -->
   <div class="results-container" id="resultsContainer">
     
-    <!-- ESNAF 1: AÇIK -->
-    <div class="card" data-category="Giyim" data-tags="askılı çocuk tişört giyim tekstil" onclick="openDetail('Zeytin Çocuk Giyim', '58. Bulvar Cad. No:42 Zeytinburnu', 'Askılı Pamuklu Çocuk Tişört (3-6 Yaş)', '0212 555 01 23', '80 m', '4.9', '142', 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80', 'zeytincocukgiyim', '905550001122', true, '20:00 saatinde kapanıyor')">
-      <div class="card-top">
-        <div class="store-info">
-          <h3>Zeytin Çocuk Giyim</h3>
-          <div class="store-location">58. Bulvar Cad. No:42</div>
-        </div>
-        <div class="card-top-right">
-          <span class="distance-badge">📍 80 m</span>
-          <span class="store-status-card open">🟢 Açık • 20:00</span>
-        </div>
+    <!-- Kart 1 -->
+    <div class="card" data-category="Yiyecek" data-tags="börek yiyecek çocuk zeytin" onclick="openDetail('Zeytin Çocuk Börekçisi', '58. Bulvar Cad. No:42 Zeytinburnu', 'Taze Kıymalı & Peynirli Tepsi Böreği', '0212 555 01 23', '80 m', '4.9', '124', 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80', 'zeytinborek', '905550001122', true, '20:00')">
+      <div class="card-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Börek">
+        <div class="satisfaction-tag">👍 %95 Memnuniyet</div>
       </div>
-      <div class="product-desc">Askılı Pamuklu Çocuk Tişört (3-6 Yaş)</div>
-      <div class="card-footer">
-        <div class="status-left-area">
-          <span class="status-tag">✓ BENDE VAR</span>
-          <span class="card-rating-badge">★ 4.9</span>
+      <div class="card-body">
+        <div class="card-header-row">
+          <div class="store-title">Zeytin Çocuk Börekçisi</div>
+          <div class="distance-pill">📍 80 m</div>
         </div>
-        <span class="action-link">Esnafı Gör →</span>
-      </div>
-    </div>
-
-    <!-- ESNAF 2: AÇIK -->
-    <div class="card" data-category="Nalbur" data-tags="batarya musluk su tesisat nalbur conta tamir" onclick="openDetail('Usta Yapı Nalbur & Tesisat', 'Kazlıçeşme Sk. No:12 Zeytinburnu', 'Aç-Kapa Mutfak Bataryası & Tesisat Malzemeleri', '0212 226 52 10', '120 m', '4.8', '98', 'https://images.unsplash.com/photo-1541888946425-d0fbb18f19f1?auto=format&fit=crop&w=600&q=80', 'ustayapinalbur', '902122265210', true, '19:30 saatinde kapanıyor')">
-      <div class="card-top">
-        <div class="store-info">
-          <h3>Usta Yapı Nalbur & Tesisat</h3>
-          <div class="store-location">Kazlıçeşme Sk. No:12</div>
+        <div class="rating-row">
+          <span class="rating-stars">★ 4.9</span>
+          <span class="review-count">(124 Yorum)</span>
         </div>
-        <div class="card-top-right">
-          <span class="distance-badge">📍 120 m</span>
-          <span class="store-status-card open">🟢 Açık • 19:30</span>
+        <div class="card-address">📍 58. Bulvar Cad. No:42</div>
+        <div class="card-bottom-row">
+          <div class="time-status open">🕒 Açık • 20:00</div>
+          <div class="arrow-btn">›</div>
         </div>
-      </div>
-      <div class="product-desc">Aç-Kapa Mutfak Bataryası & Tesisat Malzemeleri</div>
-      <div class="card-footer">
-        <div class="status-left-area">
-          <span class="status-tag">✓ BENDE VAR</span>
-          <span class="card-rating-badge">★ 4.8</span>
-        </div>
-        <span class="action-link">Esnafı Gör →</span>
       </div>
     </div>
 
-    <!-- ESNAF 3: KAPALI -->
-    <div class="card" data-category="Manav" data-tags="taze çilek organik meyve manav sebze" onclick="openDetail('Yeşil Vadi Organik Manav', 'Merkez Mah. Prof. Dr. Turan Cad. No:8', 'Yerli Taze Çilek & Organik Sebzeler', '0212 415 88 90', '210 m', '4.7', '65', 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=600&q=80', 'yesilvadimanav', '902124158890', false, 'Yarın 08:30 saatinde açılıyor')">
-      <div class="card-top">
-        <div class="store-info">
-          <h3>Yeşil Vadi Organik Manav</h3>
-          <div class="store-location">Prof. Dr. Turan Cad. No:8</div>
+    <!-- Kart 2 -->
+    <div class="card" data-category="Tamirci Ayakkabı" data-tags="ayakkabı tamir usta keçe kemer" onclick="openDetail('Usta Ayakkabı & Tamir', 'Kazlıçeşme Sk. No:12 Zeytinburnu', 'Deri Ayakkabı Tamiri & Dikiş Bakımı', '0212 226 52 10', '120 m', '4.8', '98', 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80', 'ustaayakkabi', '902122265210', true, '19:30')">
+      <div class="card-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Ayakkabı Tamiri">
+        <div class="satisfaction-tag">👍 %93 Memnuniyet</div>
+      </div>
+      <div class="card-body">
+        <div class="card-header-row">
+          <div class="store-title">Usta Ayakkabı & Tamir</div>
+          <div class="distance-pill">📍 120 m</div>
         </div>
-        <div class="card-top-right">
-          <span class="distance-badge">📍 210 m</span>
-          <span class="store-status-card closed">🔴 Kapalı • 08:30</span>
+        <div class="rating-row">
+          <span class="rating-stars">★ 4.8</span>
+          <span class="review-count">(98 Yorum)</span>
+        </div>
+        <div class="card-address">📍 Kazlıçeşme Sk. No:12</div>
+        <div class="card-bottom-row">
+          <div class="time-status open">🕒 Açık • 19:30</div>
+          <div class="arrow-btn">›</div>
         </div>
       </div>
-      <div class="product-desc">Yerli Taze Çilek & Organik Sebzeler</div>
-      <div class="card-footer">
-        <div class="status-left-area">
-          <span class="status-tag">✓ BENDE VAR</span>
-          <span class="card-rating-badge">★ 4.7</span>
+    </div>
+
+    <!-- Kart 3 -->
+    <div class="card" data-category="Tesisat" data-tags="tesisat musluk boru vadi yeşil" onclick="openDetail('Yeşil Vadi Tesisat', 'Prof. Dr. Turan Cad. No:8 Zeytinburnu', 'Mutfak Bataryası & Su Tesisatı Tamiri', '0212 415 88 90', '210 m', '4.7', '76', 'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=600&q=80', 'yesilvaditesisat', '902124158890', false, '08:30')">
+      <div class="card-img-wrapper">
+        <img src="https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Tesisat">
+        <div class="satisfaction-tag">👍 %94 Memnuniyet</div>
+      </div>
+      <div class="card-body">
+        <div class="card-header-row">
+          <div class="store-title">Yeşil Vadi Tesisat</div>
+          <div class="distance-pill">📍 210 m</div>
         </div>
-        <span class="action-link">Esnafı Gör →</span>
+        <div class="rating-row">
+          <span class="rating-stars">★ 4.7</span>
+          <span class="review-count">(76 Yorum)</span>
+        </div>
+        <div class="card-address">📍 Prof. Dr. Turan Cad. No:8</div>
+        <div class="card-bottom-row">
+          <div class="time-status closed">🕒 Kapalı • 08:30</div>
+          <div class="arrow-btn">›</div>
+        </div>
       </div>
     </div>
 
   </div>
 
-  <!-- AÇILIR DETAY PENCERESİ (MODAL) -->
+  <!-- ALT NAVİGASYON BAR (REFERANS GÖRSELİNDEKİ) -->
+  <div class="bottom-nav">
+    <div class="nav-item active">
+      <span class="nav-icon">🏠</span>
+      <span>Keşfet</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-icon">📍</span>
+      <span>Harita</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-icon">🤍</span>
+      <span>Favoriler</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-icon">👤</span>
+      <span>Profil</span>
+    </div>
+  </div>
+
+  <!-- MODAL DETAY PENCERESİ -->
   <div class="modal-overlay" id="detailModal">
     <div class="modal-content">
-      
       <div class="modal-drag-indicator"></div>
-
       <div class="modal-header">
-        <div class="modal-title-area">
+        <div>
           <div class="modal-store-name" id="modalStoreName">İşletme Adı</div>
           <div class="modal-product-title" id="modalProductTitle">Ürün Adı</div>
         </div>
@@ -350,90 +556,59 @@
       </div>
 
       <div class="modal-store-img-wrapper">
-        <span class="img-badge-overlay">Doğrulanmış İşletme</span>
-        <img id="modalStoreImg" src="" alt="Dükkan Görseli" class="modal-store-img">
+        <img id="modalStoreImg" src="" class="modal-store-img" alt="Görsel">
       </div>
 
       <div class="info-group">
-        <div class="detail-info-row">
-          <span id="modalOpenStatus"></span>
-        </div>
-        <div class="detail-info-row">
-          <span class="detail-icon">📍</span>
-          <span id="modalStoreAddress">Açık Adres</span>
-        </div>
-        <div class="detail-info-row">
-          <span class="detail-icon">🏃</span>
-          <span id="modalStoreDistance" style="font-weight: 800; color: #047857;">Mesafe</span>
-        </div>
+        <div id="modalOpenStatus"></div>
+        <div>📍 <span id="modalStoreAddress">Adres</span></div>
+        <div>🏃 <span id="modalStoreDistance">Mesafe</span></div>
       </div>
 
-      <div class="modal-tabs">
-        <button class="tab-btn active" id="tabContactBtn" onclick="switchTab('contact')">
-          ⚡ İletişim & Konum
-        </button>
-        <button class="tab-btn" id="tabReviewsBtn" onclick="switchTab('reviews')">
-          💬 Yorumlar <span class="tab-badge" id="modalRatingBadge">★ 4.9</span>
-        </button>
-      </div>
+      <a href="#" id="callLink" class="btn-call-card">
+        <div>📞 <span id="modalPhoneText" style="font-size:17px; font-weight:800;">0212...</span></div>
+        <span style="background:#ffffff; color:#0f172a; padding:6px 14px; border-radius:10px; font-weight:800;">Ara</span>
+      </a>
 
-      <div class="tab-content active" id="contactTab">
-        <a href="#" id="callLink" class="btn-call-card">
-          <div class="call-left">
-            <span class="call-phone-icon">📞</span>
-            <span class="call-number-text" id="modalPhoneText">0212 555 01 23</span>
-          </div>
-          <span class="call-action-badge">Ara</span>
-        </a>
-        <a href="#" id="instaLink" target="_blank" class="btn-action btn-instagram">📸 Instagram</a>
-        <a href="#" id="waLink" target="_blank" class="btn-action btn-whatsapp">💬 WhatsApp</a>
-        <a href="#" id="mapsLink" target="_blank" class="btn-action btn-maps">🗺️ Harita / Yol Tarifi</a>
-      </div>
-
-      <div class="tab-content" id="reviewsTab">
-        <div class="rating-summary-card">
-          <div>
-            <div class="rating-score-box">
-              <span class="rating-score-big" id="modalScoreBig">4.9</span>
-              <span class="rating-score-max">/ 5.0</span>
-            </div>
-            <div class="rating-stars-gold">★★★★★</div>
-          </div>
-          <div class="rating-total-count" id="modalTotalReviews">142 değerlendirme</div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-card-top">
-            <span class="review-author">Ahmet K.</span>
-            <span class="review-date">Dün</span>
-          </div>
-          <div class="rating-stars-gold" style="font-size:10px;">★★★★★</div>
-          <div class="review-body">Sitede stokta göründü, mağazaya gidip anında aldım. Esnaf çok kibar ve ilgili.</div>
-        </div>
-      </div>
-
+      <a href="#" id="instaLink" target="_blank" class="btn-action btn-instagram">📸 Instagram</a>
+      <a href="#" id="waLink" target="_blank" class="btn-action btn-whatsapp">💬 WhatsApp</a>
+      <a href="#" id="mapsLink" target="_blank" class="btn-action btn-maps">🗺️ Harita / Yol Tarifi</a>
     </div>
   </div>
 
 </div>
 
 <script>
+  // Şehir seçimine göre kapak resmini değiştirme
+  function changeCity() {
+    let city = document.getElementById("citySelect").value;
+    let header = document.getElementById("heroHeader");
+
+    if (city === "izmir") {
+      // İzmir Saat Kulesi Görseli (Referanstaki Görsel)
+      header.style.backgroundImage = "url('https://images.unsplash.com/photo-1589561084283-930aa7b1ce50?auto=format&fit=crop&w=800&q=80')";
+    } else if (city === "ankara") {
+      // Ankara Silüeti
+      header.style.backgroundImage = "url('https://images.unsplash.com/photo-1584282479262-5a21e4223d6a?auto=format&fit=crop&w=800&q=80')";
+    } else {
+      // İstanbul Boğaz Köprüsü
+      header.style.backgroundImage = "url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=80')";
+    }
+  }
+
   function openDetail(store, address, product, phone, distance, rating, reviewCount, imgSrc, instaUser, waNumber, isOpen, timeText) {
     document.getElementById("modalStoreName").innerText = store;
     document.getElementById("modalProductTitle").innerText = product;
     document.getElementById("modalStoreAddress").innerText = address;
     document.getElementById("modalStoreDistance").innerText = distance + " uzakta";
     document.getElementById("modalPhoneText").innerText = phone;
-    document.getElementById("modalRatingBadge").innerText = "★ " + rating;
-    document.getElementById("modalScoreBig").innerText = rating;
-    document.getElementById("modalTotalReviews").innerText = reviewCount + " değerlendirme";
     document.getElementById("modalStoreImg").src = imgSrc;
 
     let statusContainer = document.getElementById("modalOpenStatus");
     if (isOpen) {
-      statusContainer.innerHTML = `<span class="open-status-badge open">🟢 Bugün AÇIK • ${timeText}</span>`;
+      statusContainer.innerHTML = `<span style="color:#10b981;">🟢 Bugün AÇIK • ${timeText} kapanıyor</span>`;
     } else {
-      statusContainer.innerHTML = `<span class="open-status-badge closed">🔴 Bugün KAPALI • ${timeText}</span>`;
+      statusContainer.innerHTML = `<span style="color:#ef4444;">🔴 Bugün KAPALI • ${timeText} açılıyor</span>`;
     }
     
     document.getElementById("callLink").href = "tel:" + phone.replace(/\s+/g, '');
@@ -441,31 +616,11 @@
     document.getElementById("waLink").href = "https://wa.me/" + waNumber;
     document.getElementById("mapsLink").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(store + " " + address);
     
-    switchTab('contact');
     document.getElementById("detailModal").style.display = "flex";
   }
 
   function closeDetail() {
     document.getElementById("detailModal").style.display = "none";
-  }
-
-  function switchTab(tabName) {
-    let contactTab = document.getElementById("contactTab");
-    let reviewsTab = document.getElementById("reviewsTab");
-    let contactBtn = document.getElementById("tabContactBtn");
-    let reviewsBtn = document.getElementById("tabReviewsBtn");
-
-    if (tabName === 'contact') {
-      contactTab.classList.add("active");
-      reviewsTab.classList.remove("active");
-      contactBtn.classList.add("active");
-      reviewsBtn.classList.remove("active");
-    } else {
-      reviewsTab.classList.add("active");
-      contactTab.classList.remove("active");
-      reviewsBtn.classList.add("active");
-      contactBtn.classList.remove("active");
-    }
   }
 
   function filterResults() {
@@ -474,11 +629,10 @@
 
     cards.forEach(card => {
       let tags = card.getAttribute("data-tags").toLowerCase();
-      let desc = card.querySelector(".product-desc").innerText.toLowerCase();
-      let store = card.querySelector(".store-info h3").innerText.toLowerCase();
+      let store = card.querySelector(".store-title").innerText.toLowerCase();
 
-      if (tags.includes(query) || desc.includes(query) || store.includes(query) || query === "") {
-        card.style.display = "block";
+      if (tags.includes(query) || store.includes(query) || query === "") {
+        card.style.display = "flex";
       } else {
         card.style.display = "none";
       }
@@ -495,18 +649,11 @@
     cards.forEach(card => {
       let cardCat = card.getAttribute("data-category");
       if (category === 'Tümü' || cardCat.includes(category)) {
-        card.style.display = "block";
+        card.style.display = "flex";
       } else {
         card.style.display = "none";
       }
     });
-  }
-
-  // Service Worker Kaydı (PWA Uygulama Desteği)
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js')
-      .then(() => console.log('Service Worker başarıyla kaydedildi.'))
-      .catch((error) => console.log('Service Worker kaydı başarısız:', error));
   }
 </script>
 
