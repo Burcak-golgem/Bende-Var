@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BENDE VAR - TechHub UI Exact Match</title>
+  <title>BENDE VAR - Güvenli Yerel Esnaf Ağı</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
@@ -15,71 +15,115 @@
       --brand-accent: #facc15;
       --text-main: #0f172a;
       --text-muted: #64748b;
-      --border-subtle: #f1f5f9;
+      --border-subtle: #e2e8f0;
       --star-color: #f59e0b;
       --shadow-sm: 0 4px 16px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 10px 25px rgba(15, 23, 42, 0.08);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; }
     
     body { 
-      background-color: #cbd5e1; 
+      background-color: #0f172a; 
       color: var(--text-main); 
       display: flex; 
       justify-content: center; 
-      align-items: flex-start; 
+      align-items: center; 
       min-height: 100vh; 
       padding: 20px 0; 
       -webkit-font-smoothing: antialiased;
     }
     
+    /* MOBİL EKRAN DIŞ ÇERÇEVESİ */
     .app-container {
       width: 100%;
       max-width: 410px;
+      height: 860px;
       background: var(--bg-app);
-      min-height: 880px;
       border-radius: 44px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
       display: flex;
       flex-direction: column;
       position: relative;
       overflow: hidden;
       border: 8px solid #ffffff;
-      padding-bottom: 78px;
     }
 
-    /* STATUS BAR SIMULATION */
+    /* PÜRÜZSÜZ DİKEY KAYDIRMA ALANI */
+    .scrollable-content {
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 85px;
+      scrollbar-width: none;
+    }
+    .scrollable-content::-webkit-scrollbar { display: none; }
+
+    /* STATUS BAR */
     .status-bar {
       padding: 12px 24px 6px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 800;
       color: var(--primary-dark);
       background: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 30;
     }
 
-    /* ÜST HEADER (HAMBURGER, TECHHUB STYLE LOGO, BİLDİRİM - SEPET YOK) */
+    /* KONUM VE ŞEHİR SEÇİCİ */
+    .location-bar-top {
+      background: #ffffff;
+      padding: 8px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .location-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .location-select {
+      background: transparent;
+      border: none;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* BRAND LOGO VE ÜST BİLDİRİM */
     .top-header {
       background: #ffffff;
-      padding: 10px 20px 12px 20px;
+      padding: 10px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .icon-btn-ghost {
-      font-size: 20px;
+      font-size: 18px;
       cursor: pointer;
       color: var(--primary-dark);
-      background: transparent;
+      background: #f8fafc;
       width: 36px;
       height: 36px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: none;
+      border: 1px solid var(--border-subtle);
+      transition: all 0.2s ease;
     }
 
     .brand-logo-center {
@@ -95,21 +139,17 @@
       letter-spacing: -0.5px;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
     }
 
-    .brand-title span.lightning {
-      color: #2563eb;
-      font-size: 22px;
-    }
-
+    .brand-title span.lightning { color: #2563eb; }
     .brand-title span.badge {
       background: var(--brand-accent);
       color: var(--primary-dark);
       padding: 1px 8px;
       border-radius: 8px;
       font-weight: 900;
-      font-size: 16px;
+      font-size: 14px;
     }
 
     .brand-sub {
@@ -121,13 +161,14 @@
       margin-top: 1px;
     }
 
-    /* ARAMA BAR VE FİLTRE BUTONU (GÖRSELDEKİ BİREBİR) */
+    /* ARAMA ÇUBUĞU */
     .search-filter-section {
-      padding: 6px 20px 14px 20px;
+      padding: 10px 20px 14px 20px;
       background: #ffffff;
       display: flex;
       gap: 10px;
       align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
     }
 
     .search-bar-box {
@@ -150,9 +191,7 @@
       color: var(--primary-dark);
     }
 
-    .search-bar-box input::placeholder {
-      color: #94a3b8;
-    }
+    .search-bar-box input::placeholder { color: #94a3b8; }
 
     .filter-btn-circle {
       width: 40px;
@@ -164,171 +203,107 @@
       justify-content: center;
       cursor: pointer;
       font-size: 15px;
-      border: none;
+      border: 1px solid var(--border-subtle);
       color: var(--primary-dark);
     }
 
-    /* BİREBİR KOYU BANNER (NEW ARRIVALS) */
-    .hero-banner-wrapper {
-      padding: 10px 20px 6px 20px;
-      background: #ffffff;
-    }
-
+    /* BANNER BÖLÜMÜ */
+    .hero-banner-wrapper { padding: 14px 20px 10px 20px; }
     .hero-dark-card {
-      background: linear-gradient(135deg, #070d1e 0%, #111a2e 100%);
-      border-radius: 26px;
-      padding: 20px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      border-radius: 24px;
+      padding: 18px;
       color: #ffffff;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+      box-shadow: var(--shadow-md);
     }
 
-    .hero-text-side {
-      max-width: 58%;
-    }
+    .hero-text-side { max-width: 60%; }
+    .hero-badge-text { font-size: 9px; font-weight: 800; color: #60a5fa; letter-spacing: 0.8px; margin-bottom: 4px; }
+    .hero-title { font-size: 15px; font-weight: 900; line-height: 1.25; }
+    .hero-desc { font-size: 10px; opacity: 0.8; margin: 6px 0 12px 0; line-height: 1.35; }
+    .btn-shop-now { background: #2563eb; color: #ffffff; border: none; padding: 8px 14px; border-radius: 12px; font-size: 11px; font-weight: 800; cursor: pointer; }
+    .hero-img-side { width: 105px; height: 95px; object-fit: contain; }
 
-    .hero-badge-text {
-      font-size: 9.5px;
-      font-weight: 800;
-      color: #3b82f6;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
+    .slider-dots { display: flex; justify-content: center; gap: 5px; margin-top: 8px; }
+    .dot { width: 6px; height: 6px; background: #cbd5e1; border-radius: 50%; }
+    .dot.active { width: 18px; background: #2563eb; border-radius: 4px; }
 
-    .hero-title {
-      font-size: 16px;
-      font-weight: 900;
-      line-height: 1.2;
-      letter-spacing: -0.3px;
-    }
-
-    .hero-desc {
-      font-size: 10px;
-      opacity: 0.75;
-      margin: 6px 0 14px 0;
-      line-height: 1.35;
-    }
-
-    .btn-shop-now {
-      background: #2563eb;
-      color: #ffffff;
-      border: none;
-      padding: 9px 16px;
-      border-radius: 16px;
-      font-size: 11px;
-      font-weight: 800;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-img-side {
-      width: 115px;
-      height: 110px;
-      object-fit: contain;
-    }
-
-    .slider-dots {
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      margin-top: 10px;
+    /* YENİ: TEK SIRA YATAY KAYDIRMALI KATEGORİ ALANI */
+    .category-container {
+      margin: 10px 20px 16px 20px;
       background: #ffffff;
-      padding-bottom: 8px;
+      border-radius: 24px;
+      padding: 14px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
     }
 
-    .dot {
-      width: 6px;
-      height: 6px;
-      background: #cbd5e1;
-      border-radius: 50%;
-    }
-    .dot.active {
-      width: 18px;
-      background: #2563eb;
-      border-radius: 4px;
-    }
-
-    /* GÖRSELDEKİ DAİRESEL KATEGORİ SİMGELERİ */
-    .categories-circle-scroll {
+    .category-scroll-row {
       display: flex;
-      gap: 12px;
+      gap: 16px;
       overflow-x: auto;
-      padding: 10px 20px 18px 20px;
       scrollbar-width: none;
-      background: #ffffff;
-      border-bottom-left-radius: 28px;
-      border-bottom-right-radius: 28px;
+      -webkit-overflow-scrolling: touch;
+      padding: 2px 4px;
     }
-    .categories-circle-scroll::-webkit-scrollbar { display: none; }
+    
+    .category-scroll-row::-webkit-scrollbar {
+      display: none;
+    }
 
-    .cat-circle-item {
+    .cat-item-card {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 6px;
       cursor: pointer;
       flex-shrink: 0;
+      width: 58px;
     }
 
-    .circle-icon-box {
-      width: 54px;
-      height: 54px;
-      background: #f1f5f9;
+    .cat-icon-circle {
+      width: 48px;
+      height: 48px;
+      background: #f8fafc;
+      border: 1px solid var(--border-subtle);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 20px;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
     }
 
-    .cat-circle-item.active .circle-icon-box {
+    .cat-item-card:hover .cat-icon-circle,
+    .cat-item-card.active .cat-icon-circle {
       background: var(--primary-dark);
       color: #ffffff;
+      border-color: var(--primary-dark);
     }
 
-    .circle-label {
-      font-size: 10.5px;
-      font-weight: 700;
-      color: var(--text-muted);
-    }
-
-    .cat-circle-item.active .circle-label {
+    .cat-label-text {
+      font-size: 9.5px;
+      font-weight: 800;
       color: var(--primary-dark);
+      text-align: center;
+      white-space: nowrap;
     }
 
     /* SECTION HEADER */
     .section-header {
-      padding: 18px 20px 12px 20px;
+      padding: 10px 20px 8px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .section-title {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--primary-dark);
-      letter-spacing: -0.3px;
-    }
+    .section-title { font-size: 15px; font-weight: 800; color: var(--primary-dark); }
+    .section-link { font-size: 12px; font-weight: 700; color: #2563eb; text-decoration: none; }
 
-    .section-link {
-      font-size: 12px;
-      font-weight: 700;
-      color: #2563eb;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 3px;
-    }
-
-    /* GÖRSELDEKİ BİREBİR ÜRÜN KARTLARI (KAYDIRILABİLİR YATAY AKIŞ) */
+    /* ÖNE ÇIKAN ÜRÜN KARTLARI */
     .horizontal-cards-scroll {
       display: flex;
       gap: 12px;
@@ -340,9 +315,9 @@
 
     .product-grid-card {
       background: #ffffff;
-      border-radius: 22px;
-      padding: 12px;
-      width: 150px;
+      border-radius: 20px;
+      padding: 10px;
+      width: 155px;
       flex-shrink: 0;
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-sm);
@@ -350,147 +325,87 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      position: relative;
     }
 
     .product-img-box {
       width: 100%;
-      height: 110px;
+      height: 100px;
       border-radius: 14px;
-      overflow: hidden;
-      margin-bottom: 10px;
-      position: relative;
       background: #f8fafc;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .product-img-box img {
-      width: 85%;
-      height: 85%;
-      object-fit: contain;
-    }
-
-    /* KART ROZETLERİ (BESTSELLER / TRENDING / POPULAR) */
-    .pill-badge {
-      position: absolute;
-      top: 0; left: 0;
-      font-size: 8px;
-      font-weight: 800;
-      color: #ffffff;
-      padding: 3px 8px;
-      border-bottom-right-radius: 10px;
-      border-top-left-radius: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .pill-badge.bestseller { background: #2563eb; }
-    .pill-badge.trending { background: #10b981; }
-    .pill-badge.popular { background: #7c3aed; }
-
-    .product-card-title {
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--primary-dark);
-      line-height: 1.3;
-      margin-bottom: 6px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      height: 30px;
-    }
-
-    .rating-line {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--text-muted);
+      position: relative;
       margin-bottom: 8px;
     }
 
+    .product-img-box img { width: 80%; height: 80%; object-fit: contain; }
+
+    .pill-badge {
+      position: absolute;
+      top: 0; left: 0;
+      font-size: 7.5px;
+      font-weight: 800;
+      color: #ffffff;
+      padding: 3px 6px;
+      border-bottom-right-radius: 8px;
+      border-top-left-radius: 12px;
+      text-transform: uppercase;
+    }
+    .pill-badge.bestseller { background: #2563eb; }
+    .pill-badge.popular { background: #7c3aed; }
+
+    .product-card-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      line-height: 1.3;
+      margin-bottom: 4px;
+      height: 28px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .rating-line { font-size: 10px; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; }
     .rating-stars { color: var(--star-color); }
 
-    .product-bottom-line {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    .product-bottom-line { display: flex; justify-content: space-between; align-items: center; }
+    .product-price { font-size: 13px; font-weight: 900; color: var(--primary-dark); }
+    .detail-action-btn { width: 26px; height: 26px; background: #2563eb; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; border: none; }
 
-    .product-price {
-      font-size: 13.5px;
+    /* VİTRİN VE KAMPANYA ALANI */
+    .vitrin-banner {
+      margin: 16px 20px 10px 20px;
+      background: var(--primary-dark);
+      color: #ffffff;
+      text-align: center;
+      padding: 10px;
       font-weight: 900;
-      color: var(--primary-dark);
+      font-size: 13px;
+      letter-spacing: 2px;
+      border-radius: 14px;
     }
 
-    .detail-action-btn {
-      width: 28px;
-      height: 28px;
-      background: #2563eb;
-      color: #ffffff;
-      border-radius: 50%;
+    .showcase-card {
+      margin: 0 20px 14px 20px;
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-sm);
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 800;
-      border: none;
     }
 
-    /* BENDE VAR İLE İLGİLİ ALT BÖLÜM BANNER (SPECIAL OFFER / UPGRADE) */
-    .bottom-offer-banner {
-      margin: 16px 20px 20px 20px;
-      background: linear-gradient(135deg, #070d1e 0%, #1e293b 100%);
-      border-radius: 24px;
-      padding: 16px 18px;
-      color: #ffffff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-    }
+    .showcase-body { padding: 16px; flex: 1; }
+    .showcase-title { font-size: 15px; font-weight: 900; color: var(--primary-dark); line-height: 1.25; }
+    .showcase-subtitle { font-size: 10px; color: var(--text-muted); margin: 6px 0 10px 0; }
+    .btn-showcase { background: var(--primary-dark); color: #ffffff; border: none; padding: 6px 12px; border-radius: 10px; font-size: 10px; font-weight: 800; cursor: pointer; }
+    .showcase-img { width: 110px; height: 110px; object-fit: cover; }
 
-    .offer-text-side {
-      max-width: 60%;
-    }
-
-    .offer-badge {
-      font-size: 8.5px;
-      font-weight: 800;
-      color: #3b82f6;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-
-    .offer-title {
-      font-size: 14px;
-      font-weight: 900;
-      line-height: 1.25;
-    }
-
-    .offer-desc {
-      font-size: 9.5px;
-      opacity: 0.75;
-      margin: 4px 0 10px 0;
-    }
-
-    .btn-explore {
-      background: #2563eb;
-      color: #ffffff;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 12px;
-      font-size: 10px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    /* GÖRSELDEKİ ALT NAVİGASYON BAR (SEPET YOKTUR) */
+    /* ALT NAVİGASYON BARI */
     .bottom-nav {
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -500,404 +415,252 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
-      z-index: 10;
+      z-index: 30;
       padding: 0 10px;
     }
 
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 10px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
+    .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--text-muted); text-decoration: none; font-size: 10px; font-weight: 700; cursor: pointer; }
     .nav-item.active { color: #2563eb; }
     .nav-icon { font-size: 18px; }
-
-    /* MODAL DETAY PENCERESİ */
-    .modal-overlay {
-      position: absolute; inset: 0;
-      background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px);
-      display: none; justify-content: flex-end; flex-direction: column; z-index: 100;
-    }
-
-    .modal-content {
-      background: #ffffff; border-top-left-radius: 32px; border-top-right-radius: 32px;
-      padding: 20px; max-height: 90vh; overflow-y: auto;
-      animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-
-    .modal-drag-indicator { width: 36px; height: 4px; background: #e2e8f0; border-radius: 10px; margin: 0 auto 14px auto; }
-    .modal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
-    .modal-store-name { font-size: 18px; font-weight: 800; color: var(--primary-dark); }
-    .modal-product-title { font-size: 13px; color: var(--text-muted); font-weight: 500; }
-    .close-btn { background: #f1f5f9; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 13px; font-weight: 700; cursor: pointer; color: var(--text-muted); }
-
-    .modal-store-img-wrapper { width: 100%; height: 160px; border-radius: 18px; overflow: hidden; margin-bottom: 14px; }
-    .modal-store-img { width: 100%; height: 100%; object-fit: cover; }
-
-    .info-group { background: #f8fafc; border-radius: 16px; padding: 12px; margin-bottom: 14px; display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; font-weight: 600; }
-
-    .modal-tabs { display: flex; background: #f1f5f9; padding: 4px; border-radius: 14px; margin-bottom: 14px; }
-    .tab-btn { flex: 1; padding: 9px 0; border: none; background: transparent; font-size: 12px; font-weight: 700; color: var(--text-muted); border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
-    .tab-btn.active { background: #ffffff; color: var(--primary-dark); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-
-    .tab-content { display: none; }
-    .tab-content.active { display: flex; flex-direction: column; gap: 8px; }
-
-    .rating-summary-card { background: #fafafb; border: 1px solid var(--border-subtle); border-radius: 16px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; }
-    .rating-score-box { display: flex; align-items: baseline; gap: 4px; }
-    .rating-score-big { font-size: 22px; font-weight: 900; color: var(--primary-dark); }
-    .rating-score-max { font-size: 12px; color: var(--text-muted); font-weight: 600; }
-    .rating-stars-gold { color: var(--star-color); font-size: 13px; }
-    .rating-total-count { font-size: 11.5px; color: var(--text-muted); font-weight: 600; }
-
-    .review-card { background: #ffffff; border: 1px solid var(--border-subtle); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
-    .review-card-top { display: flex; justify-content: space-between; align-items: center; }
-    .review-author { font-size: 12px; font-weight: 700; color: var(--primary-dark); }
-    .review-date { font-size: 10.5px; color: var(--text-muted); }
-    .review-body { font-size: 12px; color: #475569; line-height: 1.4; }
-
-    .btn-call-card { background: #2563eb; color: #ffffff; text-decoration: none; padding: 14px 18px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; font-weight: 800; }
-    .btn-action { text-decoration: none; padding: 12px; border-radius: 14px; text-align: center; font-weight: 700; font-size: 13px; display: flex; justify-content: center; align-items: center; gap: 8px; }
-    .btn-instagram { background: linear-gradient(135deg, #e1306c 0%, #c13584 100%); color: #ffffff; }
-    .btn-whatsapp { background: #10b981; color: #ffffff; }
-    .btn-maps { background: #ffffff; color: #0f172a; border: 1.5px solid var(--border-subtle); }
   </style>
 </head>
 <body>
 
 <div class="app-container">
   
-  <!-- STATUS BAR SIMULATION -->
+  <!-- STATUS BAR -->
   <div class="status-bar">
     <span>9:41</span>
     <span style="letter-spacing: 2px;">📶 📡 🔋</span>
   </div>
 
-  <!-- ÜST HEADER: HAMBURGER, MARKA LOGOSU, BİLDİRİM -->
-  <div class="top-header">
-    <button class="icon-btn-ghost">☰</button>
-    <div class="brand-logo-center">
-      <div class="brand-title"><span class="lightning">⚡</span> TECHHUB <span class="badge">VAR</span></div>
-      <span class="brand-sub">FUTURE. CONNECTED.</span>
+  <!-- KAYDIRILABİLİR İÇERİK -->
+  <div class="scrollable-content">
+
+    <!-- KONUM / SEMT SEÇİMİ -->
+    <div class="location-bar-top">
+      <div class="location-pill">
+        📍 
+        <select class="location-select">
+          <option>Zeytinburnu, İstanbul</option>
+          <option>Konak, İzmir</option>
+          <option>Çankaya, Ankara</option>
+        </select>
+      </div>
+      <span style="font-size: 10px; color: var(--text-muted); font-weight: 700;">Konum Değiştir</span>
     </div>
-    <button class="icon-btn-ghost">🔔</button>
+
+    <!-- LOGO HEADER -->
+    <div class="top-header">
+      <button class="icon-btn-ghost">☰</button>
+      <div class="brand-logo-center">
+        <div class="brand-title"><span class="lightning">⚡</span> BENDE <span class="badge">VAR</span></div>
+        <span class="brand-sub">GÜVENLİ YEREL ESNAF AĞI</span>
+      </div>
+      <button class="icon-btn-ghost">🔔</button>
+    </div>
+
+    <!-- ARAMA BARI -->
+    <div class="search-filter-section">
+      <div class="search-bar-box">
+        <span>🔍</span>
+        <input type="text" id="searchInput" placeholder="Ürün, hizmet veya esnaf arayın..." onkeyup="filterResults()">
+      </div>
+      <button class="filter-btn-circle">⚙️</button>
+    </div>
+
+    <!-- HERO BANNER -->
+    <div class="hero-banner-wrapper">
+      <div class="hero-dark-card">
+        <div class="hero-text-side">
+          <div class="hero-badge-text">YENİ DÖNEM</div>
+          <div class="hero-title">ARADIĞIN ÜRÜN<br>MAHALLEDE VAR.</div>
+          <div class="hero-desc">İhtiyacın olan tüm ürünler komşunda seni bekliyor.</div>
+          <button class="btn-shop-now">ŞİMDİ İNCELE ➔</button>
+        </div>
+        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=400&q=80" class="hero-img-side" alt="Tech">
+      </div>
+      <div class="slider-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+
+    <!-- TEK SIRA YATAY KAYDIRMALI KATEGORİLER -->
+    <div class="category-container">
+      <div class="category-scroll-row">
+        
+        <div class="cat-item-card active">
+          <div class="cat-icon-circle">🍔</div>
+          <span class="cat-label-text">Yemek</span>
+        </div>
+
+        <div class="cat-item-card">
+          <div class="cat-icon-circle">☕</div>
+          <span class="cat-label-text">Kafe</span>
+        </div>
+
+        <div class="cat-item-card">
+          <div class="cat-icon-circle">🍎</div>
+          <span class="cat-label-text">Manav</span>
+        </div>
+
+        <div class="cat-item-card">
+          <div class="cat-icon-circle">🛒</div>
+          <span class="cat-label-text">Market</span>
+        </div>
+
+        <div class="cat-item-card">
+          <div class="cat-icon-circle">🥩</div>
+          <span class="cat-label-text">Kasap</span>
+        </div>
+
+        <div class="cat-item-card">
+          <div class="cat-icon-circle">👕</div>
+          <span class="cat-label-text">Giyim</span>
+        </div>
+
+        <div class="cat-item-card">
+          <div class="cat-icon-circle">👟</div>
+          <span class="cat-label-text">Ayakkabı</span>
+        </div>
+
+        <div class="cat-item-card">
+          <div class="cat-icon-circle">🛏️</div>
+          <span class="cat-label-text">Ev Tekstili</span>
+        </div>
+
+        <div class="cat-item-card">
+          <div class="cat-icon-circle">🕶️</div>
+          <span class="cat-label-text">Aksesuar</span>
+        </div>
+
+        <div class="cat-item-card">
+          <div class="cat-icon-circle">💄</div>
+          <span class="cat-label-text">Kozmetik</span>
+        </div>
+
+        <div class="cat-item-card">
+          <div class="cat-icon-circle">🪑</div>
+          <span class="cat-label-text">Mobilya</span>
+        </div>
+
+        <div class="cat-item-card">
+          <div class="cat-icon-circle">🛠️</div>
+          <span class="cat-label-text">Tamir</span>
+        </div>
+
+        <div class="cat-item-card">
+          <div class="cat-icon-circle">🧼</div>
+          <span class="cat-label-text">Yıkama</span>
+        </div>
+
+        <div class="cat-item-card">
+          <div class="cat-icon-circle">🧰</div>
+          <span class="cat-label-text">Nalbur</span>
+        </div>
+
+        <div class="cat-item-card">
+          <div class="cat-icon-circle">🏠</div>
+          <span class="cat-label-text">Emlak</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ÖNE ÇIKANLAR -->
+    <div class="section-header">
+      <div class="section-title">Öne Çıkanlar</div>
+      <a href="#" class="section-link">Tümü ➔</a>
+    </div>
+
+    <div class="horizontal-cards-scroll">
+      <div class="product-grid-card">
+        <div class="product-img-box">
+          <div class="pill-badge bestseller">ÇOK SATAN</div>
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80" alt="Kulaklık">
+        </div>
+        <div class="product-card-title">Kablosuz Gürültü Önleyici Kulaklık</div>
+        <div class="rating-line"><span class="rating-stars">★ 4.8</span> (1.2K+)</div>
+        <div class="product-bottom-line">
+          <div class="product-price">₺1.299</div>
+          <button class="detail-action-btn">➔</button>
+        </div>
+      </div>
+
+      <div class="product-grid-card">
+        <div class="product-img-box">
+          <div class="pill-badge popular">POPÜLER</div>
+          <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=600&q=80" alt="Şarj">
+        </div>
+        <div class="product-card-title">MagSafe 3'ü 1 Arada Şarj İstasyonu</div>
+        <div class="rating-line"><span class="rating-stars">★ 4.6</span> (743+)</div>
+        <div class="product-bottom-line">
+          <div class="product-price">₺499</div>
+          <button class="detail-action-btn">➔</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VİTRİN BÖLÜMÜ -->
+    <div class="vitrin-banner">VİTRİN</div>
+
+    <div class="showcase-card">
+      <div class="showcase-body">
+        <div class="showcase-title">Doğal Bakım,<br>Işıltılı Ciltler</div>
+        <div class="showcase-subtitle">Doğal içerikli ürünlerle cildinize sağlık katın.</div>
+        <button class="btn-showcase">İncele ➔</button>
+      </div>
+      <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80" class="showcase-img" alt="Cilt Bakımı">
+    </div>
+
+    <!-- ALT KAMPANYA BANNER -->
+    <div class="hero-banner-wrapper">
+      <div class="hero-dark-card">
+        <div class="hero-text-side">
+          <div class="hero-badge-text">ÖZEL TEKLİF</div>
+          <div class="hero-title">ÇALIŞMA ALANINI YENİLE</div>
+          <div class="hero-desc">Daha verimli bir yaşam için ergonomik çözümler.</div>
+          <button class="btn-shop-now">FIRSATLARI GÖR ➔</button>
+        </div>
+        <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=300&q=80" class="hero-img-side" alt="Masa Düzeni">
+      </div>
+    </div>
+
   </div>
 
-  <!-- ARAMA BAR VE FİLTRE BUTONU -->
-  <div class="search-filter-section">
-    <div class="search-bar-box">
-      <span>🔍</span>
-      <input type="text" id="searchInput" placeholder="Search gadgets, electronics, accessories..." onkeyup="filterResults()">
-    </div>
-    <button class="filter-btn-circle">⚙️</button>
-  </div>
-
-  <!-- BİREBİR KOYU BANNER (NEW ARRIVALS) -->
-  <div class="hero-banner-wrapper">
-    <div class="hero-dark-card">
-      <div class="hero-text-side">
-        <div class="hero-badge-text">NEW ARRIVALS</div>
-        <div class="hero-title">SMART TECH.<br>BETTER EVERY DAY.</div>
-        <div class="hero-desc">Discover the latest gadgets designed for work, entertainment & everyday life.</div>
-        <button class="btn-shop-now">SHOP NOW ➔</button>
-      </div>
-      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=400&q=80" class="hero-img-side" alt="Tech">
-    </div>
-    <div class="slider-dots">
-      <div class="dot active"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
-  </div>
-
-  <!-- DAİRESEL KATEGORİ SİMGELERİ -->
-  <div class="categories-circle-scroll">
-    <div class="cat-circle-item active" onclick="filterCategory('Tümü', event)">
-      <div class="circle-icon-box">📱</div>
-      <span class="circle-label">Phones</span>
-    </div>
-    <div class="cat-circle-item" onclick="filterCategory('Aksesuar', event)">
-      <div class="circle-icon-box">🎧</div>
-      <span class="circle-label">Audio</span>
-    </div>
-    <div class="cat-circle-item" onclick="filterCategory('Ev', event)">
-      <div class="circle-icon-box">🏠</div>
-      <span class="circle-label">Smart Home</span>
-    </div>
-    <div class="cat-circle-item" onclick="filterCategory('Oyun', event)">
-      <div class="circle-icon-box">🎮</div>
-      <span class="circle-label">Gaming</span>
-    </div>
-    <div class="cat-circle-item" onclick="filterCategory('Bilgisayar', event)">
-      <div class="circle-icon-box">💻</div>
-      <span class="circle-label">Computers</span>
-    </div>
-    <div class="cat-circle-item" onclick="filterCategory('Gadget', event)">
-      <div class="circle-icon-box">🚁</div>
-      <span class="circle-label">Gadgets</span>
-    </div>
-  </div>
-
-  <!-- TRENDING ELECTRONICS BAŞLIĞI -->
-  <div class="section-header">
-    <div class="section-title">Trending Electronics</div>
-    <a href="#" class="section-link">View All ➔</a>
-  </div>
-
-  <!-- GÖRSELDEKİ BİREBİR ÜRÜN KARTLARI LİSTESİ -->
-  <div class="horizontal-cards-scroll" id="resultsContainer">
-    
-    <!-- ÜRÜN 1 (BESTSELLER) -->
-    <div class="product-grid-card" data-category="Aksesuar" data-tags="wireless noise-cancelling headphones kulaklik" onclick="openDetail('Wireless Noise-Cancelling Headphones', 'Kadıköy Mah. Moda Cad. No:12', 'Kablosuz Rüzgar & Ses Önleyici Kulaklık', '0212 416 33 22', '1.2 km', '4.8', '1200', 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80', 'audiohouse', '902124163322', true, '20:00')">
-      <div class="product-img-box">
-        <div class="pill-badge bestseller">BESTSELLER</div>
-        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80" alt="Headphones">
-      </div>
-      <div class="product-card-title">Wireless Noise-Cancelling Headphones</div>
-      <div class="rating-line">
-        <span class="rating-stars">★ 4.8</span>
-        <span>(1.2K+)</span>
-      </div>
-      <div class="product-bottom-line">
-        <div class="product-price">$129.99</div>
-        <button class="detail-action-btn">➔</button>
-      </div>
-    </div>
-
-    <!-- ÜRÜN 2 (TRENDING) -->
-    <div class="product-grid-card" data-category="Gadget" data-tags="smart 4k mini projector projektor" onclick="openDetail('Smart 4K Mini Projector', '58. Bulvar Cad. No:45 Zeytinburnu', 'Taşınabilir Sinema Projektörü 4K', '0212 555 10 10', '800 m', '4.7', '968', 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80', 'miniprojector', '905555551010', true, '22:00')">
-      <div class="product-img-box">
-        <div class="pill-badge trending">TRENDING</div>
-        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80" alt="Projector">
-      </div>
-      <div class="product-card-title">Smart 4K Mini Projector</div>
-      <div class="rating-line">
-        <span class="rating-stars">★ 4.7</span>
-        <span>(968+)</span>
-      </div>
-      <div class="product-bottom-line">
-        <div class="product-price">$159.99</div>
-        <button class="detail-action-btn">➔</button>
-      </div>
-    </div>
-
-    <!-- ÜRÜN 3 (POPULAR) -->
-    <div class="product-grid-card" data-category="Aksesuar" data-tags="magsafe 3-in-1 charging station sarj" onclick="openDetail('MagSafe 3-in-1 Charging Station', 'Beşiktaş Cad. No:88', 'Hızlı Kablosuz Şarj İstasyonu', '0212 555 01 23', '1.5 km', '4.6', '743', 'https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=600&q=80', 'chargestation', '905550001122', true, '19:00')">
-      <div class="product-img-box">
-        <div class="pill-badge popular">POPULAR</div>
-        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=600&q=80" alt="Charger">
-      </div>
-      <div class="product-card-title">MagSafe 3-in-1 Charging Station</div>
-      <div class="rating-line">
-        <span class="rating-stars">★ 4.6</span>
-        <span>(743+)</span>
-      </div>
-      <div class="product-bottom-line">
-        <div class="product-price">$49.99</div>
-        <button class="detail-action-btn">➔</button>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- SPECIAL OFFER BANNER (ALT BANNER BİREBİR) -->
-  <div class="bottom-offer-banner">
-    <div class="offer-text-side">
-      <div class="offer-badge">SPECIAL OFFER</div>
-      <div class="offer-title">UPGRADE YOUR SETUP</div>
-      <div class="offer-desc">Smart gadgets for a smarter lifestyle.</div>
-      <button class="btn-explore">EXPLORE DEALS ➔</button>
-    </div>
-    <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=300&q=80" style="width:90px; height:70px; object-fit:cover; border-radius:12px;" alt="Setup">
-  </div>
-
-  <!-- ALT NAVİGASYON BAR (SEPET YOKTUR) -->
+  <!-- ALT NAVİGASYON -->
   <div class="bottom-nav">
     <div class="nav-item active">
       <span class="nav-icon">🏠</span>
-      <span>Home</span>
+      <span>Ana Sayfa</span>
     </div>
     <div class="nav-item">
       <span class="nav-icon">🗂️</span>
-      <span>Categories</span>
+      <span>Kategoriler</span>
     </div>
     <div class="nav-item">
       <span class="nav-icon">🏷️</span>
-      <span>Deals</span>
+      <span>Fırsatlar</span>
     </div>
     <div class="nav-item">
       <span class="nav-icon">👤</span>
-      <span>Account</span>
-    </div>
-  </div>
-
-  <!-- MODAL DETAY PENCERESİ -->
-  <div class="modal-overlay" id="detailModal">
-    <div class="modal-content">
-      <div class="modal-drag-indicator"></div>
-      <div class="modal-header">
-        <div>
-          <div class="modal-store-name" id="modalStoreName">İşletme Adı</div>
-          <div class="modal-product-title" id="modalProductTitle">Ürün Adı</div>
-        </div>
-        <button class="close-btn" onclick="closeDetail()">✕</button>
-      </div>
-
-      <div class="modal-store-img-wrapper">
-        <img id="modalStoreImg" src="" class="modal-store-img" alt="Görsel">
-      </div>
-
-      <div class="info-group">
-        <div id="modalOpenStatus"></div>
-        <div>📍 <span id="modalStoreAddress">Adres</span></div>
-        <div>🏃 <span id="modalStoreDistance">Mesafe</span></div>
-      </div>
-
-      <div class="modal-tabs">
-        <button class="tab-btn active" id="tabContactBtn" onclick="switchTab('contact')">⚡ İletişim & Konum</button>
-        <button class="tab-btn" id="tabReviewsBtn" onclick="switchTab('reviews')">💬 Yorumlar <span id="modalRatingBadge" style="color:var(--star-color);">★ 4.8</span></button>
-      </div>
-
-      <div class="tab-content active" id="contactTab">
-        <a href="#" id="callLink" class="btn-call-card">
-          <div>📞 <span id="modalPhoneText">0212...</span></div>
-          <span style="background:#ffffff; color:#2563eb; padding:6px 14px; border-radius:12px; font-weight:800; font-size:12px;">Ara</span>
-        </a>
-
-        <a href="#" id="instaLink" target="_blank" class="btn-action btn-instagram">📸 Instagram</a>
-        <a href="#" id="waLink" target="_blank" class="btn-action btn-whatsapp">💬 WhatsApp</a>
-        <a href="#" id="mapsLink" target="_blank" class="btn-action btn-maps">🗺️ Harita / Yol Tarifi</a>
-      </div>
-
-      <div class="tab-content" id="reviewsTab">
-        <div class="rating-summary-card">
-          <div>
-            <div class="rating-score-box">
-              <span class="rating-score-big" id="modalScoreBig">4.8</span>
-              <span class="rating-score-max">/ 5.0</span>
-            </div>
-            <div class="rating-stars-gold">★★★★★</div>
-          </div>
-          <div class="rating-total-count" id="modalTotalReviews">89 değerlendirme</div>
-        </div>
-
-        <div class="review-card">
-          <div class="review-card-top">
-            <span class="review-author">Mehmet T.</span>
-            <span class="review-date">Bugün</span>
-          </div>
-          <div class="rating-stars-gold" style="font-size:10px;">★★★★★</div>
-          <div class="review-body">Bende Var uygulamasından bulup hemen ulaştım. Süper hizmet!</div>
-        </div>
-      </div>
-
+      <span>Hesabım</span>
     </div>
   </div>
 
 </div>
 
 <script>
-  function openDetail(store, address, product, phone, distance, rating, reviewCount, imgSrc, instaUser, waNumber, isOpen, timeText) {
-    document.getElementById("modalStoreName").innerText = store;
-    document.getElementById("modalProductTitle").innerText = product;
-    document.getElementById("modalStoreAddress").innerText = address;
-    document.getElementById("modalStoreDistance").innerText = distance + " uzakta";
-    document.getElementById("modalPhoneText").innerText = phone;
-    document.getElementById("modalStoreImg").src = imgSrc;
-    
-    document.getElementById("modalRatingBadge").innerText = "★ " + rating;
-    document.getElementById("modalScoreBig").innerText = rating;
-    document.getElementById("modalTotalReviews").innerText = reviewCount + " değerlendirme";
-
-    let statusContainer = document.getElementById("modalOpenStatus");
-    if (isOpen) {
-      statusContainer.innerHTML = `<span style="color:#10b981;">🟢 Bugün AÇIK • ${timeText} kapanıyor</span>`;
-    } else {
-      statusContainer.innerHTML = `<span style="color:#ef4444;">🔴 Bugün KAPALI • ${timeText} açılıyor</span>`;
-    }
-    
-    document.getElementById("callLink").href = "tel:" + phone.replace(/\s+/g, '');
-    document.getElementById("instaLink").href = "https://instagram.com/" + instaUser;
-    document.getElementById("waLink").href = "https://wa.me/" + waNumber;
-    document.getElementById("mapsLink").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(store + " " + address);
-    
-    switchTab('contact');
-    document.getElementById("detailModal").style.display = "flex";
-  }
-
-  function closeDetail() {
-    document.getElementById("detailModal").style.display = "none";
-  }
-
-  function switchTab(tabName) {
-    let contactTab = document.getElementById("contactTab");
-    let reviewsTab = document.getElementById("reviewsTab");
-    let contactBtn = document.getElementById("tabContactBtn");
-    let reviewsBtn = document.getElementById("tabReviewsBtn");
-
-    if (tabName === 'contact') {
-      contactTab.classList.add("active");
-      reviewsTab.classList.remove("active");
-      contactBtn.classList.add("active");
-      reviewsBtn.classList.remove("active");
-    } else {
-      reviewsTab.classList.add("active");
-      contactTab.classList.remove("active");
-      reviewsBtn.classList.add("active");
-      contactBtn.classList.remove("active");
-    }
-  }
-
-  function normalizeText(text) {
-    return text.toLowerCase()
-      .replace(/jemsiye/g, "semsiye")
-      .replace(/ş/g, "s")
-      .replace(/ı/g, "i")
-      .replace(/ğ/g, "g")
-      .replace(/ü/g, "u")
-      .replace(/ö/g, "o")
-      .replace(/ç/g, "c");
-  }
-
   function filterResults() {
-    let rawQuery = document.getElementById("searchInput").value.trim();
-    let query = normalizeText(rawQuery);
+    let query = document.getElementById("searchInput").value.toLowerCase();
     let cards = document.querySelectorAll(".product-grid-card");
 
     cards.forEach(card => {
-      let tags = normalizeText(card.getAttribute("data-tags"));
-      let store = normalizeText(card.querySelector(".product-card-title").innerText);
-
-      if (tags.includes(query) || store.includes(query) || query === "") {
-        card.style.display = "flex";
-      } else {
-        card.style.display = "none";
-      }
-    });
-  }
-
-  function filterCategory(category, event) {
-    let cards = document.querySelectorAll(".product-grid-card");
-    let items = document.querySelectorAll(".cat-circle-item");
-
-    items.forEach(item => item.classList.remove("active"));
-    event.currentTarget.classList.add("active");
-
-    let normCategory = normalizeText(category);
-
-    cards.forEach(card => {
-      let cardCat = normalizeText(card.getAttribute("data-category"));
-      if (category === 'Tümü' || cardCat.includes(normCategory)) {
+      let title = card.querySelector(".product-card-title").innerText.toLowerCase();
+      if (title.includes(query)) {
         card.style.display = "flex";
       } else {
         card.style.display = "none";
