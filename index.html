@@ -475,7 +475,6 @@
       background: rgba(0, 0, 0, 0.6);
       z-index: 2500;
       display: none;
-      transition: opacity 0.3s ease;
     }
     .drawer-overlay.active { display: block; }
 
@@ -525,7 +524,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      transition: background 0.2s;
     }
     .drawer-action-btn.primary {
       background: #2563eb;
@@ -603,7 +601,7 @@
     .cat-grid-card span.icon { font-size: 28px; }
     .cat-grid-card span.label { font-size: 12px; font-weight: 800; color: var(--primary-dark); text-align: center; }
 
-    /* MAĞAZA DETAY MODALI */
+    /* --- MAĞAZA DETAY MODALI (ÇERÇEVE İÇİNDE TAM UYUMLU) --- */
     .store-modal-overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -617,15 +615,16 @@
 
     .store-modal-content {
       width: 100%;
-      height: 88%;
+      height: 100%; /* Çerçevenin içinde tam boyutta açılır */
       background: #110505;
-      border-top-left-radius: 32px;
-      border-top-right-radius: 32px;
+      border-radius: 38px; /* Çerçeve hatlarıyla tam uyumlu */
       overflow-y: auto;
       position: relative;
       color: #ffffff;
-      padding: 18px;
+      padding: 16px;
       scrollbar-width: none;
+      display: flex;
+      flex-direction: column;
     }
     .store-modal-content::-webkit-scrollbar { display: none; }
 
@@ -639,33 +638,33 @@
       display: flex; align-items: center; justify-content: center;
     }
 
-    .modal-header-banner { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
-    .modal-brand-info h2 { font-size: 22px; font-weight: 900; color: #ef4444; line-height: 1.1; letter-spacing: -0.5px; }
-    .modal-brand-info span { font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; color: #d1d5db; font-weight: 700; }
-    .modal-status-pill { background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.15); padding: 5px 10px; border-radius: 18px; display: flex; flex-direction: column; align-items: flex-end; }
-    .modal-status-time { font-size: 8.5px; color: #9ca3af; font-weight: 700; }
-    .modal-status-badge { font-size: 10.5px; font-weight: 900; color: #22c55e; display: flex; align-items: center; gap: 4px; }
-    .modal-status-badge::before { content: '●'; font-size: 11px; }
+    .modal-header-banner { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; margin-top: 20px; }
+    .modal-brand-info h2 { font-size: 20px; font-weight: 900; color: #ef4444; line-height: 1.1; letter-spacing: -0.5px; }
+    .modal-brand-info span { font-size: 8.5px; letter-spacing: 1.2px; text-transform: uppercase; color: #d1d5db; font-weight: 700; }
+    .modal-status-pill { background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.15); padding: 4px 8px; border-radius: 16px; display: flex; flex-direction: column; align-items: flex-end; }
+    .modal-status-time { font-size: 8px; color: #9ca3af; font-weight: 700; }
+    .modal-status-badge { font-size: 10px; font-weight: 900; color: #22c55e; display: flex; align-items: center; gap: 4px; }
+    .modal-status-badge::before { content: '●'; font-size: 10px; }
 
-    .modal-hero-card { background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%); border-radius: 20px; padding: 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .modal-hero-card { background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%); border-radius: 18px; padding: 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border: 1px solid rgba(239, 68, 68, 0.3); }
     .modal-hero-text { max-width: 55%; }
-    .modal-hero-text h3 { font-size: 16px; font-weight: 900; line-height: 1.2; color: #fef08a; margin-bottom: 4px; }
-    .modal-hero-text p { font-size: 11px; color: #f3f4f6; opacity: 0.9; }
-    .modal-hero-img { width: 110px; height: 95px; object-fit: contain; }
+    .modal-hero-text h3 { font-size: 14.5px; font-weight: 900; line-height: 1.2; color: #fef08a; margin-bottom: 4px; }
+    .modal-hero-text p { font-size: 10.5px; color: #f3f4f6; opacity: 0.9; }
+    .modal-hero-img { width: 100px; height: 85px; object-fit: contain; }
 
-    .modal-products-row { display: flex; gap: 10px; margin-bottom: 16px; overflow-x: auto; scrollbar-width: none; }
+    .modal-products-row { display: flex; gap: 8px; margin-bottom: 14px; overflow-x: auto; scrollbar-width: none; }
     .modal-products-row::-webkit-scrollbar { display: none; }
-    .modal-product-card { background: #1e1010; border-radius: 16px; padding: 8px; width: 105px; flex-shrink: 0; text-align: center; border: 1px solid rgba(255, 255, 255, 0.08); }
-    .modal-product-card img { width: 75px; height: 75px; object-fit: contain; margin-bottom: 6px; background: #2a1212; border-radius: 10px; padding: 5px; }
-    .modal-product-card span { font-size: 10.5px; font-weight: 700; color: #f3f4f6; display: block; line-height: 1.2; }
+    .modal-product-card { background: #1e1010; border-radius: 14px; padding: 8px; width: 98px; flex-shrink: 0; text-align: center; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .modal-product-card img { width: 68px; height: 68px; object-fit: contain; margin-bottom: 6px; background: #2a1212; border-radius: 10px; padding: 4px; }
+    .modal-product-card span { font-size: 10px; font-weight: 700; color: #f3f4f6; display: block; line-height: 1.2; }
 
-    .modal-slogan-box { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 10px 14px; display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-    .modal-slogan-box p { font-size: 11.5px; color: #d1d5db; font-weight: 600; }
+    .modal-slogan-box { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .modal-slogan-box p { font-size: 11px; color: #d1d5db; font-weight: 600; }
 
-    .modal-call-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: #ffffff; width: 100%; padding: 12px; border-radius: 16px; font-size: 14px; font-weight: 900; text-decoration: none; margin-bottom: 12px; }
-    .modal-action-row { display: flex; gap: 10px; margin-bottom: 16px; }
-    .modal-action-btn { flex: 1; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); padding: 10px; border-radius: 14px; display: flex; align-items: center; justify-content: center; gap: 6px; color: #ffffff; font-size: 11.5px; font-weight: 700; text-decoration: none; }
-    .modal-address-footer { text-align: center; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 10.5px; color: #9ca3af; font-weight: 600; line-height: 1.4; margin-bottom: 16px; }
+    .modal-call-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: #ffffff; width: 100%; padding: 12px; border-radius: 14px; font-size: 13.5px; font-weight: 900; text-decoration: none; margin-bottom: 10px; }
+    .modal-action-row { display: flex; gap: 8px; margin-bottom: 12px; }
+    .modal-action-btn { flex: 1; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); padding: 10px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; color: #ffffff; font-size: 11px; font-weight: 700; text-decoration: none; }
+    .modal-address-footer { text-align: center; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 10px; color: #9ca3af; font-weight: 600; line-height: 1.4; margin-top: auto; }
   </style>
 </head>
 <body>
@@ -695,7 +694,7 @@
         <span style="font-size: 11.5px; color: var(--text-muted); font-weight: 700;">Konum Değiştir</span>
       </div>
 
-      <!-- LOGO HEADER (3 ÇİZGİ BUTONU BAĞLANDI) -->
+      <!-- LOGO HEADER -->
       <div class="top-header">
         <button class="icon-btn-ghost" onclick="toggleDrawer()">☰</button>
         <div class="brand-logo-center">
@@ -767,7 +766,7 @@
         </div>
       </div>
 
-      <!-- ÖNE ÇIKANLAR (TÜMÜ BUTONU BAĞLANDI) -->
+      <!-- ÖNE ÇIKANLAR -->
       <div class="section-header">
         <div class="section-title">Öne Çıkanlar</div>
         <span class="section-link" onclick="openAllCategoriesModal()">Tümü ➔</span>
@@ -899,7 +898,7 @@
         <span class="nav-icon">🏠</span>
         <span>Ana Sayfa</span>
       </div>
-      <div class="nav-item">
+      <div class="nav-item" onclick="openAllCategoriesModal()">
         <span class="nav-icon">🗂️</span>
         <span>Kategoriler</span>
       </div>
@@ -907,7 +906,7 @@
         <span class="nav-icon">🏷️</span>
         <span>Fırsatlar</span>
       </div>
-      <div class="nav-item">
+      <div class="nav-item" onclick="toggleDrawer()">
         <span class="nav-icon">👤</span>
         <span>Hesabım</span>
       </div>
@@ -980,7 +979,7 @@
     </div>
   </div>
 
-  <!-- MAĞAZA DETAY MODALI -->
+  <!-- MAĞAZA DETAY MODALI (ÇERÇEVE İÇİNDE TAM UYUMLU) -->
   <div class="store-modal-overlay" id="storeModalOverlay" onclick="closeStoreModal(event)">
     <div class="store-modal-content" id="storeModalContent">
       <button class="modal-close-btn" onclick="closeStoreModalDirect()">✕</button>
@@ -1007,7 +1006,7 @@
       <div class="modal-products-row" id="modalProductsRow"></div>
 
       <div class="modal-slogan-box">
-        <span id="modalSloganIcon" style="font-size: 22px;">🌱</span>
+        <span id="modalSloganIcon" style="font-size: 20px;">🌱</span>
         <p id="modalSloganText">Yerel üreticiden taze, katkısız ve güvenilir alışveriş.</p>
       </div>
 
@@ -1030,13 +1029,11 @@
 </div>
 
 <script>
-  // HAMBURGER MENÜ AÇ/KAPA
   function toggleDrawer() {
     document.getElementById("drawerOverlay").classList.toggle("active");
     document.getElementById("drawerPanel").classList.toggle("active");
   }
 
-  // TÜM KATEGORİLER MODALI AÇ/KAPA
   function openAllCategoriesModal() {
     document.getElementById("catModalOverlay").classList.add("active");
   }
@@ -1049,7 +1046,6 @@
     }
   }
 
-  // 7 MAĞAZA VERİTABANI
   const storeData = {
     manav: {
       title: "Taze Köy Manavı",
