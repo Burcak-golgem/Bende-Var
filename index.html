@@ -40,7 +40,7 @@
       align-items: center;
     }
 
-    /* GERÇEKÇİ MOBİL ÇERÇEVE (IPHONE MOCKUP) */
+    /* MOBİL ÇERÇEVE (IPHONE MOCKUP) */
     .phone-mockup-wrapper {
       width: 100%;
       max-width: 420px;
@@ -55,7 +55,7 @@
       flex-direction: column;
     }
 
-    /* DİNAMİK ADA (DYNAMIC ISLAND) */
+    /* DİNAMİK ADA */
     .dynamic-island {
       position: absolute;
       top: 12px;
@@ -254,7 +254,7 @@
     .dot { width: 5px; height: 5px; background: #cbd5e1; border-radius: 50%; }
     .dot.active { width: 18px; background: #2563eb; border-radius: 3px; }
 
-    /* YATAY KAYDIRMALI KATEGORİLER */
+    /* YATAY KATEGORİLER */
     .category-container {
       margin: 0 20px 16px 20px;
       background: #ffffff;
@@ -281,7 +281,7 @@
       gap: 6px;
       cursor: pointer;
       flex-shrink: 0;
-      width: 65px;
+      width: 70px;
     }
 
     .cat-icon-circle {
@@ -471,12 +471,12 @@
     .nav-item.active { color: #2563eb; }
     .nav-icon { font-size: 20px; }
 
-    /* --- HAMBURGER YAN MENÜ --- */
+    /* HAMBURGER YAN MENÜ */
     .drawer-overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0, 0, 0, 0.6);
-      z-index: 2500;
+      z-index: 3500;
       display: none;
     }
     .drawer-overlay.active { display: block; }
@@ -486,8 +486,8 @@
       top: 0; left: -280px; bottom: 0;
       width: 280px;
       background: #ffffff;
-      z-index: 2600;
-      box-shadow: 10px 0 30px rgba(0,0,0,0.2);
+      z-index: 3600;
+      box-shadow: 10px 0 30px rgba(0,0,0,0.3);
       transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
@@ -563,12 +563,12 @@
     }
     .drawer-cat-item span { font-size: 18px; }
 
-    /* --- TÜM KATEGORİLER MODALI --- */
+    /* TÜM KATEGORİLER MODALI */
     .categories-modal-overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0, 0, 0, 0.65);
-      z-index: 2000;
+      z-index: 2500;
       display: none;
       justify-content: center;
       align-items: flex-end;
@@ -604,7 +604,7 @@
     .cat-grid-card span.icon { font-size: 28px; }
     .cat-grid-card span.label { font-size: 12px; font-weight: 800; color: var(--primary-dark); text-align: center; }
 
-    /* --- MAĞAZA DETAY MODALI (ANA SAYFA İLE BİREBİR AYNI EBATTA) --- */
+    /* MAĞAZA DETAY MODALI (SABİT MOBİL EBAT - ÇERÇEVE İÇİNDE KUSURSUZ) */
     .store-modal-overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -716,10 +716,10 @@
 
   <div class="app-container">
 
-    <!-- KAYDIRILABİLİR İÇERİK -->
+    <!-- İÇERİK ALANI -->
     <div class="scrollable-content">
 
-      <!-- KONUM / SEMT SEÇİMİ -->
+      <!-- KONUM BARI -->
       <div class="location-bar-top">
         <div class="location-pill">
           📍 
@@ -732,7 +732,7 @@
         <span style="font-size: 11.5px; color: var(--text-muted); font-weight: 700;">Konum Değiştir</span>
       </div>
 
-      <!-- LOGO HEADER -->
+      <!-- HEADER -->
       <div class="top-header">
         <button class="icon-btn-ghost" onclick="toggleDrawer()">☰</button>
         <div class="brand-logo-center">
@@ -770,11 +770,9 @@
         </div>
       </div>
 
-      <!-- TÜM KATEGORİLER (YATAY KAYDIRMALI) -->
+      <!-- 15 KATEGORİ (YATAY KAYDIRMALI) -->
       <div class="category-container">
-        <div class="category-scroll-row" id="horizontalCatRow">
-          <!-- JS ile dinamik olarak tam liste doldurulacak -->
-        </div>
+        <div class="category-scroll-row" id="horizontalCatRow"></div>
       </div>
 
       <!-- ÖNE ÇIKANLAR -->
@@ -855,9 +853,7 @@
     </div>
 
     <div class="drawer-section-label">Tüm Kategoriler</div>
-    <div class="drawer-categories-list" id="drawerCatListContainer">
-      <!-- JS ile dinamik doldurulacak -->
-    </div>
+    <div class="drawer-categories-list" id="drawerCatListContainer"></div>
   </div>
 
   <!-- TÜM KATEGORİLER MODALI -->
@@ -867,20 +863,18 @@
         <h3 style="font-size: 16px; font-weight: 900; color: var(--primary-dark);">Tüm Kategoriler</h3>
         <button onclick="closeAllCategoriesModalDirect()" style="background: #f1f5f9; border: none; width: 30px; height: 30px; border-radius: 50%; font-weight: 800; cursor: pointer;">✕</button>
       </div>
-      <div class="categories-grid" id="modalCategoriesGrid">
-        <!-- JS ile dinamik doldurulacak -->
-      </div>
+      <div class="categories-grid" id="modalCategoriesGrid"></div>
     </div>
   </div>
 
-  <!-- MAĞAZA DETAY MODALI -->
+  <!-- MAĞAZA DETAY MODALI (SABİT MOBİL EBAT) -->
   <div class="store-modal-overlay" id="storeModalOverlay">
     <div class="store-modal-content" id="storeModalContent">
       <button class="modal-close-btn" onclick="closeStoreModalDirect()">✕</button>
 
       <div class="modal-header-banner">
         <div class="modal-brand-info">
-          <h2 id="modalTitle">Taze Köy Manavı</h2>
+          <h2 id="modalTitle">Mağaza Adı</h2>
           <div class="rating-badge-row">
             <span id="modalStars">★★★★★</span>
             <span id="modalRatingVal">4.8</span>
@@ -895,21 +889,21 @@
 
       <div class="modal-hero-card">
         <div class="modal-hero-text">
-          <h3 id="modalHeroTitle">DOĞAL MAHSÜL,<br>TAZE SEBZELER.</h3>
-          <p id="modalHeroDesc">Günlük tarla ürünleri ile sofranıza sağlık katın.</p>
+          <h3 id="modalHeroTitle">KAMPANYA BAŞLIĞI</h3>
+          <p id="modalHeroDesc">Kampanya açıklaması...</p>
         </div>
-        <img id="modalHeroImg" src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=400&q=80" class="modal-hero-img" alt="Hero">
+        <img id="modalHeroImg" src="" class="modal-hero-img" alt="Hero">
       </div>
 
       <div class="modal-products-row" id="modalProductsRow"></div>
 
       <div class="modal-slogan-box">
         <span id="modalSloganIcon" style="font-size: 20px;">🌱</span>
-        <p id="modalSloganText">Yerel üreticiden taze, katkısız ve güvenilir alışveriş.</p>
+        <p id="modalSloganText">Esnaf slogan metni...</p>
       </div>
 
-      <a id="modalPhoneBtn" href="tel:05357135258" class="modal-call-btn">
-        📞 Tel: 0535 713 52 58
+      <a id="modalPhoneBtn" href="tel:05000000000" class="modal-call-btn">
+        📞 Tel: 0500 000 00 00
       </a>
 
       <div class="modal-action-row">
@@ -919,7 +913,7 @@
       </div>
 
       <div class="modal-address-footer" id="modalAddressFooter">
-        Adres: Telsiz mah. 103 sokak. No:11<br>ZEYTİNBURNU - İSTANBUL
+        Adres bilgisi...
       </div>
 
       <!-- YORUMLAR ALT PENCERESİ -->
@@ -937,7 +931,7 @@
 </div>
 
 <script>
-  // TÜM İSTENEN KATEGORİLER VE İKİŞER MAĞAZA VERİLERİ
+  // 15 KATEGORİ VE İKİŞER ÖZGÜN MAĞAZA VERİLERİ
   const categoriesData = {
     "Yemek": [
       {
@@ -1210,7 +1204,7 @@
         phone: '0533 555 88 99', address: 'Çırpıcı mah. 10. sok. No:5<br>ZEYTİNBURNU - İSTANBUL',
         mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
         products: [{ name: 'Halı Yıkama (m²)', img: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Fatma N.', comment: 'Halılardaki lekeler tamamen çıkmış, çok memnun kaldım.' }]
+        reviews: [{ user: 'Fatma N.', comment: 'Halılardaki lekeler tamamen çıkmış.' }]
       },
       {
         id: 'yikama_2', name: 'Özen Kuru Temizleme', sub: 'Takım Elbise & Hassas Çamaşır',
@@ -1331,7 +1325,7 @@
     ]
   };
 
-  // Kategori ikonları eşlemesi
+  // Kategori ikonları
   const categoryIcons = {
     "Yemek": "🍔", "Manav": "🍎", "Market": "🛒", "Kasap": "🥩", "Kafe": "☕",
     "Kıyafet": "👕", "Ayakkabı": "👟", "Aksesuar": "👜", "Kozmetik": "💄",
@@ -1346,7 +1340,7 @@
     loadDefaultStores();
   };
 
-  // Tüm kategorileri yatay menüye, hamburger menüye ve "Tümü" modalına dinamik basar
+  // Dinamik menülerin oluşturulması
   function buildCategoryMenus() {
     const horizontalRow = document.getElementById("horizontalCatRow");
     const drawerList = document.getElementById("drawerCatListContainer");
@@ -1361,7 +1355,7 @@
     for (let catName in categoriesData) {
       let icon = categoryIcons[catName] || "📦";
 
-      // 1. Yatay Kaydırmalı Menü
+      // 1. Yatay Kaydırmalı Kategori Çubuğu
       horizontalRow.innerHTML += `
         <div class="cat-item-card ${isFirst ? 'active' : ''}" onclick="filterStoresByCategory('${catName}', this)">
           <div class="cat-icon-circle">${icon}</div>
@@ -1369,7 +1363,7 @@
         </div>
       `;
 
-      // 2. Hamburger Yan Menü
+      // 2. Hamburger Yan Menü Listesi
       drawerList.innerHTML += `
         <div class="drawer-cat-item" onclick="filterStoresByCategory('${catName}'); toggleDrawer();">
           <span>${icon}</span> ${catName}
@@ -1398,7 +1392,6 @@
       document.querySelectorAll('.cat-item-card').forEach(el => el.classList.remove('active'));
       element.classList.add('active');
     } else {
-      // Hamburger menüden seçildiyse yatay menüdeki aktifliği güncelle
       document.querySelectorAll('.cat-item-card').forEach(el => {
         if(el.innerText.trim() === catName) {
           el.classList.add('active');
@@ -1476,6 +1469,26 @@
     closeReviewsModal();
   }
 
+  // Hamburger Menü Aç/Kapat Fonksiyonu
+  function toggleDrawer() {
+    document.getElementById("drawerOverlay").classList.toggle("active");
+    document.getElementById("drawerPanel").classList.toggle("active");
+  }
+
+  function openAllCategoriesModal() {
+    document.getElementById("catModalOverlay").classList.add("active");
+  }
+
+  function closeAllCategoriesModalDirect() {
+    document.getElementById("catModalOverlay").classList.remove("active");
+  }
+
+  function closeAllCategoriesModal(event) {
+    if (event.target.id === "catModalOverlay") {
+      closeAllCategoriesModalDirect();
+    }
+  }
+
   function openReviewsModal() {
     const container = document.getElementById("reviewsListContainer");
     container.innerHTML = "";
@@ -1496,23 +1509,6 @@
 
   function closeReviewsModal() {
     document.getElementById("reviewsModal").classList.remove("active");
-  }
-
-  function toggleDrawer() {
-    document.getElementById("drawerOverlay").classList.toggle("active");
-    document.getElementById("drawerPanel").classList.toggle("active");
-  }
-
-  function openAllCategoriesModal() {
-    document.getElementById("catModalOverlay").classList.add("active");
-  }
-  function closeAllCategoriesModalDirect() {
-    document.getElementById("catModalOverlay").classList.remove("active");
-  }
-  function closeAllCategoriesModal(event) {
-    if (event.target.id === "catModalOverlay") {
-      closeAllCategoriesModalDirect();
-    }
   }
 
   function filterResults() {
