@@ -18,7 +18,7 @@
     html, body {
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+      background: #0f172a;
       color: #0f172a;
       overflow: hidden;
       display: flex;
@@ -26,36 +26,52 @@
       align-items: center;
     }
 
-    /* MOBİL KASA MOCKUP */
+    /* MOBİL KASA MOCKUP (Mobilde tam ekran, büyük ekranda şık çerçeve) */
     .phone-mockup-wrapper {
       width: 100%;
+      height: 100%;
       max-width: 420px;
-      height: 100vh;
-      max-height: 880px;
-      background: #000000;
-      border-radius: 46px;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 0 12px #1e293b, 0 0 0 14px #334155;
+      max-height: 100vh;
+      background: #ffffff;
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
 
-    /* DİNAMİK ADA */
+    @media (min-width: 481px) {
+      .phone-mockup-wrapper {
+        height: 100vh;
+        max-height: 880px;
+        background: #000000;
+        border-radius: 46px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 0 12px #1e293b, 0 0 0 14px #334155;
+      }
+      .app-container {
+        border-radius: 38px;
+      }
+    }
+
+    /* DİNAMİK ADA (Sadece büyük ekranda mockup içinde şık durması için) */
     .dynamic-island {
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 26px;
-      background: #000000;
-      border-radius: 20px;
-      z-index: 5000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 8px;
+      display: none;
+    }
+    @media (min-width: 481px) {
+      .dynamic-island {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 26px;
+        background: #000000;
+        border-radius: 20px;
+        z-index: 5000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 8px;
+      }
     }
     .island-cam { width: 10px; height: 10px; background: #111; border-radius: 50%; }
     .island-sensor { width: 8px; height: 8px; background: #0d1b2a; border-radius: 50%; }
@@ -68,13 +84,12 @@
       flex-direction: column;
       position: relative;
       overflow: hidden;
-      border-radius: 38px;
     }
 
     .scrollable-content {
       flex: 1;
       overflow-y: auto;
-      padding-top: 36px;
+      padding-top: 12px; /* Üstteki kesilme sorunu tamamen giderildi */
       padding-bottom: 75px;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
@@ -587,13 +602,13 @@
     /* ÖZEL "BENDE VAR" REKLAM BANNER ŞERİDİ */
     .ad-banner-strip {
       width: 362px;
-      height: 80px;
+      min-height: 90px;
       margin: 12px 0;
-      border-radius: 12px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 16px;
+      padding: 12px 16px;
       flex-shrink: 0;
       position: relative;
       overflow: hidden;
@@ -608,7 +623,7 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(90deg, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.7) 65%, rgba(29, 78, 216, 0.5) 100%);
+      background: linear-gradient(90deg, rgba(15, 23, 42, 0.94) 0%, rgba(15, 23, 42, 0.75) 65%, rgba(29, 78, 216, 0.5) 100%);
       z-index: 1;
     }
 
@@ -617,18 +632,19 @@
       z-index: 2;
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 4px;
+      max-width: 230px;
     }
 
     .ad-brand-title {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 900;
       color: #ffffff;
       display: flex;
       align-items: center;
       gap: 5px;
       letter-spacing: -0.5px;
-      line-height: 1;
+      line-height: 1.1;
     }
 
     .ad-yellow-badge {
@@ -636,12 +652,12 @@
       color: #000000;
       padding: 1px 6px;
       border-radius: 4px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 900;
     }
 
-    .ad-slogan-desc { font-size: 10px; color: #f1f5f9; font-weight: 700; letter-spacing: 0.2px; }
-    .ad-sub-tag { font-size: 7.5px; color: #60a5fa; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+    .ad-slogan-desc { font-size: 10px; color: #f1f5f9; font-weight: 700; letter-spacing: 0.2px; line-height: 1.2; }
+    .ad-sub-tag { font-size: 8px; color: #60a5fa; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 1px; }
 
     .ad-action-btn {
       position: relative;
@@ -649,12 +665,13 @@
       background: #ef4444;
       color: #ffffff;
       border: none;
-      padding: 6px 14px;
+      padding: 7px 14px;
       border-radius: 10px;
       font-size: 10px;
       font-weight: 900;
       cursor: pointer;
       box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+      flex-shrink: 0;
     }
 
     /* ESNAFLAR BÖLÜMÜ */
@@ -856,7 +873,7 @@
         </div>
       </div>
 
-      <!-- 2. ANA BANNER SLIDER (LEDGO YERİNE BENDE VAR YAZILDI) -->
+      <!-- 2. ANA BANNER SLIDER -->
       <div class="main-hero-slider" id="mainHeroSlider">
         <div class="green-banner-card">
           <div class="banner-inner-content">
@@ -1364,23 +1381,19 @@
     filterStores(categoryKey);
   }
 
-  // YALNIZCA KULLANICI BUTONLARA BASTIĞINDA TETİKLENİR
   function filterStores(categoryKey) {
     const storeCards = document.querySelectorAll('.feature-store-card');
     const resetBtn = document.getElementById('resetFilterBtn');
     resetBtn.style.display = 'block';
 
-    // 1. Üst Slider Banner, Kampanya ve Reklam alanlarını GİZLE (REFERANS 2 HALİ)
     document.getElementById('mainHeroSlider').classList.add('hidden');
     document.getElementById('campaignSection').classList.add('hidden');
     document.getElementById('adBannerSection').classList.add('hidden');
 
-    // 2. ESNAFLAR bölümünü doğrudan alt kategorilerin altına taşı
     const categorySection = document.getElementById('categorySection');
     const esnaflarSection = document.getElementById('esnaflarSection');
     categorySection.after(esnaflarSection);
 
-    // 3. Esnafları seçilen kategoriye göre filtrele
     storeCards.forEach(card => {
       const cardCat = card.getAttribute('data-category');
       if (
@@ -1395,24 +1408,20 @@
     });
   }
 
-  // İLK AÇILIŞ DÜZENİNE VEYA LOGOYA / "FİLTREYİ TEMİZLE"YE BASILDIĞINDA TETİKLENİR
   function resetFilter() {
     const storeCards = document.querySelectorAll('.feature-store-card');
     storeCards.forEach(card => {
       card.classList.remove('hidden');
     });
 
-    // 1. Üst Banner, Kampanya ve Reklam alanlarını TEKRAR GÖSTER (REFERANS 1 HALİ)
     document.getElementById('mainHeroSlider').classList.remove('hidden');
     document.getElementById('campaignSection').classList.remove('hidden');
     document.getElementById('adBannerSection').classList.remove('hidden');
 
-    // 2. Sıralamayı Orijinal Haline Getir (Kategoriler -> Kampanya -> Reklam -> Esnaflar)
     const adBannerSection = document.getElementById('adBannerSection');
     const esnaflarSection = document.getElementById('esnaflarSection');
     adBannerSection.after(esnaflarSection);
 
-    // 3. Alt Butonları Kapat ve Başlıkları Sıfırla
     document.getElementById('resetFilterBtn').style.display = 'none';
     document.getElementById('selectedDropdownText').innerText = ':: Tüm Kategoriler';
     document.querySelectorAll('.accordion-submenu-panel').forEach(p => p.classList.remove('open'));
