@@ -7,20 +7,6 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
-    :root {
-      --bg-app: #f8fafc;
-      --card-bg: #ffffff;
-      --primary-dark: #0f172a;
-      --brand-blue: #2563eb;
-      --brand-accent: #facc15;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border-subtle: #e2e8f0;
-      --star-color: #f59e0b;
-      --shadow-sm: 0 4px 16px rgba(15, 23, 42, 0.04);
-      --shadow-md: 0 10px 25px rgba(15, 23, 42, 0.08);
-    }
-
     * { 
       box-sizing: border-box; 
       margin: 0; 
@@ -33,14 +19,14 @@
       width: 100%;
       height: 100%;
       background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
-      color: var(--text-main);
+      color: #0f172a;
       overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    /* MOBİL ÇERÇEVE */
+    /* MOBİL KASA MOCKUP (390px İç Genişlik) */
     .phone-mockup-wrapper {
       width: 100%;
       max-width: 420px;
@@ -58,11 +44,11 @@
     /* DİNAMİK ADA */
     .dynamic-island {
       position: absolute;
-      top: 12px;
+      top: 10px;
       left: 50%;
       transform: translateX(-50%);
       width: 120px;
-      height: 30px;
+      height: 26px;
       background: #000000;
       border-radius: 20px;
       z-index: 5000;
@@ -71,13 +57,13 @@
       justify-content: space-between;
       padding: 0 8px;
     }
-    .island-cam { width: 11px; height: 11px; background: #111; border-radius: 50%; }
+    .island-cam { width: 10px; height: 10px; background: #111; border-radius: 50%; }
     .island-sensor { width: 8px; height: 8px; background: #0d1b2a; border-radius: 50%; }
     
     .app-container {
       width: 100%;
       height: 100%;
-      background: var(--bg-app);
+      background: #ffffff;
       display: flex;
       flex-direction: column;
       position: relative;
@@ -88,637 +74,620 @@
     .scrollable-content {
       flex: 1;
       overflow-y: auto;
-      padding-top: 42px;
-      padding-bottom: 90px;
+      padding-top: 36px;
+      padding-bottom: 70px;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .scrollable-content::-webkit-scrollbar { display: none; }
 
-    /* KONUM BARI */
-    .location-bar-top {
-      background: #ffffff;
-      padding: 10px 20px;
+    /* 1. ÜST BAR (HEADER) & ARAMA ALANI (390px x 54px) */
+    .visual-top-header {
+      width: 390px;
+      height: 54px;
+      padding: 0 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid #f1f5f9;
+      background: #ffffff;
+      flex-shrink: 0;
     }
 
-    .location-pill {
+    .visual-brand-logo {
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--primary-dark);
     }
 
-    .location-select {
-      background: transparent;
-      border: none;
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--primary-dark);
-      outline: none;
-      cursor: pointer;
-    }
-
-    /* HEADER */
-    .top-header {
-      background: #ffffff;
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .icon-btn-ghost {
-      font-size: 18px;
-      cursor: pointer;
-      color: var(--primary-dark);
-      background: #f8fafc;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
+    .logo-icon-lightning {
+      width: 24px;
+      height: 24px;
+      font-size: 24px;
+      color: #ef4444;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--border-subtle);
+      line-height: 1;
     }
 
-    .brand-logo-center {
+    .brand-text-group {
       display: flex;
       flex-direction: column;
-      align-items: center;
     }
 
-    .brand-title {
-      font-size: 20px;
+    .brand-main-title {
+      font-size: 18px;
       font-weight: 900;
-      color: var(--primary-dark);
       letter-spacing: -0.5px;
+      color: #000000;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
+      line-height: 1;
     }
 
-    .brand-title span.lightning { color: #2563eb; }
-    .brand-title span.badge {
-      background: var(--brand-accent);
-      color: var(--primary-dark);
-      padding: 1px 8px;
-      border-radius: 6px;
+    .brand-yellow-badge {
+      background: #facc15;
+      padding: 1px 6px;
+      border-radius: 4px;
       font-weight: 900;
       font-size: 14px;
     }
 
-    .brand-sub {
-      font-size: 8.5px;
+    .brand-sub-badge {
+      font-size: 7.5px;
       font-weight: 800;
-      color: var(--brand-blue);
-      letter-spacing: 1.2px;
+      color: #2563eb;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
-      margin-top: 1px;
+      margin-top: 2px;
     }
 
-    /* ARAMA ÇUBUĞU */
-    .search-filter-section {
-      padding: 12px 20px;
-      background: #ffffff;
+    .location-box-right { text-align: right; }
+    .loc-label { font-size: 9px; color: #94a3b8; font-weight: 700; }
+    .loc-select-val { font-size: 12px; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 3px; justify-content: flex-end; }
+    .loc-change-btn { font-size: 8.5px; color: #64748b; font-weight: 700; text-decoration: underline; cursor: pointer; }
+
+    /* KATEGORİ SEÇİCİ & ARAMA BARI (42px) */
+    .search-cat-bar {
+      width: 390px;
+      height: 42px;
+      padding: 0 14px;
       display: flex;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .search-bar-box {
-      background: #f1f5f9;
-      border-radius: 24px;
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex: 1;
-    }
-
-    .search-bar-box input {
-      border: none;
-      outline: none;
-      width: 100%;
-      font-size: 13px;
-      font-weight: 600;
-      background: transparent;
-      color: var(--primary-dark);
-    }
-
-    .filter-btn-circle {
-      width: 40px;
-      height: 40px;
-      background: #f1f5f9;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 16px;
-      border: 1px solid var(--border-subtle);
-      color: var(--primary-dark);
+      margin-top: 6px;
+      margin-bottom: 10px;
       flex-shrink: 0;
     }
 
-    /* HERO BANNER */
-    .hero-banner-wrapper { padding: 16px 20px; }
-    .hero-dark-card {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      border-radius: 24px;
-      padding: 22px;
-      color: #ffffff;
+    .select-category-dropdown {
+      width: 125px;
+      height: 36px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #0f172a;
+      padding: 0 8px;
+      outline: none;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .visual-search-input {
+      width: 235px;
+      height: 36px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 0 12px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      box-shadow: var(--shadow-md);
+      gap: 6px;
+      flex-shrink: 0;
     }
 
-    .hero-text-side { max-width: 65%; }
-    .hero-badge-text { font-size: 10px; font-weight: 800; color: #60a5fa; letter-spacing: 1px; margin-bottom: 4px; }
-    .hero-title { font-size: 18px; font-weight: 900; line-height: 1.25; }
-    .hero-desc { font-size: 12px; opacity: 0.85; margin: 6px 0 12px 0; line-height: 1.4; }
-    .btn-shop-now { background: #2563eb; color: #ffffff; border: none; padding: 8px 16px; border-radius: 12px; font-size: 12px; font-weight: 800; cursor: pointer; }
-    .hero-img-side { width: 110px; height: 100px; object-fit: contain; }
-
-    .slider-dots { display: flex; justify-content: center; gap: 5px; margin-top: 10px; }
-    .dot { width: 5px; height: 5px; background: #cbd5e1; border-radius: 50%; }
-    .dot.active { width: 18px; background: #2563eb; border-radius: 3px; }
-
-    /* YATAY KATEGORİLER */
-    .category-container {
-      margin: 0 20px 16px 20px;
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 14px;
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-sm);
+    .visual-search-input input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 11.5px;
+      font-weight: 600;
+      width: 100%;
+      color: #0f172a;
     }
 
-    .category-scroll-row {
+    /* 2. ANA BANNER SLIDER (362px x 145px) */
+    .main-hero-slider {
+      width: 362px;
+      height: 145px;
+      margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+
+    .green-banner-card {
+      width: 362px;
+      height: 145px;
+      background: #5b7365;
+      border-radius: 16px;
+      padding: 16px;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
       display: flex;
-      gap: 16px;
+      flex-direction: column;
+      justify-content: space-between;
+      background-image: url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .green-banner-card::before {
+      content: '';
+      position: absolute;
+      top:0; left:0; right:0; bottom:0;
+      background: linear-gradient(90deg, rgba(74,93,82,0.95) 0%, rgba(74,93,82,0.3) 100%);
+    }
+
+    .banner-inner-content {
+      position: relative;
+      z-index: 2;
+      max-width: 65%;
+    }
+
+    .banner-subtext { font-size: 11px; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 2px; }
+    .banner-headline { font-size: 16px; font-weight: 900; line-height: 1.25; margin-bottom: 10px; }
+    
+    .btn-pink-action { 
+      width: 110px;
+      height: 30px;
+      background: #ef4444; 
+      color: #ffffff; 
+      border: none; 
+      border-radius: 10px; 
+      font-size: 11px; 
+      font-weight: 800; 
+      cursor: pointer; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .banner-page-badge {
+      width: 32px;
+      height: 18px;
+      position: absolute;
+      bottom: 8px;
+      right: 10px;
+      background: rgba(0,0,0,0.6);
+      border-radius: 8px;
+      font-size: 9px;
+      font-weight: 800;
+      color: #ffffff;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 3. KATEGORİLER BÖLÜMÜ & AKORDEON YAPISI */
+    .section-grey-wrapper {
+      width: 100%;
+      background: #f1f5f9;
+      padding: 10px 14px;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+
+    .section-heading-sm {
+      font-size: 13px;
+      font-weight: 900;
+      color: #334155;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .categories-horizontal-grid {
+      display: flex;
+      gap: 10px;
       overflow-x: auto;
       scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      padding: 2px;
+      padding-bottom: 4px;
     }
-    .category-scroll-row::-webkit-scrollbar { display: none; }
+    .categories-horizontal-grid::-webkit-scrollbar { display: none; }
 
-    .cat-item-card {
+    .cat-visual-card {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
-      cursor: pointer;
+      width: 165px;
       flex-shrink: 0;
-      width: 70px;
+      cursor: pointer;
     }
 
-    .cat-icon-circle {
-      width: 48px;
-      height: 48px;
-      background: #f8fafc;
-      border: 1px solid var(--border-subtle);
-      border-radius: 50%;
+    .cat-visual-img-wrapper {
+      width: 165px;
+      height: 65px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1.5px solid #334155;
+      position: relative;
+    }
+
+    .cat-visual-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cat-overlay-text {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
-      transition: all 0.2s ease;
-    }
-
-    .cat-item-card:hover .cat-icon-circle,
-    .cat-item-card.active .cat-icon-circle {
-      background: var(--primary-dark);
       color: #ffffff;
-      border-color: var(--primary-dark);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
 
-    .cat-label-text {
+    .cat-visual-title-sub {
+      margin-top: 4px;
       font-size: 10px;
       font-weight: 800;
-      color: var(--primary-dark);
+      color: #334155;
       text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      width: 100%;
-    }
-
-    /* SECTION HEADER */
-    .section-header {
-      padding: 10px 20px 8px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .section-title { font-size: 16px; font-weight: 800; color: var(--primary-dark); }
-    .section-link { font-size: 12px; font-weight: 700; color: #2563eb; text-decoration: none; cursor: pointer; }
-
-    /* ÜRÜN KARTLARI */
-    .horizontal-cards-scroll {
-      display: flex;
-      gap: 14px;
-      overflow-x: auto;
-      padding: 0 20px;
-      scrollbar-width: none;
-    }
-    .horizontal-cards-scroll::-webkit-scrollbar { display: none; }
-
-    .product-grid-card {
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 12px;
-      width: 170px;
-      flex-shrink: 0;
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-sm);
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .product-img-box {
-      width: 100%;
-      height: 110px;
-      border-radius: 14px;
-      background: #f8fafc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      margin-bottom: 8px;
-    }
-
-    .product-img-box img { width: 80%; height: 80%; object-fit: contain; }
-
-    .pill-badge {
-      position: absolute;
-      top: 0; left: 0;
-      font-size: 8px;
-      font-weight: 800;
-      color: #ffffff;
-      padding: 3px 7px;
-      border-bottom-right-radius: 10px;
-      border-top-left-radius: 14px;
       text-transform: uppercase;
     }
-    .pill-badge.bestseller { background: #2563eb; }
-    .pill-badge.popular { background: #7c3aed; }
 
-    .product-card-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--primary-dark);
-      line-height: 1.3;
-      margin-bottom: 4px;
-      height: 32px;
+    /* AKORDEON AÇILIR ALT MENÜ ALANI */
+    .accordion-submenu-panel {
+      max-height: 0;
       overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-    }
-
-    .rating-line { font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; }
-    .rating-stars { color: var(--star-color); }
-
-    .product-bottom-line { display: flex; justify-content: space-between; align-items: center; }
-    .product-price { font-size: 14px; font-weight: 900; color: var(--primary-dark); }
-    .detail-action-btn { width: 30px; height: 30px; background: #2563eb; color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; border: none; }
-
-    /* VİTRİN BÖLÜMÜ */
-    .vitrin-banner {
-      margin: 20px 20px 10px 20px;
-      background: var(--primary-dark);
-      color: #ffffff;
-      text-align: center;
-      padding: 10px;
-      font-weight: 900;
-      font-size: 14px;
-      letter-spacing: 2px;
-      border-radius: 14px;
-    }
-
-    /* MAĞAZA LİSTESİ */
-    .stores-vertical-list {
-      padding: 0 20px;
+      transition: max-height 0.35s ease-in-out, padding 0.35s ease-in-out;
+      background: #e2e8f0;
+      border-radius: 12px;
+      margin-top: 0px;
       display: flex;
-      flex-direction: column;
-      gap: 12px;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 0 10px;
+    }
+
+    .accordion-submenu-panel.open {
+      max-height: 100px;
+      padding: 8px 10px;
+      margin-top: 8px;
+    }
+
+    .sub-cat-pill {
+      background: #ffffff;
+      color: #0f172a;
+      font-size: 9.5px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: background 0.2s;
+    }
+    .sub-cat-pill:hover {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+    }
+
+    /* 4. KAMPANYA & İNDİRİM BÖLÜMÜ */
+    .campaign-blue-section {
+      width: 100%;
+      background: #e0f2fe;
+      padding: 12px 14px;
+      flex-shrink: 0;
+    }
+
+    .campaign-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 10px;
     }
 
-    .store-row-card {
+    .campaign-title { font-size: 14px; font-weight: 900; color: #0f172a; }
+    
+    .btn-blue-see-all { 
+      width: 80px;
+      height: 24px;
+      background: #1d4ed8; 
+      color: #ffffff; 
+      border: none; 
+      border-radius: 14px; 
+      font-size: 10.5px; 
+      font-weight: 800; 
+      cursor: pointer; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .campaign-cards-row {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .campaign-cards-row::-webkit-scrollbar { display: none; }
+
+    .campaign-product-card {
+      width: 115px;
+      height: 150px;
       background: #ffffff;
-      border-radius: 20px;
-      padding: 16px 18px;
+      border-radius: 16px;
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e2e8f0;
+      cursor: pointer;
+    }
+
+    .prod-img-wrapper {
+      position: relative;
+      height: 115px;
+      width: 100%;
+    }
+    .prod-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+    
+    .prod-badge-red {
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #f43f5e;
+      color: #ffffff;
+      font-size: 8px;
+      font-weight: 900;
+      padding: 3px 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      letter-spacing: 0.5px;
+    }
+
+    .prod-custom-label {
+      position: absolute;
+      right: 6px;
+      bottom: 6px;
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 4px 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      border: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .prod-label-name {
+      font-size: 9px;
+      font-weight: 900;
+      color: #000000;
+      line-height: 1.1;
+    }
+
+    .prod-label-price {
+      font-size: 9.5px;
+      font-weight: 900;
+      color: #000000;
+      line-height: 1.1;
+      margin-top: 1px;
+    }
+
+    .prod-store-footer {
+      height: 35px;
+      padding: 4px 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: #ffffff;
+    }
+    .prod-store-logo { width: 16px; height: 16px; border-radius: 50%; object-fit: cover; border: 1px solid #cbd5e1; flex-shrink: 0; }
+    .prod-store-name { font-size: 8px; font-weight: 900; color: #0f172a; line-height: 1.1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .prod-store-address { color: #64748b; font-size: 6.5px; font-weight: 700; }
+
+    /* 5. ÖZEL "BENDE VAR" REKLAM BANNER ŞERİDİ */
+    .ad-banner-strip {
+      width: 362px;
+      height: 80px;
+      margin: 12px 0;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border: 1px solid var(--border-subtle);
-      box-shadow: var(--shadow-sm);
-      cursor: pointer;
-      transition: transform 0.2s ease;
+      padding: 0 16px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      background-image: url('https://images.unsplash.com/photo-1556742049-0a67d554c2eb?auto=format&fit=crop&w=800&q=80');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
     }
-    .store-row-card:active { transform: scale(0.98); }
 
-    .store-left-info { display: flex; align-items: center; gap: 14px; }
-    .store-avatar { width: 58px; height: 58px; border-radius: 18px; object-fit: cover; background: #f1f5f9; border: 1px solid var(--border-subtle); }
-    .store-meta h4 { font-size: 15px; font-weight: 800; color: var(--primary-dark); margin-bottom: 3px; }
-    .store-meta p { font-size: 12px; color: var(--text-muted); font-weight: 600; }
-    .store-meta .status-badge { display: inline-block; font-size: 9.5px; font-weight: 800; color: #16a34a; background: #dcfce7; padding: 2px 7px; border-radius: 6px; margin-top: 5px; }
+    .ad-banner-strip::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.7) 65%, rgba(29, 78, 216, 0.5) 100%);
+      z-index: 1;
+    }
 
-    .btn-store-inspect {
-      background: #0f172a;
+    .ad-banner-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .ad-brand-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .ad-yellow-badge {
+      background: #facc15;
+      color: #000000;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .ad-slogan-desc {
+      font-size: 10px;
+      color: #f1f5f9;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .ad-sub-tag {
+      font-size: 7.5px;
+      color: #60a5fa;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .ad-action-btn {
+      position: relative;
+      z-index: 2;
+      background: #ef4444;
       color: #ffffff;
       border: none;
-      padding: 9px 16px;
-      border-radius: 14px;
-      font-size: 12px;
-      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 900;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+    }
+
+    /* 6. ESNAFLAR BÖLÜMÜ */
+    .esnaflar-section-wrapper {
+      width: 362px;
+      flex-shrink: 0;
+    }
+
+    .esnaflar-section-title {
+      font-size: 15px;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .store-feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .feature-store-card {
+      width: 362px;
+      height: 105px;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+      cursor: pointer;
+      border: 1px solid #e2e8f0;
+      flex-shrink: 0;
+    }
+
+    .store-left-banner {
+      width: 162px;
+      height: 105px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .store-left-banner.blue-theme { background: #0b172a; }
+    .store-left-banner.yellow-theme { background: #facc15; color: #0f172a; }
+    .store-left-banner.green-theme { background: #475569; }
+    .store-left-banner.purple-theme { background: #5b21b6; }
+    .store-left-banner.red-theme { background: #991b1b; }
+    .store-left-banner.teal-theme { background: #115e59; }
+
+    .store-left-title { font-size: 13px; font-weight: 900; line-height: 1.15; text-transform: uppercase; }
+    .store-left-sub { font-size: 8.5px; opacity: 0.85; font-weight: 700; margin-top: 2px; }
+    
+    .btn-inspect-pill {
+      width: 75px;
+      height: 22px;
+      background: #2563eb;
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      font-size: 8px;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+    }
+
+    .store-right-img {
+      width: 200px;
+      height: 105px;
+      object-fit: cover;
+      flex-shrink: 0;
     }
 
     /* ALT NAVİGASYON BARI */
     .bottom-nav {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      height: 66px;
+      height: 58px;
       background: #ffffff;
-      border-top: 1px solid var(--border-subtle);
+      border-top: 1px solid #e2e8f0;
       display: flex;
       justify-content: space-around;
       align-items: center;
       z-index: 100;
       padding: 0 10px;
-      padding-bottom: env(safe-area-inset-bottom);
     }
 
-    .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--text-muted); text-decoration: none; font-size: 10.5px; font-weight: 700; cursor: pointer; }
+    .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; color: #64748b; text-decoration: none; font-size: 9.5px; font-weight: 700; cursor: pointer; }
     .nav-item.active { color: #2563eb; }
-    .nav-icon { font-size: 20px; }
-
-    /* HAMBURGER YAN MENÜ */
-    .drawer-overlay {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 4000;
-      display: none;
-    }
-    .drawer-overlay.active { display: block; }
-
-    .drawer-panel {
-      position: absolute;
-      top: 0; left: -280px; bottom: 0;
-      width: 280px;
-      background: #ffffff;
-      z-index: 4100;
-      box-shadow: 10px 0 30px rgba(0,0,0,0.3);
-      transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      flex-direction: column;
-      padding: 24px 20px;
-      overflow-y: auto;
-    }
-    .drawer-panel.active { left: 0; }
-
-    .drawer-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 14px;
-    }
-    .drawer-title { font-size: 16px; font-weight: 900; color: var(--primary-dark); }
-    .drawer-close { background: #f1f5f9; border: none; width: 32px; height: 32px; border-radius: 50%; font-weight: 800; cursor: pointer; }
-
-    .drawer-buttons-row {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-
-    .drawer-action-btn {
-      background: #f8fafc;
-      border: 1px solid var(--border-subtle);
-      padding: 12px 16px;
-      border-radius: 14px;
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--primary-dark);
-      text-align: left;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .drawer-action-btn.primary {
-      background: #2563eb;
-      color: #ffffff;
-      border-color: #2563eb;
-    }
-
-    .drawer-section-label {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
-    }
-
-    .drawer-categories-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .drawer-cat-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 12px;
-      background: #f8fafc;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 12.5px;
-      font-weight: 700;
-      color: var(--primary-dark);
-    }
-    .drawer-cat-item span { font-size: 18px; }
-
-    /* TÜM KATEGORİLER MODALI */
-    .categories-modal-overlay {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.65);
-      z-index: 3000;
-      display: none;
-      justify-content: center;
-      align-items: flex-end;
-    }
-    .categories-modal-overlay.active { display: flex; }
-
-    .categories-modal-content {
-      width: 100%;
-      height: 80%;
-      background: #ffffff;
-      border-top-left-radius: 32px;
-      border-top-right-radius: 32px;
-      padding: 24px 20px;
-      overflow-y: auto;
-    }
-    .categories-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 16px;
-    }
-    .cat-grid-card {
-      background: #f8fafc;
-      border: 1px solid var(--border-subtle);
-      border-radius: 20px;
-      padding: 16px 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-    }
-    .cat-grid-card span.icon { font-size: 28px; }
-    .cat-grid-card span.label { font-size: 12px; font-weight: 800; color: var(--primary-dark); text-align: center; }
-
-    /* MAĞAZA DETAY MODALI (SABİT MOBİL EBAT & SABİT KAPATMA BUTONU) */
-    .store-modal-overlay {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: #110505;
-      z-index: 3500;
-      display: none;
-      flex-direction: column;
-      border-radius: 38px;
-      overflow: hidden;
-    }
-    .store-modal-overlay.active { display: flex; }
-
-    /* ÜST SABİT BAR (KAPATMA TUŞU İÇİN) */
-    .modal-fixed-top-bar {
-      position: sticky;
-      top: 0;
-      background: #110505;
-      padding: 14px 16px;
-      display: flex;
-      justify-content: flex-end;
-      z-index: 50;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .modal-close-btn {
-      background: rgba(255, 255, 255, 0.2);
-      border: none; 
-      color: #fff;
-      width: 36px; 
-      height: 36px; 
-      border-radius: 50%;
-      font-size: 16px; 
-      font-weight: 900; 
-      cursor: pointer;
-      display: flex; 
-      align-items: center; 
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-
-    .store-modal-content {
-      width: 100%;
-      height: 100%;
-      background: #110505;
-      overflow-y: auto;
-      position: relative;
-      color: #ffffff;
-      padding: 0 16px 20px 16px;
-      scrollbar-width: none;
-      display: flex;
-      flex-direction: column;
-    }
-    .store-modal-content::-webkit-scrollbar { display: none; }
-
-    .modal-header-banner { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; margin-top: 10px; }
-    .modal-brand-info h2 { font-size: 20px; font-weight: 900; color: #ef4444; line-height: 1.1; letter-spacing: -0.5px; }
-    
-    .rating-badge-row {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 4px;
-      font-size: 11px;
-      font-weight: 700;
-      color: #fbbf24;
-    }
-    .rating-badge-row span.count { color: #9ca3af; font-size: 10px; }
-
-    .modal-status-pill { background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.15); padding: 4px 8px; border-radius: 16px; display: flex; flex-direction: column; align-items: flex-end; }
-    .modal-status-time { font-size: 8px; color: #9ca3af; font-weight: 700; }
-    .modal-status-badge { font-size: 10px; font-weight: 900; color: #22c55e; display: flex; align-items: center; gap: 4px; }
-    .modal-status-badge::before { content: '●'; font-size: 10px; }
-
-    .modal-hero-card { background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%); border-radius: 18px; padding: 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border: 1px solid rgba(239, 68, 68, 0.3); }
-    .modal-hero-text { max-width: 55%; }
-    .modal-hero-text h3 { font-size: 14.5px; font-weight: 900; line-height: 1.2; color: #fef08a; margin-bottom: 4px; }
-    .modal-hero-text p { font-size: 10.5px; color: #f3f4f6; opacity: 0.9; }
-    .modal-hero-img { width: 100px; height: 85px; object-fit: contain; }
-
-    .modal-products-row { display: flex; gap: 8px; margin-bottom: 14px; overflow-x: auto; scrollbar-width: none; }
-    .modal-products-row::-webkit-scrollbar { display: none; }
-    .modal-product-card { background: #1e1010; border-radius: 14px; padding: 8px; width: 98px; flex-shrink: 0; text-align: center; border: 1px solid rgba(255, 255, 255, 0.08); }
-    .modal-product-card img { width: 68px; height: 68px; object-fit: contain; margin-bottom: 6px; background: #2a1212; border-radius: 10px; padding: 4px; }
-    .modal-product-card span { font-size: 10px; font-weight: 700; color: #f3f4f6; display: block; line-height: 1.2; }
-
-    .modal-slogan-box { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-    .modal-slogan-box p { font-size: 11px; color: #d1d5db; font-weight: 600; }
-
-    .modal-call-btn { display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: #ffffff; width: 100%; padding: 12px; border-radius: 14px; font-size: 13.5px; font-weight: 900; text-decoration: none; margin-bottom: 10px; }
-    
-    .modal-action-row { display: flex; gap: 8px; margin-bottom: 12px; }
-    .modal-action-btn { flex: 1; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); padding: 10px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; color: #ffffff; font-size: 11px; font-weight: 700; text-decoration: none; cursor: pointer; }
-
-    .modal-address-footer { text-align: center; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 10px; color: #9ca3af; font-weight: 600; line-height: 1.4; margin-top: auto; }
-
-    /* YORUMLAR MODALI */
-    .reviews-modal {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 23, 42, 0.98);
-      z-index: 4000;
-      display: none;
-      flex-direction: column;
-      padding: 16px;
-      border-radius: 38px;
-    }
-    .reviews-modal.active { display: flex; }
-    .review-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 14px;
-      padding: 12px;
-      margin-bottom: 10px;
-    }
-    .review-user { font-size: 12px; font-weight: 800; color: #facc15; margin-bottom: 2px; }
-    .review-comment { font-size: 11px; color: #d1d5db; line-height: 1.3; }
+    .nav-icon { font-size: 18px; }
   </style>
 </head>
 <body>
@@ -732,114 +701,314 @@
 
   <div class="app-container">
 
-    <!-- İÇERİK ALANI -->
     <div class="scrollable-content">
 
-      <!-- KONUM BARI -->
-      <div class="location-bar-top">
-        <div class="location-pill">
-          📍 
-          <select class="location-select">
-            <option>Zeytinburnu, İstanbul</option>
-            <option>Konak, İzmir</option>
-            <option>Çankaya, Ankara</option>
-          </select>
+      <!-- 1. ÜST BAR (HEADER) & ARAMA ALANI -->
+      <div class="visual-top-header">
+        <div class="visual-brand-logo">
+          <span class="logo-icon-lightning">⚡</span>
+          <div class="brand-text-group">
+            <div class="brand-main-title">BENDE <span class="brand-yellow-badge">VAR</span></div>
+            <span class="brand-sub-badge">GÜVENLİ YEREL ESNAF AĞI</span>
+          </div>
         </div>
-        <span style="font-size: 11.5px; color: var(--text-muted); font-weight: 700;">Konum Değiştir</span>
+
+        <div class="location-box-right">
+          <div class="loc-label">Konumunuz</div>
+          <div class="loc-select-val">📍 Zeytinburnu, İstanbul <span>⌵</span></div>
+          <div class="loc-change-btn">Değiştir</div>
+        </div>
       </div>
 
-      <!-- HEADER -->
-      <div class="top-header">
-        <button class="icon-btn-ghost" onclick="toggleDrawer()">☰</button>
-        <div class="brand-logo-center">
-          <div class="brand-title"><span class="lightning">⚡</span> BENDE <span class="badge">VAR</span></div>
-          <span class="brand-sub">GÜVENLİ YEREL ESNAF AĞI</span>
-        </div>
-        <button class="icon-btn-ghost">🔔</button>
-      </div>
-
-      <!-- ARAMA BARI -->
-      <div class="search-filter-section">
-        <div class="search-bar-box">
+      <!-- KATEGORİ SEÇİCİ DROPDOWN & ARAMA BARI -->
+      <div class="search-cat-bar">
+        <select class="select-category-dropdown" id="mainCategoryDropdown">
+          <option value="">:: Tüm Kategoriler</option>
+          <option value="GIDA">GIDA</option>
+          <option value="YİYECEK">YİYECEK</option>
+          <option value="GİYİM">GİYİM</option>
+          <option value="KOZMETİK">KOZMETİK</option>
+          <option value="KUAFÖR">KUAFÖR</option>
+          <option value="KAFE">KAFE</option>
+          <option value="AKTİVİTE">AKTİVİTE</option>
+          <option value="VETERİNER">VETERİNER</option>
+          <option value="SAĞLIK">SAĞLIK</option>
+          <option value="MOBİLYA">MOBİLYA</option>
+          <option value="KUYUMCU">KUYUMCU</option>
+          <option value="TAMİR">TAMİR</option>
+          <option value="YIKAMA">YIKAMA</option>
+          <option value="NALBUR">NALBUR</option>
+          <option value="EMLAK">EMLAK</option>
+        </select>
+        <div class="visual-search-input">
           <span>🔍</span>
-          <input type="text" id="searchInput" placeholder="Ürün, hizmet veya esnaf arayın..." onkeyup="filterResults()">
-        </div>
-        <button class="filter-btn-circle">⚙️</button>
-      </div>
-
-      <!-- HERO BANNER -->
-      <div class="hero-banner-wrapper">
-        <div class="hero-dark-card">
-          <div class="hero-text-side">
-            <div class="hero-badge-text">YENİ DÖNEM</div>
-            <div class="hero-title">ARADIĞIN ÜRÜN<br>MAHALLEDE VAR.</div>
-            <div class="hero-desc">İhtiyacın olan tüm ürünler komşunda seni bekliyor.</div>
-            <button class="btn-shop-now">ŞİMDİ İNCELE ➔</button>
-          </div>
-          <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=400&q=80" class="hero-img-side" alt="Tech">
-        </div>
-        <div class="slider-dots">
-          <div class="dot active"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
-          <div class="dot"></div>
+          <input type="text" placeholder="Ürün, hizmet veya esnaf ara...">
         </div>
       </div>
 
-      <!-- 15 KATEGORİ (YATAY KAYDIRMALI) -->
-      <div class="category-container">
-        <div class="category-scroll-row" id="horizontalCatRow"></div>
-      </div>
-
-      <!-- ÖNE ÇIKANLAR -->
-      <div class="section-header">
-        <div class="section-title">Öne Çıkanlar</div>
-        <span class="section-link" onclick="openAllCategoriesModal()">Tümü ➔</span>
-      </div>
-
-      <div class="horizontal-cards-scroll">
-        <div class="product-grid-card">
-          <div class="product-img-box">
-            <div class="pill-badge bestseller">ÇOK SATAN</div>
-            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80" alt="Kulaklık">
+      <!-- 2. ANA BANNER SLIDER -->
+      <div class="main-hero-slider">
+        <div class="green-banner-card">
+          <div class="banner-inner-content">
+            <div class="banner-subtext">Ev moduna geçiyoruz.</div>
+            <div class="banner-headline">Keyfini artıracak fırsatlar letgo'da.</div>
+            <button class="btn-pink-action">Ürünleri Keşfet</button>
           </div>
-          <div class="product-card-title">Kablosuz Gürültü Önleyici Kulaklık</div>
-          <div class="rating-line"><span class="rating-stars">★ 4.8</span> (1.2K+)</div>
-          <div class="product-bottom-line">
-            <div class="product-price">₺1.299</div>
-            <button class="detail-action-btn">➔</button>
-          </div>
-        </div>
-
-        <div class="product-grid-card">
-          <div class="product-img-box">
-            <div class="pill-badge popular">POPÜLER</div>
-            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=600&q=80" alt="Şarj">
-          </div>
-          <div class="product-card-title">MagSafe 3'ü 1 Arada Şarj İstasyonu</div>
-          <div class="rating-line"><span class="rating-stars">★ 4.6</span> (743+)</div>
-          <div class="product-bottom-line">
-            <div class="product-price">₺499</div>
-            <button class="detail-action-btn">➔</button>
-          </div>
+          <div class="banner-page-badge">3 / 5</div>
         </div>
       </div>
 
-      <!-- VİTRİN BÖLÜMÜ -->
-      <div class="vitrin-banner">VİTRİN</div>
+      <!-- 3. KATEGORİLER BÖLÜMÜ & AKORDEON MENÜLER -->
+      <div class="section-grey-wrapper" id="categorySection">
+        <div class="section-heading-sm">KATEGORİLER (Tıklayın & Alt Menüyü Görün)</div>
+        <div class="categories-horizontal-grid">
+          
+          <!-- GIDA KATEGORİSİ -->
+          <div class="cat-visual-card" onclick="toggleSubmenu('gidaSub')">
+            <div class="cat-visual-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80" alt="Gıda">
+              <div class="cat-overlay-text">GIDA</div>
+            </div>
+            <div class="cat-visual-title-sub">GIDA ▾</div>
+          </div>
 
-      <!-- DİNAMİK MAĞAZA LİSTESİ -->
-      <div class="stores-vertical-list" id="storesListContainer"></div>
+          <!-- GİYİM KATEGORİSİ -->
+          <div class="cat-visual-card" onclick="toggleSubmenu('giyimSub')">
+            <div class="cat-visual-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=400&q=80" alt="Giyim">
+              <div class="cat-overlay-text">GİYİM</div>
+            </div>
+            <div class="cat-visual-title-sub">GİYİM ▾</div>
+          </div>
+
+          <!-- YİYECEK KATEGORİSİ -->
+          <div class="cat-visual-card" onclick="toggleSubmenu('yiyecekSub')">
+            <div class="cat-visual-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80" alt="Yiyecek">
+              <div class="cat-overlay-text">YİYECEK</div>
+            </div>
+            <div class="cat-visual-title-sub">YİYECEK ▾</div>
+          </div>
+
+          <!-- KOZMETİK KATEGORİSİ -->
+          <div class="cat-visual-card" onclick="toggleSubmenu('kozmetikSub')">
+            <div class="cat-visual-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=400&q=80" alt="Kozmetik">
+              <div class="cat-overlay-text">KOZMETİK</div>
+            </div>
+            <div class="cat-visual-title-sub">KOZMETİK ▾</div>
+          </div>
+
+          <!-- KUAFÖR KATEGORİSİ -->
+          <div class="cat-visual-card" onclick="toggleSubmenu('kuaforSub')">
+            <div class="cat-visual-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=400&q=80" alt="Kuaför">
+              <div class="cat-overlay-text">KUAFÖR</div>
+            </div>
+            <div class="cat-visual-title-sub">KUAFÖR ▾</div>
+          </div>
+
+          <!-- KAFE KATEGORİSİ -->
+          <div class="cat-visual-card" onclick="toggleSubmenu('kafeSub')">
+            <div class="cat-visual-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=400&q=80" alt="Kafe">
+              <div class="cat-overlay-text">KAFE</div>
+            </div>
+            <div class="cat-visual-title-sub">KAFE ▾</div>
+          </div>
+
+          <!-- MOBİLYA KATEGORİSİ -->
+          <div class="cat-visual-card" onclick="toggleSubmenu('mobilyaSub')">
+            <div class="cat-visual-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=400&q=80" alt="Mobilya">
+              <div class="cat-overlay-text">MOBİLYA</div>
+            </div>
+            <div class="cat-visual-title-sub">MOBİLYA ▾</div>
+          </div>
+
+          <!-- KUYUMCU KATEGORİSİ -->
+          <div class="cat-visual-card" onclick="toggleSubmenu('kuyumcuSub')">
+            <div class="cat-visual-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=400&q=80" alt="Kuyumcu">
+              <div class="cat-overlay-text">KUYUMCU</div>
+            </div>
+            <div class="cat-visual-title-sub">KUYUMCU ▾</div>
+          </div>
+
+        </div>
+
+        <!-- AKORDEON AÇILIR ALT MENÜ PANELLERİ -->
+        <!-- 1. GIDA ALT MENÜSÜ -->
+        <div id="gidaSub" class="accordion-submenu-panel">
+          <div class="sub-cat-pill">🥩 Kasap</div>
+          <div class="sub-cat-pill">🍅 Manav</div>
+          <div class="sub-cat-pill">🥖 Bakkal</div>
+          <div class="sub-cat-pill">🛒 Market</div>
+        </div>
+
+        <!-- 2. GİYİM ALT MENÜSÜ -->
+        <div id="giyimSub" class="accordion-submenu-panel">
+          <div class="sub-cat-pill">👞 Ayakkabı</div>
+          <div class="sub-cat-pill">🎗️ Kemer</div>
+          <div class="sub-cat-pill">👕 Kıyafet</div>
+          <div class="sub-cat-pill">👜 Aksesuar</div>
+        </div>
+
+        <!-- 3. YİYECEK ALT MENÜSÜ -->
+        <div id="yiyecekSub" class="accordion-submenu-panel">
+          <div class="sub-cat-pill">🍲 Restoran</div>
+          <div class="sub-cat-pill">🍕 Fast Food</div>
+          <div class="sub-cat-pill">🍰 Pastane</div>
+        </div>
+
+        <!-- 4. KOZMETİK ALT MENÜSÜ -->
+        <div id="kozmetikSub" class="accordion-submenu-panel">
+          <div class="sub-cat-pill">💄 Parfüm & Makyaj</div>
+          <div class="sub-cat-pill">🌿 Cilt Bakım</div>
+        </div>
+
+        <!-- 5. KUAFÖR ALT MENÜSÜ -->
+        <div id="kuaforSub" class="accordion-submenu-panel">
+          <div class="sub-cat-pill">💇 Erkek Berber</div>
+          <div class="sub-cat-pill">💅 Kadın Kuaför</div>
+          <div class="sub-cat-pill">✨ Güzellik Merkezi</div>
+        </div>
+
+        <!-- 6. KAFE ALT MENÜSÜ -->
+        <div id="kafeSub" class="accordion-submenu-panel">
+          <div class="sub-cat-pill">☕ Kahve Dükkanı</div>
+          <div class="sub-cat-pill">🫖 Çay Bahçesi</div>
+        </div>
+
+        <!-- 7. MOBİLYA ALT MENÜSÜ -->
+        <div id="mobilyaSub" class="accordion-submenu-panel">
+          <div class="sub-cat-pill">🛋️ Oturma Grubu</div>
+          <div class="sub-cat-pill">🛏️ Yatak Odası</div>
+          <div class="sub-cat-pill">🪑 Ofis Mobilyası</div>
+        </div>
+
+        <!-- 8. KUYUMCU ALT MENÜSÜ -->
+        <div id="kuyumcuSub" class="accordion-submenu-panel">
+          <div class="sub-cat-pill">💍 Altın & Kolye</div>
+          <div class="sub-cat-pill">⌚ Saat & Aksesuar</div>
+        </div>
+
+      </div>
+
+      <!-- 4. KAMPANYA & İNDİRİM BÖLÜMÜ -->
+      <div class="campaign-blue-section">
+        <div class="campaign-header">
+          <div class="campaign-title">KAMPANYA & İNDİRİM</div>
+          <button class="btn-blue-see-all">Tümünü Gör</button>
+        </div>
+
+        <div class="campaign-cards-row">
+          <div class="campaign-product-card">
+            <div class="prod-img-wrapper">
+              <span class="prod-badge-red">İNDİRİMDE</span>
+              <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=300&q=80" alt="Ceket">
+              <div class="prod-custom-label">
+                <span class="prod-label-name">CEKET</span>
+                <span class="prod-label-price">399.TL</span>
+              </div>
+            </div>
+            <div class="prod-store-footer">
+              <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=100&q=80" class="prod-store-logo" alt="Logo">
+              <div class="prod-store-name">MODA TEKSTİL<br><span class="prod-store-address">58. Bulvar . Z.Burnu</span></div>
+            </div>
+          </div>
+
+          <div class="campaign-product-card">
+            <div class="prod-img-wrapper">
+              <span class="prod-badge-red">İNDİRİMDE</span>
+              <img src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=300&q=80" alt="Masa">
+              <div class="prod-custom-label">
+                <span class="prod-label-name">MASA</span>
+                <span class="prod-label-price">250.TL</span>
+              </div>
+            </div>
+            <div class="prod-store-footer">
+              <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=100&q=80" class="prod-store-logo" alt="Logo">
+              <div class="prod-store-name">TUNA MOBİLYA<br><span class="prod-store-address">Bulvar Cad. Z.Burnu</span></div>
+            </div>
+          </div>
+
+          <div class="campaign-product-card">
+            <div class="prod-img-wrapper">
+              <span class="prod-badge-red">İNDİRİMDE</span>
+              <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=300&q=80" alt="Domates">
+              <div class="prod-custom-label">
+                <span class="prod-label-name">Domates</span>
+                <span class="prod-label-price">Kg 65.TL</span>
+              </div>
+            </div>
+            <div class="prod-store-footer">
+              <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=100&q=80" class="prod-store-logo" alt="Logo">
+              <div class="prod-store-name">ÖZAN MANAV<br><span class="prod-store-address">Veli Efendi . Z.Burnu</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. ÖZEL "BENDE VAR" REKLAM BANNER ŞERİDİ -->
+      <div class="ad-banner-strip">
+        <div class="ad-banner-content">
+          <div class="ad-brand-title">⚡️ BENDE <span class="ad-yellow-badge">VAR</span></div>
+          <div class="ad-slogan-desc">Mahallendeki Güvenli Esnaf Alışveriş Ağı</div>
+          <div class="ad-sub-tag">Yerel Esnafı Keşfet • Hemen Destek Ol</div>
+        </div>
+        <button class="ad-action-btn">İncele ➔</button>
+      </div>
+
+      <!-- 6. ESNAFLAR BÖLÜMÜ -->
+      <div class="esnaflar-section-wrapper">
+        <div class="esnaflar-section-title">ESNAFLAR</div>
+
+        <div class="store-feature-list">
+          <div class="feature-store-card">
+            <div class="store-left-banner blue-theme">
+              <div>
+                <div class="store-left-title">TUNA<br>MOBİLYA</div>
+                <div class="store-left-sub">Bulvar Cad • Mobilya</div>
+              </div>
+              <button class="btn-inspect-pill">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Mobilya">
+          </div>
+
+          <div class="feature-store-card">
+            <div class="store-left-banner yellow-theme">
+              <div>
+                <div class="store-left-title">ÖZAN<br>MANAV</div>
+                <div class="store-left-sub">Veli Efendi • Gıda / Yiyecek</div>
+              </div>
+              <button class="btn-inspect-pill" style="background:#2563eb; color:#ffffff;">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Gıda">
+          </div>
+
+          <div class="feature-store-card">
+            <div class="store-left-banner green-theme">
+              <div>
+                <div class="store-left-title">MODA<br>TEKSTİL</div>
+                <div class="store-left-sub">58. Bulvar • Giyim</div>
+              </div>
+              <button class="btn-inspect-pill">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Giyim">
+          </div>
+        </div>
+      </div>
 
     </div>
 
-    <!-- ALT NAVİGASYON -->
+    <!-- ALT NAVİGASYON BARI -->
     <div class="bottom-nav">
-      <div class="nav-item active" onclick="loadDefaultStores()">
+      <div class="nav-item active">
         <span class="nav-icon">🏠</span>
         <span>Ana Sayfa</span>
       </div>
-      <div class="nav-item" onclick="openAllCategoriesModal()">
+      <div class="nav-item">
         <span class="nav-icon">🗂️</span>
         <span>Kategoriler</span>
       </div>
@@ -847,710 +1016,31 @@
         <span class="nav-icon">🏷️</span>
         <span>Fırsatlar</span>
       </div>
-      <div class="nav-item" onclick="toggleDrawer()">
+      <div class="nav-item">
         <span class="nav-icon">👤</span>
         <span>Hesabım</span>
       </div>
     </div>
 
   </div>
-
-  <!-- SOL HAMBURGER MENÜ -->
-  <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
-  <div class="drawer-panel" id="drawerPanel">
-    <div class="drawer-header">
-      <div class="drawer-title">Bende Var Menü</div>
-      <button class="drawer-close" onclick="toggleDrawer()">✕</button>
-    </div>
-
-    <div class="drawer-buttons-row">
-      <button class="drawer-action-btn primary" onclick="alert('Üye Ol sayfasına yönlendiriliyorsunuz.')">👤 Üye Ol / Giriş Yap</button>
-      <button class="drawer-action-btn" onclick="alert('Esnaf Kayıt başvuru formu açılıyor.')">🏪 Esnaf Kayıt Başvurusu</button>
-    </div>
-
-    <div class="drawer-section-label">Tüm Kategoriler</div>
-    <div class="drawer-categories-list" id="drawerCatListContainer"></div>
-  </div>
-
-  <!-- TÜM KATEGORİLER MODALI -->
-  <div class="categories-modal-overlay" id="catModalOverlay" onclick="closeAllCategoriesModal(event)">
-    <div class="categories-modal-content" id="catModalContent">
-      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px;">
-        <h3 style="font-size: 16px; font-weight: 900; color: var(--primary-dark);">Tüm Kategoriler</h3>
-        <button onclick="closeAllCategoriesModalDirect()" style="background: #f1f5f9; border: none; width: 30px; height: 30px; border-radius: 50%; font-weight: 800; cursor: pointer;">✕</button>
-      </div>
-      <div class="categories-grid" id="modalCategoriesGrid"></div>
-    </div>
-  </div>
-
-  <!-- MAĞAZA DETAY MODALI (SABİT ÜST KAPATMA TUŞU İLE) -->
-  <div class="store-modal-overlay" id="storeModalOverlay">
-    <div class="modal-fixed-top-bar">
-      <button class="modal-close-btn" onclick="closeStoreModalDirect()">✕</button>
-    </div>
-
-    <div class="store-modal-content" id="storeModalContent">
-      <div class="modal-header-banner">
-        <div class="modal-brand-info">
-          <h2 id="modalTitle">Mağaza Adı</h2>
-          <div class="rating-badge-row">
-            <span id="modalStars">★★★★★</span>
-            <span id="modalRatingVal">4.8</span>
-            <span class="count" id="modalReviewCount">(120+ değerlendirme)</span>
-          </div>
-        </div>
-        <div class="modal-status-pill">
-          <span class="modal-status-time" id="modalClosing">KAPANIŞ 22:00</span>
-          <span class="modal-status-badge">AÇIK</span>
-        </div>
-      </div>
-
-      <div class="modal-hero-card">
-        <div class="modal-hero-text">
-          <h3 id="modalHeroTitle">KAMPANYA BAŞLIĞI</h3>
-          <p id="modalHeroDesc">Kampanya açıklaması...</p>
-        </div>
-        <img id="modalHeroImg" src="" class="modal-hero-img" alt="Hero">
-      </div>
-
-      <div class="modal-products-row" id="modalProductsRow"></div>
-
-      <div class="modal-slogan-box">
-        <span id="modalSloganIcon" style="font-size: 20px;">🌱</span>
-        <p id="modalSloganText">Esnaf slogan metni...</p>
-      </div>
-
-      <a id="modalPhoneBtn" href="tel:05000000000" class="modal-call-btn">
-        📞 Tel: 0500 000 00 00
-      </a>
-
-      <div class="modal-action-row">
-        <a id="modalMapBtn" href="#" target="_blank" class="modal-action-btn">📍 Konum aç ➔</a>
-        <a id="modalInstaBtn" href="#" target="_blank" class="modal-action-btn">📸 Instagram</a>
-        <button onclick="openReviewsModal()" class="modal-action-btn" style="background:#2563eb; border:none;">💬 Yorumlar</button>
-      </div>
-
-      <div class="modal-address-footer" id="modalAddressFooter">
-        Adres bilgisi...
-      </div>
-
-      <!-- YORUMLAR ALT PENCERESİ -->
-      <div class="reviews-modal" id="reviewsModal">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
-          <h3 style="font-size:15px; font-weight:900; color:#facc15;">Müşteri Yorumları</h3>
-          <button onclick="closeReviewsModal()" style="background:rgba(255,255,255,0.2); border:none; color:#fff; width:26px; height:26px; border-radius:50%; font-weight:800; cursor:pointer;">✕</button>
-        </div>
-        <div id="reviewsListContainer" style="overflow-y:auto; flex:1;"></div>
-      </div>
-
-    </div>
-  </div>
-
 </div>
 
 <script>
-  // 15 KATEGORİ VE MAĞAZA VERİLERİ
-  const categoriesData = {
-    "Yemek": [
-      {
-        id: 'yemek_1', name: 'Meşhur Taş Fırın Pideci', sub: 'Karadeniz Pidesi & Lahmacun',
-        avatar: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 00:00', rating: '4.9', reviewsCount: '(340+ değerlendirme)',
-        heroTitle: 'SICAK PİDE,<br>ODUN ATEŞİNDE.', heroDesc: 'Kıymalı, kaşarlı ve kuşbaşılı eşsiz lezzetler.',
-        heroImg: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🔥', sloganText: 'Odun ateşinde pişen çıtır lezzetler kapınızda.',
-        phone: '0542 441 22 33', address: 'Kazlıçeşme cad. No:45<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Kavurmalı Pide', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Ahmet Y.', comment: 'Pidenin hamuru inanılmaz ince ve çıtır.' }]
-      },
-      {
-        id: 'yemek_2', name: 'Anadolu Ev Yemekleri', sub: 'Günlük Tencere Yemekleri',
-        avatar: 'https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 21:30', rating: '4.8', reviewsCount: '(210+ değerlendirme)',
-        heroTitle: 'ANNE ELİNDEN<br>EV YEMEKLERİ.', heroDesc: 'Günlük taze fasulye ve pilav çeşitleri.',
-        heroImg: 'https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🍲', sloganText: 'Katkısız, ev yapımı geleneksel lezzetler.',
-        phone: '0532 111 22 44', address: 'Telsiz mah. 85. sok. No:4<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Karnıyarık & Pilav', img: 'https://images.unsplash.com/photo-1543353071-10c8ba85a904?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Mehmet A.', comment: 'Tıpkı annemin yaptığı yemekler gibi.' }]
-      }
-    ],
-    "Manav": [
-      {
-        id: 'manav_1', name: 'Taze Köy Manavı', sub: 'Meyve, Sebze & Organik',
-        avatar: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 22:00', rating: '4.9', reviewsCount: '(290+ değerlendirme)',
-        heroTitle: 'DOĞAL MAHSÜL,<br>TAZE SEBZELER.', heroDesc: 'Günlük tarla ürünleri ile sofranıza sağlık katın.',
-        heroImg: 'https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🌱', sloganText: 'Yerel üreticiden taze, katkısız alışveriş.',
-        phone: '0535 713 52 58', address: 'Telsiz mah. 103 sokak. No:11<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Çanakkale Domatesi', img: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Zeynep B.', comment: 'Sebzeler pırıl pırıl ve çok taze.' }]
-      },
-      {
-        id: 'manav_2', name: 'Yeşil Vadi Organik Manav', sub: 'Ekolojik Tarım Ürünleri',
-        avatar: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 21:00', rating: '4.8', reviewsCount: '(150+ değerlendirme)',
-        heroTitle: 'ORGANİK SEBZE,<br>SAĞLIKLI YAŞAM.', heroDesc: 'İlaçsız tarım ürünleri ve köy mahsulleri.',
-        heroImg: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🍎', sloganText: 'Doğrudan tarladan sofranıza.',
-        phone: '0532 555 33 22', address: 'Gökalp mah. Abdi İpekçi cad. No:19<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Organik Çilek', img: 'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Hakan S.', comment: 'Çilekler mis gibi kokuyor.' }]
-      }
-    ],
-    "Market": [
-      {
-        id: 'market_1', name: 'Ömür Ticaret Market', sub: 'Şarküteri & Temel Gıda',
-        avatar: 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 23:30', rating: '4.8', reviewsCount: '(310+ değerlendirme)',
-        heroTitle: 'HESAPLI GIDA,<br>TAZE ÜRÜNLER.', heroDesc: 'Temel ihtiyaçlarınızda güvenilir mahalle marketiniz.',
-        heroImg: 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🛒', sloganText: 'Evinizin tüm ihtiyaçları hızlıca kapınızda.',
-        phone: '0555 123 45 67', address: 'Veliefendi mah. Turan Güneş cad. No:19<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Günlük Süt 1L', img: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Canan M.', comment: 'Fiyatlar çok uygun ve evimize çok yakın.' }]
-      },
-      {
-        id: 'market_2', name: 'Kardeşler Büfe & Gıda', sub: 'Atıştırmalık & İçecek',
-        avatar: 'https://images.unsplash.com/photo-1588964895597-cfccd6e2dbf9?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 02:00', rating: '4.7', reviewsCount: '(190+ değerlendirme)',
-        heroTitle: 'GECE GÜNDÜZ<br>HİZMETİNİZDE.', heroDesc: 'Atıştırmalık ve temizlik malzemeleri.',
-        heroImg: 'https://images.unsplash.com/photo-1588964895597-cfccd6e2dbf9?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🌙', sloganText: 'Geç saatlerde bile açık bakkal.',
-        phone: '0536 777 88 99', address: 'Çırpıcı mah. 3. sok. No:12<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Cips & Sos', img: 'https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Burak T.', comment: 'Gece yarısı acil ihtiyaçlar için harika.' }]
-      }
-    ],
-    "Kasap": [
-      {
-        id: 'kasap_1', name: 'Bereket Et & Kasap', sub: 'Helal Kesim & Dinlendirilmiş Etler',
-        avatar: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 21:00', rating: '4.9', reviewsCount: '(380+ değerlendirme)',
-        heroTitle: 'EN İYİ ET,<br>EN Usta ELLERDE.', heroDesc: 'Günlük taze dana ve kuzu eti çeşitleri.',
-        heroImg: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🥩', sloganText: 'Yüksek kalite standartlarında güvenilir et.',
-        phone: '0533 888 77 66', address: 'Çırpıcı mah. Şişecam sok. No:14<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Dana Antrikot', img: 'https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Serdar K.', comment: 'Köfteleri efsane, çocuklar bayılıyor.' }]
-      },
-      {
-        id: 'kasap_2', name: 'Şifa Kırmızı Et Dünyası', sub: 'Özel Bonfile & Antrikot',
-        avatar: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 20:30', rating: '4.8', reviewsCount: '(220+ değerlendirme)',
-        heroTitle: '100% YERLİ<br>DANA ETİ.', heroDesc: 'Balıkesir yöresi sertifikalı kesim etler.',
-        heroImg: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🍖', sloganText: 'Sağlıklı ve güvenilir et tüketimi.',
-        phone: '0545 222 11 00', address: 'Kazlıçeşme mah. Abay cad. No:8<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Kuzu Pirzola', img: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Ebru D.', comment: 'Çok temiz bir dükkan.' }]
-      }
-    ],
-    "Kafe": [
-      {
-        id: 'kafe_1', name: 'Atölye Kahve & Tatlı', sub: 'Nitelikli Kahveler & Kruvasan',
-        avatar: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 23:00', rating: '4.9', reviewsCount: '(410+ değerlendirme)',
-        heroTitle: 'TAZE KAHVE,<br>TATLI KAÇAMAKLAR.', heroDesc: 'Güne enerjik başlamanız için en iyi kahveler.',
-        heroImg: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '☕', sloganText: 'Enfes aromalı kahveler ve taze tatlılar.',
-        phone: '0541 333 22 11', address: 'Merkezefendi mah. Belgradkapı cad. No:7<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Caramel Macchiato', img: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Deniz T.', comment: 'Kahve kokusu tüm sokağı sarıyor.' }]
-      },
-      {
-        id: 'kafe_2', name: 'Mahalle Çay Evi', sub: 'Taze Demli Çay & Simit',
-        avatar: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 01:00', rating: '4.7', reviewsCount: '(180+ değerlendirme)',
-        heroTitle: 'TAVŞANKANI ÇAY,<br>SAMİMİ SOHBET.', heroDesc: 'Geleneksel ince belli bardakta taze çay.',
-        heroImg: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🫖', sloganText: 'Mahallenin buluşma noktası.',
-        phone: '0535 999 88 77', address: 'Seyitnizam mah. 12. sok. No:9<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Demlik Çay', img: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Cemil K.', comment: 'Çay hep taze ve sıcacık.' }]
-      }
-    ],
-    "Kıyafet": [
-      {
-        id: 'kiyafet_1', name: 'Şık Giyim & Butik', sub: 'Kadın & Erkek Trend Modası',
-        avatar: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 21:00', rating: '4.8', reviewsCount: '(140+ değerlendirme)',
-        heroTitle: 'SEZONUN EN YENİ<br>MODA PARÇALARI.', heroDesc: 'Tarzınızı yansıtacak şık kıyafetler.',
-        heroImg: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '👗', sloganText: 'Modayı yakından takip edin.',
-        phone: '0532 444 33 22', address: 'Gökalp mah. Zübeyde Hanım cad. No:12<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Oversize Sweatshirt', img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Merve S.', comment: 'Kumaş kaliteleri gerçekten çok iyi.' }]
-      },
-      {
-        id: 'kiyafet_2', name: 'Tarz Bebe & Çocuk Giyim', sub: '0-12 Yaş Çocuk Kıyafetleri',
-        avatar: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 20:30', rating: '4.9', reviewsCount: '(110+ değerlendirme)',
-        heroTitle: 'PAMUKLU VE SAĞLIKLI<br>ÇOCUK GİYİM.', heroDesc: '%100 organik pamuk çocuk elbiseleri.',
-        heroImg: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '👶', sloganText: 'Minikler için en sağlıklı kumaşlar.',
-        phone: '0533 123 99 88', address: 'Telsiz mah. 45. sok. No:6<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Bebek Takımı', img: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Gülşah A.', comment: 'Yıkamada asla çekme yapmadı.' }]
-      }
-    ],
-    "Ayakkabı": [
-      {
-        id: 'ayakkabi_1', name: 'Adım Kundura & Ayakkabı', sub: 'Hakiki Deri Ayakkabılar',
-        avatar: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 20:30', rating: '4.8', reviewsCount: '(190+ değerlendirme)',
-        heroTitle: 'RAHATLIK VE ŞIKLIK<br>AYAKLARINIZDA.', heroDesc: 'Hakiki deri klasik ve spor ayakkabı modelleri.',
-        heroImg: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '👞', sloganText: 'Günün yorgunluğunu unutturan taban teknolojisi.',
-        phone: '0535 666 55 44', address: 'Kazlıçeşme mah. Prof. Muammer Aksoy cad. No:15<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Deri Klasik Ayakkabı', img: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Tarık K.', comment: 'Çok rahat, ayağımı hiç vurmadı.' }]
-      },
-      {
-        id: 'ayakkabi_2', name: 'Spor Market & Sneaker', sub: 'Koşu ve Yürüyüş Ayakkabıları',
-        avatar: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 21:00', rating: '4.9', reviewsCount: '(260+ değerlendirme)',
-        heroTitle: 'EN YENİ SNEAKER<br>MODELLERİ.', heroDesc: 'Orijinal spor ayakkabı çeşitleri.',
-        heroImg: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '👟', sloganText: 'Koşulsuz konfor.',
-        phone: '0542 333 11 22', address: 'Seyitnizam mah. Demirciler sitesi No:4<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Koşu Ayakkabısı', img: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Onur B.', comment: 'Orijinal ürün, hızlı teslimat.' }]
-      }
-    ],
-    "Aksesuar": [
-      {
-        id: 'aksesuar_1', name: 'Zarif Çanta & Aksesuar', sub: 'Deri Çanta & Cüzdan Çeşitleri',
-        avatar: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 20:00', rating: '4.8', reviewsCount: '(130+ değerlendirme)',
-        heroTitle: 'TARZINIZI TAMAMLAYAN<br>DETAYLAR.', heroDesc: 'Şık çanta, cüzdan ve kemer modelleri.',
-        heroImg: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '👜', sloganText: 'Zarafeti elinizde taşıyın.',
-        phone: '0534 888 22 11', address: 'Telsiz mah. 12. sok. No:3<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Deri El Çantası', img: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Leyla T.', comment: 'Deri kalitesi harika, çok beğenerek kullanıyorum.' }]
-      },
-      {
-        id: 'aksesuar_2', name: 'Saat & Gözlük Dünyası', sub: 'Marka Kol Saati & Güneş Gözlüğü',
-        avatar: 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 20:30', rating: '4.7', reviewsCount: '(95+ değerlendirme)',
-        heroTitle: 'ZAMANSIZ ŞIKLIK,<br>GÜNEŞ GÖZLÜKLERİ.', heroDesc: 'Garantili kol saatleri ve UV filtreli gözlükler.',
-        heroImg: 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '⌚', sloganText: 'Zamanı şık kılın.',
-        phone: '0536 999 44 55', address: 'Gökalp mah. 6. sok. No:10<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Erkek Kol Saati', img: 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Kerem Y.', comment: 'Hediye almıştım, çok şık bir kutuyla geldi.' }]
-      }
-    ],
-    "Kozmetik": [
-      {
-        id: 'kozmetik_1', name: 'Doğal Yaşam Kozmetik', sub: 'Bitkisel Bakım & Parfüm',
-        avatar: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 21:00', rating: '4.9', reviewsCount: '(210+ değerlendirme)',
-        heroTitle: 'CİLDİNİZE İYİ GELECEK<br>DOĞAL BAKIM.', heroDesc: 'Parabensiz bitkisel kremler ve esansiyel yağlar.',
-        heroImg: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '💄', sloganText: 'Doğal güzelliğin sırrı mahallenizde.',
-        phone: '0532 777 33 22', address: 'Veliefendi mah. Prof. Dr. Turan Güneş cad. No:40<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Bitkisel Yüz Serumu', img: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Sibel K.', comment: 'Cildime çok iyi geldi, teşekkürler.' }]
-      },
-      {
-        id: 'kozmetik_2', name: 'Kozmetik & Parfümeri Sarayı', sub: 'Dünya Markaları Parfümler',
-        avatar: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 21:30', rating: '4.8', reviewsCount: '(170+ değerlendirme)',
-        heroTitle: 'KALICI ESANSLAR,<br>BÜYÜLEYİCİ KOKULAR.', heroDesc: 'Orijinal parfüm ve makyaj malzemeleri.',
-        heroImg: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '✨', sloganText: 'İmza kokunuzu keşfedin.',
-        phone: '0537 222 11 99', address: 'Kazlıçeşme mah. 10. sok. No:8<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Özel Seri Parfüm', img: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Berna D.', comment: 'Kokusu günlerce kalıyor.' }]
-      }
-    ],
-    "Tamir": [
-      {
-        id: 'tamir_1', name: 'Pratik Teknik Servis', sub: 'Beyaz Eşya & Kombi Tamiri',
-        avatar: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 19:30', rating: '4.9', reviewsCount: '(240+ değerlendirme)',
-        heroTitle: 'HIZLI ARIZA TESPİTİ,<br>GARANTİLİ ONARIM.', heroDesc: 'Ev aletlerinizde profesyonel teknik destek.',
-        heroImg: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🛠️', sloganText: '7/24 mobil servis ekibiyle yerinde tamirat.',
-        phone: '0539 555 44 33', address: 'Gökalp mah. 52. sok. No:3<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Kombi Bakımı', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Merve Ç.', comment: 'Hemen gelip sorunu çözdüler.' }]
-      },
-      {
-        id: 'tamir_2', name: 'Usta Eller Elektrik & Tamirat', sub: 'Elektrik Tesisat & Avize Montaj',
-        avatar: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 20:00', rating: '4.8', reviewsCount: '(160+ değerlendirme)',
-        heroTitle: 'ELEKTRİK ARIZALARINA<br>ANINDA ÇÖZÜM.', heroDesc: 'Sigorta değişimi ve kablolama.',
-        heroImg: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '⚡', sloganText: 'Güvenli elektrik hizmeti.',
-        phone: '0534 111 00 22', address: 'Merkezefendi mah. 14. sok. No:2<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Sigorta Panosu', img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Kemal Ö.', comment: 'Çok titiz çalıştılar.' }]
-      }
-    ],
-    "Yıkama": [
-      {
-        id: 'yikama_1', name: 'Tertemiz Halı & Koltuk Yıkama', sub: 'Yerinde Koltuk & Profesyonel Halı Yıkama',
-        avatar: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 19:00', rating: '4.9', reviewsCount: '(280+ değerlendirme)',
-        heroTitle: 'MIS GİBİ KOKAN<br>TERTEMİZ HALILAR.', heroDesc: 'Ücretsiz servis ile kapıdan alım ve teslim.',
-        heroImg: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🫧', sloganText: 'Derinlemesine temizlik garantisi.',
-        phone: '0533 555 88 99', address: 'Çırpıcı mah. 10. sok. No:5<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Halı Yıkama (m²)', img: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Fatma N.', comment: 'Halılardaki lekeler tamamen çıkmış.' }]
-      },
-      {
-        id: 'yikama_2', name: 'Özen Kuru Temizleme', sub: 'Takım Elbise & Hassas Çamaşır',
-        avatar: 'https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 20:00', rating: '4.8', reviewsCount: '(150+ değerlendirme)',
-        heroTitle: 'GİYSİLERİNİZ İLK GÜNKİ<br>GİBİ TEMİZ.', heroDesc: 'Hassas kumaşlar için özel kuru temizleme.',
-        heroImg: 'https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '👔', sloganText: 'Kıyafetlerinize hak ettiği özeni gösteriyoruz.',
-        phone: '0535 444 33 22', address: 'Seyitnizam mah. Akşemsettin cad. No:11<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Kuru Temizleme', img: 'https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Selim P.', comment: 'Takım elbisem yepyenı oldu.' }]
-      }
-    ],
-    "Ev Tekstil": [
-      {
-        id: 'evtekstil_1', name: 'Yuvam Ev Tekstili & Perde', sub: 'Nevresim Takımı & Pike Setleri',
-        avatar: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 20:30', rating: '4.8', reviewsCount: '(170+ değerlendirme)',
-        heroTitle: 'YATAK ODANIZA<br>ŞIKLIK KATIN.', heroDesc: 'Lüks nevresim takımları ve tül perde çeşitleri.',
-        heroImg: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🛏️', sloganText: 'Evinizin dokusunu yenileyin.',
-        phone: '0532 333 44 55', address: 'Telsiz mah. 7. sok. No:14<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Bambu Nevresim Takımı', img: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Ayla Ö.', comment: 'Kumaşı yumuşacık, rengi hiç solmadı.' }]
-      },
-      {
-        id: 'evtekstil_2', name: 'Özlü Havlu & Bornoz', sub: 'Denizli El Dokuma Havluları',
-        avatar: 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 20:00', rating: '4.7', reviewsCount: '(120+ değerlendirme)',
-        heroTitle: 'YÜKSEK EMİCİ<br>LÜKS HAVLULAR.', heroDesc: '%100 saf pamuk havlu ve bornoz takımları.',
-        heroImg: 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🛁', sloganText: 'Banyonuzda otel konforu.',
-        phone: '0536 111 22 33', address: 'Kazlıçeşme mah. 3. sok. No:9<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Bornoz Seti', img: 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Nihal K.', comment: 'Çok kalıteli ve yumuşak havlular.' }]
-      }
-    ],
-    "Mobilya": [
-      {
-        id: 'mobilya_1', name: 'Ahşap Dünyası Mobilya', sub: 'Masif Masa & Oturma Grupları',
-        avatar: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 19:30', rating: '4.9', reviewsCount: '(220+ değerlendirme)',
-        heroTitle: 'EVİNİZE DEĞER KATAN<br>TASARIMLAR.', heroDesc: 'El işçiliği masif mobilyalar ve koltuk takımları.',
-        heroImg: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🛋️', sloganText: 'Sağlam ve estetik mobilya çözümleri.',
-        phone: '0532 999 00 11', address: 'Seyitnizam mah. Mobilyacılar sitesi No:1<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: '3lü Koltuk Takımı', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Volkan E.', comment: 'Koltuklar hem çok şık hem de çok konforlu.' }]
-      },
-      {
-        id: 'mobilya_2', name: 'Modüler Genç Odası & Sehpa', sub: 'Zigon & Orta Sehpalar',
-        avatar: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 20:00', rating: '4.8', reviewsCount: '(140+ değerlendirme)',
-        heroTitle: 'FONKSİYONEL VE ŞIK<br>MOBİLYALAR.', heroDesc: 'Küçük evler için akıllı mobilya tasarımları.',
-        heroImg: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🪑', sloganText: 'Yaşam alanlarınızı genişletin.',
-        phone: '0534 555 66 77', address: 'Gökalp mah. 19. sok. No:8<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Zigon Sehpa Takımı', img: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Serap G.', comment: 'Kurulumu çok kolaydı, teşekkürler.' }]
-      }
-    ],
-    "Kuyumcu": [
-      {
-        id: 'kuyumcu_1', name: 'Altınbaş Kuyumculuk', sub: '22 Ayar Bilezik & Pırlanta',
-        avatar: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 19:30', rating: '4.9', reviewsCount: '(350+ değerlendirme)',
-        heroTitle: 'EN DEĞERLİ ANLARINIZ<br>İÇİN ALTIN.', heroDesc: 'Garantili altın takılar ve yatırım ürünleri.',
-        heroImg: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '💍', sloganText: 'Güvenilir yatırım ve şık takılar.',
-        phone: '0532 111 44 55', address: 'Merkezefendi mah. Belgradkapı cad. No:1<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: '22 Ayar Bilezik', img: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'İsmail Y.', comment: 'Esnaf çok dürüst ve işçilikleri çok uygun.' }]
-      },
-      {
-        id: 'kuyumcu_2', name: 'Gümüş Sarayı & Takı', sub: '925 Ayar Gümüş Tasarımlar',
-        avatar: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 20:00', rating: '4.8', reviewsCount: '(180+ değerlendirme)',
-        heroTitle: 'ZARAFETİN GÜMÜŞ<br>YANSIMASI.', heroDesc: 'Özel tasarım gümüş kolye ve yüzükler.',
-        heroImg: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '💎', sloganText: 'Işıltınızı tamamlayın.',
-        phone: '0533 777 99 00', address: 'Telsiz mah. 2. sok. No:12<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Gümüş Kolye Seti', img: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Tuğba M.', comment: 'Modelleri çok modern ve şık.' }]
-      }
-    ],
-    "Nalbur": [
-      {
-        id: 'nalbur_1', name: 'Mahalle Hırdavat & Nalbur', sub: 'El Aletleri & Boya Çeşitleri',
-        avatar: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 20:00', rating: '4.8', reviewsCount: '(130+ değerlendirme)',
-        heroTitle: 'HER İŞE UYGUN<br>PROFESYONEL ÇÖZÜM.', heroDesc: 'Tadilat, boya ve el aletleri stoğumuzla hizmetinizdeyiz.',
-        heroImg: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🧰', sloganText: 'Ev tadilatında aradığınız her şey.',
-        phone: '0532 998 11 22', address: 'Seyitnizam mah. 4. sok. No:8<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Matkap Ucu Seti', img: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Kadir Y.', comment: 'Aradığım her vidayı buldum.' }]
-      },
-      {
-        id: 'nalbur_2', name: 'Pratik Yapı Market', sub: 'Boya & Su Tesisat Malzemeleri',
-        avatar: 'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=200&q=80',
-        closing: 'KAPANIŞ 19:30', rating: '4.7', reviewsCount: '(95+ değerlendirme)',
-        heroTitle: 'BOYA, BADANA<br>VE TESİSAT.', heroDesc: 'Ev yenileme malzemelerinde usta tavsiyeleri.',
-        heroImg: 'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=400&q=80',
-        sloganIcon: '🔨', sloganText: 'Usta ellerin adresi.',
-        phone: '0533 444 55 66', address: 'Gökalp mah. 32. sok. No:5<br>ZEYTİNBURNU - İSTANBUL',
-        mapUrl: 'https://maps.google.com/?q=Zeytinburnu+Istanbul', instaUrl: 'https://instagram.com',
-        products: [{ name: 'Duvar Boyası 10Kg', img: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=300&q=80' }],
-        reviews: [{ user: 'Oğuzhan M.', comment: 'Fiyatları piyasaya göre çok uygun.' }]
-      }
-    ]
-  };
-
-  // Kategori İkonları
-  const categoryIcons = {
-    "Yemek": "🍔", "Manav": "🍎", "Market": "🛒", "Kasap": "🥩", "Kafe": "☕",
-    "Kıyafet": "👕", "Ayakkabı": "👟", "Aksesuar": "👜", "Kozmetik": "💄",
-    "Tamir": "🛠️", "Yıkama": "🫧", "Ev Tekstil": "🛏️", "Mobilya": "🛋️",
-    "Kuyumcu": "💍", "Nalbur": "🧰"
-  };
-
-  let currentActiveStore = null;
-
-  window.onload = function() {
-    buildCategoryMenus();
-    loadDefaultStores();
-  };
-
-  function buildCategoryMenus() {
-    const horizontalRow = document.getElementById("horizontalCatRow");
-    const drawerList = document.getElementById("drawerCatListContainer");
-    const modalGrid = document.getElementById("modalCategoriesGrid");
-
-    if(!horizontalRow || !drawerList || !modalGrid) return;
-
-    horizontalRow.innerHTML = "";
-    drawerList.innerHTML = "";
-    modalGrid.innerHTML = "";
-
-    let isFirst = true;
-
-    for (let catName in categoriesData) {
-      let icon = categoryIcons[catName] || "📦";
-
-      // Yatay Çubuk
-      horizontalRow.innerHTML += `
-        <div class="cat-item-card ${isFirst ? 'active' : ''}" onclick="filterStoresByCategory('${catName}', this)">
-          <div class="cat-icon-circle">${icon}</div>
-          <span class="cat-label-text">${catName}</span>
-        </div>
-      `;
-
-      // Hamburger Menü
-      drawerList.innerHTML += `
-        <div class="drawer-cat-item" onclick="filterStoresByCategory('${catName}'); toggleDrawer();">
-          <span>${icon}</span> ${catName}
-        </div>
-      `;
-
-      // Tüm Kategoriler Modalı
-      modalGrid.innerHTML += `
-        <div class="cat-grid-card" onclick="closeAllCategoriesModalDirect(); filterStoresByCategory('${catName}');">
-          <span class="icon">${icon}</span>
-          <span class="label">${catName}</span>
-        </div>
-      `;
-
-      isFirst = false;
-    }
-  }
-
-  function loadDefaultStores() {
-    renderStores("Yemek");
-  }
-
-  function filterStoresByCategory(catName, element) {
-    renderStores(catName);
-    if(element) {
-      document.querySelectorAll('.cat-item-card').forEach(el => el.classList.remove('active'));
-      element.classList.add('active');
-    } else {
-      document.querySelectorAll('.cat-item-card').forEach(el => {
-        let labelText = el.querySelector('.cat-label-text');
-        if(labelText && labelText.innerText.trim() === catName) {
-          el.classList.add('active');
-        } else {
-          el.classList.remove('active');
-        }
-      });
-    }
-  }
-
-  function renderStores(catName) {
-    const container = document.getElementById('storesListContainer');
-    if(!container) return;
-    container.innerHTML = '';
-    const list = categoriesData[catName] || categoriesData['Yemek'];
-
-    list.forEach(store => {
-      container.innerHTML += `
-        <div class="store-row-card" onclick="openStoreModal('${catName}', '${store.id}')">
-          <div class="store-left-info">
-            <img src="${store.avatar}" class="store-avatar" alt="${store.name}">
-            <div class="store-meta">
-              <h4>${store.name}</h4>
-              <p>${store.sub}</p>
-              <span class="status-badge">AÇIK • ★ ${store.rating}</span>
-            </div>
-          </div>
-          <button class="btn-store-inspect">İncele</button>
-        </div>
-      `;
-    });
-  }
-
-  function openStoreModal(catName, storeId) {
-    const list = categoriesData[catName];
-    if(!list) return;
-    const store = list.find(s => s.id === storeId);
-    if(!store) return;
-
-    currentActiveStore = store;
-
-    document.getElementById("modalTitle").innerText = store.name;
-    document.getElementById("modalRatingVal").innerText = store.rating;
-    document.getElementById("modalReviewCount").innerText = store.reviewsCount;
-    document.getElementById("modalClosing").innerText = store.closing;
-    document.getElementById("modalHeroTitle").innerHTML = store.heroTitle;
-    document.getElementById("modalHeroDesc").innerText = store.heroDesc;
-    document.getElementById("modalHeroImg").src = store.heroImg;
-    document.getElementById("modalSloganIcon").innerText = store.sloganIcon;
-    document.getElementById("modalSloganText").innerText = store.sloganText;
-    
-    const phoneBtn = document.getElementById("modalPhoneBtn");
-    phoneBtn.innerHTML = `📞 Tel: ${store.phone}`;
-    phoneBtn.href = `tel:${store.phone.replace(/\s+/g, '')}`;
-
-    document.getElementById("modalMapBtn").href = store.mapUrl;
-    document.getElementById("modalInstaBtn").href = store.instaUrl;
-    document.getElementById("modalAddressFooter").innerHTML = `Adres: ${store.address}`;
-
-    const productsRow = document.getElementById("modalProductsRow");
-    productsRow.innerHTML = "";
-    store.products.forEach(prod => {
-      productsRow.innerHTML += `
-        <div class="modal-product-card">
-          <img src="${prod.img}" alt="${prod.name}">
-          <span>${prod.name}</span>
-        </div>
-      `;
-    });
-
-    document.getElementById("storeModalOverlay").classList.add("active");
-  }
-
-  function closeStoreModalDirect() {
-    document.getElementById("storeModalOverlay").classList.remove("active");
-    closeReviewsModal();
-  }
-
-  // Hamburger Menü Aç/Kapat
-  function toggleDrawer() {
-    const overlay = document.getElementById("drawerOverlay");
-    const panel = document.getElementById("drawerPanel");
-    if(overlay && panel) {
-      overlay.classList.toggle("active");
-      panel.classList.toggle("active");
-    }
-  }
-
-  function openAllCategoriesModal() {
-    const modal = document.getElementById("catModalOverlay");
-    if(modal) modal.classList.add("active");
-  }
-
-  function closeAllCategoriesModalDirect() {
-    const modal = document.getElementById("catModalOverlay");
-    if(modal) modal.classList.remove("active");
-  }
-
-  function closeAllCategoriesModal(event) {
-    if (event.target.id === "catModalOverlay") {
-      closeAllCategoriesModalDirect();
-    }
-  }
-
-  function openReviewsModal() {
-    const container = document.getElementById("reviewsListContainer");
-    container.innerHTML = "";
-    if(currentActiveStore && currentActiveStore.reviews) {
-      currentActiveStore.reviews.forEach(rev => {
-        container.innerHTML += `
-          <div class="review-card">
-            <div class="review-user">👤 ${rev.user} <span style="color:#fbbf24;">★★★★★</span></div>
-            <div class="review-comment">"${rev.comment}"</div>
-          </div>
-        `;
-      });
-    } else {
-      container.innerHTML = `<p style="font-size:11px; color:#9ca3af; text-align:center; margin-top:20px;">Henüz yorum yapılmamış.</p>`;
-    }
-    document.getElementById("reviewsModal").classList.add("active");
-  }
-
-  function closeReviewsModal() {
-    const modal = document.getElementById("reviewsModal");
-    if(modal) modal.classList.remove("active");
-  }
-
-  function filterResults() {
-    let query = document.getElementById("searchInput").value.toLowerCase();
-    let cards = document.querySelectorAll(".product-grid-card");
-
-    cards.forEach(card => {
-      let title = card.querySelector(".product-card-title").innerText.toLowerCase();
-      if (title.includes(query)) {
-        card.style.display = "flex";
-      } else {
-        card.style.display = "none";
+  // Akordeon menü açma kapama fonksiyonu
+  function toggleSubmenu(submenuId) {
+    // Tüm açık alt menüleri kapat
+    const allPanels = document.querySelectorAll('.accordion-submenu-panel');
+    allPanels.forEach(panel => {
+      if (panel.id !== submenuId) {
+        panel.classList.remove('open');
       }
     });
+
+    // Tıklanan menüyü aç/kapat
+    const targetPanel = document.getElementById(submenuId);
+    if (targetPanel) {
+      targetPanel.classList.toggle('open');
+    }
   }
 </script>
 
