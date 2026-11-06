@@ -26,7 +26,7 @@
       align-items: center;
     }
 
-    /* MOBİL KASA MOCKUP (390px İç Genişlik) */
+    /* MOBİL KASA MOCKUP */
     .phone-mockup-wrapper {
       width: 100%;
       max-width: 420px;
@@ -75,7 +75,7 @@
       flex: 1;
       overflow-y: auto;
       padding-top: 36px;
-      padding-bottom: 70px;
+      padding-bottom: 75px;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
       display: flex;
@@ -84,7 +84,7 @@
     }
     .scrollable-content::-webkit-scrollbar { display: none; }
 
-    /* 1. ÜST BAR (HEADER) & ARAMA ALANI (390px x 54px) */
+    /* 1. ÜST BAR (HEADER) & ARAMA ALANI */
     .visual-top-header {
       width: 390px;
       height: 54px;
@@ -101,6 +101,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      cursor: pointer;
     }
 
     .logo-icon-lightning {
@@ -152,7 +153,7 @@
     .loc-select-val { font-size: 12px; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 3px; justify-content: flex-end; }
     .loc-change-btn { font-size: 8.5px; color: #64748b; font-weight: 700; text-decoration: underline; cursor: pointer; }
 
-    /* KATEGORİ SEÇİCİ & ARAMA BARI (42px) */
+    /* KATEGORİ SEÇİCİ & ARAMA BARI */
     .search-cat-bar {
       width: 390px;
       height: 42px;
@@ -166,7 +167,6 @@
       position: relative;
     }
 
-    /* ÖZEL DİNAMİK DROPDOWN KUTUSU */
     .custom-dropdown-container {
       width: 125px;
       position: relative;
@@ -207,9 +207,7 @@
       z-index: 2001;
     }
 
-    .custom-dropdown-menu.open {
-      display: flex;
-    }
+    .custom-dropdown-menu.open { display: flex; }
 
     .dropdown-item-all {
       padding: 8px 10px;
@@ -232,9 +230,7 @@
       background: #ffffff;
       transition: background 0.2s;
     }
-    .dropdown-main-item:hover {
-      background: #f8fafc;
-    }
+    .dropdown-main-item:hover { background: #f8fafc; }
 
     .dropdown-sub-menu {
       display: none;
@@ -242,10 +238,7 @@
       background: #f8fafc;
       border-left: 2px solid #2563eb;
     }
-
-    .dropdown-sub-menu.open {
-      display: flex;
-    }
+    .dropdown-sub-menu.open { display: flex; }
 
     .dropdown-sub-item {
       padding: 6px 10px 6px 18px;
@@ -254,10 +247,7 @@
       color: #475569;
       cursor: pointer;
     }
-    .dropdown-sub-item:hover {
-      color: #2563eb;
-      background: #edf2f7;
-    }
+    .dropdown-sub-item:hover { color: #2563eb; background: #edf2f7; }
 
     .visual-search-input {
       width: 235px;
@@ -282,13 +272,14 @@
       color: #0f172a;
     }
 
-    /* 2. ANA BANNER SLIDER (362px x 145px) */
+    /* 2. ANA BANNER SLIDER */
     .main-hero-slider {
       width: 362px;
       height: 145px;
       margin-bottom: 12px;
       flex-shrink: 0;
     }
+    .main-hero-slider.hidden { display: none !important; }
 
     .green-banner-card {
       width: 362px;
@@ -355,13 +346,13 @@
       justify-content: center;
     }
 
-    /* 3. KATEGORİLER BÖLÜMÜ & AKORDEON MENÜLER */
+    /* 3. KATEGORİLER BÖLÜMÜ */
     .section-grey-wrapper {
       width: 100%;
-      background: #f1f5f9;
+      background: #f8fafc;
       padding: 10px 14px;
-      border-top: 1px solid #e2e8f0;
-      border-bottom: 1px solid #e2e8f0;
+      border-top: 1px solid #f1f5f9;
+      border-bottom: 1px solid #f1f5f9;
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
@@ -443,16 +434,16 @@
       text-transform: uppercase;
     }
 
-    /* AKORDEON AÇILIR ALT MENÜ ALANI */
+    /* AKORDEON AÇILIR ALT KATEGORİ ALANI (İLK AÇILIŞTA HEPSİ KAPALIDIR) */
     .accordion-submenu-panel {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.35s ease-in-out, padding 0.35s ease-in-out;
       background: #e2e8f0;
-      border-radius: 12px;
+      border-radius: 14px;
       display: flex;
       flex-wrap: nowrap;
-      gap: 6px;
+      gap: 8px;
       padding: 0 8px;
       overflow-x: auto;
       scrollbar-width: none;
@@ -460,7 +451,7 @@
     .accordion-submenu-panel::-webkit-scrollbar { display: none; }
 
     .accordion-submenu-panel.open {
-      max-height: 70px;
+      max-height: 60px;
       padding: 8px;
       margin-top: 8px;
     }
@@ -468,17 +459,17 @@
     .sub-cat-pill {
       background: #ffffff;
       color: #0f172a;
-      font-size: 11.5px;
-      font-weight: 900;
-      padding: 7px 12px;
-      border-radius: 10px;
-      border: 1.5px solid #cbd5e1;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 12px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
       cursor: pointer;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-      transition: background 0.2s, color 0.2s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
       white-space: nowrap;
-      flex: 1;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
     .sub-cat-pill:hover, .sub-cat-pill.active {
       background: #2563eb;
@@ -486,13 +477,15 @@
       border-color: #2563eb;
     }
 
-    /* 4. KAMPANYA & İNDİRİM BÖLÜMÜ */
+    /* KAMPANYA & İNDİRİM BÖLÜMÜ */
     .campaign-blue-section {
       width: 100%;
       background: #e0f2fe;
       padding: 12px 14px;
       flex-shrink: 0;
+      margin-top: 10px;
     }
+    .campaign-blue-section.hidden { display: none !important; }
 
     .campaign-header {
       display: flex;
@@ -576,20 +569,8 @@
       text-align: center;
     }
 
-    .prod-label-name {
-      font-size: 9px;
-      font-weight: 900;
-      color: #000000;
-      line-height: 1.1;
-    }
-
-    .prod-label-price {
-      font-size: 9.5px;
-      font-weight: 900;
-      color: #000000;
-      line-height: 1.1;
-      margin-top: 1px;
-    }
+    .prod-label-name { font-size: 9px; font-weight: 900; color: #000000; line-height: 1.1; }
+    .prod-label-price { font-size: 9.5px; font-weight: 900; color: #000000; line-height: 1.1; margin-top: 1px; }
 
     .prod-store-footer {
       height: 35px;
@@ -603,7 +584,7 @@
     .prod-store-name { font-size: 8px; font-weight: 900; color: #0f172a; line-height: 1.1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .prod-store-address { color: #64748b; font-size: 6.5px; font-weight: 700; }
 
-    /* 5. ÖZEL "BENDE VAR" REKLAM BANNER ŞERİDİ */
+    /* ÖZEL "BENDE VAR" REKLAM BANNER ŞERİDİ */
     .ad-banner-strip {
       width: 362px;
       height: 80px;
@@ -621,6 +602,7 @@
       background-position: center;
       box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
     }
+    .ad-banner-strip.hidden { display: none !important; }
 
     .ad-banner-strip::before {
       content: '';
@@ -658,20 +640,8 @@
       font-weight: 900;
     }
 
-    .ad-slogan-desc {
-      font-size: 10px;
-      color: #f1f5f9;
-      font-weight: 700;
-      letter-spacing: 0.2px;
-    }
-
-    .ad-sub-tag {
-      font-size: 7.5px;
-      color: #60a5fa;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+    .ad-slogan-desc { font-size: 10px; color: #f1f5f9; font-weight: 700; letter-spacing: 0.2px; }
+    .ad-sub-tag { font-size: 7.5px; color: #60a5fa; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
 
     .ad-action-btn {
       position: relative;
@@ -687,10 +657,11 @@
       box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
     }
 
-    /* 6. ESNAFLAR BÖLÜMÜ */
+    /* ESNAFLAR BÖLÜMÜ */
     .esnaflar-section-wrapper {
       width: 362px;
       flex-shrink: 0;
+      margin-top: 10px;
     }
 
     .esnaflar-section-title {
@@ -722,9 +693,7 @@
       flex-shrink: 0;
     }
 
-    .feature-store-card.hidden {
-      display: none !important;
-    }
+    .feature-store-card.hidden { display: none !important; }
 
     .store-left-banner {
       width: 162px;
@@ -778,7 +747,7 @@
       background: #ffffff;
       border-top: 1px solid #e2e8f0;
       display: flex;
-      justify-content: space-around;
+      justify-space-around;
       align-items: center;
       z-index: 100;
       padding: 0 10px;
@@ -800,11 +769,11 @@
 
   <div class="app-container">
 
-    <div class="scrollable-content">
+    <div class="scrollable-content" id="scrollContent">
 
-      <!-- 1. ÜST BAR (HEADER) & ARAMA ALANI -->
+      <!-- 1. ÜST BAR (HEADER) & LOGO -->
       <div class="visual-top-header">
-        <div class="visual-brand-logo">
+        <div class="visual-brand-logo" onclick="resetFilter()">
           <span class="logo-icon-lightning">⚡</span>
           <div class="brand-text-group">
             <div class="brand-main-title">BENDE <span class="brand-yellow-badge">VAR</span></div>
@@ -819,7 +788,7 @@
         </div>
       </div>
 
-      <!-- ÖZEL DİNAMİK DROPDOWN KATEGORİ SEÇİCİ BARI -->
+      <!-- KATEGORİ SEÇİCİ & ARAMA BARI -->
       <div class="search-cat-bar">
         <div class="custom-dropdown-container">
           <div class="custom-dropdown-btn" id="customDropdownBtn" onclick="toggleDropdownMenu()">
@@ -828,7 +797,7 @@
           </div>
 
           <div class="custom-dropdown-menu" id="customDropdownMenu">
-            <div class="dropdown-item-all" onclick="selectDropdownCategory('', ':: Tüm Kategoriler')">:: Tüm Kategoriler</div>
+            <div class="dropdown-item-all" onclick="resetFilter()">:: Tüm Kategoriler</div>
             
             <!-- GIDA -->
             <div>
@@ -887,8 +856,8 @@
         </div>
       </div>
 
-      <!-- 2. ANA BANNER SLIDER -->
-      <div class="main-hero-slider">
+      <!-- 2. ANA BANNER SLIDER (İLK AÇILIŞTA GÖRÜNÜR) -->
+      <div class="main-hero-slider" id="mainHeroSlider">
         <div class="green-banner-card">
           <div class="banner-inner-content">
             <div class="banner-subtext">Ev moduna geçiyoruz.</div>
@@ -899,7 +868,7 @@
         </div>
       </div>
 
-      <!-- 3. KATEGORİLER BÖLÜMÜ & AKORDEON MENÜLER -->
+      <!-- 3. KATEGORİLER BÖLÜMÜ -->
       <div class="section-grey-wrapper" id="categorySection">
         <div class="section-heading-sm">
           <span>KATEGORİLER (Seçim Yapın)</span>
@@ -981,7 +950,7 @@
 
         </div>
 
-        <!-- AKORDEON AÇILIR ALT MENÜ PANELLERİ -->
+        <!-- AKORDEON ALT KATEGORİ PANELLERİ -->
         <div id="gidaSub" class="accordion-submenu-panel">
           <div class="sub-cat-pill" onclick="filterStores('KASAP')">🥩 Kasap</div>
           <div class="sub-cat-pill" onclick="filterStores('MANAV')">🍅 Manav</div>
@@ -1024,8 +993,8 @@
 
       </div>
 
-      <!-- 4. KAMPANYA & İNDİRİM BÖLÜMÜ -->
-      <div class="campaign-blue-section">
+      <!-- KAMPANYA & İNDİRİM BÖLÜMÜ (İLK AÇILIŞTA KATEGORİLERİN ALTINDADIR) -->
+      <div class="campaign-blue-section" id="campaignSection">
         <div class="campaign-header">
           <div class="campaign-title">KAMPANYA & İNDİRİM</div>
           <button class="btn-blue-see-all">Tümünü Gör</button>
@@ -1079,8 +1048,8 @@
         </div>
       </div>
 
-      <!-- 5. ÖZEL "BENDE VAR" REKLAM BANNER ŞERİDİ -->
-      <div class="ad-banner-strip">
+      <!-- ÖZEL "BENDE VAR" REKLAM BANNER ŞERİDİ (İLK AÇILIŞTA KAMPANYALARIN ALTINDADIR) -->
+      <div class="ad-banner-strip" id="adBannerSection">
         <div class="ad-banner-content">
           <div class="ad-brand-title">⚡️ BENDE <span class="ad-yellow-badge">VAR</span></div>
           <div class="ad-slogan-desc">Mahallendeki Güvenli Esnaf Alışveriş Ağı</div>
@@ -1089,8 +1058,8 @@
         <button class="ad-action-btn">İncele ➔</button>
       </div>
 
-      <!-- 6. ESNAFLAR BÖLÜMÜ -->
-      <div class="esnaflar-section-wrapper">
+      <!-- ESNAFLAR BÖLÜMÜ (İLK AÇILIŞTA EN ALTTA YER ALIR) -->
+      <div class="esnaflar-section-wrapper" id="esnaflarSection">
         <div class="esnaflar-section-title">ESNAFLAR</div>
 
         <div class="store-feature-list" id="storeListContainer">
@@ -1279,7 +1248,7 @@
               </div>
               <button class="btn-inspect-pill">ŞİMDİ İNCELE ➔</button>
             </div>
-            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Emlak">
+            <img src="https://images.unsplash.com/photo-15600651883-ce09059eeffa?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Emlak">
           </div>
 
         </div>
@@ -1289,7 +1258,7 @@
 
     <!-- ALT NAVİGASYON BARI -->
     <div class="bottom-nav">
-      <div class="nav-item active">
+      <div class="nav-item active" onclick="resetFilter()">
         <span class="nav-icon">🏠</span>
         <span>Ana Sayfa</span>
       </div>
@@ -1331,13 +1300,11 @@
     'KUYUMCU': 'kuyumcuSub'
   };
 
-  // ÖZEL DROPDOWN MENÜ MANTIĞI
   function toggleDropdownMenu() {
     const menu = document.getElementById('customDropdownMenu');
     menu.classList.toggle('open');
   }
 
-  // Ana kategoriye tıklandığında sadece o ana kategorinin altını açma (diğerlerini kapatma)
   function toggleDropdownSub(subId, mainCategoryKey) {
     const allSubs = document.querySelectorAll('.dropdown-sub-menu');
     allSubs.forEach(sub => {
@@ -1351,11 +1318,9 @@
       targetSub.classList.toggle('open');
     }
 
-    // Ana kategorinin kendisi seçildiyse esnafları filtrele ve akordeonu aç
     syncAccordionAndFilter(mainCategoryKey, mainCategoryKey);
   }
 
-  // Herhangi bir alt kategoriye veya öğeye tıklandığında seçimi tamamlama
   function selectDropdownCategory(categoryKey, displayText) {
     document.getElementById('selectedDropdownText').innerText = displayText;
     document.getElementById('customDropdownMenu').classList.remove('open');
@@ -1368,22 +1333,6 @@
     syncAccordionAndFilter(categoryKey, displayText);
   }
 
-  // Ortadaki akordeon ve esnaf listesini senkronize etme
-  function syncAccordionAndFilter(categoryKey, displayText) {
-    document.querySelectorAll('.accordion-submenu-panel').forEach(p => p.classList.remove('open'));
-
-    const targetSubmenuId = subCategoryToMainMap[categoryKey];
-    if (targetSubmenuId) {
-      const panel = document.getElementById(targetSubmenuId);
-      if (panel) {
-        panel.classList.add('open');
-      }
-    }
-
-    filterStores(categoryKey);
-  }
-
-  // Ortadaki görsel karta tıklandığında
   function toggleSubmenu(submenuId, categoryName) {
     const allPanels = document.querySelectorAll('.accordion-submenu-panel');
     allPanels.forEach(panel => {
@@ -1401,12 +1350,37 @@
     filterStores(categoryName);
   }
 
-  // Esnafları filtreleme fonksiyonu
+  function syncAccordionAndFilter(categoryKey, displayText) {
+    document.querySelectorAll('.accordion-submenu-panel').forEach(p => p.classList.remove('open'));
+
+    const targetSubmenuId = subCategoryToMainMap[categoryKey];
+    if (targetSubmenuId) {
+      const panel = document.getElementById(targetSubmenuId);
+      if (panel) {
+        panel.classList.add('open');
+      }
+    }
+
+    filterStores(categoryKey);
+  }
+
+  // YALNIZCA KULLANICI BUTONLARA BASTIĞINDA TETİKLENİR
   function filterStores(categoryKey) {
     const storeCards = document.querySelectorAll('.feature-store-card');
     const resetBtn = document.getElementById('resetFilterBtn');
     resetBtn.style.display = 'block';
 
+    // 1. Üst Slider Banner, Kampanya ve Reklam alanlarını GİZLE (REFERANS 2 HALİ)
+    document.getElementById('mainHeroSlider').classList.add('hidden');
+    document.getElementById('campaignSection').classList.add('hidden');
+    document.getElementById('adBannerSection').classList.add('hidden');
+
+    // 2. ESNAFLAR bölümünü doğrudan alt kategorilerin altına taşı
+    const categorySection = document.getElementById('categorySection');
+    const esnaflarSection = document.getElementById('esnaflarSection');
+    categorySection.after(esnaflarSection);
+
+    // 3. Esnafları seçilen kategoriye göre filtrele
     storeCards.forEach(card => {
       const cardCat = card.getAttribute('data-category');
       if (
@@ -1421,20 +1395,31 @@
     });
   }
 
-  // Filtreyi sıfırlama
+  // İLK AÇILIŞ DÜZENİNE VEYA LOGOYA / "FİLTREYİ TEMİZLE"YE BASILDIĞINDA TETİKLENİR
   function resetFilter() {
     const storeCards = document.querySelectorAll('.feature-store-card');
     storeCards.forEach(card => {
       card.classList.remove('hidden');
     });
 
+    // 1. Üst Banner, Kampanya ve Reklam alanlarını TEKRAR GÖSTER (REFERANS 1 HALİ)
+    document.getElementById('mainHeroSlider').classList.remove('hidden');
+    document.getElementById('campaignSection').classList.remove('hidden');
+    document.getElementById('adBannerSection').classList.remove('hidden');
+
+    // 2. Sıralamayı Orijinal Haline Getir (Kategoriler -> Kampanya -> Reklam -> Esnaflar)
+    const adBannerSection = document.getElementById('adBannerSection');
+    const esnaflarSection = document.getElementById('esnaflarSection');
+    adBannerSection.after(esnaflarSection);
+
+    // 3. Alt Butonları Kapat ve Başlıkları Sıfırla
     document.getElementById('resetFilterBtn').style.display = 'none';
     document.getElementById('selectedDropdownText').innerText = ':: Tüm Kategoriler';
     document.querySelectorAll('.accordion-submenu-panel').forEach(p => p.classList.remove('open'));
     document.querySelectorAll('.dropdown-sub-menu').forEach(s => s.classList.remove('open'));
+    document.getElementById('customDropdownMenu').classList.remove('open');
   }
 
-  // Dışarı tıklanınca dropdown menüyü kapatma
   document.addEventListener('click', function(e) {
     const container = document.querySelector('.custom-dropdown-container');
     if (container && !container.contains(e.target)) {
