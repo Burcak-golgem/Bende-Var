@@ -163,10 +163,19 @@
       margin-top: 6px;
       margin-bottom: 10px;
       flex-shrink: 0;
+      position: relative;
     }
 
-    .select-category-dropdown {
+    /* ÖZEL DİNAMİK DROPDOWN KUTUSU */
+    .custom-dropdown-container {
       width: 125px;
+      position: relative;
+      flex-shrink: 0;
+      z-index: 2000;
+    }
+
+    .custom-dropdown-btn {
+      width: 100%;
       height: 36px;
       background: #f1f5f9;
       border: 1px solid #e2e8f0;
@@ -174,10 +183,80 @@
       font-size: 10.5px;
       font-weight: 800;
       color: #0f172a;
-      padding: 0 8px;
-      outline: none;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       cursor: pointer;
-      flex-shrink: 0;
+      user-select: none;
+    }
+
+    .custom-dropdown-menu {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      width: 150px;
+      max-height: 280px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      overflow-y: auto;
+      display: none;
+      flex-direction: column;
+      z-index: 2001;
+    }
+
+    .custom-dropdown-menu.open {
+      display: flex;
+    }
+
+    .dropdown-item-all {
+      padding: 8px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      border-bottom: 1px solid #f1f5f9;
+      cursor: pointer;
+    }
+
+    .dropdown-main-item {
+      padding: 8px 10px;
+      font-size: 11.5px;
+      font-weight: 900;
+      color: #0f172a;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      transition: background 0.2s;
+    }
+    .dropdown-main-item:hover {
+      background: #f8fafc;
+    }
+
+    .dropdown-sub-menu {
+      display: none;
+      flex-direction: column;
+      background: #f8fafc;
+      border-left: 2px solid #2563eb;
+    }
+
+    .dropdown-sub-menu.open {
+      display: flex;
+    }
+
+    .dropdown-sub-item {
+      padding: 6px 10px 6px 18px;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #475569;
+      cursor: pointer;
+    }
+    .dropdown-sub-item:hover {
+      color: #2563eb;
+      background: #edf2f7;
     }
 
     .visual-search-input {
@@ -276,7 +355,7 @@
       justify-content: center;
     }
 
-    /* 3. KATEGORİLER BÖLÜMÜ & AKORDEON YAPISI */
+    /* 3. KATEGORİLER BÖLÜMÜ & AKORDEON MENÜLER */
     .section-grey-wrapper {
       width: 100%;
       background: #f1f5f9;
@@ -286,7 +365,6 @@
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
-      transition: all 0.3s ease;
     }
 
     .section-heading-sm {
@@ -295,6 +373,17 @@
       color: #334155;
       margin-bottom: 6px;
       letter-spacing: 0.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .reset-filter-btn {
+      font-size: 9.5px;
+      color: #2563eb;
+      cursor: pointer;
+      display: none;
+      text-decoration: underline;
     }
 
     .categories-horizontal-grid {
@@ -361,32 +450,37 @@
       transition: max-height 0.35s ease-in-out, padding 0.35s ease-in-out;
       background: #e2e8f0;
       border-radius: 12px;
-      margin-top: 0px;
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 6px;
-      padding: 0 10px;
+      padding: 0 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
+    .accordion-submenu-panel::-webkit-scrollbar { display: none; }
 
     .accordion-submenu-panel.open {
-      max-height: 100px;
-      padding: 8px 10px;
+      max-height: 70px;
+      padding: 8px;
       margin-top: 8px;
     }
 
     .sub-cat-pill {
       background: #ffffff;
       color: #0f172a;
-      font-size: 9.5px;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 8px;
-      border: 1px solid #cbd5e1;
+      font-size: 11.5px;
+      font-weight: 900;
+      padding: 7px 12px;
+      border-radius: 10px;
+      border: 1.5px solid #cbd5e1;
       cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      transition: background 0.2s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+      flex: 1;
+      text-align: center;
     }
-    .sub-cat-pill:hover {
+    .sub-cat-pill:hover, .sub-cat-pill.active {
       background: #2563eb;
       color: #ffffff;
       border-color: #2563eb;
@@ -620,11 +714,16 @@
       height: 105px;
       border-radius: 16px;
       overflow: hidden;
-      display: flex;
+      display: flex !important;
+      flex-direction: row !important;
       box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
       cursor: pointer;
       border: 1px solid #e2e8f0;
       flex-shrink: 0;
+    }
+
+    .feature-store-card.hidden {
+      display: none !important;
     }
 
     .store-left-banner {
@@ -643,7 +742,7 @@
     .store-left-banner.green-theme { background: #475569; }
     .store-left-banner.purple-theme { background: #5b21b6; }
     .store-left-banner.red-theme { background: #991b1b; }
-    .store-left-banner.teal-theme { background: #115e59; }
+    .store-left-banner.teal-theme { background: #115e59; color: #ffffff; }
 
     .store-left-title { font-size: 13px; font-weight: 900; line-height: 1.15; text-transform: uppercase; }
     .store-left-sub { font-size: 8.5px; opacity: 0.85; font-weight: 700; margin-top: 2px; }
@@ -720,26 +819,68 @@
         </div>
       </div>
 
-      <!-- KATEGORİ SEÇİCİ DROPDOWN & ARAMA BARI -->
+      <!-- ÖZEL DİNAMİK DROPDOWN KATEGORİ SEÇİCİ BARI -->
       <div class="search-cat-bar">
-        <select class="select-category-dropdown" id="mainCategoryDropdown">
-          <option value="">:: Tüm Kategoriler</option>
-          <option value="GIDA">GIDA</option>
-          <option value="YİYECEK">YİYECEK</option>
-          <option value="GİYİM">GİYİM</option>
-          <option value="KOZMETİK">KOZMETİK</option>
-          <option value="KUAFÖR">KUAFÖR</option>
-          <option value="KAFE">KAFE</option>
-          <option value="AKTİVİTE">AKTİVİTE</option>
-          <option value="VETERİNER">VETERİNER</option>
-          <option value="SAĞLIK">SAĞLIK</option>
-          <option value="MOBİLYA">MOBİLYA</option>
-          <option value="KUYUMCU">KUYUMCU</option>
-          <option value="TAMİR">TAMİR</option>
-          <option value="YIKAMA">YIKAMA</option>
-          <option value="NALBUR">NALBUR</option>
-          <option value="EMLAK">EMLAK</option>
-        </select>
+        <div class="custom-dropdown-container">
+          <div class="custom-dropdown-btn" id="customDropdownBtn" onclick="toggleDropdownMenu()">
+            <span id="selectedDropdownText">:: Tüm Kategoriler</span>
+            <span style="font-size: 8px;">▼</span>
+          </div>
+
+          <div class="custom-dropdown-menu" id="customDropdownMenu">
+            <div class="dropdown-item-all" onclick="selectDropdownCategory('', ':: Tüm Kategoriler')">:: Tüm Kategoriler</div>
+            
+            <!-- GIDA -->
+            <div>
+              <div class="dropdown-main-item" onclick="toggleDropdownSub('sub-gida', 'GIDA')">
+                <span>GIDA</span>
+                <span style="font-size: 8px;">▼</span>
+              </div>
+              <div class="dropdown-sub-menu" id="sub-gida">
+                <div class="dropdown-sub-item" onclick="selectDropdownCategory('MANAV', '• Manav')">• Manav</div>
+                <div class="dropdown-sub-item" onclick="selectDropdownCategory('KASAP', '• Kasap')">• Kasap</div>
+                <div class="dropdown-sub-item" onclick="selectDropdownCategory('BAKKAL', '• Bakkal')">• Bakkal</div>
+                <div class="dropdown-sub-item" onclick="selectDropdownCategory('MARKET', '• Market')">• Market</div>
+              </div>
+            </div>
+
+            <!-- GİYİM -->
+            <div>
+              <div class="dropdown-main-item" onclick="toggleDropdownSub('sub-giyim', 'GİYİM')">
+                <span>GİYİM</span>
+                <span style="font-size: 8px;">▼</span>
+              </div>
+              <div class="dropdown-sub-menu" id="sub-giyim">
+                <div class="dropdown-sub-item" onclick="selectDropdownCategory('AYAKKABI', '• Ayakkabı')">• Ayakkabı</div>
+                <div class="dropdown-sub-item" onclick="selectDropdownCategory('KEMER', '• Kemer')">• Kemer</div>
+                <div class="dropdown-sub-item" onclick="selectDropdownCategory('AKSESUAR', '• Aksesuar')">• Aksesuar</div>
+              </div>
+            </div>
+
+            <!-- YİYECEK -->
+            <div>
+              <div class="dropdown-main-item" onclick="toggleDropdownSub('sub-yiyecek', 'YİYECEK')">
+                <span>YİYECEK</span>
+                <span style="font-size: 8px;">▼</span>
+              </div>
+              <div class="dropdown-sub-menu" id="sub-yiyecek">
+                <div class="dropdown-sub-item" onclick="selectDropdownCategory('RESTORAN', '• Restoran')">• Restoran</div>
+                <div class="dropdown-sub-item" onclick="selectDropdownCategory('FAST FOOD', '• Fast Food')">• Fast Food</div>
+              </div>
+            </div>
+
+            <div class="dropdown-main-item" onclick="selectDropdownCategory('KOZMETİK', 'KOZMETİK')">KOZMETİK</div>
+            <div class="dropdown-main-item" onclick="selectDropdownCategory('KUAFÖR', 'KUAFÖR')">KUAFÖR</div>
+            <div class="dropdown-main-item" onclick="selectDropdownCategory('KAFE', 'KAFE')">KAFE</div>
+            <div class="dropdown-main-item" onclick="selectDropdownCategory('MOBİLYA', 'MOBİLYA')">MOBİLYA</div>
+            <div class="dropdown-main-item" onclick="selectDropdownCategory('KUYUMCU', 'KUYUMCU')">KUYUMCU</div>
+            <div class="dropdown-main-item" onclick="selectDropdownCategory('TAMİR', 'TAMİR')">TAMİR</div>
+            <div class="dropdown-main-item" onclick="selectDropdownCategory('YIKAMA', 'YIKAMA')">YIKAMA</div>
+            <div class="dropdown-main-item" onclick="selectDropdownCategory('NALBUR', 'NALBUR')">NALBUR</div>
+            <div class="dropdown-main-item" onclick="selectDropdownCategory('EMLAK', 'EMLAK')">EMLAK</div>
+          </div>
+        </div>
+
         <div class="visual-search-input">
           <span>🔍</span>
           <input type="text" placeholder="Ürün, hizmet veya esnaf ara...">
@@ -760,11 +901,14 @@
 
       <!-- 3. KATEGORİLER BÖLÜMÜ & AKORDEON MENÜLER -->
       <div class="section-grey-wrapper" id="categorySection">
-        <div class="section-heading-sm">KATEGORİLER (Tıklayın & Alt Menüyü Görün)</div>
+        <div class="section-heading-sm">
+          <span>KATEGORİLER (Seçim Yapın)</span>
+          <span class="reset-filter-btn" id="resetFilterBtn" onclick="resetFilter()">Filtreyi Temizle ↺</span>
+        </div>
         <div class="categories-horizontal-grid">
           
-          <!-- GIDA KATEGORİSİ -->
-          <div class="cat-visual-card" onclick="toggleSubmenu('gidaSub')">
+          <!-- GIDA -->
+          <div class="cat-visual-card" onclick="toggleSubmenu('gidaSub', 'GIDA')">
             <div class="cat-visual-img-wrapper">
               <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80" alt="Gıda">
               <div class="cat-overlay-text">GIDA</div>
@@ -772,8 +916,8 @@
             <div class="cat-visual-title-sub">GIDA ▾</div>
           </div>
 
-          <!-- GİYİM KATEGORİSİ -->
-          <div class="cat-visual-card" onclick="toggleSubmenu('giyimSub')">
+          <!-- GİYİM -->
+          <div class="cat-visual-card" onclick="toggleSubmenu('giyimSub', 'GİYİM')">
             <div class="cat-visual-img-wrapper">
               <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=400&q=80" alt="Giyim">
               <div class="cat-overlay-text">GİYİM</div>
@@ -781,8 +925,8 @@
             <div class="cat-visual-title-sub">GİYİM ▾</div>
           </div>
 
-          <!-- YİYECEK KATEGORİSİ -->
-          <div class="cat-visual-card" onclick="toggleSubmenu('yiyecekSub')">
+          <!-- YİYECEK -->
+          <div class="cat-visual-card" onclick="toggleSubmenu('yiyecekSub', 'YİYECEK')">
             <div class="cat-visual-img-wrapper">
               <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=80" alt="Yiyecek">
               <div class="cat-overlay-text">YİYECEK</div>
@@ -790,8 +934,8 @@
             <div class="cat-visual-title-sub">YİYECEK ▾</div>
           </div>
 
-          <!-- KOZMETİK KATEGORİSİ -->
-          <div class="cat-visual-card" onclick="toggleSubmenu('kozmetikSub')">
+          <!-- KOZMETİK -->
+          <div class="cat-visual-card" onclick="toggleSubmenu('kozmetikSub', 'KOZMETİK')">
             <div class="cat-visual-img-wrapper">
               <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=400&q=80" alt="Kozmetik">
               <div class="cat-overlay-text">KOZMETİK</div>
@@ -799,8 +943,8 @@
             <div class="cat-visual-title-sub">KOZMETİK ▾</div>
           </div>
 
-          <!-- KUAFÖR KATEGORİSİ -->
-          <div class="cat-visual-card" onclick="toggleSubmenu('kuaforSub')">
+          <!-- KUAFÖR -->
+          <div class="cat-visual-card" onclick="toggleSubmenu('kuaforSub', 'KUAFÖR')">
             <div class="cat-visual-img-wrapper">
               <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=400&q=80" alt="Kuaför">
               <div class="cat-overlay-text">KUAFÖR</div>
@@ -808,8 +952,8 @@
             <div class="cat-visual-title-sub">KUAFÖR ▾</div>
           </div>
 
-          <!-- KAFE KATEGORİSİ -->
-          <div class="cat-visual-card" onclick="toggleSubmenu('kafeSub')">
+          <!-- KAFE -->
+          <div class="cat-visual-card" onclick="toggleSubmenu('kafeSub', 'KAFE')">
             <div class="cat-visual-img-wrapper">
               <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=400&q=80" alt="Kafe">
               <div class="cat-overlay-text">KAFE</div>
@@ -817,8 +961,8 @@
             <div class="cat-visual-title-sub">KAFE ▾</div>
           </div>
 
-          <!-- MOBİLYA KATEGORİSİ -->
-          <div class="cat-visual-card" onclick="toggleSubmenu('mobilyaSub')">
+          <!-- MOBİLYA -->
+          <div class="cat-visual-card" onclick="toggleSubmenu('mobilyaSub', 'MOBİLYA')">
             <div class="cat-visual-img-wrapper">
               <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=400&q=80" alt="Mobilya">
               <div class="cat-overlay-text">MOBİLYA</div>
@@ -826,8 +970,8 @@
             <div class="cat-visual-title-sub">MOBİLYA ▾</div>
           </div>
 
-          <!-- KUYUMCU KATEGORİSİ -->
-          <div class="cat-visual-card" onclick="toggleSubmenu('kuyumcuSub')">
+          <!-- KUYUMCU -->
+          <div class="cat-visual-card" onclick="toggleSubmenu('kuyumcuSub', 'KUYUMCU')">
             <div class="cat-visual-img-wrapper">
               <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=400&q=80" alt="Kuyumcu">
               <div class="cat-overlay-text">KUYUMCU</div>
@@ -838,59 +982,44 @@
         </div>
 
         <!-- AKORDEON AÇILIR ALT MENÜ PANELLERİ -->
-        <!-- 1. GIDA ALT MENÜSÜ -->
         <div id="gidaSub" class="accordion-submenu-panel">
-          <div class="sub-cat-pill">🥩 Kasap</div>
-          <div class="sub-cat-pill">🍅 Manav</div>
-          <div class="sub-cat-pill">🥖 Bakkal</div>
-          <div class="sub-cat-pill">🛒 Market</div>
+          <div class="sub-cat-pill" onclick="filterStores('KASAP')">🥩 Kasap</div>
+          <div class="sub-cat-pill" onclick="filterStores('MANAV')">🍅 Manav</div>
+          <div class="sub-cat-pill" onclick="filterStores('BAKKAL')">🥖 Bakkal</div>
+          <div class="sub-cat-pill" onclick="filterStores('MARKET')">🛒 Market</div>
         </div>
 
-        <!-- 2. GİYİM ALT MENÜSÜ -->
         <div id="giyimSub" class="accordion-submenu-panel">
-          <div class="sub-cat-pill">👞 Ayakkabı</div>
-          <div class="sub-cat-pill">🎗️ Kemer</div>
-          <div class="sub-cat-pill">👕 Kıyafet</div>
-          <div class="sub-cat-pill">👜 Aksesuar</div>
+          <div class="sub-cat-pill" onclick="filterStores('AYAKKABI')">👞 Ayakkabı</div>
+          <div class="sub-cat-pill" onclick="filterStores('KEMER')">🎗️ Kemer</div>
+          <div class="sub-cat-pill" onclick="filterStores('GİYİM')">👕 Kıyafet</div>
+          <div class="sub-cat-pill" onclick="filterStores('AKSESUAR')">👜 Aksesuar</div>
         </div>
 
-        <!-- 3. YİYECEK ALT MENÜSÜ -->
         <div id="yiyecekSub" class="accordion-submenu-panel">
-          <div class="sub-cat-pill">🍲 Restoran</div>
-          <div class="sub-cat-pill">🍕 Fast Food</div>
-          <div class="sub-cat-pill">🍰 Pastane</div>
+          <div class="sub-cat-pill" onclick="filterStores('RESTORAN')">🍲 Restoran</div>
+          <div class="sub-cat-pill" onclick="filterStores('FAST FOOD')">🍕 Fast Food</div>
+          <div class="sub-cat-pill" onclick="filterStores('PASTANE')">🍰 Pastane</div>
         </div>
 
-        <!-- 4. KOZMETİK ALT MENÜSÜ -->
         <div id="kozmetikSub" class="accordion-submenu-panel">
-          <div class="sub-cat-pill">💄 Parfüm & Makyaj</div>
-          <div class="sub-cat-pill">🌿 Cilt Bakım</div>
+          <div class="sub-cat-pill" onclick="filterStores('KOZMETİK')">💄 Parfüm & Makyaj</div>
         </div>
 
-        <!-- 5. KUAFÖR ALT MENÜSÜ -->
         <div id="kuaforSub" class="accordion-submenu-panel">
-          <div class="sub-cat-pill">💇 Erkek Berber</div>
-          <div class="sub-cat-pill">💅 Kadın Kuaför</div>
-          <div class="sub-cat-pill">✨ Güzellik Merkezi</div>
+          <div class="sub-cat-pill" onclick="filterStores('KUAFÖR')">💇 Kuaför & Berber</div>
         </div>
 
-        <!-- 6. KAFE ALT MENÜSÜ -->
         <div id="kafeSub" class="accordion-submenu-panel">
-          <div class="sub-cat-pill">☕ Kahve Dükkanı</div>
-          <div class="sub-cat-pill">🫖 Çay Bahçesi</div>
+          <div class="sub-cat-pill" onclick="filterStores('KAFE')">☕ Kafe</div>
         </div>
 
-        <!-- 7. MOBİLYA ALT MENÜSÜ -->
         <div id="mobilyaSub" class="accordion-submenu-panel">
-          <div class="sub-cat-pill">🛋️ Oturma Grubu</div>
-          <div class="sub-cat-pill">🛏️ Yatak Odası</div>
-          <div class="sub-cat-pill">🪑 Ofis Mobilyası</div>
+          <div class="sub-cat-pill" onclick="filterStores('MOBİLYA')">🛋️ Mobilya</div>
         </div>
 
-        <!-- 8. KUYUMCU ALT MENÜSÜ -->
         <div id="kuyumcuSub" class="accordion-submenu-panel">
-          <div class="sub-cat-pill">💍 Altın & Kolye</div>
-          <div class="sub-cat-pill">⌚ Saat & Aksesuar</div>
+          <div class="sub-cat-pill" onclick="filterStores('KUYUMCU')">💍 Kuyumcu</div>
         </div>
 
       </div>
@@ -964,8 +1093,9 @@
       <div class="esnaflar-section-wrapper">
         <div class="esnaflar-section-title">ESNAFLAR</div>
 
-        <div class="store-feature-list">
-          <div class="feature-store-card">
+        <div class="store-feature-list" id="storeListContainer">
+          
+          <div class="feature-store-card" data-category="MOBİLYA">
             <div class="store-left-banner blue-theme">
               <div>
                 <div class="store-left-title">TUNA<br>MOBİLYA</div>
@@ -976,27 +1106,182 @@
             <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Mobilya">
           </div>
 
-          <div class="feature-store-card">
+          <div class="feature-store-card" data-category="MANAV">
             <div class="store-left-banner yellow-theme">
               <div>
                 <div class="store-left-title">ÖZAN<br>MANAV</div>
-                <div class="store-left-sub">Veli Efendi • Gıda / Yiyecek</div>
+                <div class="store-left-sub">Veli Efendi • Manav & Gıda</div>
               </div>
               <button class="btn-inspect-pill" style="background:#2563eb; color:#ffffff;">ŞİMDİ İNCELE ➔</button>
             </div>
-            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Gıda">
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Manav">
           </div>
 
-          <div class="feature-store-card">
+          <div class="feature-store-card" data-category="KASAP">
+            <div class="store-left-banner red-theme">
+              <div>
+                <div class="store-left-title">ŞİFA<br>ET KASABI</div>
+                <div class="store-left-sub">Merkez Cad • Kasap & Et</div>
+              </div>
+              <button class="btn-inspect-pill">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Kasap">
+          </div>
+
+          <div class="feature-store-card" data-category="BAKKAL">
+            <div class="store-left-banner teal-theme">
+              <div>
+                <div class="store-left-title">DAYANIŞMA<br>BAKKALİYE</div>
+                <div class="store-left-sub">Çınar Sok • Bakkal</div>
+              </div>
+              <button class="btn-inspect-pill">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Bakkal">
+          </div>
+
+          <div class="feature-store-card" data-category="MARKET">
+            <div class="store-left-banner blue-theme">
+              <div>
+                <div class="store-left-title">MAHALLE<br>MARKETİ</div>
+                <div class="store-left-sub">Atatürk Cad • Süpermarket</div>
+              </div>
+              <button class="btn-inspect-pill">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1534482492329-873d9753c1d4?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Market">
+          </div>
+
+          <div class="feature-store-card" data-category="GİYİM">
             <div class="store-left-banner green-theme">
               <div>
                 <div class="store-left-title">MODA<br>TEKSTİL</div>
-                <div class="store-left-sub">58. Bulvar • Giyim</div>
+                <div class="store-left-sub">58. Bulvar • Giyim & Kıyafet</div>
               </div>
               <button class="btn-inspect-pill">ŞİMDİ İNCELE ➔</button>
             </div>
             <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Giyim">
           </div>
+
+          <div class="feature-store-card" data-category="AYAKKABI">
+            <div class="store-left-banner purple-theme">
+              <div>
+                <div class="store-left-title">ADIM<br>AYAKKABI</div>
+                <div class="store-left-sub">Çarşı İçi • Ayakkabı</div>
+              </div>
+              <button class="btn-inspect-pill">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Ayakkabı">
+          </div>
+
+          <div class="feature-store-card" data-category="KEMER">
+            <div class="store-left-banner yellow-theme">
+              <div>
+                <div class="store-left-title">ŞIK<br>DERİ & KEMER</div>
+                <div class="store-left-sub">Merkez • Kemer & Aksesuar</div>
+              </div>
+              <button class="btn-inspect-pill" style="background:#2563eb; color:#ffffff;">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Kemer">
+          </div>
+
+          <div class="feature-store-card" data-category="AKSESUAR">
+            <div class="store-left-banner teal-theme">
+              <div>
+                <div class="store-left-title">TARZ<br>ÇANTA & AKSESUAR</div>
+                <div class="store-left-sub">Çarşı • Aksesuar</div>
+              </div>
+              <button class="btn-inspect-pill">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Aksesuar">
+          </div>
+
+          <div class="feature-store-card" data-category="KOZMETİK">
+            <div class="store-left-banner purple-theme">
+              <div>
+                <div class="store-left-title">IŞIL<br>KOZMETİK</div>
+                <div class="store-left-sub">Merkez Cad • Kozmetik</div>
+              </div>
+              <button class="btn-inspect-pill">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Kozmetik">
+          </div>
+
+          <div class="feature-store-card" data-category="KUAFÖR">
+            <div class="store-left-banner red-theme">
+              <div>
+                <div class="store-left-title">ASİL<br>KUAFÖR</div>
+                <div class="store-left-sub">Gül Sokak • Kuaför</div>
+              </div>
+              <button class="btn-inspect-pill">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Kuaför">
+          </div>
+
+          <div class="feature-store-card" data-category="KAFE">
+            <div class="store-left-banner teal-theme">
+              <div>
+                <div class="store-left-title">AROMA<br>KAFE</div>
+                <div class="store-left-sub">Meydan • Kafe</div>
+              </div>
+              <button class="btn-inspect-pill">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Kafe">
+          </div>
+
+          <div class="feature-store-card" data-category="KUYUMCU">
+            <div class="store-left-banner yellow-theme">
+              <div>
+                <div class="store-left-title">ALTINBAŞ<br>KUYUMCU</div>
+                <div class="store-left-sub">Çarşı Cad • Kuyumcu</div>
+              </div>
+              <button class="btn-inspect-pill" style="background:#2563eb; color:#ffffff;">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Kuyumcu">
+          </div>
+
+          <div class="feature-store-card" data-category="TAMİR">
+            <div class="store-left-banner green-theme">
+              <div>
+                <div class="store-left-title">UZMAN<br>OTO TAMİR</div>
+                <div class="store-left-sub">Sanayi Sit • Tamir</div>
+              </div>
+              <button class="btn-inspect-pill">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Tamir">
+          </div>
+
+          <div class="feature-store-card" data-category="YIKAMA">
+            <div class="store-left-banner teal-theme">
+              <div>
+                <div class="store-left-title">PARLAK<br>OTO YIKAMA</div>
+                <div class="store-left-sub">İstasyon Cad • Yıkama</div>
+              </div>
+              <button class="btn-inspect-pill">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Yıkama">
+          </div>
+
+          <div class="feature-store-card" data-category="NALBUR">
+            <div class="store-left-banner red-theme">
+              <div>
+                <div class="store-left-title">GÜVEN<br>NALBURİYE</div>
+                <div class="store-left-sub">Çınar Cad • Nalbur</div>
+              </div>
+              <button class="btn-inspect-pill">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Nalbur">
+          </div>
+
+          <div class="feature-store-card" data-category="EMLAK">
+            <div class="store-left-banner purple-theme">
+              <div>
+                <div class="store-left-title">PRESTİJ<br>EMLAK</div>
+                <div class="store-left-sub">Atatürk Cad • Emlak</div>
+              </div>
+              <button class="btn-inspect-pill">ŞİMDİ İNCELE ➔</button>
+            </div>
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=80" class="store-right-img" alt="Emlak">
+          </div>
+
         </div>
       </div>
 
@@ -1026,9 +1311,80 @@
 </div>
 
 <script>
-  // Akordeon menü açma kapama fonksiyonu
-  function toggleSubmenu(submenuId) {
-    // Tüm açık alt menüleri kapat
+  const subCategoryToMainMap = {
+    'GIDA': 'gidaSub',
+    'MANAV': 'gidaSub',
+    'KASAP': 'gidaSub',
+    'BAKKAL': 'gidaSub',
+    'MARKET': 'gidaSub',
+
+    'GİYİM': 'giyimSub',
+    'AYAKKABI': 'giyimSub',
+    'KEMER': 'giyimSub',
+    'AKSESUAR': 'giyimSub',
+
+    'YİYECEK': 'yiyecekSub',
+    'KOZMETİK': 'kozmetikSub',
+    'KUAFÖR': 'kuaforSub',
+    'KAFE': 'kafeSub',
+    'MOBİLYA': 'mobilyaSub',
+    'KUYUMCU': 'kuyumcuSub'
+  };
+
+  // ÖZEL DROPDOWN MENÜ MANTIĞI
+  function toggleDropdownMenu() {
+    const menu = document.getElementById('customDropdownMenu');
+    menu.classList.toggle('open');
+  }
+
+  // Ana kategoriye tıklandığında sadece o ana kategorinin altını açma (diğerlerini kapatma)
+  function toggleDropdownSub(subId, mainCategoryKey) {
+    const allSubs = document.querySelectorAll('.dropdown-sub-menu');
+    allSubs.forEach(sub => {
+      if (sub.id !== subId) {
+        sub.classList.remove('open');
+      }
+    });
+
+    const targetSub = document.getElementById(subId);
+    if (targetSub) {
+      targetSub.classList.toggle('open');
+    }
+
+    // Ana kategorinin kendisi seçildiyse esnafları filtrele ve akordeonu aç
+    syncAccordionAndFilter(mainCategoryKey, mainCategoryKey);
+  }
+
+  // Herhangi bir alt kategoriye veya öğeye tıklandığında seçimi tamamlama
+  function selectDropdownCategory(categoryKey, displayText) {
+    document.getElementById('selectedDropdownText').innerText = displayText;
+    document.getElementById('customDropdownMenu').classList.remove('open');
+    
+    if (!categoryKey) {
+      resetFilter();
+      return;
+    }
+
+    syncAccordionAndFilter(categoryKey, displayText);
+  }
+
+  // Ortadaki akordeon ve esnaf listesini senkronize etme
+  function syncAccordionAndFilter(categoryKey, displayText) {
+    document.querySelectorAll('.accordion-submenu-panel').forEach(p => p.classList.remove('open'));
+
+    const targetSubmenuId = subCategoryToMainMap[categoryKey];
+    if (targetSubmenuId) {
+      const panel = document.getElementById(targetSubmenuId);
+      if (panel) {
+        panel.classList.add('open');
+      }
+    }
+
+    filterStores(categoryKey);
+  }
+
+  // Ortadaki görsel karta tıklandığında
+  function toggleSubmenu(submenuId, categoryName) {
     const allPanels = document.querySelectorAll('.accordion-submenu-panel');
     allPanels.forEach(panel => {
       if (panel.id !== submenuId) {
@@ -1036,12 +1392,55 @@
       }
     });
 
-    // Tıklanan menüyü aç/kapat
     const targetPanel = document.getElementById(submenuId);
     if (targetPanel) {
       targetPanel.classList.toggle('open');
     }
+
+    document.getElementById('selectedDropdownText').innerText = categoryName;
+    filterStores(categoryName);
   }
+
+  // Esnafları filtreleme fonksiyonu
+  function filterStores(categoryKey) {
+    const storeCards = document.querySelectorAll('.feature-store-card');
+    const resetBtn = document.getElementById('resetFilterBtn');
+    resetBtn.style.display = 'block';
+
+    storeCards.forEach(card => {
+      const cardCat = card.getAttribute('data-category');
+      if (
+        cardCat === categoryKey || 
+        (categoryKey === 'GIDA' && ['KASAP', 'MANAV', 'BAKKAL', 'MARKET'].includes(cardCat)) || 
+        (categoryKey === 'GİYİM' && ['AYAKKABI', 'KEMER', 'GİYİM', 'AKSESUAR'].includes(cardCat))
+      ) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
+
+  // Filtreyi sıfırlama
+  function resetFilter() {
+    const storeCards = document.querySelectorAll('.feature-store-card');
+    storeCards.forEach(card => {
+      card.classList.remove('hidden');
+    });
+
+    document.getElementById('resetFilterBtn').style.display = 'none';
+    document.getElementById('selectedDropdownText').innerText = ':: Tüm Kategoriler';
+    document.querySelectorAll('.accordion-submenu-panel').forEach(p => p.classList.remove('open'));
+    document.querySelectorAll('.dropdown-sub-menu').forEach(s => s.classList.remove('open'));
+  }
+
+  // Dışarı tıklanınca dropdown menüyü kapatma
+  document.addEventListener('click', function(e) {
+    const container = document.querySelector('.custom-dropdown-container');
+    if (container && !container.contains(e.target)) {
+      document.getElementById('customDropdownMenu').classList.remove('open');
+    }
+  });
 </script>
 
 </body>
